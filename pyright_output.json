@@ -1,0 +1,1646 @@
+{
+    "version": "1.1.407",
+    "time": "1762370080680",
+    "generalDiagnostics": [
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\error_output_dialog.py",
+            "severity": "error",
+            "message": "Import \"Qt\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 4,
+                    "character": 27
+                },
+                "end": {
+                    "line": 4,
+                    "character": 29
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "Import \"Path\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 3,
+                    "character": 20
+                },
+                "end": {
+                    "line": 3,
+                    "character": 24
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "Import \"tempfile\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 7,
+                    "character": 7
+                },
+                "end": {
+                    "line": 7,
+                    "character": 15
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "\"model_size_or_path\" is possibly unbound",
+            "range": {
+                "start": {
+                    "line": 58,
+                    "character": 65
+                },
+                "end": {
+                    "line": 58,
+                    "character": 83
+                }
+            },
+            "rule": "reportPossiblyUnboundVariable"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "Type of \"transcribe\" is partially unknown\n┬á┬áType of \"transcribe\" is \"(audio: str | BinaryIO | ndarray[Unknown, Unknown], language: str | None = None, task: str = \"transcribe\", log_progress: bool = False, beam_size: int = 5, best_of: int = 5, patience: float = 1, length_penalty: float = 1, repetition_penalty: float = 1, no_repeat_ngram_size: int = 0, temperature: float | List[float] | Tuple[float, ...] = [0, 0.2, 0.4, 0.6, 0.8, 1], compression_ratio_threshold: float | None = 2.4, log_prob_threshold: float | None = -1, no_speech_threshold: float | None = 0.6, condition_on_previous_text: bool = True, prompt_reset_on_temperature: float = 0.5, initial_prompt: str | Iterable[int] | None = None, prefix: str | None = None, suppress_blank: bool = True, suppress_tokens: List[int] | None = [-1], without_timestamps: bool = False, max_initial_timestamp: float = 1, word_timestamps: bool = False, prepend_punctuations: str = \"\\\"'ÔÇ£┬┐([{-\", append_punctuations: str = \"\\\"'.ÒÇé,´╝î!´╝ü?´╝ƒ:´╝ÜÔÇØ)]}ÒÇü\", multilingual: bool = False, vad_filter: bool = False, vad_parameters: dict[Unknown, Unknown] | VadOptions | None = None, max_new_tokens: int | None = None, chunk_length: int | None = None, clip_timestamps: str | List[float] = \"0\", hallucination_silence_threshold: float | None = None, hotwords: str | None = None, language_detection_threshold: float | None = 0.5, language_detection_segments: int = 1) -> Tuple[Iterable[Segment], TranscriptionInfo]\"",
+            "range": {
+                "start": {
+                    "line": 83,
+                    "character": 29
+                },
+                "end": {
+                    "line": 83,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 103,
+                    "character": 16
+                },
+                "end": {
+                    "line": 103,
+                    "character": 36
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "Type of \"result\" is partially unknown\n┬á┬áType of \"result\" is \"dict[str, str | float | list[Unknown]]\"",
+            "range": {
+                "start": {
+                    "line": 116,
+                    "character": 12
+                },
+                "end": {
+                    "line": 116,
+                    "character": 18
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\faster_whisper_runner.py",
+            "severity": "error",
+            "message": "Return type, \"dict[str, str | float | list[Unknown]]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 124,
+                    "character": 19
+                },
+                "end": {
+                    "line": 124,
+                    "character": 25
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Unnecessary isinstance call; \"ndarray[Any, dtype[Any]]\" is always an instance of \"ndarray[Unknown, Unknown] | memmap[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 176,
+                    "character": 60
+                },
+                "end": {
+                    "line": 176,
+                    "character": 102
+                }
+            },
+            "rule": "reportUnnecessaryIsInstance"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"obj\" in function \"len\"\n┬á┬áArgument type is \"list[Unknown] | tuple[Unknown, ...]\"",
+            "range": {
+                "start": {
+                    "line": 218,
+                    "character": 59
+                },
+                "end": {
+                    "line": 218,
+                    "character": 64
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Type of \"value\" is unknown",
+            "range": {
+                "start": {
+                    "line": 219,
+                    "character": 16
+                },
+                "end": {
+                    "line": 219,
+                    "character": 21
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Return type, \"str | Any | Unknown | list[Unknown] | tuple[()]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 235,
+                    "character": 23
+                },
+                "end": {
+                    "line": 235,
+                    "character": 28
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 244,
+                    "character": 47
+                },
+                "end": {
+                    "line": 244,
+                    "character": 59
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 253,
+                    "character": 50
+                },
+                "end": {
+                    "line": 253,
+                    "character": 62
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 266,
+                    "character": 44
+                },
+                "end": {
+                    "line": 266,
+                    "character": 56
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 266,
+                    "character": 102
+                },
+                "end": {
+                    "line": 266,
+                    "character": 114
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 270,
+                    "character": 47
+                },
+                "end": {
+                    "line": 270,
+                    "character": 59
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 279,
+                    "character": 44
+                },
+                "end": {
+                    "line": 279,
+                    "character": 56
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 329,
+                    "character": 38
+                },
+                "end": {
+                    "line": 329,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 330,
+                    "character": 53
+                },
+                "end": {
+                    "line": 330,
+                    "character": 65
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 331,
+                    "character": 38
+                },
+                "end": {
+                    "line": 331,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 332,
+                    "character": 57
+                },
+                "end": {
+                    "line": 332,
+                    "character": 69
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"metadata_dict\" in function \"get_scalar_metadata\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 349,
+                    "character": 48
+                },
+                "end": {
+                    "line": 349,
+                    "character": 60
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Unnecessary isinstance call; \"int\" is always an instance of \"int\"",
+            "range": {
+                "start": {
+                    "line": 365,
+                    "character": 15
+                },
+                "end": {
+                    "line": 365,
+                    "character": 39
+                }
+            },
+            "rule": "reportUnnecessaryIsInstance"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Type of \"update\" is partially unknown\n┬á┬áType of \"update\" is \"Overload[(m: SupportsKeysAndGetItem[Unknown, Unknown], /) -> None, (m: SupportsKeysAndGetItem[str, Unknown], /, **kwargs: Unknown) -> None, (m: Iterable[tuple[Unknown, Unknown]], /) -> None, (m: Iterable[tuple[str, Unknown]], /, **kwargs: Unknown) -> None, (**kwargs: Unknown) -> None]\"",
+            "range": {
+                "start": {
+                    "line": 384,
+                    "character": 8
+                },
+                "end": {
+                    "line": 384,
+                    "character": 29
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Return type, \"dict[Unknown, Unknown]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 393,
+                    "character": 15
+                },
+                "end": {
+                    "line": 393,
+                    "character": 29
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 513,
+                    "character": 12
+                },
+                "end": {
+                    "line": 513,
+                    "character": 34
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Return type, \"list[Unknown]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 515,
+                    "character": 11
+                },
+                "end": {
+                    "line": 515,
+                    "character": 26
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\gguf_metadata.py",
+            "severity": "error",
+            "message": "Return type, \"dict[Unknown, Unknown]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 550,
+                    "character": 11
+                },
+                "end": {
+                    "line": 550,
+                    "character": 18
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\headless_service_manager.py",
+            "severity": "error",
+            "message": "Variable \"audio_config\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 43,
+                    "character": 12
+                },
+                "end": {
+                    "line": 43,
+                    "character": 24
+                }
+            },
+            "rule": "reportUnusedVariable"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\headless_service_manager.py",
+            "severity": "error",
+            "message": "Variable \"audio_config\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 45,
+                    "character": 12
+                },
+                "end": {
+                    "line": 45,
+                    "character": 24
+                }
+            },
+            "rule": "reportUnusedVariable"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Import \"BytesIO\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 25,
+                    "character": 15
+                },
+                "end": {
+                    "line": 25,
+                    "character": 22
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Import \"UploadFile\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 26,
+                    "character": 20
+                },
+                "end": {
+                    "line": 26,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_get_lmstudio_models_handler\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 46,
+                    "character": 10
+                },
+                "end": {
+                    "line": 46,
+                    "character": 38
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_get_lmstudio_model_handler\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 78,
+                    "character": 10
+                },
+                "end": {
+                    "line": 78,
+                    "character": 37
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"future\" is partially unknown\n┬á┬áType of \"future\" is \"Future[Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 272,
+                    "character": 13
+                },
+                "end": {
+                    "line": 272,
+                    "character": 19
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"set_result\" is partially unknown\n┬á┬áType of \"set_result\" is \"(result: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 273,
+                    "character": 13
+                },
+                "end": {
+                    "line": 273,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"final_response_obj\" is partially unknown\n┬á┬áType of \"final_response_obj\" is \"dict[str, str | int | Any | list[Unknown]]\"",
+            "range": {
+                "start": {
+                    "line": 317,
+                    "character": 20
+                },
+                "end": {
+                    "line": 317,
+                    "character": 38
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 323,
+                    "character": 28
+                },
+                "end": {
+                    "line": 323,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "\"__getitem__\" method not defined on type \"int\"",
+            "range": {
+                "start": {
+                    "line": 334,
+                    "character": 40
+                },
+                "end": {
+                    "line": 334,
+                    "character": 65
+                }
+            },
+            "rule": "reportIndexIssue"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Object of type \"None\" is not subscriptable",
+            "range": {
+                "start": {
+                    "line": 334,
+                    "character": 40
+                },
+                "end": {
+                    "line": 334,
+                    "character": 65
+                }
+            },
+            "rule": "reportOptionalSubscript"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "\"__setitem__\" method not defined on type \"int\"",
+            "range": {
+                "start": {
+                    "line": 334,
+                    "character": 40
+                },
+                "end": {
+                    "line": 334,
+                    "character": 65
+                }
+            },
+            "rule": "reportIndexIssue"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"Unknown | Any | ((object: Unknown, /) -> None)\"",
+            "range": {
+                "start": {
+                    "line": 342,
+                    "character": 24
+                },
+                "end": {
+                    "line": 342,
+                    "character": 60
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Cannot access attribute \"append\" for class \"str\"\n┬á┬áAttribute \"append\" is unknown",
+            "range": {
+                "start": {
+                    "line": 342,
+                    "character": 54
+                },
+                "end": {
+                    "line": 342,
+                    "character": 60
+                }
+            },
+            "rule": "reportAttributeAccessIssue"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Cannot access attribute \"append\" for class \"int\"\n┬á┬áAttribute \"append\" is unknown",
+            "range": {
+                "start": {
+                    "line": 342,
+                    "character": 54
+                },
+                "end": {
+                    "line": 342,
+                    "character": 60
+                }
+            },
+            "rule": "reportAttributeAccessIssue"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Return type, \"dict[str, str | int | Any | list[Unknown]]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 347,
+                    "character": 27
+                },
+                "end": {
+                    "line": 347,
+                    "character": 45
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 352,
+                    "character": 24
+                },
+                "end": {
+                    "line": 352,
+                    "character": 46
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Return type, \"Any | list[Unknown]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 360,
+                    "character": 35
+                },
+                "end": {
+                    "line": 360,
+                    "character": 48
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Return type, \"Any | list[Unknown]\", is partially unknown",
+            "range": {
+                "start": {
+                    "line": 361,
+                    "character": 31
+                },
+                "end": {
+                    "line": 361,
+                    "character": 44
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"iterable_of_bytes\" in function \"join\"\n┬á┬áArgument type is \"list[Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 389,
+                    "character": 52
+                },
+                "end": {
+                    "line": 389,
+                    "character": 67
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"future\" is partially unknown\n┬á┬áType of \"future\" is \"Future[Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 532,
+                    "character": 13
+                },
+                "end": {
+                    "line": 532,
+                    "character": 19
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"set_result\" is partially unknown\n┬á┬áType of \"set_result\" is \"(result: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 533,
+                    "character": 13
+                },
+                "end": {
+                    "line": 533,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 560,
+                    "character": 28
+                },
+                "end": {
+                    "line": 560,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 588,
+                    "character": 24
+                },
+                "end": {
+                    "line": 588,
+                    "character": 46
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"iterable_of_bytes\" in function \"join\"\n┬á┬áArgument type is \"list[Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 623,
+                    "character": 52
+                },
+                "end": {
+                    "line": 623,
+                    "character": 67
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_proxy_v0_chat_completions\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 664,
+                    "character": 10
+                },
+                "end": {
+                    "line": 664,
+                    "character": 36
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"client_requests_stream\" is partially unknown\n┬á┬áType of \"client_requests_stream\" is \"Unknown | Any\"",
+            "range": {
+                "start": {
+                    "line": 675,
+                    "character": 8
+                },
+                "end": {
+                    "line": 675,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"get\" is partially unknown\n┬á┬áType of \"get\" is \"Any | Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "range": {
+                "start": {
+                    "line": 675,
+                    "character": 33
+                },
+                "end": {
+                    "line": 675,
+                    "character": 46
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_dynamic_route_v1_request_generator\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 681,
+                    "character": 21
+                },
+                "end": {
+                    "line": 681,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_fetch_non_streaming_v1_response\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 688,
+                    "character": 21
+                },
+                "end": {
+                    "line": 688,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_proxy_v0_embeddings\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 713,
+                    "character": 10
+                },
+                "end": {
+                    "line": 713,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_fetch_non_streaming_v1_response\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 728,
+                    "character": 17
+                },
+                "end": {
+                    "line": 728,
+                    "character": 26
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_proxy_v0_completions\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 752,
+                    "character": 10
+                },
+                "end": {
+                    "line": 752,
+                    "character": 31
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"client_requests_stream\" is partially unknown\n┬á┬áType of \"client_requests_stream\" is \"Unknown | Any\"",
+            "range": {
+                "start": {
+                    "line": 763,
+                    "character": 8
+                },
+                "end": {
+                    "line": 763,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"get\" is partially unknown\n┬á┬áType of \"get\" is \"Any | Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "range": {
+                "start": {
+                    "line": 763,
+                    "character": 33
+                },
+                "end": {
+                    "line": 763,
+                    "character": 46
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_dynamic_route_v1_request_generator\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 769,
+                    "character": 21
+                },
+                "end": {
+                    "line": 769,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_fetch_non_streaming_v1_response\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 776,
+                    "character": 21
+                },
+                "end": {
+                    "line": 776,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_list_openai_models_handler\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 805,
+                    "character": 10
+                },
+                "end": {
+                    "line": 805,
+                    "character": 37
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n┬á┬áType of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 815,
+                    "character": 12
+                },
+                "end": {
+                    "line": 815,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_v1_chat_completions_handler\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 902,
+                    "character": 10
+                },
+                "end": {
+                    "line": 902,
+                    "character": 38
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"client_requests_stream\" is partially unknown\n┬á┬áType of \"client_requests_stream\" is \"Unknown | Any\"",
+            "range": {
+                "start": {
+                    "line": 909,
+                    "character": 8
+                },
+                "end": {
+                    "line": 909,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"get\" is partially unknown\n┬á┬áType of \"get\" is \"Any | Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "range": {
+                "start": {
+                    "line": 909,
+                    "character": 33
+                },
+                "end": {
+                    "line": 909,
+                    "character": 46
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_dynamic_route_v1_request_generator\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 913,
+                    "character": 30
+                },
+                "end": {
+                    "line": 913,
+                    "character": 39
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_fetch_non_streaming_v1_response\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 917,
+                    "character": 30
+                },
+                "end": {
+                    "line": 917,
+                    "character": 39
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_v1_completions_handler\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 941,
+                    "character": 10
+                },
+                "end": {
+                    "line": 941,
+                    "character": 33
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"client_requests_stream\" is partially unknown\n┬á┬áType of \"client_requests_stream\" is \"Unknown | Any\"",
+            "range": {
+                "start": {
+                    "line": 948,
+                    "character": 8
+                },
+                "end": {
+                    "line": 948,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"get\" is partially unknown\n┬á┬áType of \"get\" is \"Any | Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "range": {
+                "start": {
+                    "line": 948,
+                    "character": 33
+                },
+                "end": {
+                    "line": 948,
+                    "character": 46
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_dynamic_route_v1_request_generator\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 952,
+                    "character": 30
+                },
+                "end": {
+                    "line": 952,
+                    "character": 39
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_fetch_non_streaming_v1_response\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 956,
+                    "character": 30
+                },
+                "end": {
+                    "line": 956,
+                    "character": 39
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Function \"_v1_embeddings_handler\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 979,
+                    "character": 10
+                },
+                "end": {
+                    "line": 979,
+                    "character": 32
+                }
+            },
+            "rule": "reportUnusedFunction"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"body\" in function \"_fetch_non_streaming_v1_response\"\n┬á┬áArgument type is \"Any | dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 989,
+                    "character": 17
+                },
+                "end": {
+                    "line": 989,
+                    "character": 26
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Unnecessary isinstance call; \"list[Any]\" is always an instance of \"list[Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 1003,
+                    "character": 13
+                },
+                "end": {
+                    "line": 1003,
+                    "character": 44
+                }
+            },
+            "rule": "reportUnnecessaryIsInstance"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"embedding_arr\" is partially unknown\n┬á┬áType of \"embedding_arr\" is \"Unknown | None\"",
+            "range": {
+                "start": {
+                    "line": 1009,
+                    "character": 20
+                },
+                "end": {
+                    "line": 1009,
+                    "character": 33
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"get\" is partially unknown\n┬á┬áType of \"get\" is \"Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "range": {
+                "start": {
+                    "line": 1009,
+                    "character": 36
+                },
+                "end": {
+                    "line": 1009,
+                    "character": 53
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"obj\" in function \"len\"\n┬á┬áArgument type is \"list[Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 1010,
+                    "character": 63
+                },
+                "end": {
+                    "line": 1010,
+                    "character": 76
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"embedding_objects\" is partially unknown\n┬á┬áType of \"embedding_objects\" is \"list[dict[str, str | Unknown]]\"",
+            "range": {
+                "start": {
+                    "line": 1012,
+                    "character": 24
+                },
+                "end": {
+                    "line": 1012,
+                    "character": 41
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"vector\" is unknown",
+            "range": {
+                "start": {
+                    "line": 1017,
+                    "character": 32
+                },
+                "end": {
+                    "line": 1017,
+                    "character": 38
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"obj_resp\" is partially unknown\n┬á┬áType of \"obj_resp\" is \"dict[str, str | list[dict[str, str | Unknown]] | Unknown | Any | dict[str, int]]\"",
+            "range": {
+                "start": {
+                    "line": 1020,
+                    "character": 24
+                },
+                "end": {
+                    "line": 1020,
+                    "character": 32
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Type of \"get\" is partially unknown\n┬á┬áType of \"get\" is \"Any | Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "range": {
+                "start": {
+                    "line": 1023,
+                    "character": 37
+                },
+                "end": {
+                    "line": 1023,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"object\" in function \"__new__\"\n┬á┬áArgument type is \"Unknown | list[Unknown] | None\"",
+            "range": {
+                "start": {
+                    "line": 1031,
+                    "character": 121
+                },
+                "end": {
+                    "line": 1031,
+                    "character": 134
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\lmstudio_proxy_thread.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"object\" in function \"__new__\"\n┬á┬áArgument type is \"dict[Unknown, Unknown]\"",
+            "range": {
+                "start": {
+                    "line": 1034,
+                    "character": 118
+                },
+                "end": {
+                    "line": 1034,
+                    "character": 131
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\main_window.py",
+            "severity": "error",
+            "message": "Import \"load_config\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 9,
+                    "character": 39
+                },
+                "end": {
+                    "line": 9,
+                    "character": 50
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\main_window.py",
+            "severity": "error",
+            "message": "Import \"ConfigRepository\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 18,
+                    "character": 56
+                },
+                "end": {
+                    "line": 18,
+                    "character": 72
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\model_status_widget.py",
+            "severity": "error",
+            "message": "Type of parameter \"parent\" is partially unknown\n┬á┬áParameter type is \"Unknown | None\"",
+            "range": {
+                "start": {
+                    "line": 25,
+                    "character": 83
+                },
+                "end": {
+                    "line": 25,
+                    "character": 89
+                }
+            },
+            "rule": "reportUnknownParameterType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\model_status_widget.py",
+            "severity": "error",
+            "message": "Type annotation is missing for parameter \"parent\"",
+            "range": {
+                "start": {
+                    "line": 25,
+                    "character": 83
+                },
+                "end": {
+                    "line": 25,
+                    "character": 89
+                }
+            },
+            "rule": "reportMissingParameterType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\model_status_widget.py",
+            "severity": "error",
+            "message": "Argument type is partially unknown\n┬á┬áArgument corresponds to parameter \"parent\" in function \"__init__\"\n┬á┬áArgument type is \"Unknown | None\"",
+            "range": {
+                "start": {
+                    "line": 26,
+                    "character": 25
+                },
+                "end": {
+                    "line": 26,
+                    "character": 31
+                }
+            },
+            "rule": "reportUnknownArgumentType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\ollama_proxy_thread.py",
+            "severity": "error",
+            "message": "Import \"BytesIO\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 17,
+                    "character": 15
+                },
+                "end": {
+                    "line": 17,
+                    "character": 22
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\ollama_proxy_thread.py",
+            "severity": "error",
+            "message": "Import \"FastAPIUploadFile\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 18,
+                    "character": 34
+                },
+                "end": {
+                    "line": 18,
+                    "character": 51
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\repositories\\config_repository.py",
+            "severity": "error",
+            "message": "Return type is unknown",
+            "range": {
+                "start": {
+                    "line": 90,
+                    "character": 15
+                },
+                "end": {
+                    "line": 90,
+                    "character": 33
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\repositories\\config_repository.py",
+            "severity": "error",
+            "message": "Return type is unknown",
+            "range": {
+                "start": {
+                    "line": 110,
+                    "character": 15
+                },
+                "end": {
+                    "line": 110,
+                    "character": 37
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\services\\ollama_service.py",
+            "severity": "error",
+            "message": "Import \"List\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 0,
+                    "character": 30
+                },
+                "end": {
+                    "line": 0,
+                    "character": 34
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "f:\\llm\\llama-runner-async-proxy\\llama_runner\\services\\ollama_service.py",
+            "severity": "error",
+            "message": "Import \"Optional\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 0,
+                    "character": 36
+                },
+                "end": {
+                    "line": 0,
+                    "character": 44
+                }
+            },
+            "rule": "reportUnusedImport"
+        }
+    ],
+    "summary": {
+        "filesAnalyzed": 26,
+        "errorCount": 102,
+        "warningCount": 0,
+        "informationCount": 0,
+        "timeInSec": 2.907
+    }
+}
+
