@@ -1,0 +1,74 @@
+2025-11-06 22:13:12,897 - INFO - root - App file logging to: F:\llm\llama-runner-async-proxy\llama_runner\..\config\app.log
+2025-11-06 22:13:12,898 - INFO - root - Development mode: forcing headless mode for better debugging
+2025-11-06 22:13:12,911 - DEBUG - asyncio - Using proactor: _IocpProactor
+2025-11-06 22:13:12,913 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-06 22:13:12,914 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-06 22:13:12,914 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-06 22:13:12,915 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-06 22:13:12,915 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-06 22:13:12,915 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-06 22:13:12,916 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-06 22:13:12,916 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-06 22:13:12,917 - INFO - llama_runner.headless_service_manager - Waiting for all services to start...
+2025-11-06 22:13:13,017 - INFO - root - Application exited with code 0.
+2025-11-06 22:13:13,170 - DEBUG - qasync._windows._IocpProactor - Closing
+2025-11-06 22:13:13,170 - ERROR - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main.<locals>.run_app() done, defined at F:\llm\llama-runner-async-proxy\main.py:158> exception=SystemExit(1)>
+Traceback (most recent call last):
+  File "C:\ProgramData\miniconda3\Lib\site-packages\uvicorn\server.py", line 164, in startup
+    server = await loop.create_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 1630, in create_server
+    raise OSError(err.errno, msg) from None
+OSError: [Errno 10048] error while attempting to bind on address ('127.0.0.1', 11434): [winerror 10048] une seule utilisation de chaque adresse de socket (protocole/adresse réseau/port) est habituellement autorisée
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\llm\llama-runner-async-proxy\main.py", line 212, in main
+    asyncio.run(run_app())
+  File "C:\ProgramData\miniconda3\Lib\asyncio\runners.py", line 194, in run
+    with Runner(debug=debug, loop_factory=loop_factory) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\miniconda3\Lib\asyncio\runners.py", line 62, in __exit__
+    self.close()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\runners.py", line 70, in close
+    _cancel_all_tasks(loop)
+  File "C:\ProgramData\miniconda3\Lib\asyncio\runners.py", line 206, in _cancel_all_tasks
+    loop.run_until_complete(tasks.gather(*to_cancel, return_exceptions=True))
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 2050, in _run_once
+    handle._run()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "F:\llm\llama-runner-async-proxy\main.py", line 184, in run_app
+    await hsm.start_services()
+  File "F:\llm\llama-runner-async-proxy\llama_runner\headless_service_manager.py", line 163, in start_services
+    await asyncio.gather(*self.running_tasks)
+  File "C:\ProgramData\miniconda3\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\miniconda3\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\base_events.py", line 2050, in _run_once
+    handle._run()
+  File "C:\ProgramData\miniconda3\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\ProgramData\miniconda3\Lib\site-packages\uvicorn\server.py", line 71, in serve
+    await self._serve(sockets)
+  File "C:\ProgramData\miniconda3\Lib\site-packages\uvicorn\server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "C:\ProgramData\miniconda3\Lib\site-packages\uvicorn\server.py", line 174, in startup
+    sys.exit(1)
+SystemExit: 1

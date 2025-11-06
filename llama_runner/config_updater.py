@@ -11,7 +11,7 @@ import json
 import logging
 import shutil
 from pathlib import Path
-from typing import Dict, Any, List, Callable, Optional, Set
+from typing import Dict, Any, List, Callable, Set
 from datetime import datetime
 
 # Initialize logger for this module
@@ -21,17 +21,15 @@ logger = logging.getLogger(__name__)
 CURRENT_CONFIG_VERSION: int = 2
 
 # Set of deprecated parameters that should be removed from models
-# Based on llama-server documentation analysis (updated 2025-11-06)
-# Note: Using underscore naming convention to match actual config parameter names
+# Based on llama-server documentation (updated 2025-11-05)
 DEPRECATED_PARAMS: Set[str] = {
-    "defrag_thold",  # KV cache defragmentation threshold (DEPRECATED in llama-server)
-    "dt",            # Short version of defrag-thold (not typically used with underscores)
+    "defrag-thold",  # KV cache defragmentation threshold (DEPRECATED in llama-server)
     # Add more deprecated parameters here as they are identified in future versions
 }
 
 # Parameters that can be specified without a value (flags)
 # These parameters don't require a value in the command line, just their presence is enough
-# Based on llama-server documentation analysis (updated 2025-11-06)
+# Based on llama-server documentation (updated 2025-11-05)
 FLAG_PARAMS: Set[str] = {
     # Core flags
     "flash-attn",          # Enable Flash Attention
@@ -43,7 +41,6 @@ FLAG_PARAMS: Set[str] = {
     "no-repack",           # Disable weight repacking
     "check-tensors",       # Check model tensor data for invalid values
     "no-op-offload",       # Disable offloading host tensor operations to device
-    "kv-unified",          # Use single unified KV buffer for KV cache
     
     # Logging and debug flags
     "verbose-prompt",      # Print a verbose prompt before generation
@@ -532,7 +529,7 @@ def optimize_config_structure(config: Dict[str, Any]) -> Dict[str, Any]:
         value = config[key]
         
         # Only remove if it's a dict with NO keys at all
-        if isinstance(value, dict) and len(value) == 0:
+        if isinstance(value, dict) and len(value) == 0:  # type: ignore
             logger.debug(f"Removing completely empty section: {key}")
             del config[key]
             removed_sections.append(key)
@@ -568,9 +565,9 @@ def optimize_config_structure(config: Dict[str, Any]) -> Dict[str, Any]:
             
             # Clean empty parameters (but keep flag parameters)
             if "params" in model_info and isinstance(model_info["params"], dict):
-                original_param_count = len(model_info["params"])
-                model_info["params"] = clean_empty_params(model_info["params"])
-                new_param_count = len(model_info["params"])
+                original_param_count = len(model_info["params"])  # type: ignore
+                model_info["params"] = clean_empty_params(model_info["params"])  # type: ignore
+                new_param_count = len(model_info["params"])  # type: ignore
                 
                 if original_param_count != new_param_count:
                     logger.debug(

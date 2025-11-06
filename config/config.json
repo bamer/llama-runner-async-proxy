@@ -1,14 +1,14 @@
 {
   "proxies": {
     "ollama": {
-      "enabled": false
+      "enabled": true
     },
     "lmstudio": {
       "enabled": true
     }
   },
-  "llama-runtimes": {
-    "default": {
+  "runtimes": {
+    "llama-server": {
       "runtime": "F:\\llm\\llama\\llama-server.exe"
     }
   },
@@ -37,7 +37,7 @@
       "whisper-small": {
         "model_path": "small",
         "parameters": {
-          "device": "cpu", 
+          "device": "cpu",
           "compute_type": "int8",
           "threads": 4,
           "language": null,
@@ -50,7 +50,7 @@
     "Chroma1-HD-Flash-Q4_K_S": {
       "model_path": "F:\\llm\\llama\\models\\Chroma1-HD-Flash-Q4_K_S-GGUF\\Chroma1-HD-Flash-Q4_K_S.gguf",
       "mmproj": "F:\\llm\\llama\\models\\Chroma1-HD-Flash-Q4_K_S-GGUF\\mmproj-F32.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -66,7 +66,7 @@
     },
     "DeepSeek-R1-0528-Qwen3-8B-Q4_K_M": {
       "model_path": "F:\\llm\\llama\\models\\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -82,7 +82,7 @@
     },
     "Dorado-WebSurf_Tool-ext.Q8_0": {
       "model_path": "F:\\llm\\llama\\models\\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\\Dorado-WebSurf_Tool-ext.Q8_0.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -101,7 +101,7 @@
     },
     "gemma-2-9b-Q8_0": {
       "model_path": "F:\\llm\\llama\\models\\gemma-2-9b-GGUF\\gemma-2-9b-Q8_0.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 1.0,
@@ -116,27 +116,9 @@
         "top_k": 0
       }
     },
-    "gpt-oss-20b-Q4_K_S": {
-      "model_path": "F:\\llm\\llama\\models\\gpt-oss-20b-GGUF\\gpt-oss-20b-Q4_K_S.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 32000,
-        "temp": 1.0,
-        "batch_size": 1024,
-        "ubatch_size": 512,
-        "threads": 10,
-        "mlock": true,
-        "no_mmap": true,
-        "flash_attn": "on",
-        "n_gpu_layers": 85,
-        "top_p": 1.0,
-        "top_k": 0,
-        "jinja": true
-      }
-    },
     "gpt-oss-20b-MXFP4": {
       "model_path": "F:\\llm\\llama\\models\\gpt-oss-20b-MXFP4-GGUF\\gpt-oss-20b-MXFP4.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 1.0,
@@ -154,7 +136,7 @@
     },
     "granite-4_0-h-tiny-IQ4_XS": {
       "model_path": "F:\\llm\\llama\\models\\granite-4_0-h-tiny-IQ4_XS\\model.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -166,7 +148,7 @@
     },
     "Jan-v1-4B-Q4_K_M": {
       "model_path": "F:\\llm\\llama\\models\\Jan-v1-4B-Q4_K_M\\model.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -183,26 +165,9 @@
         "jinja": true
       }
     },
-    "Magistral-Small-2509-Q4_K_M": {
-      "model_path": "F:\\llm\\llama\\models\\Magistral-Small-2509-Q4_K_M-GGUF\\Magistral-Small-2509-Q4_K_M.gguf",
-      "mmproj": "F:\\llm\\llama\\models\\Magistral-Small-2509-Q4_K_M-GGUF\\mmproj-Magistral-Small-2509-F16.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 32000,
-        "temp": 0.7,
-        "batch_size": 1024,
-        "ubatch_size": 512,
-        "threads": 10,
-        "mlock": true,
-        "no_mmap": true,
-        "flash_attn": "on",
-        "n_gpu_layers": 85,
-        "jinja": true
-      }
-    },
     "neutss-air-BF16": {
       "model_path": "F:\\llm\\llama\\models\\neutts-air\\neutss-air-BF16.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -212,22 +177,9 @@
         "n_gpu_layers": 85
       }
     },
-    "OpenAI-20B-NEO-CODE-DI-Uncensored-Q5_1": {
-      "model_path": "F:\\llm\\llama\\models\\OpenAI-20B-NEO-CODE-DI-Uncensored-Q5_1\\model.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 32000,
-        "temp": 0.7,
-        "threads": 10,
-        "mlock": true,
-        "no_mmap": true,
-        "n_gpu_layers": 85,
-        "jinja": true
-      }
-    },
     "Phi-4-mini-instruct_Q4_K_M": {
       "model_path": "F:\\llm\\llama\\models\\Phi-4-mini-instruct_Q4_K_M\\model.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -239,7 +191,7 @@
     },
     "Qwen2.5-7B-Instruct-Q4_K_M": {
       "model_path": "F:\\llm\\llama\\models\\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\\Qwen2.5-7B-Instruct-Q4_K_M.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -255,7 +207,7 @@
     },
     "Qwen2.5-Coder-1.5B-Q8_0": {
       "model_path": "F:\\llm\\llama\\models\\Qwen2.5-Coder-1.5B-Q8_0-GGUF\\qwen2.5-coder-1.5b-q8_0.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -268,7 +220,7 @@
     },
     "Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M": {
       "model_path": "F:\\llm\\llama\\models\\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -288,7 +240,7 @@
     "Qwen2.5-Omni-3B": {
       "model_path": "F:\\llm\\llama\\models\\Qwen2.5-Omni-3B-GGUF\\Qwen2.5-Omni-3B-Q8_0.gguf",
       "mmproj": "F:\\llm\\llama\\models\\Qwen2.5-Omni-3B-GGUF\\mmproj-Qwen2.5-Omni-3B-f16.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -302,7 +254,7 @@
     "Qwen2.5-VL-7B-Instruct": {
       "model_path": "F:\\llm\\llama\\models\\Qwen2.5-VL-7B-Instruct-GGUF\\Qwen2.5-VL-7B-Instruct-Q4_K_S.gguf",
       "mmproj": "F:\\llm\\llama\\models\\Qwen2.5-VL-7B-Instruct-GGUF\\mmproj-F32.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 1.0,
@@ -320,7 +272,7 @@
     },
     "Qwen3-0.6B-Q4_K_S": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-0.6B-GGUF\\Qwen3-0.6B-Q4_K_S.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.2,
@@ -332,7 +284,7 @@
     },
     "Qwen3-0.6B-Q8_0": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-0.6B-GGUF\\Qwen3-0.6B-Q8_0.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.2,
@@ -344,7 +296,7 @@
     },
     "Qwen3-1.7B-Q4_K_S": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-1.7B-GGUF\\Qwen3-1.7B-Q4_K_S.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.2,
@@ -355,7 +307,7 @@
     },
     "Qwen3-1.7B-Q8_0": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-1.7B-Q8_0-GGUF\\Qwen3-1.7B-Q8_0.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.2,
@@ -366,7 +318,7 @@
     },
     "Qwen3-4B-Thinking-2507-Q4_K_S": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\\Qwen3-4B-Thinking-2507-Q4_K_S.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -377,31 +329,12 @@
         "no_mmap": true,
         "flash_attn": "on",
         "n_gpu_layers": 85,
-        "jinja": true
-      }
-    },
-    "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M": {
-      "model_path": "F:\\llm\\llama\\models\\Qwen3-Coder-30B-A3B-Instruct-Q4_K_M-GGUF\\Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 32000,
-        "temp": 0.7,
-        "batch_size": 1024,
-        "ubatch_size": 512,
-        "threads": 10,
-        "mlock": true,
-        "no_mmap": true,
-        "flash_attn": "on",
-        "n_gpu_layers": 85,
-        "repeat_penalty": 1.05,
-        "top_p": 0.8,
-        "top_k": 20,
         "jinja": true
       }
     },
     "Qwen3-Coder-30B-A3B-Instruct-Q4_K_S": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -420,7 +353,7 @@
     },
     "Qwen3-VL-8B-Thinking.Q4_K": {
       "model_path": "F:\\llm\\llama\\models\\Qwen3-VL-8B-Thinking.Q4_K-GGUF\\Qwen3-VL-8B-Thinking.Q4_K.gguf",
-      "llama_cpp_runtime": "default",
+      "llama_cpp_runtime": "llama-server",
       "parameters": {
         "ctx_size": 32000,
         "temp": 0.7,
@@ -432,47 +365,10 @@
         "flash_attn": "on",
         "n_gpu_layers": 30,
         "jinja": true,
-		"n_cpu_moe": 30,
-		"no-warmup": "",
-		"no-context-shift": ""
-      }
-    },
-    "Qwen3-14B-128K-Q8_0": {
-      "model_path": "F:\\llm\\llama\\models\\Qwen3-14B-128K-GGUF\\Qwen3-14B-128K-Q8_0.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 24000,
-        "temp": 0.7,
-        "batch_size": 1024,
-        "ubatch_size": 512,
-        "threads": 10,
-        "mlock": true,
-        "no_mmap": true,
-        "flash_attn": "on",
-        "n_gpu_layers": 85,
-        "jinja": true,
-		"n_cpu_moe": 30,
-		"no-warmup": "",
-		"no-context-shift": ""
-      }
-    },
-    "Qwen3-14B-128K-UD-Q4_K_XL": {
-      "model_path": "F:\\llm\\llama\\models\\Qwen3-14B-128K-GGUF\\Qwen3-14B-128K-UD-Q4_K_XL.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 32000,
-        "temp": 0.7,
-        "batch_size": 1024,
-        "ubatch_size": 512,
-        "threads": 10,
-        "mlock": true,
-        "no_mmap": true,
-        "flash_attn": "on",
-        "n_gpu_layers": 85,
-        "jinja": true,
-		"n_cpu_moe": 30
+        "n_cpu_moe": 30,
+        "no-warmup": "",
+        "no-context-shift": ""
       }
     }
-	
   }
 }
