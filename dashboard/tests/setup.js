@@ -1,5 +1,4 @@
 import { beforeAll, afterEach, afterAll, vi } from 'vitest'
-import { createTestingPinia } from '@pinia/testing'
 
 // Mock Element Plus globally
 global.ElementPlus = {
@@ -56,12 +55,8 @@ global.navigator = {
 
 // Setup testing environment before each test
 beforeAll(() => {
-  // Create testing instance
-  createTestingPinia({
-    initialPiniaState: {
-      // Add any initial state needed for testing
-    }
-  })
+  // Initialize testing environment
+  console.log('Testing environment initialized')
 })
 
 // Clean up after each test
