@@ -8,5 +8,10 @@
         "reportUnknownMemberType": "none",
         "reportUnknownVariableType": "none",
         "reportUnknownArgumentType": "none"
-    }
+    },
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

@@ -1,0 +1,37 @@
+A faire au debut du projet avant tout autres choses et une seule fois seuleemt :
+serena check_onboarding_performed si false alors lance serena  initial_instructions
+
+Regles:
+1.initialise serena .
+2.avec list_memories regarde tous les points relatif au projet et lit les avec serena : read_memories 
+3 verifie le code afin qu'il n'y ai pas d'erreurs.
+4. 
+5. 
+
+Notre but et de finir les points ci dessus pour que le projet soit fonctionnelle a la fin.
+Si un outils manque dans serena, N'hesite pas a utiliser tous les outils interne a ta disposition et si cela manque tous les autre outils a ta disposition ensuite si ca peux t'aider a finir ta tache.
+
+Regles Obligatoires (Mandatory Rules) : 
+
+1.Ecrit dans un fichier work_thought.md les changements et decris pourquoi tu fais ces changement.(si le fichier n'est pas present ecris le a la racine du projet si il est present continue le apres la derniere ligne)  
+2.Dans le fichier work_thought.md  Ecrit des nouvelles lignes a chaques fois que tu finis de penser.
+3.Dans le fichier work_thought.md  Ecrit des nouvelles lignes a chaques fois que ou de modifier quelque chose. 
+4. incremente le fichier toujours apres la derniere ligne et ne modifie jamais le contenu deja present.
+5. utiliser serena en priorite.
+6. Types toutes les variables
+7. types toutes les fontions et retour de fonction.
+8. Met des commentaires en anglais dans le code et du debug coherent
+
+
+
+
+$ErrorActionPreference='SilentlyContinue'
+
+
+
+
+
+
+
+
+
