@@ -1,0 +1,102 @@
+# Creating individual manager classes with type hints
+from typing import Any, Dict
+from llama_runner.models.model_config import ModelConfig  # Config validation class
+from llama_runner.repositories.config_repository import ConfigRepository  # Safe config loading
+
+# Add type-safe config handling to service classes
+from llama_runner.models.model_config import ModelConfig
+
+"""Model Configuration Module
+
+This module contains classes for loading and validating application configurations.
+Provides a centralized way of handling configuration files with proper typing.
+
+Classes:
+    ModelConfig: Central class for managing application configuration 
+"""
+
+from llama_runner.repositories.config_repository import ConfigRepository
+
+
+class ModelConfig():
+    """Central class for managing application configuration with type validation."""
+    
+    def __init__(self, config_path: str = 'config.yaml') -> None:
+        # Initialize with validated configuration
+        self._validate_config(config_path)
+        
+    def _validate_config(self, config_path) -> None:
+        """"Validate that all required configuration parameters are present and properly typed.
+        
+        Raises:
+            ValueError: If validation fails
+            
+        """
+        pass
+class LlamaService():
+    def __init__(self, config: Dict[str, Any]):
+        self.config = ModelConfig(config)
+        
+    async def start(self) -> None:
+        """Initialize and launch all required llama services based on validated configuration."""
+        # Use self.config which is now type-validated
+        pass
+
+
+class OLLAMAService():
+    def __init__(self, config: Dict[str, Any]):
+        self.config = ModelConfig(config)
+        
+    async def start(self) -> None:
+         """Initialize all required ollama-related components using validated configuration"""
+          # Use self.config which is now type-validated
+    pass
+class HeadlessServiceManager:
+    """Manages headless mode operations with typed configuration handling"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        
+    async def run(self) -> None:
+        """Initialize and launch services in headless mode."""
+        pass
+
+# Creating a proper structure for service managers
+from llama_runner.models.model_config import ModelConfig  # Config validation class
+
+
+class WhisperServiceManager:
+    """"Manages whisper-specific services with type annotations"""
+
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        
+    async def start(self) -> None:
+         """Initialize all required whisper-related components"""
+    pass
+    async def stop(self) -> int:  # Added return annotation
+      """Gracefully terminate any running or pending tasks related to Whisper"""  
+    pass
+def main():
+    parser = argparse.ArgumentParser(description="Llama Runner application.")
+    
+    # ... [existing setup code] ...
+    
+    try:
+        config_repo = ConfigRepository()
+        
+        async def run_app():  
+            await config_repo.validate_configuration()  # Use centralized validation
+            
+            if headless_mode: 
+                hsm = HeadlessServiceManager(config_repo.config)
+                await hsm.run()
+
+            else:
+                main_window.show()
+                await asyncio.sleep(0)
+
+        asyncio.run(run_app())
+
+    except Exception as e:
+        logging.critical(f"An unhandled error occurred in main: {e}", exc_info=True)

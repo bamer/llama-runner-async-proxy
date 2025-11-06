@@ -1,0 +1,19 @@
+{
+  "audio": {
+    "runtimes": {
+      "whisper-cpp": {
+        "runtime": "./whisper-server/main"
+      }
+    },
+    "models": {
+      "whisper-tiny": {
+        "model_path": "./whisper-server/models/ggml-tiny.bin",
+        "runtime": "whisper-cpp",
+        "parameters": {
+          "threads": 4,
+          "language": "auto"
+        }
+      }
+    }
+  }
+}

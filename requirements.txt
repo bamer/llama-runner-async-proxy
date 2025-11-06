@@ -1,0 +1,12 @@
+PySide6
+uvicorn
+pyyaml
+gguf
+httpx
+qasync
+fastapi # Explicitly add fastapi
+pytest
+pytest-asyncio
+pytest-qt
+requests
+faster-whisper
