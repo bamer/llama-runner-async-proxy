@@ -5,6 +5,7 @@
 ### ✅ Test Infrastructure Created
 
 #### Unit Tests (8 test suites)
+
 - **ModelsView.test.js** - 14 comprehensive tests
 - **AudioView.test.js** - 16 detailed tests  
 - **ProxyView.test.js** - 24 advanced tests
@@ -14,16 +15,19 @@
 - **ModelManager.test.js** - 28 model management tests
 
 #### Integration Tests (1 suite)
+
 - **dashboard.integration.test.js** - 14 end-to-end tests
 
 #### Test Configuration
+
 - **vitest.config.js** - Complete test runner setup with jsdom
 - **tests/setup.js** - Global mocks and test environment setup
 - **package.json** - Test scripts and dependencies configured
 
 ### 🛠️ Debug & Options Section Implementation
 
-#### Features Added to ConfigView.vue:
+#### Features Added to ConfigView.vue
+
 1. **Debug Mode Controls**
    - Toggle debug mode on/off
    - Enable detailed logging
@@ -68,6 +72,7 @@
 ### 🔧 Technical Implementation Details
 
 #### Test Framework Setup
+
 - **Vitest** - Modern test runner with Vite integration
 - **jsdom** - DOM environment for component testing
 - **Vue Test Utils** - Vue.js component testing utilities
@@ -75,6 +80,7 @@
 - **Web API Mocks** - Fetch, WebSocket, FileReader simulation
 
 #### Debug System Architecture
+
 ```javascript
 config.debug = {
   enabled: false,
@@ -102,6 +108,7 @@ config.debug = {
 ### 🚀 Usage Instructions
 
 #### Running Tests
+
 ```bash
 # Run all tests
 npm test
@@ -120,6 +127,7 @@ npm run test:e2e:ui
 ```
 
 #### Using Debug Options
+
 1. Navigate to **Configuration → Debug & Options**
 2. Enable **Mode Debug** to activate debug features
 3. Configure **Logs Détaillés** and **Niveau de Log** as needed

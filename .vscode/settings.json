@@ -1,17 +1,31 @@
 {
     "continue.enableConsole": true,
     "continue.enableQuickActions": true,
-    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.typeCheckingMode": "strict",
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.autoImportCompletions": true,
-    "python.analysis.diagnosticSeverityOverrides": {
-        "reportUnknownMemberType": "none",
-        "reportUnknownVariableType": "none",
-        "reportUnknownArgumentType": "none"
+    "github.copilot.chat.customOAIModels": {
+        "minimax-m2:cloud": {
+            "name": "Copi-minimax-m2:cloud",
+            "url": "http://127.0.0.1:11434/",
+            "toolCalling": true,
+            "vision": false,
+            "thinking": true,
+            "maxInputTokens": 128000,
+            "maxOutputTokens": 128000,
+            "requiresAPIKey": false
+        }
     },
     "python.testing.pytestArgs": [
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "github.copilot.advanced": {
+        
+
+    },
+    "chat.agent.thinking.collapsedTools": "all",
+    "chat.allowAnonymousAccess": true,
+    "chat.checkpoints.showFileChanges": true
 }

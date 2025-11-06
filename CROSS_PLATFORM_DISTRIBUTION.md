@@ -3,6 +3,7 @@
 ## ❌ **ERROR CORRECTION: PowerShell Installer Issue**
 
 ### **Why PowerShell Installer is NOT the solution:**
+
 ```powershell
 # PowerShell is WINDOWS-ONLY ❌
 # Linux/macOS can't run .ps1 files
@@ -14,6 +15,7 @@
 ## **1. Universal Shell Script (Linux/macOS) + Batch File (Windows)**
 
 ### **Universal Installation Script:**
+
 ```bash
 #!/bin/bash
 # install.sh - Works on Linux, macOS, WSL
@@ -63,6 +65,7 @@ echo "🚀 Run with: $INSTALL_DIR/venv/bin/python $INSTALL_DIR/main.py"
 ```
 
 ### **Windows Batch File:**
+
 ```batch
 @echo off
 :: install.bat - Windows installer
@@ -178,18 +181,21 @@ npm run dev
 ### **Universal Installation (One Command Per Platform):**
 
 #### **Windows:**
+
 ```powershell
 # Run in PowerShell or Command Prompt
 powershell -Command "iwr -useb https://raw.githubusercontent.com/your-repo/main/install.ps1 | iex"
 ```
 
 #### **Linux/macOS:**
+
 ```bash
 # Run in terminal
 curl -fsSL https://raw.githubusercontent.com/your-repo/main/install.sh | bash
 ```
 
 #### **Docker (All Platforms):**
+
 ```bash
 # Works on Windows, Linux, macOS
 docker run -d --name llama-runner-pro \
@@ -198,6 +204,7 @@ docker run -d --name llama-runner-pro \
 ```
 
 #### **Python Package (All Platforms):**
+
 ```bash
 # Works on Windows, Linux, macOS
 pip install llama-runner-pro
@@ -207,11 +214,13 @@ llama-runner-pro
 ## **📱 Cross-Platform UI Examples:**
 
 ### **Desktop Applications:**
+
 - **Windows**: Native .exe + Web dashboard
 - **macOS**: Native .app + Web dashboard  
 - **Linux**: Native .AppImage + Web dashboard
 
 ### **Web Interface (Universal):**
+
 ```html
 <!-- Works on ANY device with a browser -->
 - Windows PC/Mobile
@@ -224,6 +233,7 @@ llama-runner-pro
 ```
 
 ### **Mobile-Responsive Dashboard:**
+
 ```css
 /* Mobile-first design */
 @media (max-width: 768px) {
@@ -263,6 +273,7 @@ llama-runner-pro
 ## **✅ **FINAL ANSWER: Cross-Platform Status**
 
 ### **UI Cross-Platform: IMPROVED ✅**
+
 - **More platforms supported** than before
 - **Web dashboard** works on any device with browser
 - **Mobile responsive** design
@@ -270,6 +281,7 @@ llama-runner-pro
 - **Headless mode** for servers
 
 ### **Distribution: Cross-Platform ✅**
+
 - **Universal shell scripts** (Linux/macOS/Windows)
 - **Docker containers** (all platforms)  
 - **Python packages** (all platforms)

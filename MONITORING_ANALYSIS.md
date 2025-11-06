@@ -6,6 +6,7 @@
 ## 🔍 **Current State Analysis**
 
 ### ✅ **What Exists Now:**
+
 - Basic memory monitoring in `debug config`
 - Static performance metrics in `AudioView.vue`
 - System status API endpoint (basic info)
@@ -13,6 +14,7 @@
 - Memory usage tracking in `ModelManager.js`
 
 ### ❌ **What's Missing:**
+
 - **Real-time CPU usage graphs** - No visualization
 - **Memory consumption charts over time** - No historical data
 - **Network traffic visualization** - Not implemented  
@@ -1024,12 +1026,15 @@ const routes = [
 ## 🎯 **Answer to Your Questions:**
 
 ### **1. Memory/CPU Graphs in UI?**
+
 **❌ NO** - Currently missing real-time graphs. The current dashboard only shows:
+
 - Static performance metrics in AudioView
 - Basic memory monitoring in debug config
 - Text-based model health checks
 
 **✅ SOLUTION:** I've created a comprehensive MetricsView.vue with:
+
 - Real-time CPU/Memory/GPU charts using Chart.js
 - WebSocket streaming for live updates
 - Model performance tracking
@@ -1039,6 +1044,7 @@ const routes = [
 ### **2. What Can Be Improved/Robustness?**
 
 **Priority Improvements:**
+
 - ✅ **Real-time monitoring** (implementing now)
 - 🚀 **Auto-scaling capabilities**
 - 🔒 **JWT authentication system**  
@@ -1052,30 +1058,35 @@ const routes = [
 **Distribution Strategies:**
 
 #### **Option 1: One-Click Installer (Windows)**
+
 ```powershell
 # install.ps1 - Single command installer
 iwr -useb https://raw.githubusercontent.com/your-repo/install.ps1 | iex
 ```
 
 #### **Option 2: Docker Compose**
+
 ```bash
 # One command deployment
 docker-compose up -d
 ```
 
 #### **Option 3: Desktop App**
+
 ```bash
 # Cross-platform desktop application
 npm run build-desktop
 ```
 
 #### **Option 4: Python Package**
+
 ```bash
 # pip install
 pip install llama-runner-pro
 ```
 
 **✅ Current Distribution Ready:**
+
 - ✅ **Standalone proxy** (`python main.py --headless`)
 - ✅ **Docker deployment** (docs created)
 - ✅ **Cross-platform support** (Windows/Linux/macOS)

@@ -17,7 +17,9 @@ from fastapi.routing import APIRoute # Import APIRoute for isinstance check
 import uvicorn
 
 
-from src.backend.models.gguf_metadata import gguf_metadata
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+import llama_runner.gguf_metadata as gguf_metadata
 from llama_runner.config_loader import calculate_system_fingerprint
 # from llama_runner.config_loader import calculate_system_fingerprint # Removed unused import
 from llama_runner.audio_service import AudioService

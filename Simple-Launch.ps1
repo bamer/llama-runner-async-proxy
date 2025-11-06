@@ -1,6 +1,6 @@
 #!/usr/bin/env powershell
 # ===============================================================================
-# Main Launch Script - Llama Runner (Clean Version)
+# Simple PowerShell Launch Script - Llama Runner
 # ===============================================================================
 
 param(
@@ -17,7 +17,7 @@ param(
 function Show-Header {
     Clear-Host
     Write-Host "================================================================" -ForegroundColor Cyan
-    Write-Host "          LLAMA RUNNER - LAUNCHER CLEAN" -ForegroundColor Cyan
+    Write-Host "          LLAMA RUNNER - LAUNCHER SIMPLE" -ForegroundColor Cyan
     Write-Host "================================================================" -ForegroundColor Cyan
     Write-Host ""
 }

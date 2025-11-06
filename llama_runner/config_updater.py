@@ -21,15 +21,17 @@ logger = logging.getLogger(__name__)
 CURRENT_CONFIG_VERSION: int = 2
 
 # Set of deprecated parameters that should be removed from models
-# Based on llama-server documentation (updated 2025-11-05)
+# Based on llama-server documentation analysis (updated 2025-11-06)
+# Note: Using underscore naming convention to match actual config parameter names
 DEPRECATED_PARAMS: Set[str] = {
-    "defrag-thold",  # KV cache defragmentation threshold (DEPRECATED in llama-server)
+    "defrag_thold",  # KV cache defragmentation threshold (DEPRECATED in llama-server)
+    "dt",            # Short version of defrag-thold (not typically used with underscores)
     # Add more deprecated parameters here as they are identified in future versions
 }
 
 # Parameters that can be specified without a value (flags)
 # These parameters don't require a value in the command line, just their presence is enough
-# Based on llama-server documentation (updated 2025-11-05)
+# Based on llama-server documentation analysis (updated 2025-11-06)
 FLAG_PARAMS: Set[str] = {
     # Core flags
     "flash-attn",          # Enable Flash Attention
@@ -41,6 +43,7 @@ FLAG_PARAMS: Set[str] = {
     "no-repack",           # Disable weight repacking
     "check-tensors",       # Check model tensor data for invalid values
     "no-op-offload",       # Disable offloading host tensor operations to device
+    "kv-unified",          # Use single unified KV buffer for KV cache
     
     # Logging and debug flags
     "verbose-prompt",      # Print a verbose prompt before generation

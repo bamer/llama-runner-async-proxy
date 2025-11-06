@@ -9,6 +9,7 @@ Le script `Launch-LlamaRunner.ps1` est le lanceur principal de LlamaRunner Pro. 
 ## 🎮 Mode Interactif (Recommandé)
 
 ### Lancement sans paramètre
+
 ```powershell
 .\Launch-LlamaRunner.ps1
 ```
@@ -74,42 +75,48 @@ Cela affiche un menu interactif avec les options suivantes :
 ## 📊 Modes de fonctionnement détaillés
 
 ### 1. Proxy uniquement (`-Proxy`)
-- **LM Studio API** : http://localhost:1234
-- **Ollama API** : http://localhost:11434
+
+- **LM Studio API** : <http://localhost:1234>
+- **Ollama API** : <http://localhost:11434>
 - **Usage** : Intégration avec IDEs et outils externes
 
 ### 2. Proxy + Interface Web (`-WebUI`)
-- **Dashboard Web** : http://localhost:8081
-- **LM Studio API** : http://localhost:1234
-- **Ollama API** : http://localhost:11434
+
+- **Dashboard Web** : <http://localhost:8081>
+- **LM Studio API** : <http://localhost:1234>
+- **Ollama API** : <http://localhost:11434>
 - **Usage** : Interface utilisateur graphique complète
 
 ### 3. Mode Complet (`-Metrics`)
-- **Dashboard Métriques** : http://localhost:8080 ⭐
-- **Interface Web** : http://localhost:8081
-- **LM Studio API** : http://localhost:1234
-- **Ollama API** : http://localhost:11434
+
+- **Dashboard Métriques** : <http://localhost:8080> ⭐
+- **Interface Web** : <http://localhost:8081>
+- **LM Studio API** : <http://localhost:1234>
+- **Ollama API** : <http://localhost:11434>
 - **Usage** : Monitoring en temps réel + interface complète
 
 ### 4. Mode Développement (`-Dev`)
+
 - Logs détaillés activés (niveau DEBUG)
-- **LM Studio API** : http://localhost:1234
-- **Ollama API** : http://localhost:11434
+- **LM Studio API** : <http://localhost:1234>
+- **Ollama API** : <http://localhost:11434>
 - **Usage** : Débogage et développement
 
 ### 5. Mode Headless (`-Headless`)
+
 - Serveur sans interface graphique
-- **LM Studio API** : http://localhost:1234
-- **Ollama API** : http://localhost:11434
+- **LM Studio API** : <http://localhost:1234>
+- **Ollama API** : <http://localhost:11434>
 - **Usage** : Serveurs, Docker, CI/CD
 
 ---
 
 ## 📈 Dashboard de monitoring en temps réel
 
-Le mode `-Metrics` active le dashboard de monitoring accessible sur **http://localhost:8585**
+Le mode `-Metrics` active le dashboard de monitoring accessible sur **<http://localhost:8585>**
 
-### Fonctionnalités du dashboard :
+### Fonctionnalités du dashboard
+
 - 📊 **Graphiques en temps réel** : CPU, mémoire, disque, réseau
 - 🛡️ **Circuit Breaker Status** : État des protections de résilience
 - 🚨 **Alertes automatiques** : Notifications de performance
@@ -120,12 +127,14 @@ Le mode `-Metrics` active le dashboard de monitoring accessible sur **http://loc
 
 ## ⚙️ Configuration avancée
 
-### Variables d'environnement supportées :
+### Variables d'environnement supportées
+
 - `LLAMA_RUNNER_CONFIG` : Fichier de configuration par défaut
 - `LLAMA_RUNNER_LOG_LEVEL` : Niveau de log global
 - `LLAMA_RUNNER_METRICS_PORT` : Port du dashboard (défaut: 8585)
 
-### Fichiers de configuration :
+### Fichiers de configuration
+
 - `config.json` : Configuration principale
 - `config_prefilled.json` : Configuration pré-remplie
 - `config_prefilled_enhanced.jsonc` : Configuration avancée
@@ -137,29 +146,34 @@ Le mode `-Metrics` active le dashboard de monitoring accessible sur **http://loc
 ### Problèmes courants
 
 **1. Erreur "Python non trouvé"**
+
 ```powershell
 .\Launch-LlamaRunner.ps1 -Install
 ```
 
 **2. Modules manquants**
+
 ```powershell
 # Réinstaller les dépendances
 .\Launch-LlamaRunner.ps1 -Install
 ```
 
 **3. Port déjà utilisé**
+
 ```powershell
 # Utiliser des ports différents
 .\Launch-LlamaRunner.ps1 -Metrics -MetricsPort 8080
 ```
 
 **4. Problèmes de performance**
+
 ```powershell
 # Mode développement pour diagnostic
 .\Launch-LlamaRunner.ps1 -Dev
 ```
 
 ### Logs de diagnostic
+
 - Logs dans la console en temps réel
 - Niveau DEBUG pour développement
 - Circuit breaker stats dans le dashboard
@@ -169,24 +183,28 @@ Le mode `-Metrics` active le dashboard de monitoring accessible sur **http://loc
 ## 🎯 Cas d'usage recommandés
 
 ### Pour les développeurs
+
 ```powershell
 # Mode développement avec logs
 .\Launch-LlamaRunner.ps1 -Dev
 ```
 
 ### Pour la production (serveurs)
+
 ```powershell
 # Mode headless avec monitoring
 .\Launch-LlamaRunner.ps1 -Metrics -Headless
 ```
 
 ### Pour les tests
+
 ```powershell
 # Tests de validation
 .\Launch-LlamaRunner.ps1 -Test
 ```
 
 ### Pour l'utilisation quotidienne
+
 ```powershell
 # Mode complet avec interface
 .\Launch-LlamaRunner.ps1 -WebUI

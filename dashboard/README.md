@@ -9,6 +9,7 @@
 ## 🎨 Features
 
 ### ✨ **Interface Utilisateur Moderne**
+
 - **Dashboard temps réel** avec métriques et graphiques
 - **Gestion des modèles** intuitive avec recherche et filtres
 - **Interface audio** pour la gestion des services de transcription
@@ -18,6 +19,7 @@
 - **System Tray** web pour un accès rapide
 
 ### 🔥 **Fonctionnalités Avancées**
+
 - **Hot Reload Configuration** - Zéro downtime
 - **Gestion automatique des modèles** - Auto-discovery et lifecycle
 - **Monitoring temps réel** - WebSocket + Server-Sent Events
@@ -26,6 +28,7 @@
 - **Thème sombre/clair** - CSS Variables
 
 ### 📊 **Dashboard Analytics**
+
 - Métriques de performance en temps réel
 - Statistiques des modèles et services
 - Graphiques de performance avec Chart.js
@@ -37,6 +40,7 @@
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
+
 ```bash
 # Node.js 16+ et npm/pnpm
 node --version  # v16+
@@ -44,6 +48,7 @@ npm --version
 ```
 
 ### Installation Rapide
+
 ```bash
 # Cloner le projet (si pas déjà fait)
 cd llama-runner-async-proxy
@@ -61,6 +66,7 @@ pnpm dev
 ```
 
 ### Build pour Production
+
 ```bash
 # Créer le build de production
 npm run build
@@ -77,7 +83,6 @@ pnpm preview
 
 ## 📁 Structure du Projet
 
-```
 dashboard/
 ├── public/                 # Fichiers statiques
 ├── src/
@@ -106,6 +111,7 @@ dashboard/
 ## 🚀 Utilisation
 
 ### Lancement du Dashboard
+
 ```bash
 # Mode développement (avec hot reload)
 npm run dev
@@ -117,14 +123,18 @@ npm run build && npm run preview
 ```
 
 ### Configuration API Backend
+
 Le dashboard communicates avec le backend via les endpoints suivants :
+
 - `GET /api/status` - Status système
 - `GET /api/models` - Liste des modèles
 - `GET /api/config/*` - Configuration
 - `WebSocket /ws` - Updates temps réel
 
 ### Variables d'Environnement
+
 Créer `.env.local` :
+
 ```bash
 VITE_API_BASE_URL=http://localhost:8080
 VITE_WS_URL=ws://localhost:8080/ws
@@ -137,6 +147,7 @@ VITE_APP_VERSION="1.0.0"
 ## 🎯 Fonctionnalités Détaillées
 
 ### 1. **Dashboard Principal**
+
 - Vue d'ensemble système en temps réel
 - Métriques de performance (CPU, mémoire, requêtes)
 - Statut des services (Llama Runner, Proxies, Audio)
@@ -144,6 +155,7 @@ VITE_APP_VERSION="1.0.0"
 - Actions rapides (restart, config, logs)
 
 ### 2. **Gestion des Modèles**
+
 - Liste complète des modèles avec recherche/filtre
 - Actions : Démarrer, arrêter, redémarrer, éditer, supprimer
 - Statistiques détaillées par modèle (uptime, requêtes, latence)
@@ -151,12 +163,14 @@ VITE_APP_VERSION="1.0.0"
 - Métadonnées et paramètres configurables
 
 ### 3. **Interface Audio**
+
 - Gestion des services Whisper/Faster-Whisper
 - Statistiques en temps réel (requêtes, précision, latence)
 - Configuration des paramètres audio
 - Monitoring des performances système
 
 ### 4. **Contrôle des Proxies**
+
 - Interface pour LM Studio et Ollama proxies
 - Configuration des ports et paramètres
 - Statistiques de requêtes en temps réel
@@ -164,6 +178,7 @@ VITE_APP_VERSION="1.0.0"
 - Monitor de requêtes live
 
 ### 5. **Configuration Graphique**
+
 - Interface tabulaire pour tous les paramètres
 - Validation en temps réel
 - Hot reload sans redémarrage
@@ -171,6 +186,7 @@ VITE_APP_VERSION="1.0.0"
 - Backup/restore automatique
 
 ### 6. **Logs Système**
+
 - Vue tableau et timeline
 - Filtrage par niveau, service, recherche
 - Notifications automatiques
@@ -178,6 +194,7 @@ VITE_APP_VERSION="1.0.0"
 - Streaming temps réel
 
 ### 7. **System Tray Web**
+
 - Accès rapide depuis n'importe quelle page
 - Statut système en temps réel
 - Actions rapides
@@ -189,6 +206,7 @@ VITE_APP_VERSION="1.0.0"
 ## ⚡ Hot Reload Configuration
 
 ### Fonctionnalités
+
 - **Détection automatique** des changements de config
 - **Validation** avant application
 - **Backup automatique** avant changements
@@ -197,6 +215,7 @@ VITE_APP_VERSION="1.0.0"
 - **Queue** des changements multiples
 
 ### Configuration
+
 ```javascript
 // Dans hot-reload/HotReloadConfig.js
 const hotReload = new HotReloadConfig({
@@ -215,6 +234,7 @@ const hotReload = new HotReloadConfig({
 ## 🤖 Gestion Automatique des Modèles
 
 ### Capacités
+
 - **Auto-discovery** des nouveaux modèles
 - **Lifecycle management** (load/unload)
 - **Health monitoring** des modèles
@@ -223,6 +243,7 @@ const hotReload = new HotReloadConfig({
 - **Recommandations** intelligentes
 
 ### Algorithmes
+
 - **Priorité** calculée basée sur taille, format, usage
 - **Auto-load** des modèles appropriés
 - **Cleanup** automatique basé sur mémoire et usage
@@ -234,11 +255,13 @@ const hotReload = new HotReloadConfig({
 ## 📱 Responsive Design
 
 ### Breakpoints
+
 - **Desktop**: > 1200px - Interface complète
 - **Tablet**: 768px - 1200px - Layout adaptatif
 - **Mobile**: < 768px - Interface optimisée
 
 ### Adaptations
+
 - Navigation collapsible
 - Grids responsives
 - Tables scrollables
@@ -250,6 +273,7 @@ const hotReload = new HotReloadConfig({
 ## 🎨 Thème & Styling
 
 ### CSS Variables
+
 ```scss
 :root {
   --primary-color: #667eea;
@@ -262,6 +286,7 @@ const hotReload = new HotReloadConfig({
 ```
 
 ### Thème Sombre
+
 Support automatique via `data-theme="dark"`
 
 ---
@@ -269,6 +294,7 @@ Support automatique via `data-theme="dark"`
 ## 🔧 Configuration Avancée
 
 ### Vite Configuration
+
 ```javascript
 // vite.config.js
 export default defineConfig({
@@ -287,6 +313,7 @@ export default defineConfig({
 ```
 
 ### Pinia Store
+
 ```javascript
 // stores/app.js
 export const useAppStore = defineStore('app', () => {
@@ -299,23 +326,27 @@ export const useAppStore = defineStore('app', () => {
 ## 🚦 API Endpoints Requis
 
 ### Status & Health
+
 - `GET /api/status` - Status système
 - `GET /api/health` - Health check
 - `GET /api/models/count` - Compteur modèles
 
 ### Models
+
 - `GET /api/models` - Liste complète
 - `POST /api/models/{id}/load` - Charger modèle
 - `POST /api/models/{id}/unload` - Décharger modèle
 - `GET /api/models/{id}/health` - Health check modèle
 
 ### Configuration
+
 - `GET /api/config/current` - Config actuelle
 - `POST /api/config/validate` - Validation config
 - `GET /api/config/last-modified` - Timestamp modification
 - `POST /api/config/backup` - Créer backup
 
 ### Real-time
+
 - `WebSocket /ws` - Updates temps réel
 - `EventSource /api/config/events` - Configuration events
 
@@ -324,6 +355,7 @@ export const useAppStore = defineStore('app', () => {
 ## 🔒 Sécurité
 
 ### Headers CORS
+
 ```javascript
 // Configuration backend requise
 Access-Control-Allow-Origin: http://localhost:8080
@@ -332,6 +364,7 @@ Access-Control-Allow-Headers: Content-Type, Authorization
 ```
 
 ### Authentification (Optionnel)
+
 ```javascript
 // Token-based auth
 const token = localStorage.getItem('auth_token')
@@ -343,6 +376,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 ## 📊 Performance
 
 ### Optimisations
+
 - **Lazy loading** des routes
 - **Code splitting** automatique
 - **Tree shaking** des dépendances
@@ -350,6 +384,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 - **Caching** intelligent
 
 ### Métriques Cibles
+
 - **First Contentful Paint**: < 1.5s
 - **Time to Interactive**: < 3s
 - **Bundle Size**: < 500KB gzipped
@@ -360,6 +395,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 ## 🧪 Tests
 
 ### Commandes
+
 ```bash
 # Tests unitaires
 npm run test
@@ -372,6 +408,7 @@ npm run test:coverage
 ```
 
 ### Structure Tests
+
 ```
 tests/
 ├── unit/           # Tests unitaires
@@ -384,6 +421,7 @@ tests/
 ## 🚀 Déploiement
 
 ### Docker (Optionnel)
+
 ```dockerfile
 # Dockerfile
 FROM node:18-alpine as builder
@@ -401,6 +439,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 ### Nginx Configuration
+
 ```nginx
 server {
     listen 80;
@@ -428,6 +467,7 @@ server {
 ### Problèmes Communs
 
 #### Dashboard ne se charge pas
+
 ```bash
 # Vérifier les ports
 netstat -an | grep 8080
@@ -437,6 +477,7 @@ npm run dev -- --debug
 ```
 
 #### API Calls échouent
+
 ```javascript
 // Vérifier la configuration proxy dans vite.config.js
 proxy: {
@@ -448,6 +489,7 @@ proxy: {
 ```
 
 #### WebSocket ne fonctionne pas
+
 ```javascript
 // Vérifier la configuration CORS côté backend
 Access-Control-Allow-Origin: http://localhost:8080
@@ -459,9 +501,11 @@ Access-Control-Allow-Headers: Content-Type
 ## 📚 Documentation API
 
 ### Endpoints Détaillés
+
 Voir `/api/docs` pour la documentation Swagger complète
 
 ### Exemples d'Usage
+
 ```javascript
 // Charger un modèle
 await axios.post('/api/models/qwen-7b/load', {
@@ -485,12 +529,14 @@ ws.onmessage = (event) => {
 ## 🤝 Contribution
 
 ### Guidelines
+
 1. **Code Style**: ESLint + Prettier
 2. **Commits**: Conventional Commits
 3. **Tests**: > 80% coverage
 4. **Documentation**: JSDoc + README updates
 
 ### Setup Dev
+
 ```bash
 git clone <repo>
 cd dashboard
