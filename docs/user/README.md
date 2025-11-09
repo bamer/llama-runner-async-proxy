@@ -1,270 +1,160 @@
-# 🚀 LlamaRunner Pro - The Ultimate AI Proxy Suite
+# 🦙 LlamaRunner Pro - Proxy IA Asynchrone
 
-**Created by Bamer** - *Your trusted companion for seamless AI integration*
+## 🎯 **Présentation**
 
----
+LlamaRunner Pro est un proxy asynchrone avancé pour modèles de langage IA, offrant une interface unifiée pour LM Studio, Ollama et d'autres services. Conçu pour être portable, sécurisé et évolutif.
 
-## 🌟 Revolutionary Features
+## 🚀 **Fonctionnalités Principales**
 
-LlamaRunner Pro is not just another proxy—it's your **all-in-one AI orchestration platform** that seamlessly bridges the gap between cutting-edge AI models and your favorite development tools. Whether you're a solo developer, a startup founder, or an enterprise team, LlamaRunner Pro transforms your AI workflow into a **smooth, reliable, and professional experience**.
+- **🔄 Proxy Multi-Plateforme** : Support natif LM Studio (port 1234) et Ollama (port 11434)
+- **🌐 Interface Web** : Dashboard interactif sur port 8081
+- **📊 Monitoring Temps Réel** : Métriques sur port 8080
+- **🤖 Gestion Intelligente des Modèles** : Scan et configuration automatique des modèles GGUF
+- **🔧 Mode Développement** : Logs détaillés et outils de debugging
+- **⚡ Performance Optimisée** : Support GPU, gestion mémoire avancée
+- **🔒 Sécurité Renforcée** : Isolation des processus, droits restreints
 
-### 🔥 Why LlamaRunner Pro Stands Out
+## 📦 **Architecture du Projet**
 
-✅ **Dual Proxy Mastery**: Simultaneously emulate **LM Studio** (port 1234) AND **Ollama** (port 11434) backends
-✅ **Enterprise-Grade Audio**: Powered by **faster-whisper** for lightning-fast speech-to-text transcription
-✅ **Real-time Monitoring**: **Live dashboard** with Chart.js visualizations, WebSocket streaming, and system metrics
-✅ **Circuit Breaker Protection**: **Enterprise resilience** with automatic failure detection and recovery
-✅ **Advanced Metrics**: **Real-time CPU, memory, disk, network monitoring** with alerts and historical data
-✅ **Zero-Compromise Performance**: CPU-optimized with intelligent resource management
-✅ **Headless Hero**: Perfect for servers, Docker containers, and CI/CD pipelines
-✅ **Future-Proof Architecture**: Designed for tomorrow's AI models, not just today's
-
----
-
-## 📊 **Real-time Monitoring Dashboard**
-
-LlamaRunner Pro now includes a **professional-grade monitoring system** accessible via web browser:
-
-### 🌐 Dashboard Access
-
-- **URL**: http://localhost:8585
-- **Features**: Live charts, system metrics, performance alerts
-- **Real-time Updates**: WebSocket streaming with automatic reconnection
-
-### 📈 Monitored Metrics
-
-- **CPU Usage**: Per-core and aggregate usage with temperature monitoring
-- **Memory**: Total, available, used, cached, and swap usage
-- **Disk**: Usage, read/write operations, and I/O statistics  
-- **Network**: Bytes sent/received, packet counts, error rates
-- **Models**: Response times, token counts, error rates, active sessions
-
-### 🛡️ Circuit Breaker Protection
-
-- **Automatic Failure Detection**: Monitors service health in real-time
-- **Intelligent Recovery**: Automatically recovers when services become healthy
-- **Configurable Thresholds**: Customize failure thresholds and recovery timeouts
-- **Visual Status**: Circuit breaker states displayed in dashboard
-
-### 🚨 Smart Alerting
-
-- **Configurable Thresholds**: Set custom alerts for CPU, memory, disk, temperature
-- **Severity Levels**: Warning and critical alerts with automatic notifications
-- **Alert History**: Track and review system events over time
-- **Performance Alerts**: High response times, error rates, resource utilization
-
----
-
----
-
-## 🎯 Perfect For
-
-- **GitHub Copilot** users seeking local AI alternatives
-- **IntelliJ AI Assistant** power users demanding privacy and control
-- **AI Researchers** experimenting with multiple model backends
-- **DevOps Engineers** building AI-powered automation pipelines
-- **Privacy-Conscious Developers** who refuse to send data to the cloud
-
----
-
-## 🚀 **Quick Start - Get Running in 60 Seconds
-
-```bash
-
-# Clone the revolutionary LlamaRunner Pro
-
-$ git clone https://github.com/your-username/llama-runner-pro
-$ cd llama-runner-pro
-
-# Create your professional development environment
-
-$ mkdir dev-venv
-$ python -m venv dev-venv
-$ source dev-venv/bin/activate  # Linux/MacOS
-$ dev-venv\Scripts\Activate.ps1  # Windows
-
-# Install the powerhouse dependencies
-
-$ pip install -r requirements.txt
-
-# Create your personalized configuration
-
-# Edit ~/.llama-runner/config.json with your models and settings
-
-# Launch your AI command center!
-
-$ python main.py [--headless]  # --headless for server mode
+```
+llama-runner-async-proxy/
+├── LaunchMenu.ps1               # Point d'entrée unique (menu interactif)
+├── main.py                      # Application principale
+├── config.json                  # Configuration principale
+├── logs/                        # Dossiers des logs
+├── config/                      # Fichiers de configuration
+├── scripts/                     # Scripts utilitaires
+│   ├── model_management.ps1     # : Gestion robuste des modèles
+│   ├── Validate-System.ps1      # Validation complète
+│   ├── PortConfig.ps1           # Configuration des ports
+│   └── Debug-Launch.ps1         # Mode debug avancé
+├── tests/                       # Tests unitaires et d'intégration
+│   └── test_implementation_validation.py  # ✅ Mis à jour
+├── documentation/               # Documentation complète
+│   ├── README.md                # ✅ Ce fichier
+│   ├── INSTALLATION.md          # Guide d'installation
+│   └── USAGE.md                 # Guide d'utilisation
+├───dashborad /                  # Dashboard avec graph et monitoring temps reel vu.js
+└── llama_runner/                # Code source Python
 ```
 
----
+## **🔧 Cross-Platform Technical Stack:**
 
-## 🎵 **Audio Processing - The Game Changer
+```
+🌐 Frontend (Cross-Platform):
+├── Vue.js 3 (JavaScript - Universal)
+├── Element Plus (React-based components - Universal)  
+├── Chart.js (Universal charting)
+├── Vite (Universal build tool)
+└── SCSS (Universal styling)
 
-Thanks to **faster-whisper integration**, LlamaRunner Pro now supports **OpenAI-compatible audio endpoints**:
+💻 Backend (Cross-Platform):
+├── Python 3.11+ (Universal)
+├── PySide6 (Universal GUI framework)
+├── FastAPI/uvicorn (Universal web server)
+├── WebSocket (Universal real-time)
+└── PSUtil (Universal system monitoring)
 
-### 📞 Transcription Endpoint
+🐳 Deployment (Cross-Platform):
+├── Docker (Universal containerization)
+├── Electron (Universal desktop app)
+├── PyInstaller (Universal executable)
+└── pip (Universal package manager)
 
-```bash
-curl -X POST http://localhost:1234/v1/audio/transcriptions \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@your-audio.mp3" \
-  -F "model=whisper-tiny"
+
+## ⚙️ **Configuration par Défaut (Ports Standards)**
+
+| Service | Port | URL |
+|---------|------|-----|
+| **LM Studio API** | 1234 | http://localhost:1234 |
+| **Ollama API** | 11434 | http://localhost:11434 |
+| ****Dashboard Interface Web** | 8035 | http://localhost:8035 |
+
+## 🚀 **Démarrage Rapide**
+
+### 1. **Prérequis**
+- Python 3.11+
+- PowerShell 7+
+- Accès à `F:\llm\llama\llama-server.exe`
+
+### 2. **Premier démarrage**
+```powershell
+.\LaunchMenu.ps1 
 ```
 
-### 🌍 Translation Endpoint
-
-```bash
-curl -X POST http://localhost:11434/v1/audio/translations \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@french-audio.mp3" \
-  -F "model=whisper-base"
+### 3. **Configuration des Modèles (OPTIONNEL mais recommandé)**
+```powershell
+# Dans le menu, sélectionnez :
+# "🤖 Gestion des modèles"
 ```
 
-### 🎛️ Audio Configuration Example
-
-```json
-{
-  "audio": {
-    "models": {
-      "whisper-tiny": {
-        "model_path": "tiny",
-        "parameters": {
-          "device": "cpu",
-          "compute_type": "int8",
-          "threads": 4,
-          "language": null,
-          "beam_size": 5
-        }
-      },
-      "whisper-base": {
-        "model_path": "base",
-        "parameters": {
-          "device": "cpu",
-          "compute_type": "int8",
-          "threads": 6,
-          "language": null,
-          "beam_size": 5
-        }
-      }
-    }
-  }
-}
+### 4. **Lancement du proxy**
+```powershell
+# Dans le menu, sélectionnez :
+# "🚀 Mode Proxy (Serveur principal)"
 ```
 
----
+## 🧪 **Exécution des Tests**
 
-## 🧠 **Advanced LLM Configuration
-
-LlamaRunner Pro supports your entire model arsenal with intelligent resource management:
-
-```json
-{
-  "llama-runtimes": {
-    "default": {
-      "runtime": "llama-server"
-    },
-    "high-performance": {
-      "runtime": "/path/to/optimized/llama-server",
-      "supports_tools": true
-    }
-  },
-  "models": {
-    "Qwen3-14B-Pro": {
-      "model_path": "/models/Qwen3-14B-Q4_K_S.gguf",
-      "llama_cpp_runtime": "high-performance",
-      "parameters": {
-        "ctx_size": 32000,
-        "gpu_layers": 99,
-        "flash-attn": true,
-        "temp": 0.7,
-        "threads": 8
-      }
-    },
-    "CodeLlama-34B": {
-      "model_path": "/models/CodeLlama-34B-Q5_K_M.gguf",
-      "llama_cpp_runtime": "default",
-      "parameters": {
-        "ctx_size": 16000,
-        "gpu_layers": 45,
-        "temp": 0.2,
-        "threads": 6
-      }
-    }
-  },
-  "concurrentRunners": 2,
-  "proxies": {
-    "ollama": {"enabled": true},
-    "lmstudio": {"enabled": true, "api_key": null}
-  }
-}
+### Depuis le menu interactif :
+```powershell
+.\LaunchMenu.ps1
+# Sélectionnez "🧪 Tests du système"
 ```
 
----
+### En ligne de commande :
+```powershell
+.\dev-venv\Scripts\python.exe tests\test_implementation_validation.py
+```
 
-## 🏆 **Professional Features
+## 🔧 **Résolution des Problèmes Courants**
 
-### 🎯 Intelligent Resource Management
+### Problème : "null key is not allowed in a hash literal"
+**Solution** : ✅ dans la version actuelle
+- Le script de gestion des modèles génère maintenant des noms valides
+- Configuration minimale de secours si nécessaire
 
-- **Concurrent Runner Limits**: Prevent system overload with smart resource allocation
-- **Automatic Model Swapping**: Seamlessly switch between models without manual intervention
-- **Memory Optimization**: Intelligent caching and cleanup for maximum efficiency
+### Problème : "usage: main.py [-h] [--log-level...] arguments invalides"
+**Solution** : ✅ dans la version actuelle
+- Le menu utilise maintenant `main.py` original avec arguments compatibles
+- Plus d'utilisation de `main_fixed.py` cassé
 
-### 🔒 Enterprise Security
+### Problème : "Ports occupés"
+**Solution** : ✅ dans la version actuelle
+- Le menu vérifie automatiquement la disponibilité des ports
+- Libération sécurisée avec confirmation utilisateur
 
-- **Local-First Architecture**: Your data never leaves your machine
-- **No External Dependencies**: Everything runs locally for maximum security
-- **Audit-Ready Logging**: Comprehensive logging for compliance and debugging
+### Problème : "Aucun modèle valide trouvé"
+**Solution** :
+1. Vérifiez que vos fichiers `.gguf` sont dans `F:\llm\llama\models\`
+2. Assurez-vous qu'ils font plus de 100MB
+3. Le script générera des noms par défaut si nécessaire
 
-### 🌐 Cross-Platform Excellence
+## 📝 **Contributions et Maintenance**
 
-- **Windows**: Full native support with PowerShell integration
-- **Linux**: Optimized for Ubuntu 24.10 and enterprise distributions
-- **MacOS**: Apple Silicon optimized with Metal acceleration support
+- **Tests** : Toute nouvelle fonctionnalité doit inclure des tests unitaires
+- **Documentation** : Mettre à jour la documentation pour chaque changement majeur
+- **Sécurité** : Les droits d'accès doivent être restreints sur les fichiers sensibles
 
----
+## 🎯 **Statut Actuel**
 
-## 📊 **Performance Benchmarks
+- ✅ **Menu interactif fonctionnel** : Point d'entrée unique
+- ✅ **Gestion des modèles corrigée** : Plus d'erreurs de clés nulles
+- ✅ **Compatibilité main.py** : Arguments corrects, ports standards
+- ✅ **Configuration minimale sécurisée** : Fonctionne même sans modèles
+- ✅ **Tests fonctionnels** : Validation complète du système
+- ✅ **Sécurité renforcée** : Droits restreints sur les fichiers critiques
 
-| Feature | LlamaRunner Pro | Competitors |
-|---------|----------------|-------------|
-| **Startup Time** | ⚡ 2.3s | 🐢 8.7s |
-| **Audio Transcription** | 🎵 15s/minute | 🎵 45s/minute |
-| **Model Switching** | 🔄 Instant | ⏳ 30s+ |
-| **Memory Usage** | 💾 4.2GB | 💾 8.9GB |
-| **Concurrent Requests** | 🚀 Unlimited | 🚫 Limited |
+## 🚀 **Prochaines Étapes**
 
----
-
-## 🤝 **Community & Support
-
-LlamaRunner Pro is **actively maintained** by Bamer and the open-source community. We believe in:
-
-- **Transparency**: Open development process with clear roadmaps
-- **Reliability**: Production-ready code with comprehensive testing
-- **Innovation**: Constantly pushing the boundaries of what's possible
-- **Community**: Your feedback shapes our future
-
-### 📈 Contribution Guidelines
-
-- **Pull Requests**: Welcome for bug fixes and performance improvements
-- **Feature Requests**: Open issues with detailed use cases
-- **Documentation**: Help us make LlamaRunner Pro even better
-
----
-
-## 📜 **License
-
-LlamaRunner Pro is released under the **MIT License** - use it freely in personal and commercial projects.
+- [ ] Ajouter plus de tests unitaires
+- [ ] Améliorer la documentation des API
+- [ ] Ajouter des exemples d'utilisation
+- [ ] Optimiser les performances GPU
 
 ---
 
-## 💫 **The Future is Here
-
-LlamaRunner Pro isn't just software—it's your **AI co-pilot** for the next generation of development. With seamless audio processing, dual proxy support, and enterprise-grade reliability, you're not just keeping up with AI trends—you're **leading them**.
-
-**Created with ❤️ by Bamer**
-*Empowering developers to build the future, one AI model at a time.*
-
----
-
-> **Disclaimer**: This is professional-grade, vibe-coded excellence. Pull requests fixing critical issues are welcome. Comments about non-critical inefficiencies are not welcome (unless they're security-critical). We're here to build, not to bikeshed.
+**🚀 Statut** : **OPÉRATIONNEL ET STABLE**  
+**🔧 Version** : 1.0 Pro 
+**📅 Dernière mise à jour** : 2025-11-07  
+**⚡ Temps de démarrage** : < 5 secondes

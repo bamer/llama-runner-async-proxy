@@ -2,6 +2,9 @@ name: New MCP server
 version: 0.0.1
 schema: v1
 mcpServers:
-  - name: "Chrome MCP Server"
-    type: "streamable-http"
-    url: "http://127.0.0.1:12306/mcp"
+  - name: New vscode
+    command: npx
+    args:
+      - -y
+      - vscode-as-mcp-server
+    env: {}

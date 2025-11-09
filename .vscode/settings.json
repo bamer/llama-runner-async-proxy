@@ -27,5 +27,11 @@
     },
     "chat.agent.thinking.collapsedTools": "all",
     "chat.allowAnonymousAccess": true,
-    "chat.checkpoints.showFileChanges": true
+    "chat.checkpoints.showFileChanges": true,
+    "yaml.schemas": {
+        "file:///c%3A/Users/theba/.vscode-insiders/extensions/continue.continue-1.2.10-win32-x64/config-yaml-schema.json": [
+            ".continue/**/*.yaml",
+            "file:///f%3A/llm/llama-runner-async-proxy/.continue/mcpServers/new-mcp-server-2.yaml"
+        ]
+    }
 }

@@ -3,9 +3,6 @@ version: 0.0.1
 schema: v1
 mcpServers:
   - name: vscode-mcp-server
-    command: npx
-    args: 
-      - -y
-      - mcp-remote@next
-      - http://localhost:3005/mcp
-    env: {}
+    type: streamable-http
+    url: http://localhost:3005/mcp
+

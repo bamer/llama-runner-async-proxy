@@ -1,0 +1,36 @@
+[2025-11-07 11:55:34] Démarrage de la validation du système
+[2025-11-07 11:55:34] ╔══════════════════════════════════════════════════════════════╗
+[2025-11-07 11:55:34] ║                  🧪 VALIDATION FINALE                        ║
+[2025-11-07 11:55:34] ║                    LlamaRunner Pro                           ║
+[2025-11-07 11:55:34] ╚══════════════════════════════════════════════════════════════╝
+[2025-11-07 11:55:34] 🚀 Démarrage de la validation complète du système...
+[2025-11-07 11:55:34] 📂 Répertoire courant: F:\llm\llama-runner-async-proxy
+[2025-11-07 11:55:34] 📝 Logs écrits dans: logs\validation.log
+[2025-11-07 11:55:34] 🔍 Test des ports critiques...
+[2025-11-07 11:55:34] 📡 Test de disponibilité des ports...
+[2025-11-07 11:55:41]    ✅ Port 12345 disponible
+[2025-11-07 11:55:46]    ✅ Port 11435 disponible
+[2025-11-07 11:55:51]    ✅ Port 8082 disponible
+[2025-11-07 11:55:57]    ✅ Port 8083 disponible
+[2025-11-07 11:55:57] 
+🔍 Test de l'environnement Python...
+[2025-11-07 11:55:57] 
+🐍 Test de l'environnement Python...
+[2025-11-07 11:55:57]    ✅ Environnement virtuel trouvé
+[2025-11-07 11:55:57]    ✅ Python exécutable trouvé
+[2025-11-07 11:55:57]    ✅ Module sys disponible
+[2025-11-07 11:55:57]    ✅ Module asyncio disponible
+[2025-11-07 11:55:57]    ✅ Module websockets disponible
+[2025-11-07 11:55:57]    ✅ Module psutil disponible
+[2025-11-07 11:55:57]    ✅ Module fastapi disponible
+[2025-11-07 11:55:58]    ✅ Module uvicorn disponible
+[2025-11-07 11:55:58]    ✅ Tous les modules critiques sont disponibles
+[2025-11-07 11:55:58] 
+╔══════════════════════════════════════════════════════════════╗
+[2025-11-07 11:55:58] ║                      📊 RÉSUMÉ FINAL                          ║
+[2025-11-07 11:55:58] ╚══════════════════════════════════════════════════════════════╝
+[2025-11-07 11:55:58] 
+🎉 VALIDATION RÉUSSIE !
+[2025-11-07 11:55:58] ✅ Le système est prêt à démarrer.
+[2025-11-07 11:55:58] 🚀 Utilisez: .\LaunchMenu.ps1 pour démarrer l'application.
+[2025-11-07 11:55:58] Validation terminée

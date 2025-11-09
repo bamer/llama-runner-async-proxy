@@ -5,13 +5,12 @@ import os
 import signal
 import asyncio
 import qasync  # type: ignore
+from pathlib import Path
 
 # Set UTF-8 encoding for stdout/stderr to handle Unicode characters
-# Prefer using reconfigure() when available; otherwise wrap the underlying buffer.
 try:
     if getattr(sys.stdout, "encoding", None) != "utf-8":
         if hasattr(sys.stdout, "reconfigure"):
-            # Python 3.11+ method
             sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
         else:
             import io
@@ -23,7 +22,6 @@ except Exception:
 try:
     if getattr(sys.stderr, "encoding", None) != "utf-8":
         if hasattr(sys.stderr, "reconfigure"):
-            # Python 3.11+ method
             sys.stderr.reconfigure(encoding="utf-8")  # type: ignore
         else:
             import io
@@ -31,6 +29,7 @@ try:
                 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace", line_buffering=True)
 except Exception:
     pass
+
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QCoreApplication
 from PySide6.QtGui import QIcon
@@ -40,7 +39,6 @@ from llama_runner.main_window import MainWindow
 from llama_runner.headless_service_manager import HeadlessServiceManager
 from llama_runner.config_validator import validate_config, log_validation_results
 from llama_runner.config_updater import update_config_smart
-from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Llama Runner application.")
@@ -65,12 +63,32 @@ def main():
         action="store_true",
         help="Run smart config update (migrations, cleanup) before starting."
     )
+    parser.add_argument(
+        "--config",
+        type=str,
+        default="config/config.json",  # 🔥 CORRECTION CRITIQUE : Chemin vers config/config.json
+        help="Path to the configuration file."
+    )
+    parser.add_argument(
+        "--web-ui",
+        action="store_true",
+        help="Enable the web UI interface."
+    )
+    parser.add_argument(
+        "--metrics",
+        action="store_true",
+        help="Enable the metrics dashboard."
+    )
+    parser.add_argument(
+        "--dev",
+        action="store_true",
+        help="Enable development mode with extra logging."
+    )
     args = parser.parse_args()
 
     ensure_config_exists()
     
-    # Smart config update if requested
-    config_path = Path(CONFIG_DIR) / "config.json"
+    config_path = Path(CONFIG_DIR)/"config.json"
     if args.update_config:
         try:
             logging.info("Running smart config update...")
@@ -81,9 +99,8 @@ def main():
     
     loaded_config = load_config()
     
-    # Validate configuration unless skipped
     if not args.skip_validation:
-        validation_errors = validate_config(dict(loaded_config))  # type: ignore[arg-type]
+        validation_errors = validate_config(dict(loaded_config))
         if not log_validation_results(validation_errors):
             logging.error("Configuration validation failed. Fix errors or use --skip-validation to proceed anyway.")
             sys.exit(1)
@@ -100,7 +117,12 @@ def main():
     console_handler.setLevel(console_log_level)
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
-    app_log_file_path = os.path.join(CONFIG_DIR, "app.log")
+    
+    # 🔥 CORRECTION CRITIQUE : Logs dans le dossier logs/ au lieu de ./config/
+    if not os.path.exists("logs"):
+        os.makedirs("logs")
+    app_log_file_path = os.path.join("logs", "app.log")  # Chemin correct pour les logs
+    
     try:
         app_file_handler = logging.FileHandler(app_log_file_path)
         app_file_handler.setLevel(logging.DEBUG)
@@ -111,7 +133,8 @@ def main():
         logging.error(f"Failed to create app file handler for {app_log_file_path}: {e}")
     # --- End Logging Setup ---
 
-    headless_mode = args.headless
+    # CORRECTION : Mode headless pour tous les modes serveur
+    headless_mode = args.headless or args.web_ui or args.metrics or args.dev
 
     if sys.platform.startswith('linux') and not os.environ.get('DISPLAY') and not os.environ.get('WAYLAND_DISPLAY'):
         logging.warning("No display environment detected. Forcing headless mode.")
@@ -125,11 +148,12 @@ def main():
             app = QApplication(sys.argv)
 
     if not headless_mode and isinstance(app, QApplication):
-        app.setWindowIcon(QIcon('app_icon.png'))
+        try:
+            app.setWindowIcon(QIcon('app_icon.png'))
+        except FileNotFoundError:
+            logging.warning("App icon not found, proceeding without it.")
 
-    # Set up and run the event loop with qasync
     try:
-        # Create a QEventLoop for Qt integration
         loop = qasync.QEventLoop(app)
         asyncio.set_event_loop(loop)
     except Exception as e:
@@ -156,7 +180,7 @@ def main():
                 try:
                     loop = asyncio.get_running_loop()
                     if sys.platform != 'win32':
-                        loop.add_signal_handler(signal.SIGINT, signal_handler)
+                      loop.add_signal_handler(signal.SIGINT, signal_handler)
                 except NotImplementedError:
                     logging.warning("Signal handlers not supported on this platform")
                 except Exception as e:
@@ -164,6 +188,17 @@ def main():
 
                 # Start services and wait for shutdown signal
                 await hsm.start_services()
+                
+                # AFFICHAGE DES URLS BASÉ SUR LA CONFIGURATION (sans emojis)
+                logging.info("\n" + "="*60)
+                logging.info("SERVICES ACCESSIBLES :")
+                logging.info("="*60)
+                
+                # Proxies existants
+                logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
+                logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
+                logging.info("="*60 + "\n")
+
                 await shutdown_event.wait()
             else:
                 main_window = MainWindow()
@@ -190,7 +225,6 @@ def main():
                 main_window.start_services()
                 await shutdown_event.wait()
 
-        # Run the async application
         asyncio.run(run_app())
 
     except Exception as e:

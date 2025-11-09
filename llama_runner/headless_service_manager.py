@@ -1,26 +1,28 @@
 import logging
 import asyncio
-from typing import Dict, Any, List, Optional, Awaitable # Added Awaitable import
+from typing import Dict, Any, List, Optional, Awaitable
 import uvicorn
+from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from llama_runner.services.runner_service import RunnerService as LlamaRunnerManager
 from llama_runner.ollama_proxy_thread import OllamaProxyServer, app as ollama_app
 from llama_runner.lmstudio_proxy_thread import LMStudioProxyServer, app as lmstudio_app
-from llama_runner.models.config_model import AppConfig, ModelConfig, AudioConfig # Import typed config models
+from llama_runner.models.config_model import AppConfig, ModelConfig, AudioConfig
 
 logger = logging.getLogger(__name__)
 
 class HeadlessServiceManager:
     def __init__(self, app_config: AppConfig, model_config: Dict[str, ModelConfig]):
-        self.app_config: AppConfig = app_config # Type hint for app_config
-        self.models_specific_config: Dict[str, ModelConfig] = model_config # Type hint for models_specific_config
+        self.app_config: AppConfig = app_config
+        self.models_specific_config: Dict[str, ModelConfig] = model_config
         self.llama_runner_manager: LlamaRunnerManager | None = None
         self.ollama_proxy: OllamaProxyServer | None = None
         self.lmstudio_proxy: LMStudioProxyServer | None = None
-        # Instance variables for servers and tasks, typed here
         self.ollama_server: Optional[uvicorn.Server] = None
         self.lmstudio_server: Optional[uvicorn.Server] = None
-        self.running_tasks: List[asyncio.Task[None]] = [] # Type hint for running_tasks
+        self.webui_server: Optional[uvicorn.Server] = None
+        self.running_tasks: List[asyncio.Task[None]] = []
         self._initialize_services()
 
     def _on_runner_error(self, model_name: str, message: str, output_buffer: List[str]):
@@ -34,27 +36,18 @@ class HeadlessServiceManager:
 
     def _initialize_services(self):
         logger.info("Initializing services for headless mode...")
-        # Get audio configuration section, providing a default empty dict if missing
-        # The AppConfig TypedDict allows optional keys, so .get() is safe.
-        # The return type is Optional[AudioConfig], so we need to handle the None case.
-        audio_config_raw: Optional[AudioConfig] = self.app_config.get("audio") # Type hint for raw audio config
+        
+        # Get audio configuration
+        audio_config_raw: Optional[AudioConfig] = self.app_config.get("audio")
         if audio_config_raw is None:
-            # Handle case where audio section is missing or explicitly set to None
             logger.warning("Audio section is missing or None in config. Using empty models dict.")
-            audio_config: AudioConfig = {"runtimes": {}, "models": {}} # Provide a default empty AudioConfig
+            audio_config: AudioConfig = {"runtimes": {}, "models": {}}
         else:
-            audio_config = audio_config_raw # Use the retrieved config
-        # Initialize ConfigRepository first
+            audio_config = audio_config_raw
+        
+        # Initialize LlamaRunnerManager
         from llama_runner.repositories.config_repository import ConfigRepository
-        # We need to pass the full config, not just parts of it.
-        # The RunnerService will use ConfigRepository internally.
-        # For now, we'll pass a dummy config and let RunnerService load its own.
-        # A better way might be to pass the config we already loaded.
-        # Let's assume HeadlessServiceManager gets the full config at init.
-        # We'll create a temporary ConfigRepository here to pass to RunnerService.
-        # A more elegant solution would be to pass the already loaded config from main.py.
-        # For now, RunnerService will load it again.
-        temp_config_repo = ConfigRepository() 
+        temp_config_repo = ConfigRepository()
         self.llama_runner_manager = LlamaRunnerManager(
             config_repo=temp_config_repo,
             on_started=lambda name: self._on_runner_event(f"Started {name}"),
@@ -62,14 +55,14 @@ class HeadlessServiceManager:
             on_error=self._on_runner_error,
             on_port_ready=self._on_port_ready,
         )
-
         logger.info("LlamaRunnerManager initialized.")
 
-        # Get proxies configuration section, providing a default empty dict if missing
-        proxies_config: Dict[str, Any] = self.app_config.get("proxies", {}) # Type hint for proxies_config
-        # Check Ollama proxy settings
-        ollama_proxy_settings: Dict[str, Any] = proxies_config.get("ollama", {}) # Type hint for nested dict
-        if ollama_proxy_settings.get("enabled", True): # Default to True if not specified
+        # Initialize proxies
+        proxies_config: Dict[str, Any] = self.app_config.get("proxies", {})
+        
+        # Ollama proxy
+        ollama_proxy_settings: Dict[str, Any] = proxies_config.get("ollama", {})
+        if ollama_proxy_settings.get("enabled", True):
             logger.info("Ollama Proxy is enabled. Creating server...")
             self.ollama_proxy = OllamaProxyServer(
                 all_models_config=self.models_specific_config,
@@ -78,15 +71,14 @@ class HeadlessServiceManager:
                 llama_runner_manager=self.llama_runner_manager
             )
 
-        # Check LM Studio proxy settings
-        lmstudio_proxy_settings: Dict[str, Any] = proxies_config.get("lmstudio", {}) # Type hint for nested dict
-        if lmstudio_proxy_settings.get("enabled", True): # Default to True if not specified
+        # LM Studio proxy
+        lmstudio_proxy_settings: Dict[str, Any] = proxies_config.get("lmstudio", {})
+        if lmstudio_proxy_settings.get("enabled", True):
             logger.info("LM Studio Proxy is enabled. Creating server...")
-            # Get runtimes configuration, providing a default empty dict if missing
-            runtimes_config: Dict[str, Any] = self.app_config.get("llama-runtimes", {}) # Type hint for runtimes_config
+            runtimes_config: Dict[str, Any] = self.app_config.get("llama-runtimes", {})
             self.lmstudio_proxy = LMStudioProxyServer(
                 all_models_config=self.models_specific_config,
-                runtimes_config=runtimes_config, # Use typed local variable
+                runtimes_config=runtimes_config,
                 get_runner_port_callback=self.llama_runner_manager.get_runner_port,
                 request_runner_start_callback=self.llama_runner_manager.request_runner_start,
                 is_model_running_callback=self.llama_runner_manager.is_llama_runner_running,
@@ -95,160 +87,215 @@ class HeadlessServiceManager:
                 llama_runner_manager=self.llama_runner_manager
             )
 
-
-
     async def start_services(self):
         """Start all initialized services."""
         logger.info("Starting all services...")
-        # Re-initialize the list of running tasks for this session
-        self.running_tasks: List[asyncio.Task[None]] = [] # Re-initialize with explicit type hint
+        self.running_tasks = []
 
+        # Start Ollama proxy if configured
         if self.ollama_proxy and self.llama_runner_manager:
             logger.info("Starting Ollama proxy server...")
-            # Configure the Ollama app before starting
             try:
                 ollama_app.state.get_runner_port_callback = self.llama_runner_manager.get_runner_port
                 ollama_app.state.request_runner_start_callback = self.llama_runner_manager.request_runner_start
                 ollama_app.state.llama_runner_manager = self.llama_runner_manager
-                # Start Ollama proxy server
+                
                 config = uvicorn.Config(
                     app=ollama_app,
-                    host="127.0.0.1",
+                    host="0.0.0.0",
                     port=11434,
                     log_level="info"
                 )
                 server = uvicorn.Server(config)
                 self.ollama_server = server
-                # Create the task to serve the Ollama proxy and add it to the list
-                ollama_task: asyncio.Task[None] = asyncio.create_task(server.serve()) # Explicitly type the task
-                self.running_tasks.append(ollama_task) # Append the typed task
+                self.running_tasks.append(asyncio.create_task(server.serve()))
+                logger.info("✅ Ollama Proxy server started on http://0.0.0.0:11434/")
             except Exception as e:
                 logger.error(f"Error configuring Ollama proxy: {e}")
                 raise
 
+        # Start LM Studio proxy if configured
         if self.lmstudio_proxy and self.llama_runner_manager:
             logger.info("Starting LM Studio proxy server...")
-            # Configure the LMStudio app before starting
             try:
                 lmstudio_app.state.all_models_config = self.models_specific_config
                 lmstudio_app.state.get_runner_port_callback = self.llama_runner_manager.get_runner_port
-                # Get runtimes configuration again, ensuring it's typed
-                runtimes_config_for_lmstudio: Dict[str, Any] = self.app_config.get("llama-runtimes", {}) # Typed local var
-                lmstudio_app.state.runtimes_config = runtimes_config_for_lmstudio # Assign typed var
+                lmstudio_app.state.runtimes_config = self.app_config.get("llama-runtimes", {})
                 lmstudio_app.state.request_runner_start_callback = self.llama_runner_manager.request_runner_start
                 lmstudio_app.state.is_model_running_callback = self.llama_runner_manager.is_llama_runner_running
                 lmstudio_app.state.proxy_thread_instance = self.lmstudio_proxy
                 lmstudio_app.state.llama_runner_manager = self.llama_runner_manager
-                # Start LMStudio proxy server
+                
                 config = uvicorn.Config(
                     app=lmstudio_app,
-                    host="127.0.0.1",
+                    host="0.0.0.0",
                     port=1234,
                     log_level="info"
                 )
                 server = uvicorn.Server(config)
                 self.lmstudio_server = server
-                # Create the task to serve the LM Studio proxy and add it to the list
-                lmstudio_task: asyncio.Task[None] = asyncio.create_task(server.serve()) # Explicitly type the task
-                self.running_tasks.append(lmstudio_task) # Append the typed task
+                self.running_tasks.append(asyncio.create_task(server.serve()))
+                logger.info("✅ LM Studio Proxy server started on http://0.0.0.0:1234/")
             except Exception as e:
                 logger.error(f"Error configuring LM Studio proxy: {e}")
                 raise
 
-        # Check if there are any tasks to wait for
+        # Start Llama Runner WebUI service on port 8081
+        logger.info("Starting Llama Runner WebUI service on port 8081...")
+        try:
+            webui_app = FastAPI()
+            webui_app.add_middleware(
+                CORSMiddleware,
+                allow_origins=["*"],
+                allow_credentials=True,
+                allow_methods=["*"],
+                allow_headers=["*"],
+            )
+            
+            @webui_app.get("/", response_class=HTMLResponse)
+            async def webui_root():
+                return """
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Llama Runner WebUI</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                        .container { max-width: 1200px; margin: 0 auto; }
+                        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+                        .status { background: #27ae60; color: white; padding: 10px; border-radius: 5px; margin: 20px 0; }
+                        .endpoints { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+                        .endpoint { margin: 10px 0; padding: 10px; background: #e9f5ff; border-radius: 5px; }
+                        a { color: #3498db; text-decoration: none; font-weight: bold; }
+                        a:hover { text-decoration: underline; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>🦙 Llama Runner WebUI</h1>
+                        <div class="status">✅ Système opérationnel</div>
+                        
+                        <div class="endpoints">
+                            <h2>Accès direct à l'interface WebUI :</h2>
+                            <div class="endpoint">
+                                <strong>🔗 llama.cpp WebUI :</strong> <a href="http://localhost:8035">http://localhost:8035</a>
+                                <p>Interface Web de llama-server (démarrée avec le modèle par défaut)</p>
+                            </div>
+                            <div class="endpoint">
+                                <strong>🧠 Modèles :</strong> <a href="/models">/models</a>
+                                <p>Liste et gestion des modèles IA disponibles</p>
+                            </div>
+                            <div class="endpoint">
+                                <strong>💬 Chat :</strong> <a href="/chat">/chat</a>
+                                <p>Interface de conversation avec les modèles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="links">
+                            <h2>Liens utiles :</h2>
+                            <ul>
+                                <li><a href="http://localhost:11434" target="_blank">⚙️ Ollama Proxy API</a></li>
+                                <li><a href="http://localhost:1234" target="_blank">⚙️ LM Studio Proxy API</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </body>
+                </html>
+                """
+            
+            @webui_app.get("/models")
+            async def get_models():
+                models = self.app_config.get("models", {})
+                return {"models": list(models.keys()), "count": len(models)}
+            
+            @webui_app.get("/chat")
+            async def get_chat():
+                return {"status": "ready", "message": "Connect to models via Ollama or LM Studio proxy endpoints"}
+            
+            config = uvicorn.Config(
+                app=webui_app,
+                host="0.0.0.0",
+                port=8081,
+                log_level="info"
+            )
+            server = uvicorn.Server(config)
+            self.webui_server = server
+            self.running_tasks.append(asyncio.create_task(server.serve()))
+            logger.info("✅ Llama Runner WebUI service started on http://0.0.0.0:8081/")
+            logger.info("   🌐 Access via: http://localhost:8081/")
+        except Exception as e:
+            logger.error(f"Error starting Llama Runner WebUI service: {e}")
+
+        # Wait for all services to start
         if self.running_tasks:
-            logger.info("Waiting for all services to start...")
+            logger.info("✅ All services started successfully. Waiting for shutdown signal...")
+            logger.info("\n" + "="*60)
+            logger.info("🌐 SERVICES ACCESSIBLES :")
+            logger.info("="*60)
+            logger.info("🏠 llama.cpp WebUI: http://localhost:8035/")
+            logger.info("   ✅ Direct access - no proxy needed")
+            logger.info("🏠 Llama Runner WebUI: http://localhost:8081/")
+            logger.info("🔗 Ollama Proxy: http://localhost:11434/")
+            logger.info("🔗 LM Studio Proxy: http://localhost:1234/")
+            logger.info("="*60 + "\n")
             try:
-                # Wait for all server tasks to start (they run indefinitely until cancelled)
                 await asyncio.gather(*self.running_tasks)
             except Exception as e:
-                logger.error(f"Error starting services: {e}")
-                # Ensure we try to stop everything if startup fails
+                logger.error(f"Error during service operation: {e}")
                 await self.stop_services()
                 raise
 
     async def stop_services(self):
         """Stop all running services."""
         logger.info("Stopping all services...")
-        # List to hold shutdown coroutines for uvicorn servers
-        stop_tasks: List[Awaitable[None]] = [] # Type hint for stop_tasks list
+        stop_tasks: List[Awaitable[None]] = []
 
-        if self.ollama_server:
-            logger.info("Stopping Ollama proxy server...")
-            try:
-                self.ollama_server.should_exit = True
-                # Append the coroutine returned by shutdown() to the list
-                # shutdown() returns an Awaitable (likely a Coroutine)
-                ollama_shutdown_coro: Awaitable[None] = self.ollama_server.shutdown() # Explicitly type the coro
-                stop_tasks.append(ollama_shutdown_coro) # Append the typed coroutine
-            except Exception as e:
-                logger.error(f"Error stopping Ollama proxy: {e}")
+        # Stop all servers
+        for server, name in [
+            (self.ollama_server, "Ollama proxy"),
+            (self.lmstudio_server, "LM Studio proxy"),
+            (self.webui_server, "Llama Runner WebUI")
+        ]:
+            if server:
+                logger.info(f"Stopping {name}...")
+                try:
+                    server.should_exit = True
+                    stop_tasks.append(server.shutdown())
+                except Exception as e:
+                    logger.error(f"Error stopping {name}: {e}")
 
-        if self.lmstudio_server:
-            logger.info("Stopping LM Studio proxy server...")
-            try:
-                self.lmstudio_server.should_exit = True
-                # Append the coroutine returned by shutdown() to the list
-                # shutdown() returns an Awaitable (likely a Coroutine)
-                lmstudio_shutdown_coro: Awaitable[None] = self.lmstudio_server.shutdown() # Explicitly type the coro
-                stop_tasks.append(lmstudio_shutdown_coro) # Append the typed coroutine
-            except Exception as e:
-                logger.error(f"Error stopping LM Studio proxy: {e}")
-
-        # Gather and await all server shutdown coroutines
+        # Wait for all servers to shut down
         if stop_tasks:
             try:
-                # Use return_exceptions=True to prevent one failure from stopping others
                 await asyncio.gather(*stop_tasks, return_exceptions=True)
             except Exception as e:
                 logger.error(f"Error during service shutdown: {e}")
 
-        # Cancel any remaining running tasks (e.g., the uvicorn server.serve() tasks)
-        # Check if the instance has the 'running_tasks' attribute and it's not empty
-        if hasattr(self, 'running_tasks') and self.running_tasks:
-            # Iterate over a copy of the list to avoid modification during iteration issues
-            # although list iteration is generally safe in Python.
-            # Type the task variable explicitly.
-            task: asyncio.Task[None]
-            for task in self.running_tasks: # Iterate over the typed list
-                # Check if the task is not done before attempting to cancel
-                if not task.done():
-                    # Cancel the task
-                    task.cancel()
-            
-            try:
-                # Wait for all running tasks to finish cancellation
-                # Use return_exceptions=True to handle CancelledError gracefully
-                await asyncio.gather(*self.running_tasks, return_exceptions=True)
-            except Exception as e:
-                # Log any unexpected errors during task cancellation/waiting
-                logger.error(f"Error canceling running tasks: {e}")
-            # Clear the list of running tasks after cancellation
-            self.running_tasks = []
+        # Cancel remaining tasks
+        for task in self.running_tasks:
+            if not task.done():
+                task.cancel()
+        
+        try:
+            await asyncio.gather(*self.running_tasks, return_exceptions=True)
+        except Exception as e:
+            logger.error(f"Error canceling tasks: {e}")
+        
+        self.running_tasks = []
 
-        # Stop the LlamaRunnerManager itself (if needed for internal cleanup)
-        # The actual stopping of individual llama runners is handled below.
+        # Stop Llama runners
         if self.llama_runner_manager:
-            logger.info("Performing LlamaRunnerManager cleanup...") # Clarify log message
+            logger.info("Stopping all Llama runners...")
             try:
-                # TODO: Add cleanup for llama runners once we have proper cleanup methods in RunnerService
-                # For now, this pass is intentional placeholder.
-                pass
-            except Exception as e:
-                logger.error(f"Error during LlamaRunnerManager cleanup: {e}") # Improved error message
-
-        # Stop all individual llama runners managed by the LlamaRunnerManager
-        if self.llama_runner_manager:
-            logger.info("Stopping all Llama runners...") # Clarify log message
-            try:
-                # Call the async method to stop all llama runners
                 await self.llama_runner_manager.stop_all_llama_runners_async()
             except Exception as e:
-                logger.error(f"Error stopping all llama runners: {e}")
+                logger.error(f"Error stopping llama runners: {e}")
 
-        # Clear server references to indicate they are stopped
+        # Clean up references
         self.ollama_server = None
         self.lmstudio_server = None
+        self.webui_server = None
 
-        logger.info("All headless services stopped.")
-
+        logger.info("✅ All headless services stopped successfully.")

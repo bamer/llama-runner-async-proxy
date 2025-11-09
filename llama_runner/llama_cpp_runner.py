@@ -3,17 +3,17 @@ import logging
 import re
 import collections
 import signal
-from typing import Optional, Callable, List, Any, Deque # Added Any import
+from typing import Optional, Callable, List, Any, Deque
 from asyncio import StreamReader
 
-from llama_runner.config_loader import CONFIG_DIR # Removed LOG_FILE import
-
+from llama_runner.config_loader import CONFIG_DIR
 
 class LlamaCppRunner:
     _output_buffer: Deque[str]
     process: Optional[asyncio.subprocess.Process]
     port: Optional[int]
     _is_stopping: bool
+    
     def __init__(
         self,
         model_name: str,
@@ -23,7 +23,7 @@ class LlamaCppRunner:
         on_stopped: Optional[Callable[[str], None]] = None,
         on_error: Optional[Callable[[str, str, List[str]], None]] = None,
         on_port_ready: Optional[Callable[[str, int], None]] = None,
-        **kwargs: Any, # Type hint for kwargs
+        **kwargs: Any,
     ):
         self.model_name = model_name
         self.model_path = model_path
@@ -34,10 +34,10 @@ class LlamaCppRunner:
         self.on_port_ready = on_port_ready
         self.kwargs = kwargs
         self.process: Optional[asyncio.subprocess.Process] = None
-        self.startup_pattern = re.compile(r"main: server is listening on")
-        self.alt_startup_pattern = re.compile("HTTP server listening")
+        self.startup_pattern = re.compile(r"server is listening on")
+        self.alt_startup_pattern = re.compile(r"HTTP server listening")
         self.port = None
-        self._output_buffer: Deque[str] = collections.deque(maxlen=200) # Increased buffer size
+        self._output_buffer: Deque[str] = collections.deque(maxlen=200)
         self._is_stopping = False
 
     async def _read_output_continuously(self, stream: StreamReader) -> None:
@@ -54,9 +54,9 @@ class LlamaCppRunner:
                     match = self.startup_pattern.search(decoded_line)
                     alt_match = self.alt_startup_pattern.search(decoded_line)
                     if match or alt_match:
-                        # Use the port passed in kwargs, or default to 8585 for first runner
-                        self.port = self.kwargs.get("port", 8585)
-                        logging.info(f"llama.cpp server for {self.model_name} is configured on port {self.port}")
+                        # Use the port passed in kwargs, or default to 8000 (API port)
+                        self.port = self.kwargs.get("port", 8000)
+                        logging.info(f"llama.cpp server for {self.model_name} is ready on port {self.port}")
                         if self.on_port_ready and self.port:
                             self.on_port_ready(self.model_name, self.port)
             except asyncio.CancelledError:
@@ -82,7 +82,6 @@ class LlamaCppRunner:
             return_code = await self.process.wait()
             logging.info(f"Process for {self.model_name} exited with code {return_code}.")
 
-            # If the process was told to stop, and it exited with SIGTERM, that's not an error.
             if self._is_stopping and return_code == -signal.SIGTERM:
                 logging.info(f"Llama.cpp server for {self.model_name} was stopped gracefully.")
             elif return_code != 0:
@@ -104,36 +103,34 @@ class LlamaCppRunner:
                 self.on_stopped(self.model_name)
 
     async def start(self):
-        if self.process and self.process.returncode is None:
+        if self.process and self.process.returncode is not None:
             logging.warning(f"llama.cpp server for {self.model_name} is already running.")
             return
 
         command = [
             self.llama_cpp_runtime, "--model", self.model_path, "--alias", self.model_name,
-            "--host", "127.0.0.1",
+            "--host", "127.0.0.1", "--jinja", "-c", "0"
         ]
-        
-        # Handle port configuration: if port is specified in kwargs, use it; otherwise use 0 (random)
-        port_to_use = self.kwargs.get("port", 0)
+
+        # CORRECTION : Utiliser le port 8033 par défaut pour les API
+        port_to_use = self.kwargs.get("port", 8033)  # Port standard pour API
         command.append("--port")
         command.append(str(port_to_use))
         
         for key, value in self.kwargs.items():
             if key == "port":
-                continue  # Already handled above
+                continue
             arg_name = key.replace("_", "-")
             if isinstance(value, bool):
                 if value:
                     command.append(f"--{arg_name}")
             elif isinstance(value, str):
-                # Only add string arguments if they are not empty
                 if value.strip():
                     command.extend([f"--{arg_name}", value])
             elif value is not None:
-                # For other types (int, float, etc.), always add them
                 command.extend([f"--{arg_name}", str(value)])
 
-        logging.info(f"Starting llama.cpp server with command: {' '.join(command)}")
+        logging.info(f"Starting llama.cpp server on port {port_to_use}: {' '.join(command)}")
         self._output_buffer.clear()
 
         try:
@@ -175,8 +172,6 @@ class LlamaCppRunner:
                 logging.info(f"PID: {self.process.pid} for {self.model_name} killed.")
             except Exception as kill_e:
                 logging.error(f"Error killing PID: {self.process.pid} for {self.model_name}: {kill_e}")
-        except Exception as e:
-            logging.error(f"Exception during termination of PID: {self.process.pid} for {self.model_name}: {e}")
 
     def is_running(self):
         return self.process is not None and self.process.returncode is None
@@ -184,5 +179,4 @@ class LlamaCppRunner:
     def get_port(self):
         return self.port
 
-    def get_output_buffer(self):
-        return list(self._output_buffer)
+    def get_output_buffer(self):        return list(self._output_buffer)

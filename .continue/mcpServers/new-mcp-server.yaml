@@ -3,7 +3,6 @@ version: 0.0.1
 schema: v1
 mcpServers:
   - name: Serena
-    type: stdio
-    command: uvx
-    args: ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--mode", "planning", "--mode" , "editing", "--context", "agent", "--project", "F:/llm/llama-runner-async-proxy", "--transport", "streamable-http", "--port", "9121", "--transport", "stdio"]
-    env: {}
+    type: streamable-http
+    url: "http://127.0.0.1:9121/mcp"
+

@@ -8,6 +8,7 @@ fastapi
 # HTTP Client
 httpx
 requests
+aiohttp  # Ajouté pour le reverse proxy
 
 # Configuration
 pyyaml

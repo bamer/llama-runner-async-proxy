@@ -7,7 +7,6 @@ from typing import Optional, Dict, List, Any, cast # Keep Any import for flexibi
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QListWidget, QStackedWidget, QListWidgetItem)
 from PySide6.QtCore import Slot, Signal, QCoreApplication, QEvent
 
-from llama_runner.config_loader import load_config
 from llama_runner.lmstudio_proxy_thread import LMStudioProxyServer
 from llama_runner.ollama_proxy_thread import OllamaProxyServer
 from llama_runner.model_status_widget import ModelStatusWidget # Import ModelStatusWidget
@@ -16,7 +15,6 @@ from llama_runner.error_output_dialog import ErrorOutputDialog
 
 # Import new service and repository
 from llama_runner.services.runner_service import RunnerService
-from llama_runner.repositories.config_repository import ConfigRepository
 
 # Import models for type hints
 from llama_runner.models.config_model import AppConfig, ModelConfig, RuntimeConfig, ProxyConfig # Import typed config models
