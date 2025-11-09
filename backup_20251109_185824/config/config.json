@@ -1,0 +1,99 @@
+{
+    "default_model": "cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S",
+    "proxies": {
+        "ollama": {
+            "enabled": true,
+            "port": 11434
+        },
+        "lmstudio": {
+            "enabled": true,
+            "port": 1234,
+            "api_key": null
+        }
+    },
+    "llama-runtimes": {
+        "llama-server": {
+            "runtime": "F:\\llm\\llama\\llama-server.exe"
+        }
+    },
+    "webui": {
+        "enabled": true,
+        "port": 8035,
+        "host": "0.0.0.0"
+    },
+    "metrics": {
+        "enabled": true,
+        "port": 8080,
+        "host": "0.0.0.0"
+    },
+    "audio": {
+        "runtimes": {},
+        "models": {
+            "whisper-tiny": {
+                "model_path": "tiny",
+                "runtime": null,
+                "parameters": {
+                    "device": "cpu",
+                    "compute_type": "int8",
+                    "threads": 4,
+                    "language": null,
+                    "beam_size": 5
+                }
+            }
+        }
+    },
+    "models": {
+        "cerebras_Qwen3-Coder-REAP-25B-A3B": {
+            "model_path": "F:\\llm\\llama\\models\\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf",
+            "llama_cpp_runtime": "llama-server",
+            "parameters": {
+                "ctx_size": 32000,
+                "temp": 0.7,
+                "batch_size": 1024,
+                "ubatch_size": 512,
+                "threads": 10,
+                "mlock": true,
+                "no_mmap": true,
+                "flash_attn": "on",
+                "n_gpu_layers": 30,
+                "jinja": true,
+                "port": 8035,
+                "host": "127.0.0.1"
+            },
+            "display_name": "cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S",
+            "auto_discovered": false,
+            "auto_update_model": false
+        },        "JanusCoderV-7B.i1-Q4_K_S": {
+            "model_path": "F:\\llm\\llama\\models\\JanusCoderV-7B-i1-GGUF\\JanusCoderV-7B.i1-Q4_K_S.gguf",
+            "llama_cpp_runtime": "llama-server",
+            "parameters": {
+                "ctx_size": 32000,
+                "temp": 0.7,
+                "batch_size": 1024,
+                "ubatch_size": 512,
+                "threads": 10,
+                "mlock": true,
+                "no_mmap": true,
+                "flash_attn": "on",
+                "n_gpu_layers": 85,
+                "jinja": true,
+                "port": 8035,
+                "host": "127.0.0.1"
+            },
+            "display_name": "JanusCoderV-7B.i1-Q4_K_S",
+            "auto_discovered": false,
+            "auto_update_model": false
+        }
+    },
+    "default_runtime": "llama-server",
+    "concurrentRunners": 3,
+    "logging": {
+        "prompt_logging_enabled": false
+    },
+    "runtimes": {
+        "llama-server": {
+            "runtime": "F:\\llm\\llama\\llama-server.exe",
+            "supports_tools": true
+        }
+    }
+}

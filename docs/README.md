@@ -1,164 +1,162 @@
-# 🦙 LlamaRunner Pro - Proxy IA Asynchrone
+# 🦙 LlamaRunner Pro - Async Proxy System
 
-## 🎯 **Présentation**
+**Version Phase 2 - Structure stabilisée et corrigée**
 
-LlamaRunner Pro est un proxy asynchrone avancé pour modèles de langage IA, offrant une interface unifiée pour LM Studio, Ollama et d'autres services. Conçu pour être portable, sécurisé et évolutif.
+## 🎯 Présentation
 
-## 🚀 **Fonctionnalités Principales**
+LlamaRunner Pro est un système proxy asynchrone unifié qui sert d'interface entre différents modèles d'IA (LM Studio, Ollama, etc.) avec un tableau de bord web Vue.js pour le monitoring en temps réel. Le système est conçu pour être autonome, modulaire et fonctionner sur Windows/Linux.
 
-- **🔄 Proxy Multi-Plateforme** : Support natif LM Studio (port 1234) et Ollama (port 11434)
-- **🌐 Interface Web** : Dashboard interactif sur port 8081
-- **📊 Monitoring Temps Réel** : Métriques sur port 8080
-- **🤖 Gestion Intelligente des Modèles** : Scan et configuration automatique des modèles GGUF
-- **🔧 Mode Développement** : Logs détaillés et outils de debugging
-- **⚡ Performance Optimisée** : Support GPU, gestion mémoire avancée
-- **🔒 Sécurité Renforcée** : Isolation des processus, droits restreints
+## 🛠 Stack Technique
 
-## 📦 **Architecture du Projet**
+### Backend Python
+- **Python 3.11+** avec FastAPI/uvicorn pour l'API asynchrone
+- **WebSocket** pour la communication temps réel
+- **psutil** pour la collecte de métriques système (CPU, mémoire, GPU)
+- **PyInstaller** pour la génération d'exécutables
+- **PySide6** pour une interface desktop optionnelle
+
+### Frontend Vue.js
+- **Vue.js 3** + **Element Plus** pour l'UI
+- **Chart.js** pour la visualisation des données en temps réel
+- **Vite** pour le build et SCSS pour le style
+
+### Outils de développement
+- **PowerShell 7+** comme interface principale (`LaunchMenu.ps1`)
+- **VS Code** comme IDE recommandé
+- **pytest**/**unittest** pour les tests
+- **Virtualenv**/**Anaconda** pour l'environnement (pas de Docker)
+
+## 📁 Structure du Projet (Phase 2)
 
 ```
 llama-runner-async-proxy/
-├── LaunchMenu.ps1               # Point d'entrée unique (menu interactif)
-├── main.py                      # Application principale
-├── config.json                  # Configuration principale
-├── logs/                        # Dossiers des logs
+├── LaunchMenu.ps1               # Menu interactif principal
+├── main.py                      # Point d'entrée Python
 ├── config/                      # Fichiers de configuration
-├── scripts/                     # Scripts utilitaires
-│   ├── model_management.ps1     # : Gestion robuste des modèles
-│   ├── Validate-System.ps1      # Validation complète
-│   ├── PortConfig.ps1           # Configuration des ports
-│   └── Debug-Launch.ps1         # Mode debug avancé
+│   ├── config.json              # Configuration générale
+│   ├── models.json              # Paramètres spécifiques aux modèles
+│   └── ports.json               # Mapping des ports réseau et API
+├── logs/                        # Logs tournants
+├── scripts/                     # Outils PowerShell
+│   ├── model_management.ps1    # Gestion des modèles (.gguf)
+│   ├── validate_system.ps1      # Validation système
+│   ├── port_config.ps1          # Configuration réseau
+│   └── debug_launch.ps1         # Mode debug
 ├── tests/                       # Tests unitaires et d'intégration
-│   └── test_implementation_validation.py  # ✅ Mis à jour
-├── tests/unit/                 - Tests unitaires organisés
-│   ├── test_config_updater.py
-│   ├── test_llama_runner_manager.py
-│   └── test_metrics_validation.py
-├── documentation/               # Documentation complète
-│   ├── README.md                # ✅ Ce fichier
-│   ├── INSTALLATION.md          # Guide d'installation
-│   └── USAGE.md                 # Guide d'utilisation
-├───dashborad /                  # Dashboard avec graph et monitoring temps reel vu.js
-└── llama_runner/                # Code source Python
+│   ├── unit/                    # Tests unitaires
+│   └── integration/             # Tests d'intégration
+├── docs/                        # Documentation
+│   ├── README.md                # Ce fichier
+│   ├── INSTALLATION.md          # Instructions d'installation
+│   └── USAGE.md                 # Mode d'emploi
+├── dashboard/                   # Frontend Vue.js + Chart.js
+├── llama_runner/                # Backend Python central
+│   ├── main.py                  # Serveur FastAPI principal
+│   ├── proxy_manager.py         # Gestion centralisée des proxies
+│   ├── config_loader.py         # Chargement et validation de configuration
+│   ├── runner_manager.py        # Gestion des services de runner
+│   └── services/                # Services spécialisés
+│       ├── config_updater.py    # Mise à jour de configuration
+│       ├── config_validator.py  # Validation de configuration
+│       └── metrics_collector.py # Collecte de métriques
+├── models/                      # Modèles GGUF téléchargés
+├── tools/                       # Outils externes (llama-server.exe, etc.)
+└── requirements.txt             # Dépendances Python
 ```
 
-## **🔧 Cross-Platform Technical Stack:**
+## 🚀 Démarrage Rapide
 
-```
-🌐 Frontend (Cross-Platform):
-├── Vue.js 3 (JavaScript - Universal)
-├── Element Plus (React-based components - Universal)  
-├── Chart.js (Universal charting)
-├── Vite (Universal build tool)
-└── SCSS (Universal styling)
+### 1. Configuration de l'environnement
 
-💻 Backend (Cross-Platform):
-├── Python 3.11+ (Universal)
-├── PySide6 (Universal GUI framework)
-├── FastAPI/uvicorn (Universal web server)
-├── WebSocket (Universal real-time)
-└── PSUtil (Universal system monitoring)
-
-🐳 Deployment (Cross-Platform):
-├── Docker (Universal containerization)
-├── Electron (Universal desktop app)
-├── PyInstaller (Universal executable)
-└── pip (Universal package manager)
-
-
-## ⚙️ **Configuration par Défaut (Ports Standards)**
-
-| Service | Port | URL |
-|---------|------|-----|
-| **LM Studio API** | 1234 | http://localhost:1234 |
-| **Ollama API** | 11434 | http://localhost:11434 |
-| ****Dashboard Interface Web** | 8035 | http://localhost:8035 |
-
-## 🚀 **Démarrage Rapide**
-
-### 1. **Prérequis**
-- Python 3.11+
-- PowerShell 7+
-- Accès à `F:\llm\llama\llama-server.exe`
-
-### 2. **Premier démarrage**
 ```powershell
-.\LaunchMenu.ps1 
+# Créer un environnement virtuel
+python -m venv dev-venv
+
+# Activer l'environnement
+.\dev-venv\Scripts\Activate.ps1
+
+# Installer les dépendances
+pip install -r requirements.txt
 ```
 
-### 3. **Configuration des Modèles (OPTIONNEL mais recommandé)**
-```powershell
-# Dans le menu, sélectionnez :
-# "🤖 Gestion des modèles"
-```
+### 2. Lancer le menu interactif
 
-### 4. **Lancement du proxy**
-```powershell
-# Dans le menu, sélectionnez :
-# "🚀 Mode Proxy (Serveur principal)"
-```
-
-## 🧪 **Exécution des Tests**
-
-### Depuis le menu interactif :
 ```powershell
 .\LaunchMenu.ps1
-# Sélectionnez "🧪 Tests du système"
 ```
 
-### En ligne de commande :
+### 3. Choisir un mode de fonctionnement
+
+- **🚀 Mode Proxy (Serveur principal)** : Proxy asynchrone pour tous les modèles
+- **🦙 Mode Llama.cpp seul** : Uniquement le serveur llama.cpp
+- **🌐 Mode Proxy + WebUI** : Proxy avec interface web
+- **📊 Mode Proxy + WebUI + Dashboard** : Proxy avec monitoring temps réel
+- **🔧 Mode Développement (Debug)** : Logs détaillés et debugging
+- **🧪 Tests du système** : Exécuter la suite de tests
+
+## 🔍 Validation du Système
+
+Avant de démarrer, validez votre configuration :
+
 ```powershell
-.\dev-venv\Scripts\python.exe tests\test_implementation_validation.py
+.\scripts\validate_system.ps1
 ```
 
-## 🔧 **Résolution des Problèmes Courants**
+Ce script vérifie :
+- ✅ Disponibilité des ports (1234, 11434, 8035)
+- ✅ Environnement Python et dépendances
+- ✅ Structure du projet
+- ✅ Configuration des modèles
 
-### Problème : "null key is not allowed in a hash literal"
-**Solution** : ✅ dans la version actuelle
-- Le script de gestion des modèles génère maintenant des noms valides
-- Configuration minimale de secours si nécessaire
+## 🧪 Tests Automatisés
 
-### Problème : "usage: main.py [-h] [--log-level...] arguments invalides"
-**Solution** : ✅ dans la version actuelle
-- Le menu utilise maintenant `main.py` original avec arguments compatibles
-- Plus d'utilisation de `main_fixed.py` cassé
+Exécutez les tests unitaires :
 
-### Problème : "Ports occupés"
-**Solution** : ✅ dans la version actuelle
-- Le menu vérifie automatiquement la disponibilité des ports
-- Libération sécurisée avec confirmation utilisateur
+```powershell
+pytest tests/
+```
 
-### Problème : "Aucun modèle valide trouvé"
-**Solution** :
-1. Vérifiez que vos fichiers `.gguf` sont dans `F:\llm\llama\models\`
-2. Assurez-vous qu'ils font plus de 100MB
-3. Le script générera des noms par défaut si nécessaire
+## 📝 Documentation Complète
 
-## 📝 **Contributions et Maintenance**
+- **[INSTALLATION.md](INSTALLATION.md)** : Instructions d'installation détaillées
+- **[USAGE.md](USAGE.md)** : Guide d'utilisation complet
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** : Guide pour les contributeurs
 
-- **Tests** : Toute nouvelle fonctionnalité doit inclure des tests unitaires
-- **Documentation** : Mettre à jour la documentation pour chaque changement majeur
-- **Sécurité** : Les droits d'accès doivent être restreints sur les fichiers sensibles
+## 🔐 Sécurité et Configuration
 
-## 🎯 **Statut Actuel**
+- **Ports standards** :
+  - LM Studio API : **1234**
+  - Ollama API : **11434**
+  - Dashboard Web : **8035**
 
-- ✅ **Menu interactif fonctionnel** : Point d'entrée unique
-- ✅ **Gestion des modèles corrigée** : Plus d'erreurs de clés nulles
-- ✅ **Compatibilité main.py** : Arguments corrects, ports standards
-- ✅ **Configuration minimale sécurisée** : Fonctionne même sans modèles
-- ✅ **Tests fonctionnels** : Validation complète du système
-- ✅ **Sécurité renforcée** : Droits restreints sur les fichiers critiques
+- **Permissions** : Les fichiers sensibles ont des permissions restreintes
+- **Déploiement** : Local uniquement, avec venv ou Anaconda, pas de Docker
 
-## 🚀 **Prochaines Étapes**
+## 🤝 Contribution
 
-- [ ] Ajouter plus de tests unitaires
-- [ ] Améliorer la documentation des API
-- [ ] Ajouter des exemples d'utilisation
-- [ ] Optimiser les performances GPU
+Nous suivons des principes stricts pour les contributeurs :
+
+- **Sécurité** : Ne jamais supprimer de fichiers sans analyse préalable
+- **Qualité** : Commits atomiques et significatifs
+- **Tests** : Jamais ignorer les diagnostics de haute sévérité
+- **Documentation** : Documenter chaque changement fonctionnel
+- **Typage** : Suivre à 100% les conventions de typage et de nommage
+- **Validation** : Exécuter tous les tests localement avant de committer
+
+## 🆘 Support et Débogage
+
+Si vous rencontrez des problèmes :
+
+1. **Vérifiez les logs** : `logs/app.log` et `logs/launch_menu.log`
+2. **Exécutez la validation** : `.\scripts\validate_system.ps1`
+3. **Mode debug** : Utilisez `.\LaunchMenu.ps1` → "🔧 Mode Développement"
+4. **Issues GitHub** : Créez une issue avec les logs et étapes de reproduction
+
+## 📜 Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](../LICENSE) pour plus de détails.
 
 ---
 
-**🚀 Statut** : **OPÉRATIONNEL ET STABLE**  
-**🔧 Version** : 1.0 Pro 
-**📅 Dernière mise à jour** : 2025-11-07  
-**⚡ Temps de démarrage** : < 5 secondes
+**Projet stabilisé en Phase 2** ✅  
+Structure corrigée, chemins relatifs, imports fixés, documentation minimale créée.

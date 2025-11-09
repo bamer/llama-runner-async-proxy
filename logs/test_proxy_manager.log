@@ -1,0 +1,38 @@
+2025-11-09 23:22:49,397 - INFO - 🚀 Starting proxy_manager test
+2025-11-09 23:22:49,398 - INFO - === Testing proxy_manager import ===
+2025-11-09 23:22:49,398 - INFO - Attempting to import from llama_runner.proxy_manager...
+2025-11-09 23:22:50,132 - DEBUG - Successfully imported GGUFReader and LlamaFileType.
+2025-11-09 23:22:50,132 - DEBUG - GGUF_AVAILABLE status after import attempt: True
+2025-11-09 23:22:50,144 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-09 23:22:50,440 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-09 23:22:50,470 - ERROR - ❌ Failed to import proxy_manager: cannot import name 'convert_lmstudio_to_ollama_format' from 'llama_runner.ollama_proxy_conversions' (F:\llm\llama-runner-async-proxy\llama_runner\ollama_proxy_conversions.py)
+2025-11-09 23:22:50,496 - ERROR - Traceback: Traceback (most recent call last):
+  File "F:\llm\llama-runner-async-proxy\test_proxy_manager.py", line 31, in test_proxy_manager_import
+    from llama_runner.proxy_manager import ProxyManager, get_proxy_manager
+  File "F:\llm\llama-runner-async-proxy\llama_runner\proxy_manager.py", line 19, in <module>
+    from llama_runner.ollama_proxy_conversions import convert_lmstudio_to_ollama_format
+ImportError: cannot import name 'convert_lmstudio_to_ollama_format' from 'llama_runner.ollama_proxy_conversions' (F:\llm\llama-runner-async-proxy\llama_runner\ollama_proxy_conversions.py)
+
+2025-11-09 23:22:50,497 - INFO - 
+=== TEST SUMMARY ===
+2025-11-09 23:22:50,497 - INFO - Proxy manager import test: ❌ FAIL
+2025-11-09 23:22:50,497 - INFO - Proxy manager initialization test: ❌ FAIL
+2025-11-09 23:27:20,252 - INFO - 🚀 Starting proxy_manager test
+2025-11-09 23:27:20,253 - INFO - === Testing proxy_manager import ===
+2025-11-09 23:27:20,253 - INFO - Attempting to import from llama_runner.proxy_manager...
+2025-11-09 23:27:20,992 - DEBUG - Successfully imported GGUFReader and LlamaFileType.
+2025-11-09 23:27:20,992 - DEBUG - GGUF_AVAILABLE status after import attempt: True
+2025-11-09 23:27:21,004 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-09 23:27:21,301 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-09 23:27:21,332 - INFO - ✅ Successfully imported proxy_manager module
+2025-11-09 23:27:21,333 - INFO - ProxyManager class: <class 'llama_runner.proxy_manager.ProxyManager'>
+2025-11-09 23:27:21,333 - INFO - get_proxy_manager function: <function get_proxy_manager at 0x0000018176C5C9A0>
+2025-11-09 23:27:21,333 - INFO - === Testing ProxyManager initialization ===
+2025-11-09 23:27:21,334 - INFO - Creating mock RunnerService...
+2025-11-09 23:27:21,334 - INFO - Intialized ProxyManager with config: {'ollama': {'enabled': True, 'port': 11434}, 'lmstudio': {'enabled': True, 'port': 1234, 'api_key': None}}
+2025-11-09 23:27:21,335 - INFO - ✅ Successfully created ProxyManager instance
+2025-11-09 23:27:21,335 - INFO - ProxyManager app: <fastapi.applications.FastAPI object at 0x0000018176C424B0>
+2025-11-09 23:27:21,335 - INFO - 
+=== TEST SUMMARY ===
+2025-11-09 23:27:21,335 - INFO - Proxy manager import test: ✅ PASS
+2025-11-09 23:27:21,335 - INFO - Proxy manager initialization test: ✅ PASS

@@ -1,0 +1,177 @@
+{
+  "proxies": {
+    "ollama": {
+      "enabled": true  // Activer le proxy Ollama (port 11434)
+    },
+    "lmstudio": {
+      "enabled": true  // Activer le proxy LM Studio (port 1234)
+    }
+  },
+  "llama-runtimes": {
+    "default": {
+      "runtime": "F:\\llm\\llama\\llama-server.exe"  // Chemin vers l'exécutable llama-server
+    }
+  },
+  // Paramètres globaux appliqués à tous les modèles (peuvent être écrasés au niveau du modèle)
+  "global_model_parameters": {
+    // === Paramètres de contexte et mémoire ===
+    "ctx_size": 4096,  // Taille maximale du contexte en tokens (0 = auto-détecté)
+    "n_gpu_layers": 0,  // Nombre de couches à charger sur le GPU (-1 = toutes les couches)
+    "batch_size": 512,  // Taille du batch pour le traitement par lots
+    "ubatch_size": 512,  // Taille du micro-batch pour l'inférence GPU
+    "threads": 4,  // Nombre de threads CPU à utiliser
+    "mlock": false,  // Verrouiller les pages de modèle en RAM (évite le swapping)
+    "no_mmap": false,  // Désactiver le mappage de mémoire (utile pour les systèmes avec peu de RAM)
+    "no_mul_mat_q": false,  // Désactiver l'optimisation des multiplications matricielles quantifiées
+    
+    // === Paramètres d'échantillonnage ===
+    "temp": 0.8,  // Température pour l'échantillonnage (0.0 = déterministe, 1.0+ = plus aléatoire)
+    "top_p": 0.95,  // Noyau de probabilité cumulative (0.0-1.0, filtre les tokens les moins probables)
+    "top_k": 40,  // Nombre maximum de tokens à considérer (0 = désactivé)
+    "min_p": 0.0,  // Probabilité minimale pour un token (0.0 = désactivé)
+    "tfs_z": 1.0,  // Échantillonnage par entropie topologique (1.0 = désactivé)
+    "typical_p": 1.0,  // Échantillonnage typique (1.0 = désactivé)
+    "repeat_penalty": 1.1,  // Pénalité pour la répétition de tokens (1.0 = aucune pénalité)
+    "repeat_last_n": 64,  // Nombre de tokens à considérer pour la pénalité de répétition
+    "penalize_nl": false,  // Pénaliser les sauts de ligne dans la répétition
+    "ignore_eos": false,  // Ignorer le token de fin de séquence
+    
+    // === Paramètres MoE (Mixture of Experts) ===
+    "n_cpu_moe": -1,  // Nombre d'experts MoE à exécuter sur CPU (-1 = auto, 0 = tous sur GPU)
+    "reasoning_budget": -1,  // Budget de raisonnement pour les modèles spécialisés (-1 = désactivé)
+    
+    // === Paramètres de cache KV ===
+    "cache_type_k": "f16",  // Type de quantification pour le cache K (f16, q8_0, q4_0, etc.)
+    "cache_type_v": "f16",  // Type de quantification pour le cache V (f16, q8_0, q4_0, etc.)
+    "no_kv_offload": false,  // Désactiver le déchargement du cache KV sur CPU
+    
+    // === Paramètres RoPE (Rotary Position Embedding) ===
+    "rope_freq_base": 0.0,  // Fréquence de base pour RoPE (0.0 = auto-détecté)
+    "rope_freq_scale": 0.0,  // Échelle de fréquence pour RoPE (0.0 = auto-détecté)
+    "rope_scaling_type": "",  // Type de scaling RoPE (linear, yarn, etc.)
+    "rope_scaling_factor": 0.0,  // Facteur de scaling RoPE (0.0 = auto)
+    "rope_scaling_orig_ctx_len": 0,  // Longueur de contexte originale pour le scaling
+    "rope_scaling_finetuned": false,  // Indique si le modèle a été fine-tuné avec scaling
+    
+    // === Paramètres YARN (Yet Another RoPE extensioN) ===
+    "yarn_ext_factor": -1.0,  // Facteur d'extension YARN (-1.0 = auto)
+    "yarn_attn_factor": 1.0,  // Facteur d'attention YARN
+    "yarn_beta_fast": 32.0,  // Paramètre beta rapide YARN
+    "yarn_beta_slow": 1.0,  // Paramètre beta lent YARN
+    "yarn_orig_ctx": 0,  // Contexte original pour YARN (0 = auto)
+    
+    // === Paramètres d'optimisation ===
+    "flash_attn": "off",  // Activer l'attention flash ("on", "off", ou "auto")
+    "defrag_thold": -1.0,  // Seuil de défragmentation de mémoire (-1.0 = désactivé)
+    "split_mode": 0,  // Mode de split pour le multi-GPU (0 = layer, 1 = row)
+    "main_gpu": 0,  // GPU principal pour le multi-GPU
+    "tensor_split": "",  // Répartition des tenseurs pour le multi-GPU (ex: "3,2" pour 2 GPU)
+    
+    // === Paramètres RPC ===
+    "rpc_servers": "",  // Serveurs RPC pour l'inférence distribuée
+    "rpc_secure": false,  // Utiliser des connexions sécurisées pour RPC
+    "rpc_timeout": 10000,  // Timeout pour les connexions RPC en millisecondes
+    
+    // === Paramètres avancés ===
+    "override_tensor": "",  // Remplacer des tenseurs spécifiques (ex: "(up_exps|down_exps)=CPU")
+    "jinja": false,  // Activer le support des templates Jinja pour les prompts
+    "no_warmup": false,  // Désactiver le warmup initial
+    "no_context_shift": false,  // Désactiver le décalage de contexte
+    "grp_attn_n": 1,  // Grouper l'attention tous les N tokens
+    "grp_attn_w": 512,  // Fenêtre d'attention groupée
+    "pooling_type": 0,  // Type de pooling pour les embeddings (0 = mean, 1 = cls)
+    "pooling_type_str": "",  // Type de pooling comme chaîne ("mean", "cls", etc.)
+    
+    // === Paramètres de contrôle ===
+    "mirostat": 0,  // Mode Mirostat (0 = désactivé, 1 = mode 1, 2 = mode 2)
+    "mirostat_tau": 5.0,  // Cible d'entropie pour Mirostat
+    "mirostat_eta": 0.1,  // Taux d'apprentissage pour Mirostat
+    "logit_bias": "",  // Biais de logits personnalisé (ex: "15043:-100,15044:+100")
+    "grammar": "",  // Grammaire pour contraindre la sortie
+    "grammar_file": ""  // Fichier de grammaire à charger
+  },
+  
+  // === Découverte automatique des modèles ===
+  "model_discovery": {
+    "enabled": true,  // Activer la découverte automatique des modèles
+    "base_path": "F:\\llm\\llama\\models",  // Chemin de base pour la recherche des modèles
+    "auto_update": true  // Mettre à jour automatiquement les chemins des modèles trouvés
+  },
+  
+  // === Configuration audio (faster-whisper) ===
+  "audio": {
+    "models": {
+      "whisper-tiny": {
+        "model_path": "tiny",  // Nom du modèle Whisper ou chemin vers le fichier
+        "parameters": {
+          "device": "cpu",  // Device pour l'inférence ("cpu", "cuda", "auto")
+          "compute_type": "int8",  // Type de calcul ("int8", "float16", "float32")
+          "threads": 4,  // Nombre de threads CPU
+          "language": null,  // Langue forcée (null = auto-détection)
+          "beam_size": 5  // Taille du beam search pour la transcription
+        }
+      },
+      "whisper-base": {
+        "model_path": "base",
+        "parameters": {
+          "device": "cpu",
+          "compute_type": "int8", 
+          "threads": 4,
+          "language": null,
+          "beam_size": 5
+        }
+      },
+      "whisper-small": {
+        "model_path": "small",
+        "parameters": {
+          "device": "cpu",
+          "compute_type": "int8",
+          "threads": 4,
+          "language": null,
+          "beam_size": 5
+        }
+      }
+    }
+  },
+  
+  // === Configuration des modèles LLM ===
+  "models": {
+    "Chroma1-HD-Flash-Q4_K_S": {
+      "model_path": "F:\\llm\\llama\\models\\Chroma1-HD-Flash-Q4_K_S-GGUF\\Chroma1-HD-Flash-Q4_K_S.gguf",  // Chemin complet vers le fichier GGUF
+      "model_id": "Chroma1 HD Flash (Q4)",  // Nom affiché dans l'interface utilisateur
+      "mmproj": "F:\\llm\\llama\\models\\Chroma1-HD-Flash-Q4_K_S-GGUF\\mmproj-F32.gguf",  // Fichier de projection multimodal (pour les modèles VLM)
+      "auto_update_model": true,  // Mettre à jour automatiquement ce modèle lors de la découverte
+      "parameters": {
+        "ctx_size": 32000,  // Override du paramètre global ctx_size
+        "temp": 0.7,  // Override du paramètre global temp
+        "batch_size": 1024,  // Override du paramètre global batch_size
+        "ubatch_size": 512,  // Override du paramètre global ubatch_size
+        "threads": 10,  // Override du paramètre global threads
+        "mlock": true,  // Override du paramètre global mlock
+        "no_mmap": true,  // Override du paramètre global no_mmap
+        "flash_attn": "on",  // Override du paramètre global flash_attn
+        "n_gpu_layers": 85,  // Override du paramètre global n_gpu_layers
+        "jinja": true  // Override du paramètre global jinja
+      }
+    },
+    // ... (tous les autres modèles suivent le même format avec des commentaires similaires)
+    "Qwen3-14B-128K-UD-Q4_K_XL": {
+      "model_path": "F:\\llm\\llama\\models\\Qwen3-14B-128K-GGUF\\Qwen3-14B-128K-UD-Q4_K_XL.gguf",
+      "model_id": "Qwen3 14B 128K UD (Q4-XL)",
+      "auto_update_model": true,
+      "parameters": {
+        "ctx_size": 32000,
+        "temp": 0.7,
+        "batch_size": 1024,
+        "ubatch_size": 512,
+        "threads": 10,
+        "mlock": true,
+        "no_mmap": true,
+        "flash_attn": "on",
+        "n_gpu_layers": 85,
+        "jinja": true,
+        "n_cpu_moe": 30
+      }
+    }
+  }
+}

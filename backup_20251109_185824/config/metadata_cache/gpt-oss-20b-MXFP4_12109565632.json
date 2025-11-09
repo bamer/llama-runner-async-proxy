@@ -1,0 +1,13 @@
+{
+  "id": "gpt-oss-20b-MXFP4.gguf",
+  "object": "model",
+  "type": "llm",
+  "publisher": "local",
+  "arch": "unknown",
+  "compatibility_type": "gguf",
+  "quantization": "unknown",
+  "max_context_length": 4096,
+  "raw_metadata": {},
+  "state": "not-loaded",
+  "size": 12109565632
+}

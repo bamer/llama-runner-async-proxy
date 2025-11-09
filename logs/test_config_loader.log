@@ -1,0 +1,17 @@
+2025-11-09 23:20:56,475 - INFO - 🚀 Starting config_loader test
+2025-11-09 23:20:56,476 - INFO - === Testing config_loader import ===
+2025-11-09 23:20:56,477 - INFO - Attempting to import from llama_runner.config_loader...
+2025-11-09 23:20:57,457 - DEBUG - Successfully imported GGUFReader and LlamaFileType.
+2025-11-09 23:20:57,457 - DEBUG - GGUF_AVAILABLE status after import attempt: True
+2025-11-09 23:20:57,469 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-09 23:20:57,756 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-09 23:20:57,781 - INFO - ✅ Successfully imported config_loader module
+2025-11-09 23:20:57,782 - INFO - Config loader instance: <llama_runner.config_loader.ConfigLoader object at 0x0000024B7F4577A0>
+2025-11-09 23:20:57,782 - INFO - Loaded config keys: ['default_model', 'proxies', 'webui', 'metrics', 'audio']...
+2025-11-09 23:20:57,782 - INFO - Testing ensure_config_exists...
+2025-11-09 23:20:57,782 - INFO - ensure_config_exists result: True, Configuration file exists at F:\llm\llama-runner-async-proxy\config\config.json
+2025-11-09 23:20:57,783 - INFO - Testing load_config...
+2025-11-09 23:20:57,783 - INFO - load_config result - default model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-09 23:20:57,784 - INFO - 
+=== TEST SUMMARY ===
+2025-11-09 23:20:57,784 - INFO - Config loader test: ✅ PASS

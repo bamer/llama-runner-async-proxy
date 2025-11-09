@@ -1,6 +1,6 @@
 #!/usr/bin/env powershell
 # ===============================================================================
-# 🦙 LLAMA RUNNER PRO - MENU INTERACTIF ULTIME (CORRECTION FINALE)
+# 🦙 LLAMA RUNNER PRO - MENU INTERACTIF ULTIME (VERSION CORRIGÉE - PHASE 2)
 # ===============================================================================
 
 # Correction CRITIQUE : Définir le répertoire de travail au démarrage
@@ -19,10 +19,11 @@ $env:PYTHONIOENCODING = "utf-8"
 $env:CUDA_VISIBLE_DEVICES = "0"
 $env:LLAMA_SET_ROWS = "1"
 
-# Nouvelle fonction pour démarrer llama-server
+# 🔥 PHASE 2 CORRECTION : Chemins relatifs au lieu d'absolus
 function Start-LlamaServer {
-    $modelPath = "F:\\llm\\llama\\models\\JanusCoderV-7B.i1-Q4_K_S.gguf"
-    $serverPath = "F:\\llm\\llama\\llama-server.exe"
+    # Chemins relatifs au projet
+    $modelPath = Join-Path $PSScriptRoot "models\\JanusCoderV-7B.i1-Q4_K_S.gguf"
+    $serverPath = Join-Path $PSScriptRoot "tools\\llama-server.exe"
     
     if (Test-Path $serverPath) {
         Write-MenuLog "Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035" "INFO"
@@ -38,6 +39,13 @@ function Start-LlamaServer {
     } else {
         Write-MenuLog "Erreur: llama-server.exe non trouvé à $serverPath" "ERROR"
         Write-ColorOutput "`n❌ Erreur: llama-server.exe non trouvé à $serverPath" "Red"
+        
+        # 🔥 PHASE 2 CORRECTION : Message d'aide pour l'installation
+        Write-ColorOutput "`n💡 CONSEIL PHASE 2 :" "Yellow"
+        Write-ColorOutput "   - Téléchargez llama-server.exe depuis https://github.com/ggerganov/llama.cpp" "White"
+        Write-ColorOutput "   - Placez-le dans le dossier 'tools/'" "White"
+        Write-ColorOutput "   - Téléchargez un modèle GGUF et placez-le dans 'models/'" "White"
+        
         return $false
     }
 }
@@ -61,20 +69,23 @@ $script:CurrentSelection = 0
 $script:LogLevel = "INFO"
 $script:LogPath = "logs\\launch_menu.log"
 
-# FIX CRITIQUE: Chemins absolus
+# 🔥 PHASE 2 CORRECTION : Chemins relatifs systématiques
 $script:ProjectRoot = $PSScriptRoot
 $script:VenvPath = Join-Path $script:ProjectRoot "dev-venv"
 $script:PythonPath = Join-Path $script:VenvPath "Scripts\\python.exe"
 $script:MainScript = "main.py"
 
-# Créer les dossiers nécessaires
-if (-not (Test-Path "logs")) { New-Item -ItemType Directory -Path "logs" -Force | Out-Null }
-if (-not (Test-Path "config")) { New-Item -ItemType Directory -Path "config" -Force | Out-Null }
-if (-not (Test-Path "scripts")) { New-Item -ItemType Directory -Path "scripts" -Force | Out-Null }
+# Créer les dossiers nécessaires (idempotent)
+@("logs", "config", "scripts", "models", "tools") | ForEach-Object {
+    if (-not (Test-Path $_)) { 
+        New-Item -ItemType Directory -Path $_ -Force | Out-Null 
+        Write-MenuLog "Dossier créé : $_" "INFO"
+    }
+}
 
 # Initialiser le fichier de log
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-"[$timestamp] === DÉMARRAGE MENU CORRIGÉ ULTIME ===" | Out-File $script:LogPath -Append -Encoding UTF8
+"[$timestamp] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===" | Out-File $script:LogPath -Append -Encoding UTF8
 
 function Write-MenuLog {
     param([string]$Message, [string]$Level = "INFO")
@@ -95,6 +106,13 @@ function Test-Environment {
     if (-not (Test-Path $script:PythonPath)) {
         Write-ColorOutput "`n❌ Python non trouvé: $script:PythonPath" "Red"
         Write-MenuLog "Python non trouvé: $script:PythonPath" "ERROR"
+        
+        # 🔥 PHASE 2 CORRECTION : Message d'aide détaillé
+        Write-ColorOutput "`n💡 CONSEIL PHASE 2 :" "Yellow"
+        Write-ColorOutput "   - Créez un virtual environment : python -m venv dev-venv" "White"
+        Write-ColorOutput "   - Activez-le : dev-venv\\Scripts\\Activate.ps1" "White"
+        Write-ColorOutput "   - Installez les dépendances : pip install -r requirements.txt" "White"
+        
         return $false
     }
     
@@ -125,6 +143,14 @@ function Start-LlamaRunner {
     if ($Mode -eq "webui" -or $Mode -eq "metrics") {
         if (-not (Start-LlamaServer)) {
             Write-ColorOutput "`n⚠️ Attention: llama-server n'a pas pu démarrer" "Yellow"
+            Write-MenuLog "llama-server failed to start" "WARNING"
+            
+            # Demander confirmation pour continuer
+            $choice = Read-Host "`n❓ Voulez-vous continuer sans llama-server ? (O/N)"
+            if ($choice -notmatch "^[OoYy]$") {
+                Write-ColorOutput "`n⏹️ Démarrage annulé par l'utilisateur" "Yellow"
+                return
+            }
         }
     }
     
@@ -159,7 +185,7 @@ function Start-LlamaRunner {
         Write-ColorOutput "`n⏳ Démarrage..." "Yellow"
         Write-MenuLog "Démarrage processus" "INFO"
         
-        # Démarrer le processus avec les variables d'environnement
+        # 🔥 PHASE 2 CORRECTION : WorkingDirectory explicite
         $process = Start-Process -FilePath $script:PythonPath `
             -ArgumentList $args `
             -WorkingDirectory $script:ProjectRoot `
@@ -174,6 +200,14 @@ function Start-LlamaRunner {
             Write-ColorOutput "`n✅ Succès !" "Green"
         } else {
             Write-ColorOutput "`n❌ Erreur: code $exitCode" "Red"
+            
+            # 🔥 PHASE 2 CORRECTION : Analyse des erreurs courantes
+            if ($exitCode -eq 1) {
+                Write-ColorOutput "`n💡 CONSEILS DE DÉBOGAGE :" "Yellow"
+                Write-ColorOutput "   - Vérifiez les logs dans logs\\app.log" "White"
+                Write-ColorOutput "   - Testez la configuration : .\\scripts\\validate_system.ps1" "White"
+                Write-ColorOutput "   - Mettez à jour la config : .\\scripts\\port_config.ps1" "White"
+            }
         }
     } catch {
         Write-ColorOutput "`n❌ Erreur démarrage: $_" "Red"
@@ -188,12 +222,20 @@ function Start-LlamaRunner {
 function Show-ModelManagement {
     Write-ColorOutput "`n=== 🤖 GESTION DES MODÈLES ===" "Magenta"
     
-    if (Test-Path "scripts\\model_management.ps1") {
+    $modelScriptPath = Join-Path $script:ProjectRoot "scripts\\model_management.ps1"
+    
+    if (Test-Path $modelScriptPath) {
         Write-MenuLog "Lancement script modèles" "INFO"
-        & "scripts\\model_management.ps1"
+        & $modelScriptPath
         Write-MenuLog "Script modèles terminé avec succès" "SUCCESS"
     } else {
-        Write-ColorOutput "❌ Script non trouvé" "Red"
+        Write-ColorOutput "❌ Script non trouvé : $modelScriptPath" "Red"
+        Write-MenuLog "Script modèles non trouvé : $modelScriptPath" "ERROR"
+        
+        # 🔥 PHASE 2 CORRECTION : Message d'aide
+        Write-ColorOutput "`n💡 CONSEIL PHASE 2 :" "Yellow"
+        Write-ColorOutput "   - Le script de gestion des modèles devrait être dans scripts\\model_management.ps1" "White"
+        Write-ColorOutput "   - Vérifiez que tous les scripts sont dans le dossier 'scripts/'" "White"
     }
     
     Write-Host "`n✅ Opération terminée avec succès !" -ForegroundColor Green
@@ -204,9 +246,16 @@ function Show-ModelManagement {
 # Boucle principale
 while ($true) {
     Clear-Host
-    Write-ColorOutput "╔════════════════════════════════╗" "Cyan"
-    Write-ColorOutput "║    🦙 MENU INTERACTIF CORRIGÉ  ║" "Cyan"
-    Write-ColorOutput "╚════════════════════════════════╝" "Cyan"
+    Write-ColorOutput "╔════════════════════════════════════════════╗" "Cyan"
+    Write-ColorOutput "║    🦙 MENU INTERACTIF - PHASE 2 STABLE    ║" "Cyan"
+    Write-ColorOutput "║      Structure corrigée et simplifiée     ║" "Cyan"
+    Write-ColorOutput "╚════════════════════════════════════════════╝" "Cyan"
+    Write-Host ""
+    
+    # 🔥 PHASE 2 CORRECTION : Afficher l'état du projet
+    Write-ColorOutput "📊 ÉTAT ACTUEL DU PROJET :" "Yellow"
+    Write-ColorOutput "   📁 Répertoire projet: $script:ProjectRoot" "White"
+    Write-ColorOutput "   🐍 Python: $($script:PythonPath -replace [regex]::Escape($HOME), '~')" "White"
     Write-Host ""
     
     for ($i = 0; $i -lt $Options.Count; $i++) {
@@ -229,14 +278,22 @@ while ($true) {
                 "metrics" { if (Test-Environment) { Start-LlamaRunner -Mode "metrics" } }
                 "dev" { if (Test-Environment) { Start-LlamaRunner -Mode "dev" } }
                 "models" { Show-ModelManagement }
+                "validate" { 
+                    $validateScript = Join-Path $script:ProjectRoot "scripts\\validate_system.ps1"
+                    if (Test-Path $validateScript) {
+                        & $validateScript
+                    } else {
+                        Write-ColorOutput "`n❌ Script de validation non trouvé" "Red"
+                    }
+                }
                 "exit" { 
-                    Write-ColorOutput "`n👋 Au revoir !" "Cyan"
+                    Write-ColorOutput "`n👋 Au revoir ! Projet stabilisé en Phase 2." "Cyan"
                     exit 0 
                 }
             }
         }
         27 { 
-            Write-ColorOutput "`n👋 Au revoir !" "Cyan"
+            Write-ColorOutput "`n👋 Au revoir ! Projet stabilisé en Phase 2." "Cyan"
             exit 0 
         } # Échap
     }

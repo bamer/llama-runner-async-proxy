@@ -37,8 +37,8 @@ from PySide6.QtGui import QIcon
 from llama_runner.config_loader import CONFIG_DIR, ensure_config_exists, load_config
 from llama_runner.main_window import MainWindow
 from llama_runner.headless_service_manager import HeadlessServiceManager
-from llama_runner.config_validator import validate_config, log_validation_results
-from llama_runner.config_updater import update_config_smart
+from llama_runner.services.config_validator import validate_config, log_validation_results  # Correction import
+from llama_runner.services.config_updater import update_config_smart  # Correction import
 
 def main():
     parser = argparse.ArgumentParser(description="Llama Runner application.")

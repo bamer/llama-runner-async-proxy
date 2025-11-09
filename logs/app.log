@@ -2252,3 +2252,124 @@ SystemExit: 1
 2025-11-09 16:59:13,997 - INFO - llama_runner.headless_service_manager - Runner Manager Event: Stopped Dorado-WebSurf_Tool-ext.Q8_0
 2025-11-09 16:59:14,000 - INFO - root - Application exited with code 0.
 2025-11-09 16:59:14,236 - DEBUG - qasync._windows._IocpProactor - Closing
+2025-11-09 22:41:57,707 - INFO - root - App file logging to: logs\app.log
+2025-11-09 22:41:57,708 - DEBUG - asyncio - Using proactor: _IocpProactor
+2025-11-09 22:41:57,710 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-09 22:41:57,711 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-09 22:41:57,711 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-09 22:41:57,712 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-09 22:41:57,712 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-09 22:41:57,712 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-09 22:41:57,712 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-09 22:41:57,713 - INFO - llama_runner.headless_service_manager - ✅ Ollama Proxy server started on http://0.0.0.0:11434/
+2025-11-09 22:41:57,714 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-09 22:41:57,714 - INFO - llama_runner.headless_service_manager - ✅ LM Studio Proxy server started on http://0.0.0.0:1234/
+2025-11-09 22:41:57,714 - INFO - llama_runner.headless_service_manager - Starting Llama Runner WebUI service on port 8081...
+2025-11-09 22:41:57,715 - ERROR - llama_runner.headless_service_manager - Error starting Llama Runner WebUI service: name 'HTMLResponse' is not defined
+2025-11-09 22:41:57,715 - INFO - llama_runner.headless_service_manager - ✅ All services started successfully. Waiting for shutdown signal...
+2025-11-09 22:41:57,715 - INFO - llama_runner.headless_service_manager - 
+============================================================
+2025-11-09 22:41:57,715 - INFO - llama_runner.headless_service_manager - 🌐 SERVICES ACCESSIBLES :
+2025-11-09 22:41:57,715 - INFO - llama_runner.headless_service_manager - ============================================================
+2025-11-09 22:41:57,715 - INFO - llama_runner.headless_service_manager - 🏠 llama.cpp WebUI: http://localhost:8035/
+2025-11-09 22:41:57,716 - INFO - llama_runner.headless_service_manager -    ✅ Direct access - no proxy needed
+2025-11-09 22:41:57,716 - INFO - llama_runner.headless_service_manager - 🏠 Llama Runner WebUI: http://localhost:8081/
+2025-11-09 22:41:57,716 - INFO - llama_runner.headless_service_manager - 🔗 Ollama Proxy: http://localhost:11434/
+2025-11-09 22:41:57,716 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
+2025-11-09 22:41:57,716 - INFO - llama_runner.headless_service_manager - ============================================================
+
+2025-11-09 22:45:03,260 - INFO - root - Application exited with code 0.
+2025-11-09 22:45:03,286 - DEBUG - qasync._windows._IocpProactor - Closing
+2025-11-09 22:47:18,382 - INFO - root - App file logging to: logs\app.log
+2025-11-09 22:47:18,951 - DEBUG - asyncio - Using proactor: _IocpProactor
+2025-11-09 22:47:18,952 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-09 22:47:19,322 - INFO - root - LM Studio Proxy listening on http://127.0.0.1:1234
+2025-11-09 22:47:19,374 - INFO - root - Ollama Proxy listening on http://127.0.0.1:11434
+2025-11-09 22:54:59,080 - INFO - root - Ollama Proxy server shut down.
+2025-11-09 22:54:59,299 - INFO - root - LM Studio Proxy server shut down.
+2025-11-09 22:54:59,299 - INFO - root - Application exited with code 0.
+2025-11-09 22:54:59,364 - DEBUG - qasync._windows._IocpProactor - Closing
+2025-11-09 23:14:18,454 - INFO - root - App file logging to: logs\app.log
+2025-11-09 23:14:18,456 - DEBUG - asyncio - Using proactor: _IocpProactor
+2025-11-09 23:14:18,457 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-09 23:14:18,459 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-09 23:14:18,460 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-09 23:14:18,460 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-09 23:14:18,460 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-09 23:14:18,461 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-09 23:14:18,461 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-09 23:14:18,462 - INFO - llama_runner.headless_service_manager - ✅ Ollama Proxy server started on http://0.0.0.0:11434/
+2025-11-09 23:14:18,462 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-09 23:14:18,463 - INFO - llama_runner.headless_service_manager - ✅ LM Studio Proxy server started on http://0.0.0.0:1234/
+2025-11-09 23:14:18,463 - INFO - llama_runner.headless_service_manager - Starting Llama Runner WebUI service on port 8081...
+2025-11-09 23:14:18,463 - ERROR - llama_runner.headless_service_manager - Error starting Llama Runner WebUI service: name 'HTMLResponse' is not defined
+2025-11-09 23:14:18,464 - INFO - llama_runner.headless_service_manager - ✅ All services started successfully. Waiting for shutdown signal...
+2025-11-09 23:14:18,464 - INFO - llama_runner.headless_service_manager - 
+============================================================
+2025-11-09 23:14:18,464 - INFO - llama_runner.headless_service_manager - 🌐 SERVICES ACCESSIBLES :
+2025-11-09 23:14:18,464 - INFO - llama_runner.headless_service_manager - ============================================================
+2025-11-09 23:14:18,465 - INFO - llama_runner.headless_service_manager - 🏠 llama.cpp WebUI: http://localhost:8035/
+2025-11-09 23:14:18,465 - INFO - llama_runner.headless_service_manager -    ✅ Direct access - no proxy needed
+2025-11-09 23:14:18,465 - INFO - llama_runner.headless_service_manager - 🏠 Llama Runner WebUI: http://localhost:8081/
+2025-11-09 23:14:18,466 - INFO - llama_runner.headless_service_manager - 🔗 Ollama Proxy: http://localhost:11434/
+2025-11-09 23:14:18,466 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
+2025-11-09 23:14:18,466 - INFO - llama_runner.headless_service_manager - ============================================================
+
+2025-11-09 23:16:14,285 - ERROR - root - File not found for size check: models/JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-09 23:16:14,285 - WARNING - root - Non-blocking error: Could not get size for models/JanusCoderV-7B.i1-Q4_K_S.gguf. Cannot use cache.
+2025-11-09 23:16:22,845 - INFO - root - Application exited with code 0.
+2025-11-09 23:16:22,871 - DEBUG - qasync._windows._IocpProactor - Closing
+2025-11-09 23:27:32,165 - INFO - root - App file logging to: logs\app.log
+2025-11-09 23:27:32,167 - DEBUG - asyncio - Using proactor: _IocpProactor
+2025-11-09 23:27:32,168 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-09 23:27:32,170 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-09 23:27:32,170 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-09 23:27:32,171 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-09 23:27:32,171 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-09 23:27:32,171 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-09 23:27:32,171 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-09 23:27:32,172 - INFO - llama_runner.headless_service_manager - ✅ Ollama Proxy server started on http://0.0.0.0:11434/
+2025-11-09 23:27:32,172 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-09 23:27:32,173 - INFO - llama_runner.headless_service_manager - ✅ LM Studio Proxy server started on http://0.0.0.0:1234/
+2025-11-09 23:27:32,174 - INFO - llama_runner.headless_service_manager - Starting Llama Runner WebUI service on port 8081...
+2025-11-09 23:27:32,174 - ERROR - llama_runner.headless_service_manager - Error starting Llama Runner WebUI service: name 'HTMLResponse' is not defined
+2025-11-09 23:27:32,174 - INFO - llama_runner.headless_service_manager - ✅ All services started successfully. Waiting for shutdown signal...
+2025-11-09 23:27:32,175 - INFO - llama_runner.headless_service_manager - 
+============================================================
+2025-11-09 23:27:32,175 - INFO - llama_runner.headless_service_manager - 🌐 SERVICES ACCESSIBLES :
+2025-11-09 23:27:32,175 - INFO - llama_runner.headless_service_manager - ============================================================
+2025-11-09 23:27:32,176 - INFO - llama_runner.headless_service_manager - 🏠 llama.cpp WebUI: http://localhost:8035/
+2025-11-09 23:27:32,176 - INFO - llama_runner.headless_service_manager -    ✅ Direct access - no proxy needed
+2025-11-09 23:27:32,176 - INFO - llama_runner.headless_service_manager - 🏠 Llama Runner WebUI: http://localhost:8081/
+2025-11-09 23:27:32,177 - INFO - llama_runner.headless_service_manager - 🔗 Ollama Proxy: http://localhost:11434/
+2025-11-09 23:27:32,177 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
+2025-11-09 23:27:32,177 - INFO - llama_runner.headless_service_manager - ============================================================
+
+2025-11-09 23:28:09,831 - INFO - root - Application exited with code 0.
+2025-11-09 23:28:09,862 - DEBUG - qasync._windows._IocpProactor - Closing
+2025-11-09 23:37:42,197 - INFO - root - App file logging to: logs\app.log
+2025-11-09 23:37:42,198 - DEBUG - asyncio - Using proactor: _IocpProactor
+2025-11-09 23:37:42,200 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-09 23:37:42,201 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-09 23:37:42,202 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-09 23:37:42,202 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-09 23:37:42,202 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-09 23:37:42,202 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-09 23:37:42,203 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-09 23:37:42,203 - INFO - llama_runner.headless_service_manager - ✅ Ollama Proxy server started on http://0.0.0.0:11434/
+2025-11-09 23:37:42,204 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-09 23:37:42,204 - INFO - llama_runner.headless_service_manager - ✅ LM Studio Proxy server started on http://0.0.0.0:1234/
+2025-11-09 23:37:42,205 - INFO - llama_runner.headless_service_manager - Starting Llama Runner WebUI service on port 8081...
+2025-11-09 23:37:42,205 - ERROR - llama_runner.headless_service_manager - Error starting Llama Runner WebUI service: name 'HTMLResponse' is not defined
+2025-11-09 23:37:42,205 - INFO - llama_runner.headless_service_manager - ✅ All services started successfully. Waiting for shutdown signal...
+2025-11-09 23:37:42,205 - INFO - llama_runner.headless_service_manager - 
+============================================================
+2025-11-09 23:37:42,206 - INFO - llama_runner.headless_service_manager - 🌐 SERVICES ACCESSIBLES :
+2025-11-09 23:37:42,206 - INFO - llama_runner.headless_service_manager - ============================================================
+2025-11-09 23:37:42,206 - INFO - llama_runner.headless_service_manager - 🏠 llama.cpp WebUI: http://localhost:8035/
+2025-11-09 23:37:42,206 - INFO - llama_runner.headless_service_manager -    ✅ Direct access - no proxy needed
+2025-11-09 23:37:42,206 - INFO - llama_runner.headless_service_manager - 🏠 Llama Runner WebUI: http://localhost:8081/
+2025-11-09 23:37:42,206 - INFO - llama_runner.headless_service_manager - 🔗 Ollama Proxy: http://localhost:11434/
+2025-11-09 23:37:42,207 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
+2025-11-09 23:37:42,207 - INFO - llama_runner.headless_service_manager - ============================================================
+

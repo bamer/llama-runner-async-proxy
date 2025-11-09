@@ -1,3 +1,8 @@
+"""
+Runner Service - Manages the lifecycle of model runners (Llama.cpp, Whisper, etc.)
+Replaces the previous LlamaRunnerManager logic with a more modular service approach.
+"""
+
 from typing import Dict, Any, Optional, Callable, List, Awaitable
 import logging
 import asyncio
@@ -6,7 +11,7 @@ from llama_runner.repositories.config_repository import ConfigRepository
 from llama_runner.models.config_model import AppConfig, ModelConfig, RuntimeConfig, AudioConfig
 from llama_runner.llama_cpp_runner import LlamaCppRunner
 from llama_runner.faster_whisper_runner import FasterWhisperRunner
-from llama_runner.metrics import MetricsCollector
+from llama_runner.services.metrics_collector import MetricsCollector  # Correction de l'import
 
 logger = logging.getLogger(__name__)
 

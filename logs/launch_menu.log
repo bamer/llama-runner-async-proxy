@@ -1239,3 +1239,5 @@
 [2025-11-09 17:35:00] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
 [2025-11-09 17:35:00] [INFO] Démarrage processus
 [2025-11-09 17:35:01] [INFO] Processus terminé avec code: 1
+[2025-11-09 22:59:41] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-09 23:34:43] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
