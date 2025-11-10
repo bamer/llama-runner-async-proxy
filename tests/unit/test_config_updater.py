@@ -3,7 +3,7 @@ import pytest
 import json
 import tempfile
 from pathlib import Path
-from llama_runner.config_updater import (
+from llama_runner.services.config_updater import (  # Corrigé pour la nouvelle structure
     get_config_version,
     migrate_v1_to_v2,
     apply_migrations,

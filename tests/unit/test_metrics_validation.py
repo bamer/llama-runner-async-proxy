@@ -1,8 +1,8 @@
 """Tests for metrics and validation."""
 import pytest
 from pathlib import Path
-from llama_runner.metrics import MetricsCollector, RunnerMetrics
-from llama_runner.config_validator import validate_config, ValidationError, log_validation_results
+from llama_runner.services.metrics_collector import MetricsCollector, RunnerMetrics  # Corrigé pour la nouvelle structure
+from llama_runner.services.config_validator import validate_config, ValidationError, log_validation_results  # Corrigé pour la nouvelle structure
 
 def test_metrics_collector():
     """Test metrics collection."""

@@ -3,6 +3,7 @@ import asyncio
 from typing import Dict, Any, List, Optional, Awaitable
 import uvicorn
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse  # Correction ajoutée ici
 from starlette.middleware.cors import CORSMiddleware
 
 from llama_runner.services.runner_service import RunnerService as LlamaRunnerManager

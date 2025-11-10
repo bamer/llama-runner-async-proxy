@@ -1241,3 +1241,41 @@
 [2025-11-09 17:35:01] [INFO] Processus terminé avec code: 1
 [2025-11-09 22:59:41] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
 [2025-11-09 23:34:43] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 02:10:30] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 09:01:43] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 09:02:23] [INFO] === Test environnement ===
+[2025-11-10 09:02:23] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 09:02:23] [ERROR] Erreur: llama-server.exe non trouvé à F:\llm\llama-runner-async-proxy\tools\\llama-server.exe
+[2025-11-10 09:02:23] [WARNING] llama-server failed to start
+[2025-11-10 09:11:43] [INFO] === Test environnement ===
+[2025-11-10 09:11:43] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 09:11:43] [ERROR] Erreur: llama-server.exe non trouvé à F:\llm\llama-runner-async-proxy\tools\\llama-server.exe
+[2025-11-10 09:11:43] [WARNING] llama-server failed to start
+[2025-11-10 09:22:57] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 09:22:59] [INFO] === Test environnement ===
+[2025-11-10 09:22:59] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 09:22:59] [INFO] Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035
+[2025-11-10 09:23:05] [INFO] === Démarrage mode: webui ===
+[2025-11-10 09:23:05] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui
+[2025-11-10 09:23:05] [INFO] Démarrage processus
+[2025-11-10 09:24:56] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 09:24:59] [INFO] === Test environnement ===
+[2025-11-10 09:24:59] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 09:24:59] [INFO] Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035
+[2025-11-10 09:25:04] [INFO] === Démarrage mode: metrics ===
+[2025-11-10 09:25:04] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
+[2025-11-10 09:25:04] [INFO] Démarrage processus
+[2025-11-10 09:27:06] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 09:27:10] [INFO] === Test environnement ===
+[2025-11-10 09:27:10] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 09:27:10] [INFO] Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035
+[2025-11-10 09:27:15] [INFO] === Démarrage mode: metrics ===
+[2025-11-10 09:27:15] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
+[2025-11-10 09:27:15] [INFO] Démarrage processus
+[2025-11-10 09:29:43] === DÉMARRAGE MENU CORRIGÉ PHASE 2 ===
+[2025-11-10 09:29:47] [INFO] === Test environnement ===
+[2025-11-10 09:29:47] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 09:29:47] [INFO] Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035
+[2025-11-10 09:29:52] [INFO] === Démarrage mode: metrics ===
+[2025-11-10 09:29:52] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
+[2025-11-10 09:29:52] [INFO] Démarrage processus

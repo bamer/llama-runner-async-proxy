@@ -22,8 +22,9 @@ $env:LLAMA_SET_ROWS = "1"
 # 🔥 PHASE 2 CORRECTION : Chemins relatifs au lieu d'absolus
 function Start-LlamaServer {
     # Chemins relatifs au projet
-    $modelPath = Join-Path $PSScriptRoot "models\\JanusCoderV-7B.i1-Q4_K_S.gguf"
-    $serverPath = Join-Path $PSScriptRoot "tools\\llama-server.exe"
+    $serverPath = Join-Path $PSScriptRoot "..\\llama\\llama-server.exe"
+    $modelPath = Join-Path $PSScriptRoot "..\\llama\\models"
+    
     
     if (Test-Path $serverPath) {
         Write-MenuLog "Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035" "INFO"

@@ -8,7 +8,7 @@ print(f"Python version: {sys.version}")
 print(f"Répertoire courant: {os.getcwd()}")
 print("")
 
-def test_port(port):
+def test_port(port: int=1234 ):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(1)
