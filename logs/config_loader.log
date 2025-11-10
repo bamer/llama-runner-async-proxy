@@ -1,8 +1,62 @@
-2025-11-10 15:56:28,960 - INFO - === INITIALISATION ULTRA-ROBUSTE CONFIG_LOADER ===
-2025-11-10 15:56:28,961 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
-2025-11-10 15:56:28,961 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\models
-2025-11-10 15:56:28,969 - WARNING - ⚠️ Section 'webui' ajoutée à la configuration applicative
-2025-11-10 15:56:28,970 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
-2025-11-10 15:56:28,970 - INFO - ✅ Configuration applicative chargée avec succès
-2025-11-10 15:56:28,978 - INFO - ✅ Configuration des modèles chargée avec succès
-2025-11-10 15:56:28,978 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION ULTRA-STABLE
+2025-11-10 23:26:03,499 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-10 23:26:03,499 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-10 23:26:03,499 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-10 23:26:03,500 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-10 23:26:04,114 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-10 23:26:04,400 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-10 23:26:04,430 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-10 23:26:04,430 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-10 23:26:04,431 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-10 23:26:04,431 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-10 23:26:04,431 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-10 23:26:04,431 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-10 23:26:04,432 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-10 23:26:04,432 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-10 23:26:04,432 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-10 23:26:04,432 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-10 23:26:04,432 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-10 23:26:04,433 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-10 23:26:04,433 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-10 23:26:04,433 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-10 23:28:58,996 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-10 23:28:58,996 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-10 23:28:58,996 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-10 23:28:58,997 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-10 23:28:59,625 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-10 23:28:59,891 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-10 23:28:59,922 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-10 23:28:59,922 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-10 23:28:59,922 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-10 23:28:59,923 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-10 23:28:59,923 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-10 23:28:59,923 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-10 23:28:59,923 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-10 23:28:59,924 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-10 23:28:59,924 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-10 23:28:59,924 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-10 23:28:59,924 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-10 23:28:59,925 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-10 23:28:59,925 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-10 23:28:59,925 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-10 23:45:38,773 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-10 23:45:38,774 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-10 23:45:38,774 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-10 23:45:38,774 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-10 23:45:39,416 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-10 23:45:39,720 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-10 23:45:39,761 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-10 23:45:39,761 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-10 23:45:39,762 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-10 23:45:39,762 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-10 23:45:39,762 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-10 23:45:39,762 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-10 23:45:39,762 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-10 23:45:39,762 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-10 23:45:39,763 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-10 23:45:39,763 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-10 23:45:39,763 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-10 23:45:39,763 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-10 23:45:39,764 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-10 23:45:39,764 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-10 23:45:39,764 - WARNING - [WARNING] config: No models configured
+2025-11-10 23:45:39,764 - WARNING - Configuration validation passed with 1 warning(s)

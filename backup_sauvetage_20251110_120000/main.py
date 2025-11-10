@@ -16,8 +16,8 @@ try:
             import io
             if hasattr(sys.stdout, "buffer"):
                 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True)
-except Exception as e:
-    logging.warning(f"Failed to set UTF-8 encoding for stdout: {e}")
+except Exception:
+    pass
 
 try:
     if getattr(sys.stderr, "encoding", None) != "utf-8":
@@ -27,8 +27,8 @@ try:
             import io
             if hasattr(sys.stderr, "buffer"):
                 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace", line_buffering=True)
-except Exception as e:
-    logging.warning(f"Failed to set UTF-8 encoding for stderr: {e}")
+except Exception:
+    pass
 
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QCoreApplication
@@ -37,8 +37,8 @@ from PySide6.QtGui import QIcon
 from llama_runner.config_loader import CONFIG_DIR, ensure_config_exists, load_config
 from llama_runner.main_window import MainWindow
 from llama_runner.headless_service_manager import HeadlessServiceManager
-from llama_runner.services.config_validator import validate_config, log_validation_results
-from llama_runner.services.config_updater import update_config_smart
+from llama_runner.services.config_validator import validate_config, log_validation_results  # Correction import
+from llama_runner.services.config_updater import update_config_smart  # Correction import
 
 def main():
     parser = argparse.ArgumentParser(description="Llama Runner application.")
@@ -66,14 +66,8 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="config/app_config.json",  # CORRECTION : Chemin vers app_config.json
-        help="Path to the main configuration file."
-    )
-    parser.add_argument(
-        "--models-config",
-        type=str,
-        default="config/models_config.json",  # Ajout du paramètre pour le fichier de modèles
-        help="Path to the models configuration file."
+        default="config/config.json",  # 🔥 CORRECTION CRITIQUE : Chemin vers config/config.json
+        help="Path to the configuration file."
     )
     parser.add_argument(
         "--web-ui",
@@ -92,23 +86,9 @@ def main():
     )
     args = parser.parse_args()
 
-    # Ensure logs directory exists FIRST
-    if not os.path.exists("logs"):
-        os.makedirs("logs")
-    
-    # Setup basic logging before config loading
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
-        handlers=[
-            logging.FileHandler(os.path.join("logs", "startup.log")),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
-
     ensure_config_exists()
     
-    config_path = Path(args.config)
+    config_path = Path(CONFIG_DIR)/"config.json"
     if args.update_config:
         try:
             logging.info("Running smart config update...")
@@ -128,12 +108,9 @@ def main():
     # --- Logging Setup ---
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
-    
-    # Remove existing handlers
     if root_logger.hasHandlers():
         for handler in root_logger.handlers[:]:
             root_logger.removeHandler(handler)
-    
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s')
     console_handler = logging.StreamHandler(sys.stdout)
     console_log_level = getattr(logging, args.log_level.upper(), logging.INFO)
@@ -141,8 +118,10 @@ def main():
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
     
-    # CORRECT logging to logs/ directory
-    app_log_file_path = os.path.join("logs", "app.log")
+    # 🔥 CORRECTION CRITIQUE : Logs dans le dossier logs/ au lieu de ./config/
+    if not os.path.exists("logs"):
+        os.makedirs("logs")
+    app_log_file_path = os.path.join("logs", "app.log")  # Chemin correct pour les logs
     
     try:
         app_file_handler = logging.FileHandler(app_log_file_path)
@@ -186,16 +165,7 @@ def main():
             shutdown_event = asyncio.Event()
             
             if headless_mode:
-                models_config_path = Path(args.models_config)
-                # Load models config separately
-                try:
-                    import json
-                    with open(models_config_path, 'r', encoding='utf-8') as f:
-                        models_config = json.load(f)
-                except Exception as e:
-                    logging.error(f"Failed to load models config: {e}")
-                    sys.exit(1)
-
+                models_config = loaded_config.get("models", {})
                 hsm = HeadlessServiceManager(loaded_config, models_config)
 
                 async def shutdown_handler():
@@ -219,7 +189,7 @@ def main():
                 # Start services and wait for shutdown signal
                 await hsm.start_services()
                 
-                # AFFICHAGE DES URLS BASÉ SUR LA CONFIGURATION
+                # AFFICHAGE DES URLS BASÉ SUR LA CONFIGURATION (sans emojis)
                 logging.info("\n" + "="*60)
                 logging.info("SERVICES ACCESSIBLES :")
                 logging.info("="*60)
@@ -227,7 +197,6 @@ def main():
                 # Proxies existants
                 logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
                 logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
-                logging.info(f"Dashboard Web: http://127.0.0.1:8035/")
                 logging.info("="*60 + "\n")
 
                 await shutdown_event.wait()

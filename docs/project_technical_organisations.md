@@ -48,13 +48,12 @@ The system runs on **Windows and Linux** platforms, designed for **autonomous, m
 
 ```
 llama-runner-async-proxy/
-├── LaunchMenu.ps1               # Main interactive menu
+├── LaunchMenu.ps1               # Main interactive menu must stay there and only script
 ├── main.py                      # Python entry point
 ├── config/                      # Configuration files
-│   ├── config.json              # General configuration
-│   ├── models.json              # Model-specific settings
-│   ├── ports.json               # Network and API port mapping
-├── logs/                        # Rotating logs
+│   ├── app_config.json          # General aplication configuration
+│   ├── models_config.json       # list of models and Model-specific settings
+├── logs/                        # Rotating logs all log related files must go there
 ├── scripts/                     # PowerShell tools
 │   ├── model_management.ps1     # Model (.gguf) management
 │   ├── Validate-System.ps1      # System validation
@@ -71,9 +70,17 @@ llama-runner-async-proxy/
 │   ├── INSTALLATION.md
 │   └── USAGE.md
 ├── dashboard/                   # Vue.js + Chart.js frontend
+├── tests/                       # All tests related files must be there
 └── llama_runner/                # Core Python backend
 ```
 
+the llama-server path is "F:\llm\llama\llama-server.exe" and must never change
+The directory containing all llm models is "F:\llm\llama\models" each model are in a subdirectory Ex:
+model name : JanusCoderV-7B.i1-Q4_K_S.gguf is in directory : 
+"F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf"
+other exemple :
+neutss-air-BF16.gguf
+"F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf"
 ---
 
 ## 🧠 4. Code Structure & Modules
@@ -101,53 +108,11 @@ llama-runner-async-proxy/
 - One class or concept per Python file.
 - Loaders, runners, and proxies are logically separated.
 - Centralized validation via `config_loader.py`.
-
+- separation of concerns is a priority and mandatory way of 
 ---
 
-## 🔄 6. Development Workflow
 
-### Main Steps:
-1. **Setup:**
-   - Clone the repo and run `LaunchMenu.ps1`.
-   - Verify Python 3.11+, PowerShell 7+, and environment.
-
-2. **Environment:**
-   ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\activate
-   ```
-   or with **Anaconda**:
-   ```powershell
-   conda create -n llama python=3.11
-   conda activate llama
-   ```
-
-3. **Run:**
-   ```powershell
-   .\LaunchMenu.ps1
-   ```
-   → Choose “🚀 Proxy Mode” or “🧪 System Tests”
-
-4. **Testing:**
-   ```powershell
-   pytest tests/
-   ```
-
----
-
-## 🧰 7. Recommended Toolchain for Developers
-
-| Type | Tool | Description |
-|------|------|-------------|
-| IDE | VS Code | With Python, Vue, and Git extensions |
-| Environment | venv / Anaconda | Local development only |
-| Debugging | PowerShell + Python Debugger | Launch scripts support both |
-| Format / Lint | black, flake8, eslint | Maintain clean code |
-| Git | Conventional Commits | Clear version history |
-
----
-
-## 🔐 8. Security & Configuration
+## 🔐 6. Security & Configuration
 
 - Sensitive files have restricted permissions.
 - **Standard ports:**
@@ -161,7 +126,7 @@ llama-runner-async-proxy/
 
 ---
 
-## 🧭 9. Key Principles for Contributors
+## 🧭 7. Key Principles for Contributors
 
 1. **Never delete files without prior analysis.**  
 2. **Use atomic, meaningful commits.**  
@@ -172,15 +137,6 @@ llama-runner-async-proxy/
 
 ---
 
-## 🧩 10. Onboarding Steps for a New Developer
-
-1. Read `README.md` and `INSTALLATION.md` in `/docs`.  
-2. Launch the project using `LaunchMenu.ps1`.  
-3. Open the folder in VS Code and explore `llama_runner/`.  
-4. Review `config_loader.py` for configuration logic.  
-5. Run the test suite to confirm setup.  
-6. Explore PowerShell scripts (e.g., `Validate-System.ps1`).  
-7. Read `code_conventions.md` before writing code.
 
 ---
 

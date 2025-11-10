@@ -1,0 +1,4 @@
+2025-11-10 22:48:37,557 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-10 22:48:37,559 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-10 22:48:37,562 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-10 22:48:37,562 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE

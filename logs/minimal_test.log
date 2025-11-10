@@ -1,0 +1,53 @@
+2025-11-10 22:51:17,771 - INFO - 🚀 Starting minimal system test
+2025-11-10 22:51:17,772 - INFO - === Testing core imports ===
+2025-11-10 22:51:17,773 - ERROR - ❌ Core import test failed: No module named 'llama_runner'
+Traceback (most recent call last):
+  File "F:\llm\llama-runner-async-proxy\tests\minimal_test.py", line 28, in test_core_imports
+    from llama_runner.config_loader import config_loader, config
+ModuleNotFoundError: No module named 'llama_runner'
+2025-11-10 22:51:17,775 - INFO - === Testing file structure ===
+2025-11-10 22:51:17,775 - ERROR - ❌ config/config.json does not exist
+2025-11-10 22:51:17,776 - INFO - ✅ logs/app.log exists
+2025-11-10 22:51:17,777 - INFO - ✅ models/ exists
+2025-11-10 22:51:17,778 - INFO - ✅ tools/ exists
+2025-11-10 22:51:17,778 - INFO - ✅ llama_runner/ exists
+2025-11-10 22:51:17,779 - INFO - ✅ docs/README.md exists
+2025-11-10 22:51:17,779 - INFO - 
+=== TEST SUMMARY ===
+2025-11-10 22:51:17,780 - INFO - Core imports: ❌ FAIL
+2025-11-10 22:51:17,780 - INFO - File structure: ❌ FAIL
+2025-11-10 22:51:17,780 - ERROR - ❌ MINIMAL SYSTEM TEST FAILED!
+2025-11-10 22:56:48,847 - INFO - 🚀 Starting minimal system test - Phase 1 Compatible
+2025-11-10 22:56:48,848 - INFO - === Testing core imports ===
+2025-11-10 22:56:48,861 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-10 22:56:48,862 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-10 22:56:48,862 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-10 22:56:48,863 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-10 22:56:48,863 - INFO - ✅ config_loader imports successful (compatible API)
+2025-11-10 22:56:48,865 - WARNING - ⚠️ Section 'webui' ajoutée à la configuration applicative
+2025-11-10 22:56:48,866 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-10 22:56:48,868 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-10 22:56:48,869 - INFO - ✅ Configuration loaded successfully: JanusCoderV-7B.i1-Q4_K_S
+2025-11-10 22:56:49,732 - DEBUG - Successfully imported GGUFReader and LlamaFileType.
+2025-11-10 22:56:49,733 - DEBUG - GGUF_AVAILABLE status after import attempt: True
+2025-11-10 22:56:49,734 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\metadata_cache
+2025-11-10 22:56:49,734 - WARNING - ⚠️ Non-critical import warning: cannot import name 'calculate_system_fingerprint' from 'llama_runner.config_loader' (F:\llm\llama-runner-async-proxy\llama_runner\config_loader.py)
+2025-11-10 22:56:49,735 - INFO - === Testing file structure ===
+2025-11-10 22:56:49,735 - INFO - ✅ config/app_config.json exists
+2025-11-10 22:56:49,736 - INFO - ✅ config/models_config.json exists
+2025-11-10 22:56:49,736 - INFO - ✅ logs/app.log exists
+2025-11-10 22:56:49,737 - INFO - ✅ llama_runner/ exists
+2025-11-10 22:56:49,737 - INFO - ✅ main.py exists
+2025-11-10 22:56:49,737 - INFO - ✅ LaunchMenu.ps1 exists
+2025-11-10 22:56:49,737 - INFO - ✅ dashboard/ exists
+2025-11-10 22:56:49,738 - INFO - ✅ docs/README.md exists
+2025-11-10 22:56:49,738 - INFO - === Testing configuration validation ===
+2025-11-10 22:56:49,744 - INFO - ✅ Configuration loaded for validation
+2025-11-10 22:56:49,744 - WARNING - ⚠️ Configuration has 1 validation warnings:
+2025-11-10 22:56:49,745 - WARNING -   - [WARNING] config: No models configured
+2025-11-10 22:56:49,745 - INFO - 
+=== TEST SUMMARY ===
+2025-11-10 22:56:49,746 - INFO - Core imports: ✅ PASS
+2025-11-10 22:56:49,746 - INFO - File structure: ✅ PASS
+2025-11-10 22:56:49,746 - INFO - Config validation: ✅ PASS
+2025-11-10 22:56:49,746 - INFO - 🎉 MINIMAL SYSTEM TEST PASSED! Ready for Phase 2
