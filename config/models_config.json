@@ -1,0 +1,36 @@
+{
+  "default_parameters": {
+    "ctx_size": 32000,
+    "temp": 0.7,
+    "batch_size": 1024,
+    "ubatch_size": 512,
+    "threads": 10,
+    "mlock": true,
+    "no_mmap": true,
+    "flash_attn": "on",
+    "port": 8035,
+    "host": "127.0.0.1"
+  },
+  "runtimes": {
+    "llama-server": {
+      "runtime": "..\\llama\\llama-server.exe",
+      "supports_tools": true
+    }
+  },
+  "models": {
+    "JanusCoderV-7B.i1-Q4_K_S": {
+      "model_path": "..\\llama\\models\\JanusCoderV-7B.i1-Q4_K_S.gguf",
+      "llama_cpp_runtime": "llama-server",
+      "parameters": {
+        "n_gpu_layers": 85,
+        "jinja": true,
+        "port": 8035
+      },
+      "display_name": "JanusCoderV-7B.i1-Q4_K_S",
+      "auto_discovered": false,
+      "auto_update_model": false,
+      "has_tools": true
+    }
+  },
+  "default_model": "JanusCoderV-7B.i1-Q4_K_S"
+}

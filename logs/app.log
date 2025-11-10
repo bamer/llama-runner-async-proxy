@@ -2630,3 +2630,6 @@ ValueError: cannot mmap an empty file
 2025-11-10 09:29:53,707 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
 2025-11-10 09:29:53,707 - INFO - llama_runner.headless_service_manager - ============================================================
 
+2025-11-10 09:30:20,374 - INFO - root - Loaded metadata from cache for test-model (size: 0)
+2025-11-10 10:02:37,660 - INFO - root - Application exited with code 0.
+2025-11-10 10:02:37,686 - DEBUG - qasync._windows._IocpProactor - Closing

@@ -1,0 +1,14 @@
+2025-11-10 11:29:10,465 - WARNING - ⚠️  Created missing 'webui' section in application configuration
+2025-11-10 11:29:10,466 - INFO - === DÉMARRAGE DÉCOUVERTE AUTOMATIQUE DES MODÈLES ===
+2025-11-10 11:29:10,466 - INFO - 🔍 Discovering models in directory: ..\llama\models
+2025-11-10 11:29:10,467 - INFO - 📂 Scanning absolute path: F:\llm\llama-runner-async-proxy\..\llama\models
+2025-11-10 11:29:10,468 - INFO - 🎯 Found 0 GGUF files
+2025-11-10 11:29:10,469 - INFO - ✅ 0 nouveaux modèles ajoutés
+2025-11-10 11:29:10,469 - INFO - ✅ 0 modèles existants préservés
+2025-11-10 11:29:10,470 - INFO - 
+📊 Configuration des modèles mise à jour:
+2025-11-10 11:29:10,470 - INFO -    Modèle par défaut: JanusCoderV-7B.i1-Q4_K_S
+2025-11-10 11:29:10,471 - INFO -    Total des modèles: 1
+2025-11-10 11:29:10,471 - INFO -    - JanusCoderV-7B.i1-Q4_K_S
+2025-11-10 11:29:10,471 - INFO -      📁 Chemin: ..\llama\models\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-10 11:29:10,471 - INFO -      ⚙️  Paramètres: n_gpu_layers=85, ctx_size=N/A

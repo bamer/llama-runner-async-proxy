@@ -1279,3 +1279,13 @@
 [2025-11-10 09:29:52] [INFO] === Démarrage mode: metrics ===
 [2025-11-10 09:29:52] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
 [2025-11-10 09:29:52] [INFO] Démarrage processus
+[2025-11-10 10:48:18] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
+[2025-11-10 11:11:34] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
+[2025-11-10 11:12:39] [INFO] === Test environnement ===
+[2025-11-10 11:12:39] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 11:12:39] [INFO] Démarrage de llama-server avec modèles depuis F:\llm\llama-runner-async-proxy\..\\llama\\models
+[2025-11-10 11:12:44] [INFO] === Démarrage mode: metrics ===
+[2025-11-10 11:12:44] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
+[2025-11-10 11:12:44] [INFO] Démarrage processus
+[2025-11-10 11:12:45] [INFO] Processus terminé avec code: 1
+[2025-11-10 11:31:02] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
