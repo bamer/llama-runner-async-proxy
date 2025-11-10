@@ -1,0 +1,8 @@
+2025-11-10 15:56:28,960 - INFO - === INITIALISATION ULTRA-ROBUSTE CONFIG_LOADER ===
+2025-11-10 15:56:28,961 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-10 15:56:28,961 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\models
+2025-11-10 15:56:28,969 - WARNING - ⚠️ Section 'webui' ajoutée à la configuration applicative
+2025-11-10 15:56:28,970 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-10 15:56:28,970 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-10 15:56:28,978 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-10 15:56:28,978 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION ULTRA-STABLE

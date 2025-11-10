@@ -2,7 +2,8 @@
   "include": [
     "llama_runner",
     "main.py",
-    "tests"
+    "tests",
+    "**/*"
   ],
   "exclude": [
     "**/node_modules",

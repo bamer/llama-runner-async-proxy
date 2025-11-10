@@ -12,9 +12,9 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$script:LogPath = "logs\model_management.log"
-$script:ConfigPath = "config.json"
-$script:ModelsRoot = "F:\llm\llama\models"
+$script:LogPath = "logs/model_management.log"
+$script:ModelsConfigPath = "config/models_config.json"
+$script:ModelsRoot = "F:/llm/llama/models"
 
 # Créer les dossiers nécessaires
 if (-not (Test-Path "logs")) {
@@ -86,7 +86,7 @@ function Get-ValidModelFiles {
                 $validModels += [PSCustomObject]@{
                     OriginalName = $file.Name
                     CleanName = $safeName
-                    Path = $file.FullName
+                    Path = $file.Path
                     SizeBytes = $file.Length
                     SizeGB = [math]::Round($file.Length / 1GB, 2)
                     LastModified = $file.LastWriteTime
@@ -160,21 +160,21 @@ function Configure-Model {
         }
         
         # Backup existant
-        if (Test-Path $script:ConfigPath) {
-            $backupPath = "config\config_backup_$(Get-Date -Format 'yyyyMMdd_HHmmss').json"
-            Copy-Item $script:ConfigPath $backupPath
+        if (Test-Path $script:ModelsConfigPath) {
+            $backupPath = "config\config_models_backup_$(Get-Date -Format 'yyyyMMdd_HHmmss').json"
+            Copy-Item $script:ModelsConfigPath $backupPath
             Write-ModelLog "✅ Backup créé: $backupPath" "SUCCESS"
         }
         
         # Génération et sauvegarde sécurisée
         $config = Generate-SafeConfig -model $model
-        $jsonContent = $config | ConvertTo-Json -Depth 10 -Compress
+        $jsonContent = $config | ConvertTo-Json -Depth 10 
         
         if ([string]::IsNullOrEmpty($jsonContent)) {
             throw "Contenu JSON vide généré"
         }
         
-        $jsonContent | Out-File $script:ConfigPath -Encoding UTF8
+        $jsonContent | Out-File $script:ModelsConfigPath -Encoding UTF8
         Write-ModelLog "✅ Configuration mise à jour avec succès !" "SUCCESS"
         return $true
     }
@@ -183,18 +183,11 @@ function Configure-Model {
         Write-ModelLog "💡 Création configuration minimale de secours" "WARNING"
         
         try {
-            $minimalConfig = @{
-                "version" = "1.0"
-                "proxies" = @{
-                    "ollama" = @{ "enabled" = $true; "port" = 11434 }
-                    "lmstudio" = @{ "enabled" = $true; "port" = 1234 }
-                }
-                "llama-runtimes" = @{
-                    "llama-server" = @{ "runtime" = "F:\\llm\\llama\\llama-server.exe" }
-                }
+            $minimalModelsConfig = @{
+            #to implement
             }
             
-            $minimalConfig | ConvertTo-Json -Depth 5 | Out-File $script:ConfigPath -Encoding UTF8
+            $minimalModelsConfig | ConvertTo-Json -Depth 5 | Out-File $script:ModelsConfigPath -Encoding UTF8
             Write-ModelLog "✅ Configuration minimale créée" "SUCCESS"
             return $true
         }
@@ -289,7 +282,7 @@ while ($true) {
                         $result = Configure-Model -model $selectedModel
                         if ($result) {
                             Write-Host "`n✅ SUCCÈS : Configuration mise à jour !" -ForegroundColor Green
-                            Write-Host "🔧 Fichier de configuration: $script:ConfigPath" -ForegroundColor Gray
+                            Write-Host "🔧 Fichier de configuration: $script:ModelsConfigPath" -ForegroundColor Gray
                         }
                         else {
                             Write-Host "`n❌ ÉCHEC : Impossible de configurer le modèle" -ForegroundColor Red

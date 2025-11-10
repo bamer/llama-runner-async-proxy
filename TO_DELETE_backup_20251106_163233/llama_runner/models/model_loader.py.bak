@@ -1,9 +1,0 @@
-"""Data Repository Base Module
-
-This module contains base classes for interacting with data sources.
-Provides common functionality and type hints for repository classes.
-
-Classes:
-    DataRepository: Abstract base class for repositories
-    
-""" >

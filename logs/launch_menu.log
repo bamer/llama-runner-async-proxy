@@ -1289,3 +1289,32 @@
 [2025-11-10 11:12:44] [INFO] Démarrage processus
 [2025-11-10 11:12:45] [INFO] Processus terminé avec code: 1
 [2025-11-10 11:31:02] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
+[2025-11-10 14:02:50] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
+[2025-11-10 14:03:08] [SUCCESS] Découverte des modèles terminée
+[2025-11-10 14:06:08] [INFO] === Test environnement ===
+[2025-11-10 14:06:08] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 14:06:08] [INFO] Démarrage de llama-server avec modèles depuis F:\llm\llama-runner-async-proxy\..\\llama\\models
+[2025-11-10 14:06:08] [INFO] Chemin complet du modèle: F:\llm\llama-runner-async-proxy\..\\llama\\models\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-10 14:06:08] [ERROR] Erreur: Fichier modèle non trouvé: F:\llm\llama-runner-async-proxy\..\\llama\\models\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-10 14:06:08] [WARNING] llama-server failed to start
+[2025-11-10 14:29:55] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
+[2025-11-10 14:33:06] [DEBUG] Résolution chemin: '..\\models\\\\' → 'F:\llm\models\'
+[2025-11-10 14:33:12] [ERROR] Erreur lecture config modèles: Cannot bind argument to parameter 'Name' because it is an empty string.
+[2025-11-10 14:33:23] [SUCCESS] Découverte des modèles terminée
+[2025-11-10 14:44:20] === DÉMARRAGE MENU STABLE ===
+[2025-11-10 15:05:49] === DÉMARRAGE MENU ULTRA-ROBUSTE ===
+[2025-11-10 15:54:55] === DÉMARRAGE MENU CORRIGÉ ULTIME ===
+[2025-11-10 15:55:07] [INFO] Lancement script modèles
+[2025-11-10 15:56:16] [SUCCESS] Script modèles terminé avec succès
+[2025-11-10 15:56:22] [INFO] === Test environnement ===
+[2025-11-10 15:56:22] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-10 15:56:22] [INFO] Démarrage de llama-server avec JanusCoderV-7B.i1-Q4_K_S sur le port 8035
+[2025-11-10 15:56:28] [INFO] === Démarrage mode: metrics ===
+[2025-11-10 15:56:28] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --web-ui --metrics
+[2025-11-10 15:56:28] [INFO] Démarrage processus
+[2025-11-10 15:56:29] [INFO] Processus terminé avec code: 1
+[2025-11-10 16:07:15] === DÉMARRAGE MENU CORRIGÉ ULTIME ===
+[2025-11-10 16:07:18] [INFO] Lancement script modèles
+[2025-11-10 16:29:35] === DÉMARRAGE MENU CORRIGÉ ULTIME ===
+[2025-11-10 16:29:37] [INFO] Lancement script modèles
+[2025-11-10 16:30:01] [SUCCESS] Script modèles terminé avec succès

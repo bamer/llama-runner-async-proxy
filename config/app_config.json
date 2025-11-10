@@ -1,34 +1,6 @@
 {
-  "default_model": "test-model",
-  "config_version": 3,
-  "models": {
-    "test-model": {
-      "model_path": "models/test-model.gguf",
-      "llama_cpp_runtime": "test-runtime",
-      "parameters": {
-        "ctx_size": 2048,
-        "temp": 0.7,
-        "n_gpu_layers": 0,
-        "port": 8585,
-        "host": "127.0.0.1"
-      },
-      "display_name": "Test Model",
-      "auto_discovered": false,
-      "auto_update_model": false,
-      "has_tools": false
-    }
-  },
-  "runtimes": {
-    "test-runtime": {
-      "runtime": "python -c \"print('Mock runtime started')\"",
-      "supports_tools": false
-    },
-    "default": {
-      "runtime": "python -c \"print('Default runtime started')\"",
-      "supports_tools": true
-    }
-  },
-  "default_runtime": "default",
+  "default_model": "JanusCoderV-7B.i1-Q4_K_S.gguf",
+  "default_runtime": "llama-runtimes",
   "concurrentRunners": 1,
   "proxies": {
     "ollama": {
@@ -45,7 +17,7 @@
   },
   "llama-runtimes": {
     "test-runtime": {
-      "runtime": "python -c \"print('Mock runtime started')\""
+      "runtime": "F:/llm/llama/llama-server.exe"
     }
   }
 }

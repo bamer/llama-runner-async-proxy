@@ -1,5 +1,0 @@
-.aider*
-dev-venv
-llama_runner/__pycache__/*
-ik_llama.log
-llama.log
