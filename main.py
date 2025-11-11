@@ -1,17 +1,23 @@
+#!/usr/bin/env python3
+"""
+headless_main.py - Entry point for headless service mode
+Critical separation from GUI dependencies to ensure stable operation
+"""
+
 import sys
 import logging
 import argparse
 import os
 import signal
 import asyncio
-import qasync  # type: ignore
 from pathlib import Path
+import json
 
-# Set UTF-8 encoding for stdout/stderr to handle Unicode characters
+# Set UTF-8 encoding for stdout/stderr
 try:
     if getattr(sys.stdout, "encoding", None) != "utf-8":
         if hasattr(sys.stdout, "reconfigure"):
-            sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
+            sys.stdout.reconfigure(encoding="utf-8")
         else:
             import io
             if hasattr(sys.stdout, "buffer"):
@@ -22,7 +28,7 @@ except Exception as e:
 try:
     if getattr(sys.stderr, "encoding", None) != "utf-8":
         if hasattr(sys.stderr, "reconfigure"):
-            sys.stderr.reconfigure(encoding="utf-8")  # type: ignore
+            sys.stderr.reconfigure(encoding="utf-8")
         else:
             import io
             if hasattr(sys.stderr, "buffer"):
@@ -30,28 +36,67 @@ try:
 except Exception as e:
     logging.warning(f"Failed to set UTF-8 encoding for stderr: {e}")
 
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import QCoreApplication
-from PySide6.QtGui import QIcon
-
-from llama_runner.config_loader import CONFIG_DIR, ensure_config_exists, load_config
-from llama_runner.main_window import MainWindow
+# Import ONLY headless-compatible modules
+from llama_runner.config_loader import ensure_config_exists, load_config, load_models_config
 from llama_runner.headless_service_manager import HeadlessServiceManager
 from llama_runner.services.config_validator import validate_config, log_validation_results
 from llama_runner.services.config_updater import update_config_smart
 
+def setup_logging(log_level: str = "INFO"):
+    """Configure logging for headless mode"""
+    # Ensure logs directory exists
+    os.makedirs("logs", exist_ok=True)
+    
+    # Clear existing handlers
+    root_logger = logging.getLogger()
+    root_logger.handlers.clear()
+    
+    # Set root logger level
+    root_logger.setLevel(logging.DEBUG)
+    
+    # Formatter
+    formatter = logging.Formatter(
+        '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+    )
+    
+    # Console handler
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(getattr(logging, log_level.upper(), logging.INFO))
+    console_handler.setFormatter(formatter)
+    root_logger.addHandler(console_handler)
+    
+    # File handler
+    file_handler = logging.FileHandler(os.path.join("logs", "headless.log"))
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+    root_logger.addHandler(file_handler)
+    
+    logging.info("Logging configured for headless mode")
+
+async def shutdown_handler(hsm: HeadlessServiceManager):
+    """Graceful shutdown handler"""
+    logging.info("Shutdown requested, stopping services...")
+    await hsm.stop_services()
+    logging.info("All services stopped gracefully")
+
+def signal_handler_factory(hsm: HeadlessServiceManager, loop: asyncio.AbstractEventLoop):
+    """Factory for platform-agnostic signal handling"""
+    async def handle_signal():
+        await shutdown_handler(hsm)
+        loop.stop()
+    
+    def _handler():
+        asyncio.create_task(handle_signal())
+    
+    return _handler
+
 def main():
-    parser = argparse.ArgumentParser(description="Llama Runner application.")
+    parser = argparse.ArgumentParser(description="Llama Runner Headless Service")
     parser.add_argument(
         "--log-level",
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
         help="Set the minimum logging level for console output."
-    )
-    parser.add_argument(
-        "--headless",
-        action="store_true",
-        help="Run the application in headless mode (no GUI)."
     )
     parser.add_argument(
         "--skip-validation",
@@ -66,24 +111,14 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="config/app_config.json",  # CORRECTION : Chemin vers app_config.json
+        default="config/app_config.json",
         help="Path to the main configuration file."
     )
     parser.add_argument(
         "--models-config",
         type=str,
-        default="config/models_config.json",  # Ajout du paramètre pour le fichier de modèles
+        default="config/models_config.json",
         help="Path to the models configuration file."
-    )
-    parser.add_argument(
-        "--web-ui",
-        action="store_true",
-        help="Enable the web UI interface."
-    )
-    parser.add_argument(
-        "--metrics",
-        action="store_true",
-        help="Enable the metrics dashboard."
     )
     parser.add_argument(
         "--dev",
@@ -92,178 +127,81 @@ def main():
     )
     args = parser.parse_args()
 
-    # Ensure logs directory exists FIRST
-    if not os.path.exists("logs"):
-        os.makedirs("logs")
+    # Setup logging first
+    setup_logging(args.log_level)
     
-    # Setup basic logging before config loading
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
-        handlers=[
-            logging.FileHandler(os.path.join("logs", "startup.log")),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
-
-    ensure_config_exists()
-    
-    config_path = Path(args.config)
-    if args.update_config:
-        try:
+    try:
+        logging.info("=== STARTING HEADLESS SERVICE ===")
+        
+        # Ensure config exists and load
+        ensure_config_exists()
+        
+        if args.update_config:
             logging.info("Running smart config update...")
-            update_config_smart(config_path)
-        except Exception as e:
-            logging.error(f"Config update failed: {e}")
-            sys.exit(1)
-    
-    loaded_config = load_config()
-    
-    if not args.skip_validation:
-        validation_errors = validate_config(dict(loaded_config))
-        if not log_validation_results(validation_errors):
-            logging.error("Configuration validation failed. Fix errors or use --skip-validation to proceed anyway.")
-            sys.exit(1)
-
-    # --- Logging Setup ---
-    root_logger = logging.getLogger()
-    root_logger.setLevel(logging.DEBUG)
-    
-    # Remove existing handlers
-    if root_logger.hasHandlers():
-        for handler in root_logger.handlers[:]:
-            root_logger.removeHandler(handler)
-    
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s')
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_log_level = getattr(logging, args.log_level.upper(), logging.INFO)
-    console_handler.setLevel(console_log_level)
-    console_handler.setFormatter(formatter)
-    root_logger.addHandler(console_handler)
-    
-    # CORRECT logging to logs/ directory
-    app_log_file_path = os.path.join("logs", "app.log")
-    
-    try:
-        app_file_handler = logging.FileHandler(app_log_file_path)
-        app_file_handler.setLevel(logging.DEBUG)
-        app_file_handler.setFormatter(formatter)
-        root_logger.addHandler(app_file_handler)
-        logging.info(f"App file logging to: {app_log_file_path}")
-    except Exception as e:
-        logging.error(f"Failed to create app file handler for {app_log_file_path}: {e}")
-    # --- End Logging Setup ---
-
-    # CORRECTION : Mode headless pour tous les modes serveur
-    headless_mode = args.headless or args.web_ui or args.metrics or args.dev
-
-    if sys.platform.startswith('linux') and not os.environ.get('DISPLAY') and not os.environ.get('WAYLAND_DISPLAY'):
-        logging.warning("No display environment detected. Forcing headless mode.")
-        headless_mode = True
-
-    app = QCoreApplication.instance()
-    if app is None:
-        if headless_mode:
-            app = QCoreApplication(sys.argv)
+            update_config_smart(Path(args.config))
+        
+        # Load configurations
+        app_config = load_config()
+        models_config = load_models_config()
+        
+        # Validate configuration
+        if not args.skip_validation:
+            validation_errors = validate_config(dict(app_config))
+            if not log_validation_results(validation_errors):
+                logging.error("Configuration validation failed. Fix errors or use --skip-validation to proceed anyway.")
+                sys.exit(1)
+        
+        logging.info("Configuration loaded and validated successfully")
+        
+        # Create service manager
+        hsm = HeadlessServiceManager(app_config, models_config)
+        
+        # Setup event loop
+        loop = asyncio.get_event_loop()
+        
+        # Setup signal handlers
+        signal_handler = signal_handler_factory(hsm, loop)
+        
+        if sys.platform != 'win32':
+            # Unix-like systems support signal handlers
+            for sig in (signal.SIGINT, signal.SIGTERM):
+                loop.add_signal_handler(sig, signal_handler)
         else:
-            app = QApplication(sys.argv)
-
-    if not headless_mode and isinstance(app, QApplication):
-        try:
-            app.setWindowIcon(QIcon('app_icon.png'))
-        except FileNotFoundError:
-            logging.warning("App icon not found, proceeding without it.")
-
-    try:
-        loop = qasync.QEventLoop(app)
-        asyncio.set_event_loop(loop)
-    except Exception as e:
-        logging.warning(f"Could not set up qasync event loop: {e}, falling back to default")
-
-    exit_code = 0
-    try:
-        async def run_app():
-            shutdown_event = asyncio.Event()
+            # Windows: use atexit and signal.signal
+            import atexit
+            atexit.register(lambda: asyncio.create_task(shutdown_handler(hsm)))
             
-            if headless_mode:
-                models_config_path = Path(args.models_config)
-                # Load models config separately
-                try:
-                    import json
-                    with open(models_config_path, 'r', encoding='utf-8') as f:
-                        models_config = json.load(f)
-                except Exception as e:
-                    logging.error(f"Failed to load models config: {e}")
-                    sys.exit(1)
-
-                hsm = HeadlessServiceManager(loaded_config, models_config)
-
-                async def shutdown_handler():
-                    logging.info("Shutdown requested, stopping services...")
-                    await hsm.stop_services()
-                    shutdown_event.set()
-                    app.quit()
-
-                def signal_handler():
-                    asyncio.create_task(shutdown_handler())
-
-                try:
-                    loop = asyncio.get_running_loop()
-                    if sys.platform != 'win32':
-                      loop.add_signal_handler(signal.SIGINT, signal_handler)
-                except NotImplementedError:
-                    logging.warning("Signal handlers not supported on this platform")
-                except Exception as e:
-                    logging.warning(f"Could not set up signal handler: {e}")
-
-                # Start services and wait for shutdown signal
-                await hsm.start_services()
-                
-                # AFFICHAGE DES URLS BASÉ SUR LA CONFIGURATION
-                logging.info("\n" + "="*60)
-                logging.info("SERVICES ACCESSIBLES :")
-                logging.info("="*60)
-                
-                # Proxies existants
-                logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
-                logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
-                logging.info(f"Dashboard Web: http://127.0.0.1:8035/")
-                logging.info("="*60 + "\n")
-
-                await shutdown_event.wait()
-            else:
-                main_window = MainWindow()
-
-                async def shutdown_handler():
-                    logging.info("Shutdown requested, stopping services...")
-                    main_window.close()
-                    shutdown_event.set()
-                    app.quit()
-
-                def signal_handler():
-                    asyncio.create_task(shutdown_handler())
-
-                try:
-                    loop = asyncio.get_running_loop()
-                    if sys.platform != 'win32':
-                        loop.add_signal_handler(signal.SIGINT, signal_handler)
-                except NotImplementedError:
-                    logging.warning("Signal handlers not supported on this platform")
-                except Exception as e:
-                    logging.warning(f"Could not set up signal handler: {e}")
-
-                main_window.show()
-                main_window.start_services()
-                await shutdown_event.wait()
-
-        asyncio.run(run_app())
-
+            def win_signal_handler(sig, frame):
+                logging.info(f"Received signal {sig}, initiating shutdown")
+                asyncio.create_task(shutdown_handler(hsm))
+            
+            signal.signal(signal.SIGINT, win_signal_handler)
+            signal.signal(signal.SIGTERM, win_signal_handler)
+        
+        # Display service URLs
+        logging.info("\n" + "="*60)
+        logging.info("SERVICES ACCESSIBLES :")
+        logging.info("="*60)
+        logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
+        logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
+        logging.info(f"Dashboard Web: http://127.0.0.1:8035/")
+        logging.info(f"Metrics Server: http://127.0.0.1:8080/")
+        logging.info("="*60 + "\n")
+        
+        # Start services
+        logging.info("Starting all services...")
+        # Schedule starting services in the event loop
+        loop.create_task(hsm.start_services())
+        
+        # Run event loop
+        logging.info("Headless service running. Press Ctrl+C to shutdown.")
+        loop.run_forever()
+        
     except Exception as e:
-        logging.critical(f"An unhandled error occurred in main: {e}", exc_info=True)
-        exit_code = 1
+        logging.critical(f"Critical error in headless service: {e}", exc_info=True)
+        sys.exit(1)
     finally:
-        logging.info(f"Application exited with code {exit_code}.")
-        sys.exit(exit_code)
+        logging.info("Headless service shutting down")
 
 if __name__ == '__main__':
     main()

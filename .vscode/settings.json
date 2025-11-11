@@ -1,13 +1,12 @@
 {
     "continue.enableConsole": true,
     "continue.enableQuickActions": true,
-    "python.analysis.typeCheckingMode": "strict",
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.autoImportCompletions": true,
     "github.copilot.chat.customOAIModels": {
         "minimax-m2:cloud": {
-            "name": "Copi-minimax-m2:cloud",
-            "url": "http://127.0.0.1:11434/",
+            "name": "cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf",
+            "url": "http://127.0.0.1:8000/v1",
             "toolCalling": true,
             "vision": false,
             "thinking": true,
@@ -33,5 +32,10 @@
             ".continue/**/*.yaml",
             "file:///f%3A/llm/llama-runner-async-proxy/.continue/mcpServers/new-mcp-server-2.yaml"
         ]
-    }
+    },
+    "github.copilot.chat.byok.ollamaEndpoint": "http://localhost:8000",
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.completionsFetcher": "electron-fetch",
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "github.copilot.chat.reviewSelection.instructions": []
 }

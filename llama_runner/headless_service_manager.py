@@ -141,93 +141,9 @@ class HeadlessServiceManager:
                 logger.error(f"Error configuring LM Studio proxy: {e}")
                 raise
 
-        # Start Llama Runner WebUI service on port 8081
-        logger.info("Starting Llama Runner WebUI service on port 8081...")
-        try:
-            webui_app = FastAPI()
-            webui_app.add_middleware(
-                CORSMiddleware,
-                allow_origins=["*"],
-                allow_credentials=True,
-                allow_methods=["*"],
-                allow_headers=["*"],
-            )
-            
-            @webui_app.get("/", response_class=HTMLResponse)
-            async def webui_root():
-                return """
-                <!DOCTYPE html>
-                <html lang="fr">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Llama Runner WebUI</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-                        .container { max-width: 1200px; margin: 0 auto; }
-                        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-                        .status { background: #27ae60; color: white; padding: 10px; border-radius: 5px; margin: 20px 0; }
-                        .endpoints { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
-                        .endpoint { margin: 10px 0; padding: 10px; background: #e9f5ff; border-radius: 5px; }
-                        a { color: #3498db; text-decoration: none; font-weight: bold; }
-                        a:hover { text-decoration: underline; }
-                    </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <h1>🦙 Llama Runner WebUI</h1>
-                        <div class="status">✅ Système opérationnel</div>
-                        
-                        <div class="endpoints">
-                            <h2>Accès direct à l'interface WebUI :</h2>
-                            <div class="endpoint">
-                                <strong>🔗 llama.cpp WebUI :</strong> <a href="http://localhost:8035">http://localhost:8035</a>
-                                <p>Interface Web de llama-server (démarrée avec le modèle par défaut)</p>
-                            </div>
-                            <div class="endpoint">
-                                <strong>🧠 Modèles :</strong> <a href="/models">/models</a>
-                                <p>Liste et gestion des modèles IA disponibles</p>
-                            </div>
-                            <div class="endpoint">
-                                <strong>💬 Chat :</strong> <a href="/chat">/chat</a>
-                                <p>Interface de conversation avec les modèles</p>
-                            </div>
-                        </div>
-                        
-                        <div class="links">
-                            <h2>Liens utiles :</h2>
-                            <ul>
-                                <li><a href="http://localhost:11434" target="_blank">⚙️ Ollama Proxy API</a></li>
-                                <li><a href="http://localhost:1234" target="_blank">⚙️ LM Studio Proxy API</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </body>
-                </html>
-                """
-            
-            @webui_app.get("/models")
-            async def get_models():
-                models = self.app_config.get("models", {})
-                return {"models": list(models.keys()), "count": len(models)}
-            
-            @webui_app.get("/chat")
-            async def get_chat():
-                return {"status": "ready", "message": "Connect to models via Ollama or LM Studio proxy endpoints"}
-            
-            config = uvicorn.Config(
-                app=webui_app,
-                host="0.0.0.0",
-                port=8081,
-                log_level="info"
-            )
-            server = uvicorn.Server(config)
-            self.webui_server = server
-            self.running_tasks.append(asyncio.create_task(server.serve()))
-            logger.info("✅ Llama Runner WebUI service started on http://0.0.0.0:8081/")
-            logger.info("   🌐 Access via: http://localhost:8081/")
-        except Exception as e:
-            logger.error(f"Error starting Llama Runner WebUI service: {e}")
+        # OLD Llama Runner WebUI service on port 8081 - DEPRECATED AND REMOVED
+        # This service has been replaced by the Vue.js dashboard on port 8035.
+        
 
         # Wait for all services to start
         if self.running_tasks:

@@ -45,3 +45,38 @@
 [2025-11-10 23:45:38] [INFO] === Démarrage mode: proxy ===
 [2025-11-10 23:45:38] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --headless
 [2025-11-10 23:45:38] [INFO] Démarrage processus
+[2025-11-11 17:57:06] === DÉMARRAGE MENU CORRIGÉ PHASE 4 ===
+[2025-11-11 17:57:10] [INFO] === Test environnement ===
+[2025-11-11 17:57:10] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-11 17:57:10] [INFO] Démarrage de llama-server avec modèles depuis F:\llm\llama-runner-async-proxy\..\\models
+[2025-11-11 17:57:10] [DEBUG] Résolution chemin: 'F:/llm/llama/models/JanusCoderV-7B-i1-GGUF/JanusCoderV-7B.i1-Q4_K_S.gguf' → 'F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf'
+[2025-11-11 17:57:10] [INFO] Chemin complet du modèle: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:57:10] [ERROR] Erreur: Fichier modèle non trouvé: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:57:10] [WARNING] llama-server failed to start
+[2025-11-11 17:57:32] [INFO] === Test environnement ===
+[2025-11-11 17:57:32] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-11 17:57:32] [INFO] === Démarrage mode: proxy ===
+[2025-11-11 17:57:32] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --headless
+[2025-11-11 17:57:32] [INFO] Démarrage processus
+[2025-11-11 17:57:36] [INFO] Processus terminé avec code: 2
+[2025-11-11 17:57:54] [INFO] === Test environnement ===
+[2025-11-11 17:57:54] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-11 17:57:54] [INFO] === Démarrage mode: dev ===
+[2025-11-11 17:57:54] [INFO] Commande: F:\llm\llama-runner-async-proxy\dev-venv\Scripts\\python.exe main.py --log-level INFO --dev --web-ui --metrics
+[2025-11-11 17:57:54] [INFO] Démarrage processus
+[2025-11-11 17:57:56] [INFO] Processus terminé avec code: 2
+[2025-11-11 17:58:10] [INFO] Démarrage de llama-server avec modèles depuis F:\llm\llama-runner-async-proxy\..\\models
+[2025-11-11 17:58:10] [DEBUG] Résolution chemin: 'F:/llm/llama/models/JanusCoderV-7B-i1-GGUF/JanusCoderV-7B.i1-Q4_K_S.gguf' → 'F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf'
+[2025-11-11 17:58:10] [INFO] Chemin complet du modèle: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:58:10] [ERROR] Erreur: Fichier modèle non trouvé: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:58:11] [INFO] Démarrage de llama-server avec modèles depuis F:\llm\llama-runner-async-proxy\..\\models
+[2025-11-11 17:58:11] [DEBUG] Résolution chemin: 'F:/llm/llama/models/JanusCoderV-7B-i1-GGUF/JanusCoderV-7B.i1-Q4_K_S.gguf' → 'F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf'
+[2025-11-11 17:58:11] [INFO] Chemin complet du modèle: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:58:11] [ERROR] Erreur: Fichier modèle non trouvé: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:58:12] [INFO] === Test environnement ===
+[2025-11-11 17:58:12] [SUCCESS] Python OK: Python 3.12.4
+[2025-11-11 17:58:12] [INFO] Démarrage de llama-server avec modèles depuis F:\llm\llama-runner-async-proxy\..\\models
+[2025-11-11 17:58:12] [DEBUG] Résolution chemin: 'F:/llm/llama/models/JanusCoderV-7B-i1-GGUF/JanusCoderV-7B.i1-Q4_K_S.gguf' → 'F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf'
+[2025-11-11 17:58:12] [INFO] Chemin complet du modèle: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:58:12] [ERROR] Erreur: Fichier modèle non trouvé: F:\llm\llama-runner-async-proxy\F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+[2025-11-11 17:58:12] [WARNING] llama-server failed to start
