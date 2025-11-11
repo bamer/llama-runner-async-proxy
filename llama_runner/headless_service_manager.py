@@ -10,6 +10,8 @@ from llama_runner.services.runner_service import RunnerService as LlamaRunnerMan
 from llama_runner.ollama_proxy_thread import OllamaProxyServer, app as ollama_app
 from llama_runner.lmstudio_proxy_thread import LMStudioProxyServer, app as lmstudio_app
 from llama_runner.models.config_model import AppConfig, ModelConfig, AudioConfig
+from llama_runner.services.dashboard_api import initialize_dashboard_api
+from llama_runner.services.metrics_collector import MetricsCollector
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +25,8 @@ class HeadlessServiceManager:
         self.ollama_server: Optional[uvicorn.Server] = None
         self.lmstudio_server: Optional[uvicorn.Server] = None
         self.webui_server: Optional[uvicorn.Server] = None
+        self.dashboard_api_server: Optional[uvicorn.Server] = None
+        self.dashboard_api_service = None
         self.running_tasks: List[asyncio.Task[None]] = []
         self._initialize_services()
 
@@ -87,6 +91,14 @@ class HeadlessServiceManager:
                 on_runner_stopped=lambda name: self._on_runner_event(f"Stopped {name}"),
                 llama_runner_manager=self.llama_runner_manager
             )
+        
+        # Initialize metrics collector and dashboard API service
+        from llama_runner.services.metrics_collector import MetricsCollector
+        self.metrics_collector = MetricsCollector()
+        self.dashboard_api_service = initialize_dashboard_api(
+            runner_service=self.llama_runner_manager,
+            metrics_collector=self.metrics_collector
+        )
 
     async def start_services(self):
         """Start all initialized services."""
@@ -141,6 +153,17 @@ class HeadlessServiceManager:
                 logger.error(f"Error configuring LM Studio proxy: {e}")
                 raise
 
+        # Start Dashboard API server
+        if self.dashboard_api_service:
+            logger.info("Starting Dashboard API server...")
+            try:
+                self.dashboard_api_server = self.dashboard_api_service.start(host="0.0.0.0", port=8585)
+                self.running_tasks.append(asyncio.create_task(self.dashboard_api_server.serve()))
+                logger.info("✅ Dashboard API server started on http://0.0.0.0:8585/")
+            except Exception as e:
+                logger.error(f"Error configuring Dashboard API: {e}")
+                raise
+
         # OLD Llama Runner WebUI service on port 8081 - DEPRECATED AND REMOVED
         # This service has been replaced by the Vue.js dashboard on port 8035.
         
@@ -173,6 +196,7 @@ class HeadlessServiceManager:
         for server, name in [
             (self.ollama_server, "Ollama proxy"),
             (self.lmstudio_server, "LM Studio proxy"),
+            (self.dashboard_api_server, "Dashboard API"),
             (self.webui_server, "Llama Runner WebUI")
         ]:
             if server:
@@ -213,6 +237,7 @@ class HeadlessServiceManager:
         # Clean up references
         self.ollama_server = None
         self.lmstudio_server = None
+        self.dashboard_api_server = None
         self.webui_server = None
 
         logger.info("✅ All headless services stopped successfully.")

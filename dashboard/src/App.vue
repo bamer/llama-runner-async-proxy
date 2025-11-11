@@ -4,7 +4,7 @@
     <el-header class="app-header">
       <div class="header-content">
         <div class="logo-section">
-          <img src="../../app_icon.png" alt="Llama Runner" class="app-logo">
+          <img src="./app_icon.png" alt="Llama Runner" class="app-logo">
           <h1 class="app-title">Llama Runner Dashboard</h1>
         </div>
         
@@ -86,7 +86,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-// import { useStore } from 'pinia'
+import { useAppStore } from './stores/app'
 import { 
   Monitor, 
   Cpu, 
@@ -98,7 +98,7 @@ import {
 } from '@element-plus/icons-vue'
 
 // Stores
-const appStore = useStore()
+const appStore = useAppStore()
 const router = useRouter()
 const route = useRoute()
 

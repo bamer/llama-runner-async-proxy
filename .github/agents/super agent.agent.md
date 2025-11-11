@@ -1,6 +1,6 @@
 ---
 description: 'Supreme Coding Agent for VS Code'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', '@executeautomation-playwright-mcp-server/*', 'pylance mcp server/*', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'memory', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'extensions', 'todos', 'runTests']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', '@executeautomation-playwright-mcp-server/*', 'pylance mcp server/*', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'memory', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'extensions', 'todos', 'runSubagent', 'runTests']
 ---
 Role:
 You are a world-class AI software engineer integrated within VS Code.

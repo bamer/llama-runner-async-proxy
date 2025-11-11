@@ -295,3 +295,188 @@ RuntimeError: no running event loop
 2025-11-11 18:13:14,387 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
 2025-11-11 18:13:14,387 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
 2025-11-11 18:13:14,387 - INFO - root - All services stopped gracefully
+2025-11-11 23:41:26,309 - INFO - root - Logging configured for headless mode
+2025-11-11 23:41:26,309 - INFO - root - === STARTING HEADLESS SERVICE ===
+2025-11-11 23:41:26,310 - INFO - root - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-11 23:41:26,310 - INFO - root - ✅ Vérification des répertoires nécessaires...
+2025-11-11 23:41:26,310 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-11 23:41:26,310 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-11 23:41:26,311 - INFO - root - 🔍 Fichier app_config.json existe : True
+2025-11-11 23:41:26,311 - INFO - root - 🔍 Fichier models_config.json existe : True
+2025-11-11 23:41:26,311 - INFO - root - ✅ Les fichiers de configuration existent déjà
+2025-11-11 23:41:26,311 - WARNING - llama_runner.services.config_validator - [WARNING] config: No models configured
+2025-11-11 23:41:26,312 - WARNING - llama_runner.services.config_validator - Configuration validation passed with 1 warning(s)
+2025-11-11 23:41:26,312 - INFO - root - Configuration loaded and validated successfully
+2025-11-11 23:41:26,312 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-11 23:41:26,312 - WARNING - llama_runner.headless_service_manager - Audio section is missing or None in config. Using empty models dict.
+2025-11-11 23:41:26,312 - INFO - root - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-11 23:41:26,312 - INFO - root - ✅ Vérification des répertoires nécessaires...
+2025-11-11 23:41:26,313 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-11 23:41:26,313 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-11 23:41:26,313 - INFO - root - 🔍 Fichier app_config.json existe : True
+2025-11-11 23:41:26,314 - INFO - root - 🔍 Fichier models_config.json existe : True
+2025-11-11 23:41:26,314 - INFO - root - ✅ Les fichiers de configuration existent déjà
+2025-11-11 23:41:26,314 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-11 23:41:26,314 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-11 23:41:26,315 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-11 23:41:26,316 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-11 23:41:26,318 - INFO - root - 
+============================================================
+2025-11-11 23:41:26,318 - INFO - root - SERVICES ACCESSIBLES :
+2025-11-11 23:41:26,318 - INFO - root - ============================================================
+2025-11-11 23:41:26,318 - INFO - root - Ollama Proxy: http://127.0.0.1:11434/
+2025-11-11 23:41:26,318 - INFO - root - LM Studio Proxy: http://127.0.0.1:1234/
+2025-11-11 23:41:26,319 - INFO - root - Dashboard Web: http://127.0.0.1:8080/
+2025-11-11 23:41:26,319 - INFO - root - ============================================================
+
+2025-11-11 23:41:26,319 - INFO - root - Starting all services...
+2025-11-11 23:41:26,320 - INFO - root - Headless service running. Press Ctrl+C to shutdown.
+2025-11-11 23:41:26,321 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-11 23:41:26,321 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-11 23:41:26,322 - INFO - llama_runner.headless_service_manager - ✅ Ollama Proxy server started on http://0.0.0.0:11434/
+2025-11-11 23:41:26,323 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-11 23:41:26,323 - INFO - llama_runner.headless_service_manager - ✅ LM Studio Proxy server started on http://0.0.0.0:1234/
+2025-11-11 23:41:26,323 - INFO - llama_runner.headless_service_manager - ✅ All services started successfully. Waiting for shutdown signal...
+2025-11-11 23:41:26,323 - INFO - llama_runner.headless_service_manager - 
+============================================================
+2025-11-11 23:41:26,324 - INFO - llama_runner.headless_service_manager - 🌐 SERVICES ACCESSIBLES :
+2025-11-11 23:41:26,324 - INFO - llama_runner.headless_service_manager - ============================================================
+2025-11-11 23:41:26,324 - INFO - llama_runner.headless_service_manager - 🏠 llama.cpp WebUI: http://localhost:8035/
+2025-11-11 23:41:26,324 - INFO - llama_runner.headless_service_manager -    ✅ Direct access - no proxy needed
+2025-11-11 23:41:26,324 - INFO - llama_runner.headless_service_manager - 🏠 Llama Runner WebUI: http://localhost:8081/
+2025-11-11 23:41:26,325 - INFO - llama_runner.headless_service_manager - 🔗 Ollama Proxy: http://localhost:11434/
+2025-11-11 23:41:26,325 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
+2025-11-11 23:41:26,326 - INFO - llama_runner.headless_service_manager - ============================================================
+
+2025-11-11 23:43:09,394 - ERROR - root - Error handling /v1/models: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "F:\llm\llama-runner-async-proxy\llama_runner\lmstudio_proxy_thread.py", line 811, in _list_openai_models_handler
+    id_mapping = gguf_metadata.get_model_name_to_id_mapping(all_models_config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\llm\llama-runner-async-proxy\llama_runner\gguf_metadata.py", line 546, in get_model_name_to_id_mapping
+    model_path = model_config.get("model_path")
+                 ^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+2025-11-11 23:45:47,723 - ERROR - root - Error handling /v1/models: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "F:\llm\llama-runner-async-proxy\llama_runner\lmstudio_proxy_thread.py", line 811, in _list_openai_models_handler
+    id_mapping = gguf_metadata.get_model_name_to_id_mapping(all_models_config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\llm\llama-runner-async-proxy\llama_runner\gguf_metadata.py", line 546, in get_model_name_to_id_mapping
+    model_path = model_config.get("model_path")
+                 ^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+2025-11-12 00:21:55,949 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 00:21:55,949 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 00:21:55,949 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 00:21:55,949 - INFO - llama_runner.headless_service_manager - Stopping Ollama proxy...
+2025-11-12 00:21:55,949 - INFO - llama_runner.headless_service_manager - Stopping LM Studio proxy...
+2025-11-12 00:21:56,057 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 00:21:56,058 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 00:21:56,058 - INFO - root - All services stopped gracefully
+2025-11-12 00:56:47,313 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 00:56:47,314 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 00:56:47,314 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 00:56:47,314 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 00:56:47,314 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 00:56:47,314 - INFO - root - All services stopped gracefully
+2025-11-12 00:58:44,145 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 00:58:44,145 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 00:58:44,145 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 00:58:44,146 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 00:58:44,146 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 00:58:44,146 - INFO - root - All services stopped gracefully
+2025-11-12 01:00:36,568 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 01:00:36,569 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 01:00:36,569 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 01:00:36,569 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 01:00:36,569 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 01:00:36,570 - INFO - root - All services stopped gracefully
+2025-11-12 01:01:39,813 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 01:01:39,813 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 01:01:39,813 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 01:01:39,814 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 01:01:39,814 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 01:01:39,814 - INFO - root - All services stopped gracefully
+2025-11-12 01:05:00,889 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 01:05:00,890 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 01:05:00,890 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 01:05:00,890 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 01:05:00,890 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 01:05:00,890 - INFO - root - All services stopped gracefully
+2025-11-12 01:06:54,280 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 01:06:54,280 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 01:06:54,281 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 01:06:54,281 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 01:06:54,281 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 01:06:54,281 - INFO - root - All services stopped gracefully
+2025-11-12 01:07:32,643 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 01:07:32,644 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 01:07:32,644 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 01:07:32,644 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 01:07:32,644 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 01:07:32,644 - INFO - root - All services stopped gracefully
+2025-11-12 01:08:15,326 - INFO - root - Received signal 2, initiating shutdown
+2025-11-12 01:08:15,326 - INFO - root - Shutdown requested, stopping services...
+2025-11-12 01:08:15,326 - INFO - llama_runner.headless_service_manager - Stopping all services...
+2025-11-12 01:08:15,327 - INFO - llama_runner.headless_service_manager - Stopping all Llama runners...
+2025-11-12 01:08:15,327 - INFO - llama_runner.headless_service_manager - ✅ All headless services stopped successfully.
+2025-11-12 01:08:15,327 - INFO - root - All services stopped gracefully
+2025-11-12 01:13:26,533 - INFO - root - Logging configured for headless mode
+2025-11-12 01:13:26,533 - INFO - root - === STARTING HEADLESS SERVICE ===
+2025-11-12 01:13:26,533 - INFO - root - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-12 01:13:26,534 - INFO - root - ✅ Vérification des répertoires nécessaires...
+2025-11-12 01:13:26,534 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-12 01:13:26,534 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-12 01:13:26,534 - INFO - root - 🔍 Fichier app_config.json existe : True
+2025-11-12 01:13:26,534 - INFO - root - 🔍 Fichier models_config.json existe : True
+2025-11-12 01:13:26,535 - INFO - root - ✅ Les fichiers de configuration existent déjà
+2025-11-12 01:13:26,535 - WARNING - llama_runner.services.config_validator - [WARNING] config: No models configured
+2025-11-12 01:13:26,535 - WARNING - llama_runner.services.config_validator - Configuration validation passed with 1 warning(s)
+2025-11-12 01:13:26,535 - INFO - root - Configuration loaded and validated successfully
+2025-11-12 01:13:26,535 - INFO - llama_runner.headless_service_manager - Initializing services for headless mode...
+2025-11-12 01:13:26,535 - WARNING - llama_runner.headless_service_manager - Audio section is missing or None in config. Using empty models dict.
+2025-11-12 01:13:26,535 - INFO - root - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-12 01:13:26,536 - INFO - root - ✅ Vérification des répertoires nécessaires...
+2025-11-12 01:13:26,536 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-12 01:13:26,536 - INFO - root - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-12 01:13:26,536 - INFO - root - 🔍 Fichier app_config.json existe : True
+2025-11-12 01:13:26,536 - INFO - root - 🔍 Fichier models_config.json existe : True
+2025-11-12 01:13:26,537 - INFO - root - ✅ Les fichiers de configuration existent déjà
+2025-11-12 01:13:26,537 - INFO - llama_runner.headless_service_manager - LlamaRunnerManager initialized.
+2025-11-12 01:13:26,537 - INFO - llama_runner.headless_service_manager - Ollama Proxy is enabled. Creating server...
+2025-11-12 01:13:26,537 - INFO - llama_runner.headless_service_manager - LM Studio Proxy is enabled. Creating server...
+2025-11-12 01:13:26,541 - DEBUG - asyncio - Using proactor: IocpProactor
+2025-11-12 01:13:26,542 - INFO - root - 
+============================================================
+2025-11-12 01:13:26,543 - INFO - root - SERVICES ACCESSIBLES :
+2025-11-12 01:13:26,543 - INFO - root - ============================================================
+2025-11-12 01:13:26,543 - INFO - root - Ollama Proxy: http://127.0.0.1:11434/
+2025-11-12 01:13:26,543 - INFO - root - LM Studio Proxy: http://127.0.0.1:1234/
+2025-11-12 01:13:26,543 - INFO - root - Dashboard Web: http://127.0.0.1:8080/
+2025-11-12 01:13:26,543 - INFO - root - ============================================================
+
+2025-11-12 01:13:26,543 - INFO - root - Starting all services...
+2025-11-12 01:13:26,544 - INFO - root - Headless service running. Press Ctrl+C to shutdown.
+2025-11-12 01:13:26,544 - INFO - llama_runner.headless_service_manager - Starting all services...
+2025-11-12 01:13:26,544 - INFO - llama_runner.headless_service_manager - Starting Ollama proxy server...
+2025-11-12 01:13:26,545 - INFO - llama_runner.headless_service_manager - ✅ Ollama Proxy server started on http://0.0.0.0:11434/
+2025-11-12 01:13:26,545 - INFO - llama_runner.headless_service_manager - Starting LM Studio proxy server...
+2025-11-12 01:13:26,546 - INFO - llama_runner.headless_service_manager - ✅ LM Studio Proxy server started on http://0.0.0.0:1234/
+2025-11-12 01:13:26,546 - INFO - llama_runner.headless_service_manager - Starting Dashboard API server...
+2025-11-12 01:13:26,546 - INFO - llama_runner.services.dashboard_api - Starting Dashboard API server on 0.0.0.0:8585
+2025-11-12 01:13:26,546 - INFO - llama_runner.headless_service_manager - ✅ Dashboard API server started on http://0.0.0.0:8585/
+2025-11-12 01:13:26,546 - INFO - llama_runner.headless_service_manager - ✅ All services started successfully. Waiting for shutdown signal...
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - 
+============================================================
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - 🌐 SERVICES ACCESSIBLES :
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - ============================================================
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - 🏠 llama.cpp WebUI: http://localhost:8035/
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager -    ✅ Direct access - no proxy needed
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - 🏠 Llama Runner WebUI: http://localhost:8081/
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - 🔗 Ollama Proxy: http://localhost:11434/
+2025-11-12 01:13:26,547 - INFO - llama_runner.headless_service_manager - 🔗 LM Studio Proxy: http://localhost:1234/
+2025-11-12 01:13:26,548 - INFO - llama_runner.headless_service_manager - ============================================================
+

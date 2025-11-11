@@ -7,7 +7,7 @@
 ## ⚙️ 1. Project Overview
 
 **Project Name:** `LlamaRunner Pro – Async Proxy System`  
-**Goal:** Provide a unified interface between various AI models (LM Studio, Ollama, etc.) through an **asynchronous Python proxy**, paired with a **Vue.js web dashboard** and real-time monitoring tools.
+**Goal:** Provide a unified interface between various AI models (LM Studio, Ollama, etc.) through an **asynchronous Python proxy**, paired with a **Vue.js web dashboard** for management and configuration.
 
 The system runs on **Windows and Linux** platforms, designed for **autonomous, modular, and extensible** operation.
 
@@ -18,12 +18,9 @@ The system runs on **Windows and Linux** platforms, designed for **autonomous, m
 ### 🖥 Backend
 | Component | Technology | Role |
 |------------|-------------|------|
-| **Language** | Python 3.11+ | Proxy, orchestration, monitoring |
+| **Language** | Python 3.11+ | Proxy, orchestration |
 | **Web Framework** | FastAPI / uvicorn | API and asynchronous request handling |
-| **Realtime Layer** | WebSocket | Live communication |
-| **GUI Framework** | PySide6 | Optional desktop interface |
 | **System Monitoring** | psutil | CPU, memory, and GPU metrics collection |
-| **Packaging / Build** | PyInstaller | Executable generation |
 
 ### 🌐 Frontend / Dashboard
 | Component | Technology | Role |
@@ -48,54 +45,56 @@ The system runs on **Windows and Linux** platforms, designed for **autonomous, m
 
 ```
 llama-runner-async-proxy/
-├── LaunchMenu.ps1               # Main interactive menu must stay there and only script
+├── LaunchMenu.ps1               # Main simplified launch menu
 ├── main.py                      # Python entry point
+├── ARCHITECTURE.md              # Architecture documentation
 ├── config/                      # Configuration files
-│   ├── app_config.json          # General aplication configuration
-│   ├── models_config.json       # list of models and Model-specific settings
-├── logs/                        # Rotating logs all log related files must go there
+│   ├── app_config.json          # General application configuration
+│   ├── models_config.json       # List of models and Model-specific settings
+├── logs/                        # Log files
 ├── scripts/                     # PowerShell tools
-│   ├── model_management.ps1     # Model (.gguf) management
-│   ├── Validate-System.ps1      # System validation
-│   ├── PortConfig.ps1           # Network configuration
-│   └── Debug-Launch.ps1         # Debug launch mode
-├── tests/                       # Unit & integration tests
-│   ├── test_implementation_validation.py
-│   ├── unit/
-│   │   ├── test_config_updater.py
-│   │   ├── test_llama_runner_manager.py
-│   │   └── test_metrics_validation.py
-├── docs/                        # Documentation (formerly documentation/)
+│   ├── validate_system.ps1      # System validation
+├── docs/                        # Documentation
 │   ├── README.md
 │   ├── INSTALLATION.md
-│   └── USAGE.md
-├── dashboard/                   # Vue.js + Chart.js frontend
-├── tests/                       # All tests related files must be there
+│   └── ARCHITECTURE.md          # Current architecture
+├── dashboard/                   # Vue.js frontend
+├── tests/                       # Unit & integration tests
 └── llama_runner/                # Core Python backend
+    ├── config_loader.py
+    ├── headless_service_manager.py
+    ├── llama_cpp_runner.py
+    ├── ollama_proxy_thread.py
+    ├── lmstudio_proxy_thread.py
+    ├── model_discovery.py
+    ├── services/
+    │   ├── config_validator.py
+    │   ├── config_updater.py
+    │   └── metrics_collector.py
+    └── repositories/
 ```
 
-the llama-server path is "F:\llm\llama\llama-server.exe" and must never change
-The directory containing all llm models is "F:\llm\llama\models" each model are in a subdirectory Ex:
-model name : JanusCoderV-7B.i1-Q4_K_S.gguf is in directory : 
-"F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf"
-other exemple :
-neutss-air-BF16.gguf
-"F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf"
+The llama-server path is "F:\\llm\\llama\\llama-server.exe" and must never change.
+The directory containing all llm models is "F:\\llm\\llama\\models". Each model is in a subdirectory. Example:
+Model name: JanusCoderV-7B.i1-Q4_K_S.gguf is in directory: 
+"F:\\llm\\llama\\models\\JanusCoderV-7B-i1-GGUF\\JanusCoderV-7B.i1-Q4_K_S.gguf"
+
 ---
 
 ## 🧠 4. Code Structure & Modules
 
 ### `llama_runner/` (Backend Core)
-- **`main.py`** — main FastAPI server entry point.
-- **`proxy_manager.py`** — coordinates LM Studio, Ollama, and other local models.
+- **`main.py`** — main application entry point.
+- **`headless_service_manager.py`** — manages services, proxies, and model runners.
 - **`config_loader.py`** — reads and validates configuration files from `/config`.
 - **`metrics_collector.py`** — collects system metrics via psutil.
-- **`websocket_manager.py`** — sends live data to the dashboard.
-- **`runner_manager.py`** — handles subprocesses and inter-process communication.
+- **`ollama_proxy_thread.py`** — Ollama-compatible API proxy.
+- **`lmstudio_proxy_thread.py`** — LM Studio-compatible API proxy.
+- **`model_discovery.py`** — discovers and manages model configurations.
 
 ---
 
-## 🧾 5. Coding Standards (from `code_conventions.md`)
+## 🧾 5. Coding Standards
 
 ### Style & Typing
 - All functions must include **type hints**.
@@ -108,9 +107,9 @@ neutss-air-BF16.gguf
 - One class or concept per Python file.
 - Loaders, runners, and proxies are logically separated.
 - Centralized validation via `config_loader.py`.
-- separation of concerns is a priority and mandatory way of 
----
+- Separation of concerns is a priority and mandatory way of development.
 
+---
 
 ## 🔐 6. Security & Configuration
 
@@ -120,7 +119,8 @@ neutss-air-BF16.gguf
   |----------|------|
   | LM Studio API | 1234 |
   | Ollama API | 11434 |
-  | Dashboard Web | 8035 |
+  | Dashboard Web | 8080 |
+  | llama-server (direct) | 8035 |
 
 - Deployment is local only, with **venv or Anaconda**, no Docker.
 
@@ -137,8 +137,4 @@ neutss-air-BF16.gguf
 
 ---
 
-
----
-
 ### ✅ End of Document
-

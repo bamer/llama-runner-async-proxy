@@ -184,8 +184,8 @@ def main():
         logging.info("="*60)
         logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
         logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
-        logging.info(f"Dashboard Web: http://127.0.0.1:8035/")
-        logging.info(f"Metrics Server: http://127.0.0.1:8080/")
+        logging.info(f"Dashboard Web: http://127.0.0.1:8080/")
+
         logging.info("="*60 + "\n")
         
         # Start services

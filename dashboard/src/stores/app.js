@@ -98,7 +98,7 @@ export const useAppStore = defineStore('app', () => {
   const restartService = async () => {
     try {
       await axios.post('/api/restart')
-      ElMessage.success('Service redémarré avec succès')
+      console.log('Service restarted successfully')
       
       // Reload data after restart
       setTimeout(() => {
@@ -106,20 +106,13 @@ export const useAppStore = defineStore('app', () => {
       }, 3000)
     } catch (error) {
       console.error('Failed to restart service:', error)
-      ElMessage.error('Erreur lors du redémarrage du service')
+      console.error('Error during service restart')
     }
   }
 
   const quitApplication = () => {
-    ElMessageBox.confirm(
-      'Voulez-vous vraiment quitter l\'application ?',
-      'Confirmer la sortie',
-      {
-        confirmButtonText: 'Quitter',
-        cancelButtonText: 'Annuler',
-        type: 'warning',
-      }
-    ).then(() => {
+    // Using standard browser confirm instead of ElMessageBox
+    if (confirm('Voulez-vous vraiment quitter l\'application ?')) {
       // Send quit signal to main application
       axios.post('/api/quit').catch(() => {
         // Ignore errors when quitting
@@ -131,15 +124,17 @@ export const useAppStore = defineStore('app', () => {
       }
       
       // Notify user
-      ElMessage.success('Application en cours de fermeture...')
+      console.log('Application en cours de fermeture...')
       
       // Close browser window after a delay
       setTimeout(() => {
-        window.close()
+        if (window.close) {
+          window.close()
+        }
       }, 1000)
-    }).catch(() => {
-      ElMessage.info('Annulé')
-    })
+    } else {
+      console.log('Annulé')
+    }
   }
 
   const healthCheck = async () => {
