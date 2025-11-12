@@ -8,7 +8,6 @@ import sys
 import logging
 import argparse
 import os
-import signal
 import asyncio
 from pathlib import Path
 import json
@@ -60,7 +59,7 @@ def setup_logging(log_level: str = "INFO"):
     )
     
     # Console handler
-    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler = logging.Handler(sys.stdout)
     console_handler.setLevel(getattr(logging, log_level.upper(), logging.INFO))
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
@@ -78,17 +77,6 @@ async def shutdown_handler(hsm: HeadlessServiceManager):
     logging.info("Shutdown requested, stopping services...")
     await hsm.stop_services()
     logging.info("All services stopped gracefully")
-
-def signal_handler_factory(hsm: HeadlessServiceManager, loop: asyncio.AbstractEventLoop):
-    """Factory for platform-agnostic signal handling"""
-    async def handle_signal():
-        await shutdown_handler(hsm)
-        loop.stop()
-    
-    def _handler():
-        asyncio.create_task(handle_signal())
-    
-    return _handler
 
 def main():
     parser = argparse.ArgumentParser(description="Llama Runner Headless Service")
@@ -156,28 +144,6 @@ def main():
         # Create service manager
         hsm = HeadlessServiceManager(app_config, models_config)
         
-        # Setup event loop
-        loop = asyncio.get_event_loop()
-        
-        # Setup signal handlers
-        signal_handler = signal_handler_factory(hsm, loop)
-        
-        if sys.platform != 'win32':
-            # Unix-like systems support signal handlers
-            for sig in (signal.SIGINT, signal.SIGTERM):
-                loop.add_signal_handler(sig, signal_handler)
-        else:
-            # Windows: use atexit and signal.signal
-            import atexit
-            atexit.register(lambda: asyncio.create_task(shutdown_handler(hsm)))
-            
-            def win_signal_handler(sig, frame):
-                logging.info(f"Received signal {sig}, initiating shutdown")
-                asyncio.create_task(shutdown_handler(hsm))
-            
-            signal.signal(signal.SIGINT, win_signal_handler)
-            signal.signal(signal.SIGTERM, win_signal_handler)
-        
         # Display service URLs
         logging.info("\n" + "="*60)
         logging.info("SERVICES ACCESSIBLES :")
@@ -185,18 +151,21 @@ def main():
         logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
         logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
         logging.info(f"Dashboard Web: http://127.0.0.1:8080/")
-
+        logging.info(f"Dashboard API: http://127.0.0.1:8585/")
         logging.info("="*60 + "\n")
         
         # Start services
         logging.info("Starting all services...")
-        # Schedule starting services in the event loop
-        loop.create_task(hsm.start_services())
-        
-        # Run event loop
         logging.info("Headless service running. Press Ctrl+C to shutdown.")
-        loop.run_forever()
         
+        # Use asyncio.run() which handles signals automatically
+        await hsm.start_services()
+        
+    except KeyboardInterrupt:
+        logging.info("Received interrupt signal, shutting down...")
+        if 'hsm' in locals():
+            import asyncio
+            asyncio.run(shutdown_handler(hsm))
     except Exception as e:
         logging.critical(f"Critical error in headless service: {e}", exc_info=True)
         sys.exit(1)
