@@ -1,9 +1,9 @@
-# 🏗️ DOCS - Documentation Centralisée Llama Runner
+# 🏗️ DOCS - Documentation Centralisée Llama Runner (Refonte FastAPI)
 
 ## 🔍 Vue d'ensemble
 
-Projet : Llama Runner Async Proxy  
-Objectif : Interface unifiée pour modèles IA (Ollama, LM Studio) avec dashboard moderne  
+Projet : Llama Runner Async Proxy (Refonte)  
+Objectif : Interface unifiée pour modèles IA (Ollama, LM Studio) avec une interface web de gestion et de monitoring basée sur FastAPI  
 Principe : Separation of Concerns, code documenté, tests inclus
 
 ---
@@ -15,80 +15,49 @@ Principe : Separation of Concerns, code documenté, tests inclus
 
 | Composant | Emplacement | Description |
 |----------|-------------|-------------|
-| **Backend Python** | `/llama_runner` | Gestion des runners, proxies, modèles |
-| **Dashboard Web** | `/dashboard` | Interface Vue.js pour gestion et monitoring |
+| **Backend FastAPI** | `/app` | API REST/WS, gestion de l'interface web, logique de gestion | 
+| **Ancien Backend** | `/llama_runner` | Composants existants réutilisés (proxies, runners) | 
 | **Scripts** | `/scripts` | Outils d'automatisation |
 | **Configuration** | `/config` | Fichiers de configuration JSON |
 | **Logs** | `/logs` | Journaux d'exécution |
 | **Modèles** | `F:\\llm\\models` | Stockage des fichiers GGUF |
-
-### Communication
-
-```
-[Vue.js Dashboard] <---> [Backend Python] <---> [Llama.cpp Runners]
-     (Port 8080)           (Port 8585)           (Ports dynamiques)
-         |                       |                      |
-         | HTTP/WS API          | API REST               | Processus locaux
-         |----------------------|------------------------|
-```
 
 ---
 
 
 ## 🚀 Lancement
 
-### Lancement complet (recommandé)
+### Lancement complet (nouvelle architecture)
 
 ```bash
-python launch_dashboard.py
+python run_fastapi_app.py
 ```
 
-> ⚠️ Cela lance **automatiquement** le backend Python **et** le dashboard Vue.js
-> ✅ Le dashboard est accessible sur http://localhost:8080
-> ✅ Ctrl+C arrête proprement les deux services
-
-### Lancement manuel
-
-#### Backend seulement
-```bash
-python main.py --log-level INFO
-```
-
-> ✅ Proxies Ollama (11434) et LM Studio (1234) démarrés
-> ✅ API Dashboard sur port 8585
-> ✅ Dashboard Web sur port 8080 (nécessite lancement séparé du dashboard)
-
-#### Dashboard seulement
-```bash
-cd dashboard && npm run dev
-```
-
-> ✅ Dashboard accessible sur http://localhost:8080
-> ✅ Communique avec le backend sur http://localhost:8585
+> ✅ Le backend FastAPI est accessible sur http://localhost:8000
+> ✅ Les endpoints API sont disponibles sous `/api/v1/`
+> ✅ Ctrl+C arrête proprement le service.
 
 ---
 
 
-## 🔌 API Endpoints
+## 🔌 API Endpoints (v1)
 
 | Endpoint | Méthode | Description |
 |---------|---------|-------------|
-| `/v1/models` | GET | Liste des modèles |
-| `/v1/chat/completions` | POST | Chat avec modèle |
-| `/v1/audio/transcriptions` | POST | Transcription audio |
-| `/v1/audio/translations` | POST | Traduction audio |
-| `/api/status` | GET | Statut du système (dashboard) |
-| `/api/health` | GET | Statut de santé (dashboard) |
-| `/health` | GET | Statut du système |
+| `/api/v1/health` | GET | Statut de santé de l'API |
+| `/api/v1/status` | GET | Statut du système et des services |
+| `/v1/models` | GET | Liste des modèles (proxy Ollama/LM Studio) |
+| `/v1/chat/completions` | POST | Chat avec modèle (proxy Ollama/LM Studio) |
+| `/v1/audio/transcriptions` | POST | Transcription audio (proxy Ollama/LM Studio) |
+| `/v1/audio/translations` | POST | Traduction audio (proxy Ollama/LM Studio) |
 
 
 ### Ports
-| Service | Port | URL |
+| Service | Port (par défaut) | URL |
 |--------|------|-----|
-| **Dashboard Web** | 8080 | http://localhost:8080 |
-| **Dashboard API** | 8585 | http://localhost:8585 |
-| **Ollama Proxy** | 11434 | http://localhost:11434 |
-| **LM Studio Proxy** | 1234 | http://localhost:1234 |
+| **FastAPI Backend** | 8000 | http://localhost:8000 |
+| **Ollama Proxy (interne)** | 11434 | http://127.0.0.1:11434 |
+| **LM Studio Proxy (interne)** | 1234 | http://127.0.0.1:1234 |
 
 ---
 
@@ -120,25 +89,35 @@ cd dashboard && npm run dev
 }
 ```
 
-> ✅ La configuration se fait **via le dashboard**, pas manuellement.
-> ✅ Les nouveaux modèles sont **auto-découverts** sans écraser les paramètres existants.
-
 ---
 
 
-## 📁 Structure projet
+## 📁 Structure projet (Refonte)
 
 ```
 llama-runner-async-proxy/
-├── launch_dashboard.py      # Lance backend + dashboard
-├── main.py                  # Backend seulement
+├── run_fastapi_app.py         # Point de lancement de l'API FastAPI
 ├── DOCS.md                  # Documentation centralisée
 ├── ARCHITECTURE.md          # Architecture détaillée
 ├── config/                  # Fichiers de configuration
 ├── logs/                    # Journaux
 ├── scripts/                 # Scripts utilitaires
-├── dashboard/               # Interface Vue.js
-└── llama_runner/            # Backend Python
+├── app/                     # Backend FastAPI
+│   ├── main.py              # Point d'entrée FastAPI
+│   ├── core/                # Configuration, gestion des erreurs
+│   ├── api/                 # Définition des routes API
+│   │   └── v1/
+│   │       ├── routers.py
+│   │       └── endpoints/
+│   │           ├── status.py
+│   │           ├── health.py
+│   │           ├── models.py
+│   │           ├── config.py
+│   │           └── monitoring.py
+│   ├── models/              # Modèles Pydantic
+│   ├── services/            # Logique métier réutilisant l'ancien backend
+│   └── utils/               # Utilitaires
+└── llama_runner/            # Ancien backend (proxies, runners) - réutilisé
     ├── headless_service_manager.py
     ├── config_loader.py
     ├── ollama_proxy_thread.py
@@ -147,8 +126,7 @@ llama-runner-async-proxy/
     └── services/
         ├── config_validator.py
         ├── config_updater.py
-        ├── metrics_collector.py
-        └── dashboard_api.py
+        └── metrics_collector.py
 ```
 
 ---
@@ -175,7 +153,6 @@ powershell .\\scripts\\validate_system.ps1
 
 ### Prérequis
 - Python 3.11+
-- Node.js 16+ (pour le dashboard)
 - PowerShell 7+
 - VS Code
 
@@ -189,9 +166,6 @@ dev-venv\\Scripts\\Activate.ps1
 
 # Installer les dépendances
 pip install -r requirements.txt
-
-# Installer les dépendances du dashboard
-cd dashboard && npm install
 ```
 
 ---
@@ -220,13 +194,12 @@ cd dashboard && npm install
 1. **Separation of Concerns** : Chaque composant a une responsabilité unique
 2. **Code documenté** : Commentaires précis, typage strict, variables explicites
 3. **Tests inclus** : Assurer la fiabilité et la maintenance
-4. **Interface utilisateur** : Dashboard Vue.js comme point central de gestion
+4. **Interface utilisateur** : Backend FastAPI comme base pour l'interface de gestion
 5. **Éviter les actions manuelles** : Automatiser les tâches répétitives
-6. **Arrêt propre** : Ctrl+C arrête tous les services correctement
 
 ---
 
 
-### ✅ Version actuelle : 2025-11-12
+### ✅ Version actuelle : 2025-11-13
 
-Documentation mise à jour après correction complète des problèmes.
+Documentation mise à jour après refonte vers FastAPI.

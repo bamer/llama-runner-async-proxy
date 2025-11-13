@@ -4,13 +4,6 @@
     "lmstudio": {"enabled": true, "port": 1234, "api_key": null}
   },
   "webui": {"enabled": true, "port": 8081, "host": "0.0.0.0"},
-  "metrics": {"enabled": true, "port": 8080, "host": "0.0.0.0"},
   "concurrentRunners": 1,
-  "logging": {"prompt_logging_enabled": false},
-  "runtimes": {
-    "llama-server": {
-      "runtime": "F:/llm/llama/llama-server.exe",
-      "supports_tools": true
-    }
-  }
+  "logging": {"prompt_logging_enabled": false}
 }

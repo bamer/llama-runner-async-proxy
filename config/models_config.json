@@ -17,20 +17,6 @@
       "supports_tools": true
     }
   },
-  "models": {
-    "JanusCoderV-7B.i1-Q4_K_S": {
-      "model_path": "F:/llm/llama/models/JanusCoderV-7B-i1-GGUF/JanusCoderV-7B.i1-Q4_K_S.gguf",
-      "llama_cpp_runtime": "llama-server",
-      "parameters": {
-        "n_gpu_layers": 85,
-        "jinja": true,
-        "port": 8000
-      },
-      "display_name": "JanusCoderV-7B.i1-Q4_K_S",
-      "auto_discovered": false,
-      "auto_update_model": false,
-      "has_tools": true
-    }
-  },
-  "default_model": "JanusCoderV-7B.i1-Q4_K_S"
+  "models": {},
+  "default_model": null
 }

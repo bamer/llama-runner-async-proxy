@@ -49,7 +49,7 @@ class RunnerService:
         self.llama_runners: Dict[str, LlamaCppRunner] = {}
         self.whisper_runners: Dict[str, FasterWhisperRunner] = {}
         
-        # Track first runner for port 8585 routing
+        # Track first runner for port routing (now using 0 for random ports only)
         self.first_runner_started = False
         
         # Semaphore for concurrent runners limit
@@ -138,13 +138,10 @@ class RunnerService:
             model_path = model_config["model_path"]
             parameters = model_config.get("parameters", {})
             
-            # Only first runner gets port 8585, others get random ports (port=0)
-            port_override = 8585 if not self.first_runner_started else 0
-            if not self.first_runner_started:
-                self.first_runner_started = True
-                logger.info("First runner will use port 8585 for web UI routing")
-            else:
-                logger.info(f"Runner {model_name} will use random port (0) to avoid conflicts")
+            # Let all runners use their configured ports or default to 8033 (from llama_cpp_runner.py)
+            # Remove the port 8585 assignment to avoid conflict with Dashboard API
+            port_override = parameters.get("port", 0)  # Use configured port or 0 for random
+            logger.info(f"Runner {model_name} will use port {port_override if port_override != 0 else 'random'}")
             
             runner = LlamaCppRunner(
                 model_name=model_name,
@@ -165,8 +162,16 @@ class RunnerService:
             
             # Wait for the runner to be ready (port to be assigned)
             # We can use a Future or poll the runner's port status
-            while runner.get_port() is None:
+            timeout = 30  # 30 seconds timeout
+            elapsed = 0
+            while runner.get_port() is None and elapsed < timeout:
                 await asyncio.sleep(0.1) # Poll every 100ms
+                elapsed += 0.1
+            
+            # Check if we timed out
+            if runner.get_port() is None:
+                logger.error(f"Timeout waiting for Llama runner {model_name} to start. Port not assigned within {timeout} seconds.")
+                raise TimeoutError(f"Llama runner {model_name} failed to start within {timeout} seconds")
             
             port = runner.get_port()
             logger.info(f"Llama runner for {model_name} is ready on port {port}")

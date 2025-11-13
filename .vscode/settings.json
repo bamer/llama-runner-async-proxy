@@ -6,7 +6,7 @@
     "github.copilot.chat.customOAIModels": {
         "minimax-m2:cloud": {
             "name": "cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf",
-            "url": "http://127.0.0.1:8000/v1",
+            "url": "http://127.0.0.1:8134/v1",
             "toolCalling": true,
             "vision": false,
             "thinking": true,
@@ -37,5 +37,6 @@
     "github.copilot.chat.codesearch.enabled": true,
     "github.copilot.chat.completionsFetcher": "electron-fetch",
     "github.copilot.chat.editor.temporalContext.enabled": true,
-    "github.copilot.chat.reviewSelection.instructions": []
+    "github.copilot.chat.reviewSelection.instructions": [],
+    "git.ignoreLimitWarning": true
 }

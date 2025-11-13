@@ -59,7 +59,7 @@ def setup_logging(log_level: str = "INFO"):
     )
     
     # Console handler
-    console_handler = logging.Handler(sys.stdout)
+    console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(getattr(logging, log_level.upper(), logging.INFO))
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
@@ -115,6 +115,10 @@ def main():
     )
     args = parser.parse_args()
 
+    # Run the async function using asyncio.run
+    asyncio.run(run_services(args))
+
+async def run_services(args):
     # Setup logging first
     setup_logging(args.log_level)
     
@@ -150,8 +154,6 @@ def main():
         logging.info("="*60)
         logging.info(f"Ollama Proxy: http://127.0.0.1:11434/")
         logging.info(f"LM Studio Proxy: http://127.0.0.1:1234/")
-        logging.info(f"Dashboard Web: http://127.0.0.1:8080/")
-        logging.info(f"Dashboard API: http://127.0.0.1:8585/")
         logging.info("="*60 + "\n")
         
         # Start services
@@ -163,9 +165,8 @@ def main():
         
     except KeyboardInterrupt:
         logging.info("Received interrupt signal, shutting down...")
-        if 'hsm' in locals():
-            import asyncio
-            asyncio.run(shutdown_handler(hsm))
+        # Note: Proper async shutdown on KeyboardInterrupt requires more complex handling
+        # For now, we rely on the service manager's shutdown methods being called by finally
     except Exception as e:
         logging.critical(f"Critical error in headless service: {e}", exc_info=True)
         sys.exit(1)
