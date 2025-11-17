@@ -3452,3 +3452,962 @@
 2025-11-13 14:23:14,861 - INFO - LlamaRunnerManager initialized.
 2025-11-13 14:23:14,861 - INFO - Ollama Proxy is enabled. Creating server...
 2025-11-13 14:23:14,861 - INFO - LM Studio Proxy is enabled. Creating server...
+2025-11-13 19:20:57,657 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 19:20:57,658 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 19:20:57,658 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 19:20:57,658 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 19:20:57,658 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 19:20:57,658 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 19:20:57,659 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 19:20:57,659 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 19:20:57,659 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 19:20:57,666 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 19:20:57,666 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 19:20:57,666 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 19:20:57,667 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 19:20:57,667 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 19:20:57,667 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 19:20:57,667 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 19:20:57,667 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 19:20:57,677 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 19:20:57,677 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 19:20:57,677 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 19:20:57,678 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 19:20:57,678 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 19:20:57,678 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 19:20:57,679 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 19:20:57,679 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 19:20:57,679 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 19:20:57,679 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 19:20:57,680 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 19:20:57,680 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 19:20:57,680 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 19:20:57,681 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 19:20:57,681 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 19:20:57,681 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 19:20:57,682 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 19:20:57,682 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 19:20:57,682 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 19:20:57,682 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 19:20:57,683 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 19:20:57,683 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 19:20:57,683 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 19:20:57,684 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 19:20:57,684 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 19:20:57,684 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 19:20:57,685 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 19:20:57,685 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 19:20:57,685 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 19:20:57,685 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 19:20:57,686 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 19:20:57,686 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 19:20:57,686 - INFO - 🔍 Checking model directory: new
+2025-11-13 19:20:57,687 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 19:20:57,687 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 19:20:57,687 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 19:20:57,687 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 19:20:57,687 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 19:20:57,688 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 19:20:57,688 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 19:20:57,688 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 19:20:57,688 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 19:20:57,689 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 19:20:57,689 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 19:20:57,689 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 19:20:57,690 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 19:20:57,690 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 19:20:57,690 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 19:20:57,690 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 19:20:57,691 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 19:20:57,691 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 19:20:57,691 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 19:20:57,691 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 19:20:57,692 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 19:20:57,692 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 19:20:57,692 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 19:20:57,692 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 19:20:57,693 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 19:20:57,693 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 19:20:57,693 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 19:20:57,694 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 19:20:57,694 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 19:20:57,694 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 19:20:57,695 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 19:20:57,695 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 19:20:57,695 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 19:20:57,695 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 19:20:57,696 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 19:20:57,696 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 19:20:57,696 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 19:20:57,696 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 19:20:57,696 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 19:20:57,697 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 19:20:57,697 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 19:20:57,697 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 19:20:57,697 - INFO - ✅ Discovered 31 models
+2025-11-13 19:20:57,697 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 19:20:57,698 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 19:20:57,699 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 19:20:57,699 - INFO - ➕ Added new discovered model: model
+2025-11-13 19:20:57,699 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 19:20:57,699 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 19:20:57,699 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 19:20:57,699 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 19:20:57,699 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 19:20:57,700 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 19:20:57,701 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 19:20:57,701 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 19:20:57,701 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 19:20:57,701 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 19:20:57,701 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 19:20:57,701 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 19:20:57,702 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 19:20:57,702 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 19:36:05,321 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 19:36:05,321 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 19:36:05,321 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 19:36:05,322 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 19:36:05,322 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 19:36:05,322 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 19:36:05,322 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 19:36:05,323 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 19:36:05,323 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 19:36:05,323 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 19:36:05,323 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 19:36:05,323 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 19:36:05,324 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 19:36:05,324 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 19:36:05,324 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 19:36:05,324 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 19:36:05,324 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 19:36:05,325 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 19:36:05,325 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 19:36:05,325 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 19:36:05,326 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 19:36:05,326 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 19:36:05,326 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 19:36:05,326 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 19:36:05,327 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 19:36:05,327 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 19:36:05,327 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 19:36:05,327 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 19:36:05,328 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 19:36:05,328 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 19:36:05,328 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 19:36:05,328 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 19:36:05,328 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 19:36:05,329 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 19:36:05,329 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 19:36:05,329 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 19:36:05,329 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 19:36:05,329 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 19:36:05,330 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 19:36:05,330 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 19:36:05,330 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 19:36:05,330 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 19:36:05,330 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 19:36:05,331 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 19:36:05,331 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 19:36:05,331 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 19:36:05,331 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 19:36:05,331 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 19:36:05,332 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 19:36:05,332 - INFO - 🔍 Checking model directory: new
+2025-11-13 19:36:05,332 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 19:36:05,332 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 19:36:05,332 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 19:36:05,332 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 19:36:05,333 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 19:36:05,333 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 19:36:05,333 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 19:36:05,333 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 19:36:05,333 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 19:36:05,334 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 19:36:05,334 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 19:36:05,334 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 19:36:05,334 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 19:36:05,335 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 19:36:05,335 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 19:36:05,335 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 19:36:05,335 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 19:36:05,335 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 19:36:05,335 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 19:36:05,336 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 19:36:05,336 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 19:36:05,336 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 19:36:05,336 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 19:36:05,336 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 19:36:05,337 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 19:36:05,337 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 19:36:05,337 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 19:36:05,337 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 19:36:05,338 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 19:36:05,338 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 19:36:05,338 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 19:36:05,338 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 19:36:05,338 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 19:36:05,339 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 19:36:05,339 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 19:36:05,339 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 19:36:05,339 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 19:36:05,339 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 19:36:05,339 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 19:36:05,340 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 19:36:05,340 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 19:36:05,340 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 19:36:05,341 - INFO - ✅ Discovered 31 models
+2025-11-13 19:36:05,341 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 19:36:05,341 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 19:36:05,341 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 19:36:05,341 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 19:36:05,341 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 19:36:05,341 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: model
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 19:36:05,342 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 19:36:05,342 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 19:36:05,343 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 19:36:05,344 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 19:36:05,344 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 19:36:05,344 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 19:36:05,344 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 19:36:05,344 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 19:36:05,344 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 19:36:05,344 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 19:36:05,830 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-13 19:36:05,834 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-13 19:36:05,836 - INFO - Initializing services for headless mode...
+2025-11-13 19:36:05,836 - WARNING - Audio section is missing or None in config. Using empty models dict.
+2025-11-13 19:36:05,836 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-13 19:36:05,836 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 19:36:05,836 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 19:36:05,836 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 19:36:05,837 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-13 19:36:05,837 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-13 19:36:05,837 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-13 19:36:05,837 - INFO - LlamaRunnerManager initialized.
+2025-11-13 19:36:05,838 - INFO - Ollama Proxy is enabled. Creating server...
+2025-11-13 19:36:05,838 - INFO - LM Studio Proxy is enabled. Creating server...
+2025-11-13 20:17:34,163 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 20:17:34,163 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 20:17:34,163 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 20:17:34,164 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 20:17:34,164 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 20:17:34,164 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:17:34,164 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:17:34,164 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:17:34,165 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 20:17:34,165 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 20:17:34,165 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 20:17:34,165 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 20:17:34,166 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 20:17:34,166 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:17:34,166 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:17:34,166 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:17:34,166 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 20:17:34,167 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 20:17:34,167 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 20:17:34,167 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 20:17:34,168 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 20:17:34,168 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 20:17:34,168 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 20:17:34,169 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 20:17:34,169 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 20:17:34,169 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 20:17:34,169 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 20:17:34,169 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 20:17:34,169 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 20:17:34,170 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 20:17:34,170 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 20:17:34,170 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 20:17:34,170 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 20:17:34,171 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 20:17:34,171 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 20:17:34,171 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 20:17:34,171 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 20:17:34,171 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 20:17:34,172 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 20:17:34,172 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 20:17:34,172 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 20:17:34,172 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 20:17:34,172 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 20:17:34,173 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:17:34,173 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 20:17:34,173 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 20:17:34,173 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 20:17:34,173 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 20:17:34,173 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 20:17:34,174 - INFO - 🔍 Checking model directory: new
+2025-11-13 20:17:34,174 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 20:17:34,174 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 20:17:34,174 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 20:17:34,175 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:17:34,175 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:17:34,175 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:17:34,176 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:17:34,176 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 20:17:34,176 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 20:17:34,176 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 20:17:34,177 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 20:17:34,177 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 20:17:34,177 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 20:17:34,177 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 20:17:34,178 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 20:17:34,178 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 20:17:34,178 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 20:17:34,178 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 20:17:34,178 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 20:17:34,179 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 20:17:34,179 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:17:34,179 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:17:34,179 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 20:17:34,179 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 20:17:34,180 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 20:17:34,180 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 20:17:34,180 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 20:17:34,180 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 20:17:34,180 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 20:17:34,181 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 20:17:34,181 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 20:17:34,181 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 20:17:34,182 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:17:34,182 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:17:34,182 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 20:17:34,182 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:17:34,183 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:17:34,183 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 20:17:34,183 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 20:17:34,183 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 20:17:34,183 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 20:17:34,184 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 20:17:34,184 - INFO - ✅ Discovered 31 models
+2025-11-13 20:17:34,184 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 20:17:34,184 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 20:17:34,184 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 20:17:34,184 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 20:17:34,184 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 20:17:34,184 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 20:17:34,185 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 20:17:34,185 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 20:17:34,185 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 20:17:34,185 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 20:17:34,185 - INFO - ➕ Added new discovered model: model
+2025-11-13 20:17:34,185 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:17:34,185 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 20:17:34,186 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:17:34,187 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:17:34,188 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 20:17:34,188 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 20:17:34,188 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 20:17:34,700 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-13 20:17:34,703 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-13 20:17:34,705 - INFO - Initializing services for headless mode...
+2025-11-13 20:17:34,705 - WARNING - Audio section is missing or None in config. Using empty models dict.
+2025-11-13 20:17:34,705 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-13 20:17:34,705 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:17:34,705 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:17:34,706 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:17:34,706 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-13 20:17:34,706 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-13 20:17:34,706 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-13 20:17:34,707 - INFO - LlamaRunnerManager initialized.
+2025-11-13 20:17:34,707 - INFO - Ollama Proxy is enabled. Creating server...
+2025-11-13 20:17:34,707 - INFO - LM Studio Proxy is enabled. Creating server...
+2025-11-13 20:17:56,259 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 20:17:56,260 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 20:17:56,260 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 20:17:56,260 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 20:17:56,261 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 20:17:56,261 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:17:56,261 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:17:56,262 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:17:56,262 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 20:17:56,262 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 20:17:56,262 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 20:17:56,263 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 20:17:56,263 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 20:17:56,263 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:17:56,263 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:17:56,264 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:17:56,264 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 20:17:56,264 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 20:17:56,265 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 20:17:56,265 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 20:17:56,265 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 20:17:56,266 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 20:17:56,266 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 20:17:56,267 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 20:17:56,267 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 20:17:56,268 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 20:17:56,268 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 20:17:56,268 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 20:17:56,268 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 20:17:56,269 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 20:17:56,269 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 20:17:56,269 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 20:17:56,270 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 20:17:56,270 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 20:17:56,270 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 20:17:56,271 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 20:17:56,271 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 20:17:56,272 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 20:17:56,272 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 20:17:56,273 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 20:17:56,273 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 20:17:56,273 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 20:17:56,274 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 20:17:56,274 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:17:56,274 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 20:17:56,275 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 20:17:56,275 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 20:17:56,276 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 20:17:56,276 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 20:17:56,277 - INFO - 🔍 Checking model directory: new
+2025-11-13 20:17:56,277 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 20:17:56,277 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 20:17:56,278 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 20:17:56,278 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:17:56,279 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:17:56,279 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:17:56,279 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:17:56,280 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 20:17:56,280 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 20:17:56,280 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 20:17:56,281 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 20:17:56,281 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 20:17:56,281 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 20:17:56,282 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 20:17:56,282 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 20:17:56,283 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 20:17:56,283 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 20:17:56,283 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 20:17:56,284 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 20:17:56,284 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 20:17:56,285 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:17:56,285 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:17:56,285 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 20:17:56,286 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 20:17:56,286 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 20:17:56,287 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 20:17:56,287 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 20:17:56,288 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 20:17:56,288 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 20:17:56,288 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 20:17:56,289 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 20:17:56,289 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 20:17:56,289 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:17:56,290 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:17:56,290 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 20:17:56,290 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:17:56,291 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:17:56,291 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 20:17:56,292 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 20:17:56,292 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 20:17:56,293 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 20:17:56,293 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 20:17:56,294 - INFO - ✅ Discovered 31 models
+2025-11-13 20:17:56,294 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 20:17:56,294 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 20:17:56,295 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 20:17:56,295 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 20:17:56,295 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 20:17:56,295 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 20:17:56,296 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 20:17:56,296 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 20:17:56,296 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 20:17:56,297 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 20:17:56,297 - INFO - ➕ Added new discovered model: model
+2025-11-13 20:17:56,297 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:17:56,297 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 20:17:56,297 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 20:17:56,298 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 20:17:56,298 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:17:56,298 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 20:17:56,298 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 20:17:56,299 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 20:17:56,299 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 20:17:56,299 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 20:17:56,300 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 20:17:56,300 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 20:17:56,300 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 20:17:56,300 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 20:17:56,301 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 20:17:56,301 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 20:17:56,301 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:17:56,302 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:17:56,302 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 20:17:56,302 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 20:17:56,302 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 20:17:56,802 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-13 20:17:56,804 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-13 20:17:56,806 - INFO - Initializing services for headless mode...
+2025-11-13 20:17:56,806 - WARNING - Audio section is missing or None in config. Using empty models dict.
+2025-11-13 20:17:56,806 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-13 20:17:56,806 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:17:56,806 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:17:56,807 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:17:56,807 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-13 20:17:56,807 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-13 20:17:56,807 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-13 20:17:56,808 - INFO - LlamaRunnerManager initialized.
+2025-11-13 20:17:56,808 - INFO - Ollama Proxy is enabled. Creating server...
+2025-11-13 20:17:56,808 - INFO - LM Studio Proxy is enabled. Creating server...
+2025-11-13 20:18:38,242 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 20:18:38,242 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 20:18:38,242 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 20:18:38,243 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 20:18:38,243 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 20:18:38,243 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:18:38,243 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:18:38,244 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:18:38,244 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 20:18:38,244 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 20:18:38,245 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 20:18:38,245 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 20:18:38,245 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 20:18:38,246 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:18:38,246 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:18:38,246 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:18:38,246 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 20:18:38,247 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 20:18:38,247 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 20:18:38,247 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 20:18:38,248 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 20:18:38,248 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 20:18:38,249 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 20:18:38,249 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 20:18:38,250 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 20:18:38,250 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 20:18:38,250 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 20:18:38,251 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 20:18:38,251 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 20:18:38,251 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 20:18:38,252 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 20:18:38,252 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 20:18:38,253 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 20:18:38,253 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 20:18:38,254 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 20:18:38,254 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 20:18:38,255 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 20:18:38,256 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 20:18:38,256 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 20:18:38,256 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 20:18:38,257 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 20:18:38,257 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 20:18:38,258 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 20:18:38,258 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:18:38,259 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 20:18:38,259 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 20:18:38,259 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 20:18:38,260 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 20:18:38,260 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 20:18:38,260 - INFO - 🔍 Checking model directory: new
+2025-11-13 20:18:38,261 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 20:18:38,261 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 20:18:38,261 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 20:18:38,261 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:18:38,262 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:18:38,263 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:18:38,263 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:18:38,264 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 20:18:38,264 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 20:18:38,265 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 20:18:38,265 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 20:18:38,266 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 20:18:38,266 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 20:18:38,267 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 20:18:38,267 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 20:18:38,267 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 20:18:38,268 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 20:18:38,268 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 20:18:38,268 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 20:18:38,269 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 20:18:38,269 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:18:38,269 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:18:38,270 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 20:18:38,270 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 20:18:38,271 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 20:18:38,271 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 20:18:38,272 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 20:18:38,272 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 20:18:38,273 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 20:18:38,273 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 20:18:38,273 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 20:18:38,274 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 20:18:38,274 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:18:38,275 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:18:38,275 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 20:18:38,275 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:18:38,276 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:18:38,276 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 20:18:38,276 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 20:18:38,277 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 20:18:38,277 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 20:18:38,278 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 20:18:38,278 - INFO - ✅ Discovered 31 models
+2025-11-13 20:18:38,279 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 20:18:38,279 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 20:18:38,279 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 20:18:38,280 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 20:18:38,280 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 20:18:38,280 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 20:18:38,281 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 20:18:38,281 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 20:18:38,281 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 20:18:38,282 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 20:18:38,282 - INFO - ➕ Added new discovered model: model
+2025-11-13 20:18:38,282 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:18:38,282 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 20:18:38,282 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 20:18:38,283 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 20:18:38,283 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:18:38,283 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 20:18:38,283 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 20:18:38,284 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 20:18:38,284 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 20:18:38,284 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 20:18:38,284 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 20:18:38,285 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 20:18:38,285 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 20:18:38,285 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 20:18:38,285 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 20:18:38,285 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 20:18:38,286 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:18:38,286 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:18:38,286 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 20:18:38,286 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 20:18:38,287 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 20:18:38,742 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-13 20:18:38,745 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-13 20:18:38,746 - INFO - Initializing services for headless mode...
+2025-11-13 20:18:38,746 - WARNING - Audio section is missing or None in config. Using empty models dict.
+2025-11-13 20:18:38,746 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-13 20:18:38,747 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:18:38,747 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:18:38,747 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:18:38,748 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-13 20:18:38,748 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-13 20:18:38,748 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-13 20:18:38,749 - INFO - LlamaRunnerManager initialized.
+2025-11-13 20:18:38,749 - INFO - Ollama Proxy is enabled. Creating server...
+2025-11-13 20:18:38,749 - INFO - LM Studio Proxy is enabled. Creating server...
+2025-11-13 20:42:44,320 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 20:42:44,321 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 20:42:44,321 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 20:42:44,321 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 20:42:44,321 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 20:42:44,321 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:42:44,322 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:42:44,322 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:42:44,322 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 20:42:44,329 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 20:42:44,329 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 20:42:44,329 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 20:42:44,329 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 20:42:44,329 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:42:44,329 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:42:44,330 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:42:44,330 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 20:42:44,338 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 20:42:44,338 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 20:42:44,338 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 20:42:44,340 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 20:42:44,340 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 20:42:44,340 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 20:42:44,340 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 20:42:44,340 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 20:42:44,340 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 20:42:44,341 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 20:42:44,341 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 20:42:44,341 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 20:42:44,342 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 20:42:44,342 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 20:42:44,342 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 20:42:44,342 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 20:42:44,343 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 20:42:44,343 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 20:42:44,343 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 20:42:44,343 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 20:42:44,345 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 20:42:44,345 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 20:42:44,345 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 20:42:44,345 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 20:42:44,345 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 20:42:44,345 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 20:42:44,346 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:42:44,346 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 20:42:44,346 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 20:42:44,346 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 20:42:44,347 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 20:42:44,347 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 20:42:44,347 - INFO - 🔍 Checking model directory: new
+2025-11-13 20:42:44,347 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 20:42:44,348 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 20:42:44,348 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 20:42:44,348 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:42:44,350 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:42:44,350 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:42:44,350 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:42:44,350 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 20:42:44,350 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 20:42:44,350 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 20:42:44,350 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 20:42:44,351 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 20:42:44,351 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 20:42:44,351 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 20:42:44,351 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 20:42:44,352 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 20:42:44,352 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 20:42:44,352 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 20:42:44,353 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 20:42:44,353 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 20:42:44,353 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:42:44,353 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:42:44,354 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 20:42:44,354 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 20:42:44,354 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 20:42:44,355 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 20:42:44,355 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 20:42:44,355 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 20:42:44,355 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 20:42:44,356 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 20:42:44,356 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 20:42:44,356 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 20:42:44,356 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:42:44,357 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:42:44,357 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 20:42:44,357 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:42:44,357 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:42:44,358 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 20:42:44,358 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 20:42:44,358 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 20:42:44,359 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 20:42:44,359 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 20:42:44,359 - INFO - ✅ Discovered 31 models
+2025-11-13 20:42:44,359 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 20:42:44,359 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 20:42:44,360 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 20:42:44,360 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 20:42:44,360 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 20:42:44,360 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 20:42:44,360 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 20:42:44,361 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 20:42:44,361 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 20:42:44,361 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 20:42:44,361 - INFO - ➕ Added new discovered model: model
+2025-11-13 20:42:44,361 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:42:44,361 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 20:42:44,362 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 20:42:44,362 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 20:42:44,362 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:42:44,362 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 20:42:44,362 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 20:42:44,362 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 20:42:44,363 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 20:42:44,364 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:42:44,364 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:42:44,364 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 20:42:44,364 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 20:42:44,364 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 20:42:46,650 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-13 20:42:46,653 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-13 20:42:46,654 - INFO - Initializing services for headless mode...
+2025-11-13 20:42:46,655 - WARNING - Audio section is missing or None in config. Using empty models dict.
+2025-11-13 20:42:46,655 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-13 20:42:46,655 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:42:46,655 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:42:46,655 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:42:46,656 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-13 20:42:46,656 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-13 20:42:46,656 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-13 20:42:46,656 - INFO - LlamaRunnerManager initialized.
+2025-11-13 20:42:46,656 - INFO - Ollama Proxy is enabled. Creating server...
+2025-11-13 20:42:46,656 - INFO - LM Studio Proxy is enabled. Creating server...
+2025-11-13 20:52:58,519 - INFO - === INITIALISATION COMPATIBLE CONFIG_LOADER ===
+2025-11-13 20:52:58,519 - INFO - ✅ llama-server.exe trouvé : F:\\llm\\llama\\llama-server.exe
+2025-11-13 20:52:58,520 - INFO - ✅ Répertoire des modèles trouvé : F:\\llm\\llama\\models
+2025-11-13 20:52:58,520 - INFO - ✅ ConfigLoader initialisé avec succès - VERSION COMPATIBLE
+2025-11-13 20:52:58,520 - INFO - 🔄 Chargement de la configuration applicative...
+2025-11-13 20:52:58,520 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:52:58,521 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:52:58,521 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:52:58,521 - INFO - ✅ Fichier config trouvé : F:\llm\llama-runner-async-proxy\config\app_config.json
+2025-11-13 20:52:58,521 - INFO - ✅ Configuration JSON chargée avec succès
+2025-11-13 20:52:58,522 - WARNING - ⚠️ Section 'metrics' ajoutée à la configuration applicative
+2025-11-13 20:52:58,522 - INFO - ✅ Configuration applicative chargée avec succès
+2025-11-13 20:52:58,522 - INFO - 🔄 Chargement de la configuration des modèles...
+2025-11-13 20:52:58,522 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:52:58,522 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:52:58,522 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:52:58,523 - INFO - ✅ Fichier config modèles trouvé : F:\llm\llama-runner-async-proxy\config\models_config.json
+2025-11-13 20:52:58,523 - INFO - ✅ Configuration JSON des modèles chargée avec succès
+2025-11-13 20:52:58,523 - WARNING - ⚠️ Aucun modèle configuré, modèle par défaut créé
+2025-11-13 20:52:58,523 - INFO - 🔍 Discovering models from directory: F:\\llm\\llama\\models
+2025-11-13 20:52:58,524 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf
+2025-11-13 20:52:58,524 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.-gguf\cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S.gguf
+2025-11-13 20:52:58,524 - INFO - 🔍 Checking model directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF
+2025-11-13 20:52:58,525 - INFO - ✅ Discovered model from directory: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S at F:\llm\llama\models\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S-GGUF\cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf
+2025-11-13 20:52:58,525 - INFO - 🔍 Checking model directory: Chroma1-HD-Flash-Q4_K_S-GGUF
+2025-11-13 20:52:58,526 - INFO - ✅ Discovered model from directory: Chroma1-HD-Flash-Q4_K_S at F:\llm\llama\models\Chroma1-HD-Flash-Q4_K_S-GGUF\Chroma1-HD-Flash-Q4_K_S.gguf
+2025-11-13 20:52:58,526 - INFO - 🔍 Checking model directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF
+2025-11-13 20:52:58,526 - INFO - ✅ Discovered model from directory: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M at F:\llm\llama\models\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M-GGUF\DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf
+2025-11-13 20:52:58,526 - INFO - 🔍 Checking model directory: Dorado-WebSurf_Tool-ext.Q8_0-GGUF
+2025-11-13 20:52:58,527 - INFO - ✅ Discovered model from directory: Dorado-WebSurf_Tool-ext.Q8_0 at F:\llm\llama\models\Dorado-WebSurf_Tool-ext.Q8_0-GGUF\Dorado-WebSurf_Tool-ext.Q8_0.gguf
+2025-11-13 20:52:58,527 - INFO - 🔍 Checking model directory: gemma-2-9b-GGUF
+2025-11-13 20:52:58,527 - INFO - ✅ Discovered model from directory: gemma-2-9b-Q8_0 at F:\llm\llama\models\gemma-2-9b-GGUF\gemma-2-9b-Q8_0.gguf
+2025-11-13 20:52:58,527 - INFO - 🔍 Checking model directory: gemma-3-1b-it-Q4_K_M-gguf
+2025-11-13 20:52:58,528 - INFO - ✅ Discovered model from directory: gemma-3-1b-it-Q4_K_M at F:\llm\llama\models\gemma-3-1b-it-Q4_K_M-gguf\gemma-3-1b-it-Q4_K_M.gguf
+2025-11-13 20:52:58,528 - INFO - 🔍 Checking model directory: gpt-oss-20b-MXFP4-GGUF
+2025-11-13 20:52:58,528 - INFO - ✅ Discovered model from directory: gpt-oss-20b-MXFP4 at F:\llm\llama\models\gpt-oss-20b-MXFP4-GGUF\gpt-oss-20b-MXFP4.gguf
+2025-11-13 20:52:58,529 - INFO - 🔍 Checking model directory: granite-4.0-h-1b-GGUF
+2025-11-13 20:52:58,529 - INFO - ✅ Discovered model from directory: granite-4.0-h-1b-Q4_K_S at F:\llm\llama\models\granite-4.0-h-1b-GGUF\granite-4.0-h-1b-Q4_K_S.gguf
+2025-11-13 20:52:58,529 - INFO - 🔍 Checking model directory: granite-4.0-h-350m-GGUF
+2025-11-13 20:52:58,529 - INFO - ✅ Discovered model from directory: granite-4.0-h-350m-Q8_0 at F:\llm\llama\models\granite-4.0-h-350m-GGUF\granite-4.0-h-350m-Q8_0.gguf
+2025-11-13 20:52:58,530 - INFO - 🔍 Checking model directory: granite-4_0-h-tiny-IQ4_XS
+2025-11-13 20:52:58,530 - INFO - ✅ Discovered model from directory: model at F:\llm\llama\models\granite-4_0-h-tiny-IQ4_XS\model.gguf
+2025-11-13 20:52:58,530 - INFO - 🔍 Checking model directory: Jan-v1-4B-Q4_K_M
+2025-11-13 20:52:58,530 - WARNING - ⚠️ Duplicate model name detected. Using: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:52:58,531 - INFO - ✅ Discovered model from directory: model_Jan-v1-4B-Q4_K_M at F:\llm\llama\models\Jan-v1-4B-Q4_K_M\model.gguf
+2025-11-13 20:52:58,531 - INFO - 🔍 Checking model directory: JanusCoderV-7B-i1-GGUF
+2025-11-13 20:52:58,531 - INFO - ✅ Discovered model from directory: JanusCoderV-7B.i1-Q4_K_S at F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf
+2025-11-13 20:52:58,531 - INFO - 🔍 Checking model directory: neutts-air
+2025-11-13 20:52:58,532 - INFO - ✅ Discovered model from directory: neutss-air-BF16 at F:\llm\llama\models\neutts-air\neutss-air-BF16.gguf
+2025-11-13 20:52:58,532 - INFO - 🔍 Checking model directory: new
+2025-11-13 20:52:58,532 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\new
+2025-11-13 20:52:58,532 - INFO - 🔍 Checking model directory: Nomic-embed-text-v1.5-Embedding-GGUF
+2025-11-13 20:52:58,533 - INFO - ✅ Discovered model from directory: nomic-embed-text-v1.5-f16 at F:\llm\llama\models\Nomic-embed-text-v1.5-Embedding-GGUF\nomic-embed-text-v1.5-f16.gguf
+2025-11-13 20:52:58,533 - INFO - 🔍 Checking model directory: nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:52:58,534 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\nomic-embed-text-v1.5.f16-GGUF
+2025-11-13 20:52:58,534 - INFO - 🔍 Checking model directory: Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:52:58,534 - WARNING - ⚠️ Duplicate model name detected. Using: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:52:58,535 - INFO - ✅ Discovered model from directory: model_Phi-4-mini-instruct_Q4_K_M at F:\llm\llama\models\Phi-4-mini-instruct_Q4_K_M\model.gguf
+2025-11-13 20:52:58,535 - INFO - 🔍 Checking model directory: Qwen2.5-7B-Instruct-Q4_K_M-GGUF
+2025-11-13 20:52:58,535 - INFO - ✅ Discovered model from directory: Qwen2.5-7B-Instruct-Q4_K_M at F:\llm\llama\models\Qwen2.5-7B-Instruct-Q4_K_M-GGUF\Qwen2.5-7B-Instruct-Q4_K_M.gguf
+2025-11-13 20:52:58,535 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-1.5B-Q8_0-GGUF
+2025-11-13 20:52:58,536 - INFO - ✅ Discovered model from directory: qwen2.5-coder-1.5b-q8_0 at F:\llm\llama\models\Qwen2.5-Coder-1.5B-Q8_0-GGUF\qwen2.5-coder-1.5b-q8_0.gguf
+2025-11-13 20:52:58,536 - INFO - 🔍 Checking model directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF
+2025-11-13 20:52:58,536 - INFO - ✅ Discovered model from directory: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M at F:\llm\llama\models\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M-GGUF\Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M.gguf
+2025-11-13 20:52:58,536 - INFO - 🔍 Checking model directory: Qwen2.5-Omni-3B-GGUF
+2025-11-13 20:52:58,537 - INFO - ✅ Discovered model from directory: mmproj-Qwen2.5-Omni-3B-f16 at F:\llm\llama\models\Qwen2.5-Omni-3B-GGUF\mmproj-Qwen2.5-Omni-3B-f16.gguf
+2025-11-13 20:52:58,537 - INFO - 🔍 Checking model directory: Qwen2.5-VL-7B-Instruct-GGUF
+2025-11-13 20:52:58,537 - INFO - ✅ Discovered model from directory: mmproj-F32 at F:\llm\llama\models\Qwen2.5-VL-7B-Instruct-GGUF\mmproj-F32.gguf
+2025-11-13 20:52:58,538 - INFO - 🔍 Checking model directory: Qwen3-0.6B-GGUF
+2025-11-13 20:52:58,538 - INFO - ✅ Discovered model from directory: Qwen3-0.6B-Q4_K_S at F:\llm\llama\models\Qwen3-0.6B-GGUF\Qwen3-0.6B-Q4_K_S.gguf
+2025-11-13 20:52:58,538 - INFO - 🔍 Checking model directory: Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:52:58,538 - WARNING - ⚠️ No .gguf files found in F:\llm\llama\models\Qwen3-0.6B-Q8_0-GGUF
+2025-11-13 20:52:58,539 - INFO - 🔍 Checking model directory: Qwen3-1.7B-GGUF
+2025-11-13 20:52:58,539 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q4_K_S at F:\llm\llama\models\Qwen3-1.7B-GGUF\Qwen3-1.7B-Q4_K_S.gguf
+2025-11-13 20:52:58,539 - INFO - 🔍 Checking model directory: Qwen3-1.7B-Q8_0-GGUF
+2025-11-13 20:52:58,539 - INFO - ✅ Discovered model from directory: Qwen3-1.7B-Q8_0 at F:\llm\llama\models\Qwen3-1.7B-Q8_0-GGUF\Qwen3-1.7B-Q8_0.gguf
+2025-11-13 20:52:58,539 - INFO - 🔍 Checking model directory: Qwen3-14B-GGUF
+2025-11-13 20:52:58,540 - INFO - ✅ Discovered model from directory: Qwen3-14B-Q4_K_S at F:\llm\llama\models\Qwen3-14B-GGUF\Qwen3-14B-Q4_K_S.gguf
+2025-11-13 20:52:58,540 - INFO - 🔍 Checking model directory: Qwen3-4B-Thinking-2507-Q4_K_S-GGUF
+2025-11-13 20:52:58,540 - INFO - ✅ Discovered model from directory: Qwen3-4B-Thinking-2507-Q4_K_S at F:\llm\llama\models\Qwen3-4B-Thinking-2507-Q4_K_S-GGUF\Qwen3-4B-Thinking-2507-Q4_K_S.gguf
+2025-11-13 20:52:58,540 - INFO - 🔍 Checking model directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF
+2025-11-13 20:52:58,541 - INFO - ✅ Discovered model from directory: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S at F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf
+2025-11-13 20:52:58,541 - INFO - 🔍 Checking model directory: Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:52:58,541 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:52:58,541 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF at F:\llm\llama\models\Qwen3-VL-2B-Thinking-1M-GGUF\mmproj-F32.gguf
+2025-11-13 20:52:58,542 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:52:58,542 - WARNING - ⚠️ Duplicate model name detected. Using: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:52:58,542 - INFO - ✅ Discovered model from directory: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF at F:\llm\llama\models\Qwen3-VL-8B-Thinking-GGUF\mmproj-F32.gguf
+2025-11-13 20:52:58,542 - INFO - 🔍 Checking model directory: Qwen3-VL-8B-Thinking.Q4_K-GGUF
+2025-11-13 20:52:58,543 - INFO - ✅ Discovered model from directory: Qwen3-VL-8B-Thinking.Q4_K at F:\llm\llama\models\Qwen3-VL-8B-Thinking.Q4_K-GGUF\Qwen3-VL-8B-Thinking.Q4_K.gguf
+2025-11-13 20:52:58,543 - INFO - 🔍 Checking model directory: Seed-Coder-8B-Reasoning-GGUF
+2025-11-13 20:52:58,543 - INFO - ✅ Discovered model from directory: Seed-Coder-8B-Reasoning-UD-Q5_K_XL at F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf
+2025-11-13 20:52:58,543 - INFO - ✅ Discovered 31 models
+2025-11-13 20:52:58,544 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q3_K_S
+2025-11-13 20:52:58,544 - INFO - ➕ Added new discovered model: cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S
+2025-11-13 20:52:58,544 - INFO - ➕ Added new discovered model: Chroma1-HD-Flash-Q4_K_S
+2025-11-13 20:52:58,544 - INFO - ➕ Added new discovered model: DeepSeek-R1-0528-Qwen3-8B-Q4_K_M
+2025-11-13 20:52:58,545 - INFO - ➕ Added new discovered model: Dorado-WebSurf_Tool-ext.Q8_0
+2025-11-13 20:52:58,545 - INFO - ➕ Added new discovered model: gemma-2-9b-Q8_0
+2025-11-13 20:52:58,545 - INFO - ➕ Added new discovered model: gemma-3-1b-it-Q4_K_M
+2025-11-13 20:52:58,545 - INFO - ➕ Added new discovered model: gpt-oss-20b-MXFP4
+2025-11-13 20:52:58,545 - INFO - ➕ Added new discovered model: granite-4.0-h-1b-Q4_K_S
+2025-11-13 20:52:58,545 - INFO - ➕ Added new discovered model: granite-4.0-h-350m-Q8_0
+2025-11-13 20:52:58,546 - INFO - ➕ Added new discovered model: model
+2025-11-13 20:52:58,546 - INFO - ➕ Added new discovered model: model_Jan-v1-4B-Q4_K_M
+2025-11-13 20:52:58,546 - INFO - 🔄 Updated auto_discovered flag for model: JanusCoderV-7B.i1-Q4_K_S
+2025-11-13 20:52:58,546 - INFO - ➕ Added new discovered model: neutss-air-BF16
+2025-11-13 20:52:58,546 - INFO - ➕ Added new discovered model: nomic-embed-text-v1.5-f16
+2025-11-13 20:52:58,546 - INFO - ➕ Added new discovered model: model_Phi-4-mini-instruct_Q4_K_M
+2025-11-13 20:52:58,547 - INFO - ➕ Added new discovered model: Qwen2.5-7B-Instruct-Q4_K_M
+2025-11-13 20:52:58,547 - INFO - ➕ Added new discovered model: qwen2.5-coder-1.5b-q8_0
+2025-11-13 20:52:58,547 - INFO - ➕ Added new discovered model: Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M
+2025-11-13 20:52:58,547 - INFO - ➕ Added new discovered model: mmproj-Qwen2.5-Omni-3B-f16
+2025-11-13 20:52:58,547 - INFO - ➕ Added new discovered model: mmproj-F32
+2025-11-13 20:52:58,548 - INFO - ➕ Added new discovered model: Qwen3-0.6B-Q4_K_S
+2025-11-13 20:52:58,548 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q4_K_S
+2025-11-13 20:52:58,548 - INFO - ➕ Added new discovered model: Qwen3-1.7B-Q8_0
+2025-11-13 20:52:58,548 - INFO - ➕ Added new discovered model: Qwen3-14B-Q4_K_S
+2025-11-13 20:52:58,548 - INFO - ➕ Added new discovered model: Qwen3-4B-Thinking-2507-Q4_K_S
+2025-11-13 20:52:58,548 - INFO - ➕ Added new discovered model: Qwen3-Coder-30B-A3B-Instruct-Q4_K_S
+2025-11-13 20:52:58,549 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-2B-Thinking-1M-GGUF
+2025-11-13 20:52:58,549 - INFO - ➕ Added new discovered model: mmproj-F32_Qwen3-VL-8B-Thinking-GGUF
+2025-11-13 20:52:58,549 - INFO - ➕ Added new discovered model: Qwen3-VL-8B-Thinking.Q4_K
+2025-11-13 20:52:58,549 - INFO - ➕ Added new discovered model: Seed-Coder-8B-Reasoning-UD-Q5_K_XL
+2025-11-13 20:52:58,550 - INFO - ✅ Configuration des modèles chargée avec succès
+2025-11-13 20:52:59,042 - INFO - Ensured metadata cache directory exists: F:\llm\llama-runner-async-proxy\config\metadata_cache
+2025-11-13 20:52:59,045 - INFO - Updated dynamic routing handlers for /v1/chat/completions, /v1/completions, /v1/embeddings to support conditional streaming.
+2025-11-13 20:52:59,047 - INFO - Initializing services for headless mode...
+2025-11-13 20:52:59,047 - WARNING - Audio section is missing or None in config. Using empty models dict.
+2025-11-13 20:52:59,047 - INFO - 🔄 Vérification de l'existence des fichiers de configuration...
+2025-11-13 20:52:59,047 - INFO - ✅ Vérification des répertoires nécessaires...
+2025-11-13 20:52:59,047 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\config
+2025-11-13 20:52:59,048 - INFO - ✅ Répertoire déjà existant : F:\llm\llama-runner-async-proxy\logs
+2025-11-13 20:52:59,048 - INFO - 🔍 Fichier app_config.json existe : True
+2025-11-13 20:52:59,048 - INFO - 🔍 Fichier models_config.json existe : True
+2025-11-13 20:52:59,048 - INFO - ✅ Les fichiers de configuration existent déjà
+2025-11-13 20:52:59,048 - INFO - LlamaRunnerManager initialized.
+2025-11-13 20:52:59,049 - INFO - Ollama Proxy is enabled. Creating server...
+2025-11-13 20:52:59,049 - INFO - LM Studio Proxy is enabled. Creating server...

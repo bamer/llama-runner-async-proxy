@@ -89,9 +89,12 @@ class HeadlessServiceManager:
                 llama_runner_manager=self.llama_runner_manager
             )
         
-        # Initialize metrics collector (without dashboard API)
-        from llama_runner.services.metrics_collector import MetricsCollector
         self.metrics_collector = MetricsCollector()
+        # Expose collector for FastAPI monitoring
+        GLOBAL_METRICS_COLLECTOR = self.metrics_collector
+        # Expose for FastAPI monitoring
+        from llama_runner.services.metrics_collector import GLOBAL_METRICS_COLLECTOR
+        GLOBAL_METRICS_COLLECTOR = self.metrics_collector
 
     async def start_services(self):
         """Start all initialized services."""

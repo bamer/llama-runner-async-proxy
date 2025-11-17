@@ -1,10 +1,13 @@
 """Runner metrics and monitoring."""
 import time
 from dataclasses import dataclass, field
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import logging
 
 logger = logging.getLogger(__name__)
+
+# Global reference for FastAPI monitoring
+GLOBAL_METRICS_COLLECTOR: Optional['MetricsCollector'] = None
 
 @dataclass
 class RunnerMetrics:
