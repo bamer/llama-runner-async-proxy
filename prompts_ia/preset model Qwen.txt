@@ -1,4 +1,18 @@
- F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-14B-128K-GGUF\Qwen3-14B-128K-UD-Q4_K_XL.gguf --alias Qwen3-14B-128K-UD-Q4_K_XL --host 127.0.0.1 
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf --alias JanusCoderV-7B.i1-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 1024 --ubatch-size 512 --threads 6 --flash-attn on --mlock --no-mmap --jinja --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 30 --n-gpu-layers 85 --ctx-size 32000
+ 
+ 
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 0 --n-gpu-layers 85 -np 3 --ctx-size 128000 --kv-unified true
+ 
+ --no-mmap
+ 
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 20 --n-gpu-layers 15 -np 4 --ctx-size 128000 --kv-unified
+ 
+ 
+ set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\gpt-oss-20b-Q4_K_S-gguf\gpt-oss-20b-Q4_K_S.gguf --alias gpt-oss-20b-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 20 --n-gpu-layers 15 -np 4 --ctx-size 128000 
+ 
+  set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\gpt-oss-20b-Q4_K_S-gguf\gpt-oss-20b-Q4_K_S.gguf --alias gpt-oss-20b-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 10 --n-gpu-layers 49 -np 4 --ctx-size 128000 
+ 
  
  --port 0 
  --ctx-size 32000 

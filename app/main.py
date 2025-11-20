@@ -1,7 +1,7 @@
 # app/main.py
 
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
+from fastapi.static_files import StaticFiles
 from starlette.responses import HTMLResponse
 import uvicorn
 import os
