@@ -1,5 +1,3 @@
-# run_fastapi_app.py
-# Entry point to run the new FastAPI application
 
 import uvicorn
 from app.main import app

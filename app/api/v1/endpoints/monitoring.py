@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from typing import Dict
 
 from llama_runner.services.metrics_collector import MetricsCollector
