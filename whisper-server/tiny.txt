@@ -1,0 +1,4 @@
+# Modèle Whisper tiny
+
+Ce fichier indique que le modèle tiny est disponible dans ce répertoire.
+Le modèle sera téléchargé automatiquement par faster-whisper lors de la première utilisation.

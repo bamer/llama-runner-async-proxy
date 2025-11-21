@@ -1,0 +1,33 @@
+{
+  "env": {
+    "CLAUDE_BASH_NO_LOGIN": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(cat:*)",
+      "Bash(findstr \"\\.py$\")",
+      "Bash(python:*)",
+      "Task",
+      "Bash(Depend:*)",
+      "Bash(git log:*)",
+      "Glob",
+      "Grep",
+      "LS",
+      "Read",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "WebFetch",
+      "WebSearch",
+      "Depends",
+      "Search",
+      "Bash(pip install:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add origin https://github.com/yourusername/llama-runner-async-proxy.git)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

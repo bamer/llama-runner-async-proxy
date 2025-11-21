@@ -1,0 +1,42 @@
+{
+    "continue.enableConsole": true,
+    "continue.enableQuickActions": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.autoImportCompletions": true,
+    "github.copilot.chat.customOAIModels": {
+        "minimax-m2:cloud": {
+            "name": "cerebras_Qwen3-Coder-REAP-25B-A3B-Q4_K_S.gguf",
+            "url": "http://127.0.0.1:8134/v1",
+            "toolCalling": true,
+            "vision": false,
+            "thinking": true,
+            "maxInputTokens": 128000,
+            "maxOutputTokens": 128000,
+            "requiresAPIKey": false
+        }
+    },
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "github.copilot.advanced": {
+        
+
+    },
+    "chat.agent.thinking.collapsedTools": "all",
+    "chat.allowAnonymousAccess": true,
+    "chat.checkpoints.showFileChanges": true,
+    "yaml.schemas": {
+        "file:///c%3A/Users/theba/.vscode-insiders/extensions/continue.continue-1.2.10-win32-x64/config-yaml-schema.json": [
+            ".continue/**/*.yaml",
+            "file:///f%3A/llm/llama-runner-async-proxy/.continue/mcpServers/new-mcp-server-2.yaml"
+        ]
+    },
+    "github.copilot.chat.byok.ollamaEndpoint": "http://localhost:8000",
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.completionsFetcher": "electron-fetch",
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "github.copilot.chat.reviewSelection.instructions": [],
+    "git.ignoreLimitWarning": true
+}
