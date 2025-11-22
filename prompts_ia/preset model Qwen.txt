@@ -1,7 +1,7 @@
 set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf --alias JanusCoderV-7B.i1-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 1024 --ubatch-size 512 --threads 6 --flash-attn on --mlock --no-mmap --jinja --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 30 --n-gpu-layers 85 --ctx-size 32000
  
  
-set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 0 --n-gpu-layers 85 -np 3 --ctx-size 128000 --kv-unified true
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 0 --n-gpu-layers 85 --ctx-size 128000 --kv-unified true
  
  --no-mmap
  
@@ -13,12 +13,16 @@ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; 
  
   set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\gpt-oss-20b-Q4_K_S-gguf\gpt-oss-20b-Q4_K_S.gguf --alias gpt-oss-20b-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --no-context-shift --n-cpu-moe 20 --n-gpu-layers 60 -np 4 --ctx-size 512000 --swa-full  --cache-reuse 256 --reasoning-format high
  
-  set PYTHONIOENCODING=utf-8 ;set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\GPT-OSS-Code-Reasoning-20B.Q8_0-gguf\GPT-OSS-Code-Reasoning-20B.Q8_0.gguf --alias GPT-OSS-Code-Reasoning-20B.Q8_0 --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 1024 --ubatch-size 512 --threads 6 --jinja  --flash-attn on --no-context-shift --n-cpu-moe 20 --n-gpu-layers 60 --np 2 --ctx-size 512000 --swa-full  --cache-reuse 256 --chat-template-kwargs '{"reasoning_effort": "high"}'
+  set PYTHONIOENCODING=utf-8 ;set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\GPT-OSS-Code-Reasoning-20B.Q8_0-gguf\GPT-OSS-Code-Reasoning-20B.Q8_0.gguf --alias GPT-OSS-Code-Reasoning-20B.Q8_0 --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 256 --ubatch-size 128 --threads 6 --jinja --kv-unified --flash-attn on  --n-cpu-moe 20 --n-gpu-layers 60 --np 2 --ctx-size 512000  --cache-reuse 128 --chat-template-kwargs '{"reasoning_effort": "high"}' --no-warmup  
  
  
-   set PYTHONIOENCODING=utf-8 ;set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\DeepSeek-Coder-V2-Lite-Instruct.Q4_K-gguf\DeepSeek-Coder-V2-Lite-Instruct.Q4_K.gguf --alias GPT-OSS-Code-Reasoning-20B.Q8_0 --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 1024 --ubatch-size 512 --threads 6 --jinja  --flash-attn on --no-context-shift --n-cpu-moe 20 --n-gpu-layers 60 --ctx-size 512000 --cache-reuse 256 
+set PYTHONIOENCODING=utf-8 ;set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\DeepSeek-Coder-V2-Lite-Instruct.Q4_K-gguf\DeepSeek-Coder-V2-Lite-Instruct.Q4_K.gguf --alias DeepSeek-Coder-V2-Lite-Instruct.Q4_K --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 256 --ubatch-size 128 --threads 6 --jinja --kv-unified -fa on -b 2048 -ub 2048 --n-cpu-moe 20 --n-gpu-layers 10 --cache-reuse 128 --temp 0.6 --top-p 0.95 --min-p 0.01 --ctx-size 163840 --seed 3407 --no-warmup 
+ 
+ 
  
 set PYTHONIOENCODING=utf-8 ;set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf --alias JanusCoderV-7B.i1-Q4_K_S.gguf --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 256 --ubatch-size 128 --threads 6 --jinja  --flash-attn on --no-context-shift --n-cpu-moe 10 --n-gpu-layers 70  --cache-reuse 128 -np 2 --ctx-size 128000
+ 
+ set PYTHONIOENCODING=utf-8 ;set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf --host 127.0.0.1 --port 8134 --main-gpu 0 --threads 6 --jinja --flash-attn on --n-cpu-moe 10 --n-gpu-layers 70 --ctx-size 64000
  
  
  use error-analysis agent to find and fix the aplication then use  multi-agent-review agent for ensure the code quality follow best practice and project guideline
