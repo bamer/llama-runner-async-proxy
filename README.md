@@ -32,7 +32,3 @@ Please refer to the `docs/` directory for detailed documentation.
 ## Contributing
 
 Contributions are welcome! Follow the coding conventions and run the tests before submitting a pull request.
-
----
-
-*Generated with Claude Code (https://claude.com/claude-code). Co‑Authored‑By: Claude <noreply@anthropic.com>*

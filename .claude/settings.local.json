@@ -25,7 +25,8 @@
       "Bash(pip install:*)",
       "Bash(git commit:*)",
       "Bash(git remote add origin https://github.com/yourusername/llama-runner-async-proxy.git)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git pull origin main:*)"
     ],
     "deny": [],
     "ask": []
