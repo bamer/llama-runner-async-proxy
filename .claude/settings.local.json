@@ -26,7 +26,10 @@
       "Bash(git commit:*)",
       "Bash(git remote add origin https://github.com/bamer/llama-runner-async-proxy.git)",
       "Bash(git push:*)",
-      "Bash(git pull origin main:*)"
+      "Bash(git pull origin main:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(tasklist)"
     ],
     "deny": [],
     "ask": []

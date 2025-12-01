@@ -13,5 +13,5 @@
 4. Ensure that the `README.md` file is up-to-date with the latest changes.
 
 ## References
-* GitHub repository: https://github.com/yourusername/llama-runner-async-proxy
-* Previous changes: https://github.com/yourusername/llama-runner-async-proxy/compare/refs/heads/main...origin/main
+* GitHub repository: https://github.com/bamer/llama-runner-async-proxy
+* Previous changes: https://github.com/bamer/llama-runner-async-proxy/compare/refs/heads/main...origin/main

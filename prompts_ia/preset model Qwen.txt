@@ -1,15 +1,89 @@
 set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\JanusCoderV-7B-i1-GGUF\JanusCoderV-7B.i1-Q4_K_S.gguf --alias JanusCoderV-7B.i1-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 1024 --ubatch-size 512 --threads 6 --flash-attn on --mlock --no-mmap --jinja --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 30 --n-gpu-layers 85 --ctx-size 32000
  
  
-set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 0 --n-gpu-layers 85 --ctx-size 128000 --kv-unified true
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 256 --ubatch-size 128 --threads 6 --jinja  --kv-unified -fa on  --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 30 --n-gpu-layers 15 --ctx-size 256000 --no-warmup
  
- --no-mmap
+ --no-mmap -np
  
  
  set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF\Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 20 --n-gpu-layers 15 -np 4 --ctx-size 128000 --kv-unified
  
  
- set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\gpt-oss-20b-Q4_K_S-gguf\gpt-oss-20b-Q4_K_S.gguf --alias gpt-oss-20b-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 20 --n-gpu-layers 15 -np 4 --ctx-size 128000 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/rpc-server -H 0.0.0.0 -p 50052 -c -d 
+ set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; .\rpc-server -H 0.0.0.0 -p 50053 -c 
+ 
+ export CUDA_VISIBLE_DEVICE=0 export CUDA_USE_TENSOR_CORES=1 export LLAMA_SET_ROWS=1; .\rpc-server -H 0.0.0.0 -p 50053 -c 
+ 
+  set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 2048 --ubatch-size 1024 --threads 6 --jinja  --kv-unified -fa on --no-mmap --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 99 --n-gpu-layers 35 --ctx-size 128000 --no-warmup --rpc "192.168.1.3:50052,192.168.1.194:50054"
+ 
+ --rpc "192.168.1.3:50052,192.16810.194:50054"
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --batch-size 2048 --ubatch-size 1024 --threads 6 --jinja  -fa on --kv-unified --context-shift --no-mmap -sm row -ts 80,20 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 60 --n-gpu-layers 48 --ctx-size 128000 --no-warmup --rpc "192.168.1.3:50052,192.168.1.205:50054" --cache-reuse 128 --timeout 6000
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set GGML_CUDA_FORCE_CUBLAS=ON; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --batch-size 2048 --ubatch-size 1024 --threads 6 --jinja --kv-unified -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 40 --n-gpu-layers 47 --ctx-size 96000 --no-warmup --rpc "192.168.1.3:50052,192.168.1.194:50054"
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  -fa on --kv-unified --context-shift -sm row -ts 35,65 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 34 --n-gpu-layers 99 --ctx-size 128000 --no-warmup --rpc "192.168.1.205:50054" --timeout 6000
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0 --host 127.0.0.1 --port 8134 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  -fa on --kv-unified --context-shift -sm row -ts 35,65 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 34 --n-gpu-layers 40 --ctx-size 128000 --no-warmup --rpc "192.168.1.205:50054" --timeout 6000
+ 
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0 --host 127.0.0.1 --port 8134 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  -fa on --kv-unified --context-shift -sm row -ts 30,70 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-cpu-moe 25 --n-gpu-layers 25 --ctx-size 128000 --no-warmup --rpc "192.168.1.205:50054" --timeout 6000
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0 --host 127.0.0.1 --port 8134 --batch-size 512 --ubatch-size 256 --threads 10 --jinja  -fa on --kv-unified --context-shift -sm row -ts 30,70 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 999 --ctx-size 112000 --no-warmup --rpc "192.168.1.81:50054" --timeout 6000 --no-mmap --mlock --log-colors on --n-cpu-moe 30
+ 
+ 
+--cpu-moe 
+--no-warmup
+
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0 --host 127.0.0.1 --port 8134 --batch-size 1024 --ubatch-size 1024 --threads 10 --jinja -fa on --context-shift -sm row --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 30 --ctx-size 96000 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap  --device CUDA0,RPC0
+ 
+ 
+export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S --host 127.0.0.1 --port 8134  --threads 10 --jinja -fa on -sm row --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 48 --ctx-size 0 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 99 --no-mmap --cache-type-k q8_0 --cache-type-v q8_0 --device CUDA0,RPC0,RPC1
+ 
+ 
+ export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S --host 127.0.0.1 --port 8134  --threads 10 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 48 --ctx-size 128000 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 99 --no-mmap --device CUDA0,RPC1,RPC0
+ 
+Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf
+ 
+-ts 22,78 
+--cpu-moe 
+--no-warmup 
+--kv-unified 
+--parallel 2
+ 
+ 
+ set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf --host 127.0.0.1 --port 8134 --threads 6 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 30 --ctx-size 96000 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap --device CUDA0,RPC0
+ 
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf --host 127.0.0.1 --port 8134 --threads 6 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 33 --ctx-size 256000 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap --device RPC0,CUDA0 
+ 
+ 
+Qwen3-14B-Q4_K_S.gguf
+
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Seed-Coder-8B-Reasoning-GGUF\Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf --alias Seed-Coder-8B-Reasoning.gguf --host 127.0.0.1 --port 8134 --threads 6 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 99 --ctx-size 256000 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap --device RPC0,CUDA0 
+ 
+ 
+ miromind-ai_MiroThinker-v1.0-8B-Q6_K_L-gguf
+ 
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\miromind-ai_MiroThinker-v1.0-8B-Q6_K_L-gguf\miromind-ai_MiroThinker-v1.0-8B-Q6_K_L.gguf --alias miromind-ai_MiroThinker-v1.0-8B-Q6_K_L --host 127.0.0.1 --port 8134 --threads 6 --jinja -fa on --temp 1.0  --top-p 0.95 --repeat-penalty 1.05 --n-gpu-layers 99 --ctx-size 262144 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap -sm row --device CUDA0,RPC0
+
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\miromind-ai_MiroThinker-v1.0-8B-Q6_K_L-gguf\miromind-ai_MiroThinker-v1.0-8B-Q6_K_L.gguf --alias miromind-ai_MiroThinker-v1.0-8B-Q6_K_L --host 127.0.0.1 --port 8134 --threads 8 --jinja -fa on --temp 1.0  --top-p 0.95 --repeat-penalty 1.05 --n-gpu-layers 10 --ctx-size 0 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap -sm row --reasoning-budget 0 --device CUDA0,RPC0 
+
+
+
+Olmo-3-7B-Think-SFT.Q6_K.gguf
+
+set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Olmo-3-7B-Think-SFT.Q6_K-gguf\Olmo-3-7B-Think-SFT.Q6_K.gguf --alias Olmo-3-7B-Think-SFT.Q6_K.gguf --host 127.0.0.1 --port 8134 --threads 6 --jinja -fa on --temp 1.0  --top-p 0.95 --repeat-penalty 1.05 --n-gpu-layers 99 --ctx-size 0 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap -sm row --device CUDA0,RPC0
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ set CUDA_VISIBLE_DEVICE=0 ; set CUDA_USE_TENSOR_CORES=1; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\gpt-oss-20b-Q4_K_S-gguf\gpt-oss-20b-Q4_K_S.gguf --alias gpt-oss-20b-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --mlock  --no-context-shift --predict -1 --temp 0.7 --top-p 0.95 --top-k 20 --repeat-penalty 1.2 --repeat-last-n 64 --n-cpu-moe 20 --n-gpu-layers 15 -np 4 --ctx-size 128000 
  
   set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\gpt-oss-20b-Q4_K_S-gguf\gpt-oss-20b-Q4_K_S.gguf --alias gpt-oss-20b-Q4_K_S --host 127.0.0.1 --port 8134 --main-gpu 0 --batch-size 512 --ubatch-size 256 --threads 6 --jinja  --flash-attn on --no-context-shift --n-cpu-moe 20 --n-gpu-layers 60 -np 4 --ctx-size 512000 --swa-full  --cache-reuse 256 --reasoning-format high
  

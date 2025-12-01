@@ -7,7 +7,7 @@
 ## ⚙️ 1. Project Overview
 
 **Project Name:** `LlamaRunner Pro – Async Proxy System`  
-**Goal:** Provide a unified interface between various AI models (LM Studio, Ollama, etc.) through an **asynchronous Python proxy**, paired with a **Vue.js web dashboard** for management and configuration.
+**Goal:** Provide a unified interface between various AI models (LM Studio, Ollama, etc.) through an **asynchronous Python proxy**, paired with a web dashboard** for management and configuration.
 
 The system runs on **Windows and Linux** platforms, designed for **autonomous, modular, and extensible** operation.
 
@@ -25,20 +25,14 @@ The system runs on **Windows and Linux** platforms, designed for **autonomous, m
 ### 🌐 Frontend / Dashboard
 | Component | Technology | Role |
 |------------|-------------|------|
-| **Framework** | Vue.js 3 | Web dashboard |
-| **UI Library** | Element Plus | UI components |
 | **Charts** | Chart.js | Real-time monitoring visualization |
-| **Build Tool** | Vite | Compilation and bundling |
 | **Styles** | SCSS | Advanced styling |
 
 ### 🧱 Development Tools
-- **PowerShell 7+** for the launch menu (`LaunchMenu.ps1`)
-- **VS Code** as the primary IDE  
+
 - **pytest** and **unittest** for testing  
 - **Git** for version control  
-- **Linters / Formatters:** black, flake8, eslint  
 - **Environments:** Virtualenv (`venv`) or **Anaconda** (no Docker)
-
 ---
 
 ## 🗂 3. Project File Structure
@@ -74,12 +68,6 @@ llama-runner-async-proxy/
     └── repositories/
 ```
 
-The llama-server path is "F:\\llm\\llama\\llama-server.exe" and must never change.
-The directory containing all llm models is "F:\\llm\\llama\\models". Each model is in a subdirectory. Example:
-Model name: JanusCoderV-7B.i1-Q4_K_S.gguf is in directory: 
-"F:\\llm\\llama\\models\\JanusCoderV-7B-i1-GGUF\\JanusCoderV-7B.i1-Q4_K_S.gguf"
-
----
 
 ## 🧠 4. Code Structure & Modules
 
@@ -101,12 +89,12 @@ Model name: JanusCoderV-7B.i1-Q4_K_S.gguf is in directory:
 - Strict **snake_case / PascalCase** naming conventions.
 - Enforce **UTF-8** encoding across I/O, logs, and configs.
 - Log both to **console and file**.
+- log file must rotate and not become too big
 - Non-critical issues → `warning`, critical issues → `exception`.
 
 ### Structure
 - One class or concept per Python file.
 - Loaders, runners, and proxies are logically separated.
-- Centralized validation via `config_loader.py`.
 - Separation of concerns is a priority and mandatory way of development.
 
 ---
@@ -119,7 +107,6 @@ Model name: JanusCoderV-7B.i1-Q4_K_S.gguf is in directory:
   |----------|------|
   | LM Studio API | 1234 |
   | Ollama API | 11434 |
-  | Dashboard Web | 8080 |
   | llama-server (direct) | 8035 |
 
 - Deployment is local only, with **venv or Anaconda**, no Docker.
