@@ -1,14 +1,11 @@
 # app/main.py
+
 import sys
 
 sys.path.insert(0, "/home/bamer/llama-runner-async-proxy")
 
 # Simple main launch command
-import uvicorn
 from fastapi import FastAPI
-import os
-
-# Import configuration and services
 from llama_runner.config_loader import load_config, load_models_config
 from llama_runner.headless_service_manager import HeadlessServiceManager
 from app.api.v1.routers import api_router
@@ -35,7 +32,25 @@ app.include_router(api_router, prefix="/api/v1")
 # Add monitoring endpoint for easy access
 @app.get("/monitoring")
 async def monitoring_page():
-    return {"message": "Monitoring interface - to be implemented"}
+    # Return basic monitoring information that matches what the dashboard expects
+    from llama_runner.services.metrics_collector import GLOBAL_METRICS_COLLECTOR
+
+    collector = GLOBAL_METRICS_COLLECTOR or None
+
+    if collector:
+        metrics = collector.get_summary()
+        return metrics
+    else:
+        return {
+            "uptime": 0,
+            "total_models": 0,
+            "active_runners": 0,
+            "total_starts": 0,
+            "total_stops": 0,
+            "total_errors": 0,
+            "memory_usage": {"current": "N/A", "peak": "N/A"},
+            "load_average": "N/A",
+        }
 
 
 # Add model configuration page
@@ -43,83 +58,169 @@ async def monitoring_page():
 async def model_config_page():
     html_content = """
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
     <head>
-        <title>Llama Runner Configuration</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <title>Llama Runner Async Proxy Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
-            .container { max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-            h1 { color: #333; }
-            .config-section { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 20px; margin: 10px 0; }
-            .form-group { margin: 15px 0; }
-            label { display: block; font-weight: bold; margin-bottom: 5px; }
-            input, select, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 300px; }
-            button { background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
-            button:hover { background-color: #0056b3; }
-            .status { color: #28a745; font-weight: bold; }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f5f5f5;
+            }
+            .App {
+                max-width: 1200px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .dashboard {
+                margin-bottom: 20px;
+            }
+            .model-config {
+                margin-bottom: 20px;
+            }
+            button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 5px;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .selected {
+                background-color: #28a745;
+            }
+            .metrics-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .metric-card {
+                background: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                padding: 15px;
+                width: 150px;
+            }
+            .model-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .model-card {
+                background: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                padding: 15px;
+                width: 200px;
+            }
+            .status-card {
+                background: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                padding: 15px;
+                width: 200px;
+            }
         </style>
     </head>
     <body>
-        <div class="container">
-            <h1>Llama Runner Async Proxy Configuration</h1>
+        <div class="App">
+            <h1>Llama Runner Async Proxy Dashboard</h1>
             
-            <div class="config-section">
-                <h2>Application Settings</h2>
-                <form id="app-config-form">
-                    <div class="form-group">
-                        <label for="port">Port:</label>
-                        <input type="number" id="port" name="port" value="8081"/>
+            <div class="dashboard">
+                <h2>System Metrics</h2>
+                <div class="metrics-grid" id="metrics-container">
+                    <p>Loading metrics...</p>
+                </div>
+                
+                <div class="models-section">
+                    <h2>Active Models</h2>
+                    <div class="model-list" id="models-container">
+                        <p>Loading models...</p>
                     </div>
-                    <div class="form-group">
-                        <label for="host">Host:</label>
-                        <input type="text" id="host" name="host" value="0.0.0.0"/>
+                </div>
+                
+                <div class="system-status">
+                    <h2>System Status</h2>
+                    <div id="status-container">
+                        <p>Loading status...</p>
                     </div>
-                    <button type="submit">Save Application Settings</button>
-                </form>
+                </div>
             </div>
-
-            <div class="config-section">
-                <h2>Model Selection & Configuration</h2>
-                <form id="model-config-form">
-                    <div class="form-group">
-                        <label for="model-select">Select Model:</label>
-                        <select id="model-select" name="model-select">
-                            <option value="">-- Select a model --</option>
-                            <!-- Models will be populated dynamically -->
-                        </select>
-                    </div>
-                    
-                    <div class="config-section">
-                        <h3>Model Configuration Parameters</h3>
-                        <div id="config-params">
-                            <p>Select a model to see configuration options.</p>
+            
+            <div class="model-config">
+                <h1>Model Configuration</h1>
+                
+                <div class="models-list">
+                    <h2>Available Models</h2>
+                    <ul id="model-list">
+                        <li><p>Loading available models...</p></li>
+                    </ul>
+                </div>
+                
+                <div class="model-details">
+                    <h2>Configuration</h2>
+                    <form id="config-form">
+                        <div class="form-group">
+                            <label for="port">Port:</label>
+                            <input type="number" id="port" name="port" value="8081"/>
                         </div>
-                    </div>
-                    
-                    <button type="submit">Save Model Configuration</button>
-                </form>
-            </div>
-
-            <div class="config-section">
-                <h2>System Status</h2>
-                <div id="system-status">
-                    <p>Loading system status...</p>
+                        <button type="submit">Save Configuration</button>
+                    </form>
                 </div>
             </div>
         </div>
 
         <script>
-            // Load system status
-            async function loadSystemStatus() {
+            // Load system metrics
+            async function loadMetrics() {
                 try {
                     const response = await fetch('/api/v1/monitoring');
                     const data = await response.json();
-                    document.getElementById('system-status').innerHTML = 
-                        `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    
+                    const container = document.getElementById('metrics-container');
+                    if (data) {
+                        container.innerHTML = `
+                            <div class="metric-card">
+                                <h3>Uptime</h3>
+                                <p>${data.uptime || 'N/A'} seconds</p>
+                            </div>
+                            <div class="metric-card">
+                                <h3>Total Models</h3>
+                                <p>${data.total_models || 0}</p>
+                            </div>
+                            <div class="metric-card">
+                                <h3>Active Runners</h3>
+                                <p>${data.active_runners || 0}</p>
+                            </div>
+                            <div class="metric-card">
+                                <h3>Total Starts</h3>
+                                <p>${data.total_starts || 0}</p>
+                            </div>
+                            <div class="metric-card">
+                                <h3>Total Stops</h3>
+                                <p>${data.total_stops || 0}</p>
+                            </div>
+                            <div class="metric-card">
+                                <h3>Total Errors</h3>
+                                <p>${data.total_errors || 0}</p>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = '<p>Failed to load metrics</p>';
+                    }
                 } catch (error) {
-                    document.getElementById('system-status').innerHTML = 'Error loading status';
+                    console.error('Error loading metrics:', error);
+                    document.getElementById('metrics-container').innerHTML = 'Error loading metrics';
                 }
             }
 
@@ -128,70 +229,50 @@ async def model_config_page():
                 try {
                     const response = await fetch('/api/v1/models');
                     const data = await response.json();
-                    const modelSelect = document.getElementById('model-select');
                     
-                    // Clear existing options and add default option
-                    modelSelect.innerHTML = '<option value="">-- Select a model --</option>';
+                    const container = document.getElementById('models-container');
+                    const modelList = document.getElementById('model-list');
                     
-                    // Add models to dropdown if available
-                    if (data.models && data.models.length > 0) {
+                    if (data && data.models) {
+                        // Display models
+                        let modelsHtml = '';
                         for (const model of data.models) {
-                            const option = document.createElement('option');
-                            option.value = model.name;
-                            option.textContent = model.name;
-                            modelSelect.appendChild(option);
+                            modelsHtml += `
+                                <div class="model-card">
+                                    <h3>${model.name}</h3>
+                                    <p>Port: ${model.port}</p>
+                                    <p>Status: ${model.status}</p>
+                                </div>
+                            `;
                         }
+                        container.innerHTML = modelsHtml;
+                        
+                        // Display available models in dropdown
+                        let modelOptions = '<li><p>-- Select a model --</p></li>';
+                        for (const model of data.models) {
+                            modelOptions += `<li><button onclick="selectModel('${model.name}')">${model.name}</button></li>`;
+                        }
+                        modelList.innerHTML = modelOptions;
                     } else {
-                        modelSelect.innerHTML += '<option value="">No models available</option>';
+                        container.innerHTML = '<p>No models available</p>';
+                        modelList.innerHTML = '<li><p>No models available</p></li>';
                     }
-                    
                 } catch (error) {
                     console.error('Error loading models:', error);
+                    document.getElementById('models-container').innerHTML = 'Error loading models';
+                    document.getElementById('model-list').innerHTML = '<li><p>Error loading models</p></li>';
                 }
             }
 
-            // Handle form submission
-            document.getElementById('app-config-form').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                const configData = {};
-                for (const [key, value] of formData.entries()) {
-                    if (value) {
-                        configData[key] = value;
-                    }
-                }
-                
-                try {
-                    // Save application settings
-                    const response = await fetch('/api/v1/config/app', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(configData)
-                    });
-                    
-                    if (response.ok) {
-                        alert('Application settings saved successfully');
-                    } else {
-                        alert('Error saving application settings');
-                    }
-                } catch (error) {
-                    alert('Network error saving application settings');
-                }
-            });
+            // Select model for configuration
+            function selectModel(modelName) {
+                alert(`Selected model: ${modelName}`);
+                // In a real app, this would populate the form with the selected model's config
+            }
 
-            // Handle model configuration form submission
-            document.getElementById('model-config-form').addEventListener('submit', async function(e) {
+            // Handle form submission
+            document.getElementById('config-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
-                const modelSelect = document.getElementById('model-select');
-                const modelName = modelSelect.value;
-                
-                if (!modelName) {
-                    alert('Please select a model');
-                    return;
-                }
-                
                 const formData = new FormData(this);
                 const configData = {};
                 for (const [key, value] of formData.entries()) {
@@ -201,8 +282,8 @@ async def model_config_page():
                 }
                 
                 try {
-                    // Save model configuration
-                    const response = await fetch(`/api/v1/config/${modelName}`, {
+                    // Save configuration
+                    const response = await fetch('/api/v1/config', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -211,48 +292,32 @@ async def model_config_page():
                     });
                     
                     if (response.ok) {
-                        alert('Model configuration saved successfully');
+                        alert('Configuration saved successfully');
                     } else {
-                        alert('Error saving model configuration');
+                        alert('Error saving configuration');
                     }
                 } catch (error) {
-                    alert('Network error saving model configuration');
+                    console.error('Network error:', error);
+                    alert('Network error saving configuration');
                 }
             });
 
             // Initialize page
             window.addEventListener('load', function() {
-                loadSystemStatus();
+                loadMetrics();
                 loadModels();
+                
+                // Refresh every 5 seconds
+                setInterval(() => {
+                    loadMetrics();
+                    loadModels();
+                }, 5000);
             });
         </script>
     </body>
     </html>
     """
     return html_content
-
-
-# Include frontend static files if they exist
-frontend_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
-if os.path.exists(frontend_path):
-    from fastapi.staticfiles import StaticFiles
-
-    app.mount(
-        "/static",
-        StaticFiles(directory=os.path.join(frontend_path, "static")),
-        name="static",
-    )
-
-    from fastapi.responses import HTMLResponse
-
-    @app.get("/", response_class=HTMLResponse)
-    async def serve_spa():
-        index_path = os.path.join(frontend_path, "index.html")
-        if os.path.exists(index_path):
-            with open(index_path) as f:
-                return HTMLResponse(f.read())
-        else:
-            return HTMLResponse("<html><body>Llama Runner Async Proxy</body></html>")
 
 
 # Startup and shutdown events
@@ -278,4 +343,6 @@ if __name__ == "__main__":
     print(f"Starting FastAPI server on {host}:{port}")
 
     # Launch with uvicorn
-    uvicorn.run("app.main:app", host=host, port=port, reload=False, log_level="debug")
+    import uvicorn
+
+    uvicorn.run("app.main:app", host=host, port=port, reload=False)

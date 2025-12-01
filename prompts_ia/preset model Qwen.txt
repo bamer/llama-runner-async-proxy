@@ -51,6 +51,11 @@ Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf
 --kv-unified 
 --parallel 2
  
+export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S --host 127.0.0.1 --port 8134  --threads 10 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 44 --ctx-size 128000 --timeout 7000000 --log-colors on --n-cpu-moe 99 --no-mmap --cache-reuse 256
+ 
+ 
+ 
+ 
  
  set PYTHONIOENCODING=utf-8 ; set CUDA_VISIBLE_DEVICE=0 ; set LLAMA_SET_ROWS=1 ; F:/llm/llama/llama-server.exe --model F:\llm\llama\models\Qwen3-Coder-30B-A3B-Instruct-1M-Q8_0-gguf\Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf --alias Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf --host 127.0.0.1 --port 8134 --threads 6 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 30 --ctx-size 96000 --rpc "192.168.1.81:50054" --timeout 7000000 --log-colors on --n-cpu-moe 55 --no-mmap --device CUDA0,RPC0
  
