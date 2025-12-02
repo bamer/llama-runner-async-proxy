@@ -38,3 +38,11 @@ This will start the FastAPI server on port 8081 with debug logging enabled.
 - FastAPI backend with WebSocket support
 - Real-time monitoring capabilities
 - Configurable proxy emulators
+
+## Integration
+
+This React dashboard is served through the FastAPI application at the root path (/). It uses the API endpoints to fetch data and display information about running models.
+
+## Current Status
+
+Currently this is a placeholder. The actual React dashboard needs to be built and integrated with the FastAPI server.

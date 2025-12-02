@@ -1,0 +1,1 @@
+{"name": "llama-runner-async-proxy", "version": "1.0.0", "description": "Node.js async proxy for Llama models", "main": "backend/src/server.js", "scripts": {"start": "node backend/src/server.js", "dev": "nodemon backend/src/server.js"}, "dependencies": {"express": "^4.18.2", "cors": "^2.8.5", "axios": "^1.6.0", "node-fetch": "^3.3.2"}, "devDependencies": {"nodemon": "^3.0.1"}}
