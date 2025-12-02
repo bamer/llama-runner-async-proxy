@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
 const fs = require('fs');
+const http = require('http');
 
 // Load configuration
 const appConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'config', 'app_config.json'), 'utf8'));
@@ -10,6 +11,9 @@ const modelsConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'conf
 
 const app = express();
 const PORT = appConfig.webui.port || 8081;
+
+// Create HTTP server
+const server = http.createServer(app);
 
 // Middleware
 app.use(helmet());
@@ -26,6 +30,7 @@ const modelRoutes = require('./routes/models');
 const configRoutes = require('./routes/config');
 const statusRoutes = require('./routes/status');
 const healthRoutes = require('./routes/health');
+const websocketRoutes = require('./routes/websocket');
 
 // Register routes
 app.use('/api/v1', monitoringRoutes);
@@ -33,6 +38,7 @@ app.use('/api/v1', modelRoutes);
 app.use('/api/v1', configRoutes);
 app.use('/api/v1', statusRoutes);
 app.use('/api/v1', healthRoutes);
+app.use('/api/v1', websocketRoutes);
 
 // Serve static files from frontend directory
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
@@ -165,95 +171,107 @@ app.get('/', (req, res) => {
     </div>
 
     <script>
-        // Load system metrics
-        async function loadMetrics() {
-            try {
-                const response = await fetch('/api/v1/monitoring');
-                const data = await response.json();
-                
-                const container = document.getElementById('metrics-container');
-                if (data) {
-                    container.innerHTML = `
-                        <div class="metric-card">
-                            <h3>Uptime</h3>
-                            <p>${data.uptime || 'N/A'} seconds</p>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Total Models</h3>
-                            <p>${data.total_models || 0}</p>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Active Runners</h3>
-                            <p>${data.active_runners || 0}</p>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Total Starts</h3>
-                            <p>${data.total_starts || 0}</p>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Total Stops</h3>
-                            <p>${data.total_stops || 0}</p>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Total Errors</h3>
-                            <p>${data.total_errors || 0}</p>
+        // WebSocket connection
+        const ws = new WebSocket('ws://' + window.location.host + '/ws');
+        
+        ws.onopen = function() {
+            console.log('WebSocket connected');
+        };
+        
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            if (data.type === 'metrics') {
+                updateMetrics(data.payload);
+            } else if (data.type === 'models') {
+                updateModels(data.payload);
+            }
+        };
+        
+        ws.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+        
+        ws.onclose = function() {
+            console.log('WebSocket closed');
+            // Try to reconnect after 5 seconds
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+        };
+        
+        // Update metrics display
+        function updateMetrics(metrics) {
+            const container = document.getElementById('metrics-container');
+            
+            if (metrics) {
+                container.innerHTML = `
+                    <div class="metric-card">
+                        <h3>Uptime</h3>
+                        <p>${metrics.uptime || 'N/A'} seconds</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Total Models</h3>
+                        <p>${metrics.total_models || 0}</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Active Runners</h3>
+                        <p>${metrics.active_runners || 0}</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Total Starts</h3>
+                        <p>${metrics.total_starts || 0}</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Total Stops</h3>
+                        <p>${metrics.total_stops || 0}</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Total Errors</h3>
+                        <p>${metrics.total_errors || 0}</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<p>Failed to load metrics</p>';
+            }
+        }
+        
+        // Update models display
+        function updateModels(models) {
+            const container = document.getElementById('models-container');
+            const modelList = document.getElementById('model-list');
+            
+            if (models && models.length > 0) {
+                // Display models
+                let modelsHtml = '';
+                for (const model of models) {
+                    modelsHtml += `
+                        <div class="model-card">
+                            <h3>${model.name}</h3>
+                            <p>Port: ${model.port}</p>
+                            <p>Status: ${model.status}</p>
                         </div>
                     `;
-                } else {
-                    container.innerHTML = '<p>Failed to load metrics</p>';
                 }
-            } catch (error) {
-                console.error('Error loading metrics:', error);
-                document.getElementById('metrics-container').innerHTML = 'Error loading metrics';
+                container.innerHTML = modelsHtml;
+                
+                // Display available models in dropdown
+                let modelOptions = '<li><p>-- Select a model --</p></li>';
+                for (const model of models) {
+                    modelOptions += `<li><button onclick="selectModel('${model.name}')">${model.name}</button></li>`;
+                }
+                modelList.innerHTML = modelOptions;
+            } else {
+                container.innerHTML = '<p>No models available</p>';
+                modelList.innerHTML = '<li><p>No models available</p></li>';
             }
         }
-
-        // Load available models
-        async function loadModels() {
-            try {
-                const response = await fetch('/api/v1/models');
-                const data = await response.json();
-                
-                const container = document.getElementById('models-container');
-                const modelList = document.getElementById('model-list');
-                
-                if (data && data.models) {
-                    // Display models
-                    let modelsHtml = '';
-                    for (const model of data.models) {
-                        modelsHtml += `
-                            <div class="model-card">
-                                <h3>${model.name}</h3>
-                                <p>Port: ${model.port}</p>
-                                <p>Status: ${model.status}</p>
-                            </div>
-                        `;
-                    }
-                    container.innerHTML = modelsHtml;
-                    
-                    // Display available models in dropdown
-                    let modelOptions = '<li><p>-- Select a model --</p></li>';
-                    for (const model of data.models) {
-                        modelOptions += `<li><button onclick="selectModel('${model.name}')">${model.name}</button></li>`;
-                    }
-                    modelList.innerHTML = modelOptions;
-                } else {
-                    container.innerHTML = '<p>No models available</p>';
-                    modelList.innerHTML = '<li><p>No models available</p></li>';
-                }
-            } catch (error) {
-                console.error('Error loading models:', error);
-                document.getElementById('models-container').innerHTML = 'Error loading models';
-                document.getElementById('model-list').innerHTML = '<li><p>Error loading models</p></li>';
-            }
-        }
-
+        
         // Select model for configuration
         function selectModel(modelName) {
             alert(`Selected model: ${modelName}`);
             // In a real app, this would populate the form with the selected model's config
         }
-
+        
         // Handle form submission
         document.getElementById('config-form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -274,6 +292,36 @@ app.get('/', (req, res) => {
                     },
                     body: JSON.stringify(configData)
                 });
+                
+                if (response.ok) {
+                    alert('Configuration saved successfully');
+                } else {
+                    alert('Error saving configuration');
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                alert('Network error saving configuration');
+            }
+        });
+        
+        // Initialize page
+        window.addEventListener('load', function() {
+            // WebSocket connection is established above
+        });
+    </script>
+</body>
+</html>
+`);
+});
+
+// Setup WebSocket server
+const { setupWebSocketServer } = require('./websocket-server');
+setupWebSocketServer(server);
+
+// Start server
+server.listen(PORT, () => {
+    console.log(`Llama Runner backend server running on port ${PORT}`);
+});
                 
                 if (response.ok) {
                     alert('Configuration saved successfully');

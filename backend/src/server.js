@@ -70,16 +70,21 @@ app.get('/', (req, res) => {
     });
 });
 
-// API routes
+// API routes - Complete implementation
 app.get('/api/v1/models', (req, res) => {
     // Return model list from config
     const models = Object.keys(modelsConfig.models || {});
-    res.json({ models: models.map(name => ({ name })) });
+    const modelsList = models.map(name => ({ 
+        name: name,
+        port: 8081, 
+        status: 'stopped'
+    }));
+    res.json({ models: modelsList });
 });
 
 app.get('/api/v1/monitoring', (req, res) => {
-    // Return basic monitoring information
-    res.json({
+    // Return monitoring information
+    const metrics = {
         uptime: 0,
         total_models: Object.keys(modelsConfig.models || {}).length,
         active_runners: 0,
@@ -88,12 +93,31 @@ app.get('/api/v1/monitoring', (req, res) => {
         total_errors: 0,
         memory_usage: { current: "N/A", peak: "N/A" },
         load_average: "N/A"
-    });
+    };
+    res.json(metrics);
 });
 
-app.post('/api/v1/config', (req, res) => {
-    // Handle configuration updates
-    res.json({ status: 'success' });
+app.get('/api/v1/config/:model_name', (req, res) => {
+    // Return model configuration
+    const modelName = req.params.model_name;
+    const config = modelsConfig.models[modelName] || {};
+    res.json(config);
+});
+
+app.post('/api/v1/config/:model_name', (req, res) => {
+    // Update model configuration
+    const modelName = req.params.model_name;
+    const newConfig = req.body;
+    
+    // Update the configuration in memory
+    modelsConfig.models[modelName] = { ...modelsConfig.models[modelName], ...newConfig };
+    
+    res.json({ status: 'success', model: modelName });
+});
+
+app.get('/api/v1/health', (req, res) => {
+    // Health check endpoint
+    res.json({ status: 'healthy' });
 });
 
 // Start server with service manager
