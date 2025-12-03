@@ -1,0 +1,358 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+}
+
+.dashboard,
+.model-config {
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard.dark,
+.model-config.dark {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dashboard-header,
+.config-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.dashboard.dark .dashboard-header,
+.model-config.dark .config-header {
+  border-bottom-color: #444;
+}
+
+.dashboard-header h1,
+.config-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.theme-toggle {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: #0056b3;
+}
+
+.metrics-summary,
+.models-section,
+.system-status {
+  margin-bottom: 30px;
+}
+
+.metrics-summary h2,
+.models-section h2,
+.system-status h2,
+.models-list h2,
+.model-details h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.metric-card,
+.status-card,
+.model-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard.dark .metric-card,
+.dashboard.dark .status-card,
+.dashboard.dark .model-card,
+.model-config.dark .status-card,
+.model-config.dark .model-card {
+  background: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.metric-card h3,
+.status-card h3,
+.model-card h3 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.dashboard.dark .metric-card h3,
+.dashboard.dark .status-card h3,
+.dashboard.dark .model-card h3,
+.model-config.dark .status-card h3,
+.model-config.dark .model-card h3 {
+  color: #aaa;
+}
+
+.metric-card p,
+.status-card p,
+.model-card p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.dashboard.dark .metric-card p,
+.dashboard.dark .status-card p,
+.dashboard.dark .model-card p,
+.model-config.dark .status-card p,
+.model-config.dark .model-card p {
+  color: #ccc;
+}
+
+.metric-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.chart-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard.dark .chart-section {
+  background: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.model-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.model-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.model-card h3 {
+  margin-top: 0;
+}
+
+.action-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: auto;
+  transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #218838;
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  height: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.dashboard.dark .progress-bar {
+  background-color: #444;
+}
+
+.progress-fill {
+  background-color: #007bff;
+  height: 100%;
+  transition: width 0.3s;
+}
+
+.models-list {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.model-config.dark .models-list {
+  background: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.search-box {
+  margin-bottom: 15px;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.model-config.dark .search-box input {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+.models-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.models-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.model-config.dark .models-list li {
+  border-bottom-color: #444;
+}
+
+.models-list li:last-child {
+  border-bottom: none;
+}
+
+.model-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.model-btn:hover {
+  background-color: #0056b3;
+}
+
+.model-details {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.model-config.dark .model-details {
+  background: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.config-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.model-config.dark .form-group input,
+.model-config.dark .form-group select {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+.form-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.save-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}

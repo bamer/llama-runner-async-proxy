@@ -204,32 +204,32 @@ app.get('/', (req, res) => {
             const container = document.getElementById('metrics-container');
             
             if (metrics) {
-                container.innerHTML = `
-                    <div class="metric-card">
+                container.innerHTML = "
+                    <div class='metric-card'>
                         <h3>Uptime</h3>
                         <p>${metrics.uptime || 'N/A'} seconds</p>
                     </div>
-                    <div class="metric-card">
+                    <div class='metric-card'>
                         <h3>Total Models</h3>
                         <p>${metrics.total_models || 0}</p>
                     </div>
-                    <div class="metric-card">
+                    <div class='metric-card'>
                         <h3>Active Runners</h3>
                         <p>${metrics.active_runners || 0}</p>
                     </div>
-                    <div class="metric-card">
+                    <div class='metric-card'>
                         <h3>Total Starts</h3>
                         <p>${metrics.total_starts || 0}</p>
                     </div>
-                    <div class="metric-card">
+                    <div class='metric-card'>
                         <h3>Total Stops</h3>
                         <p>${metrics.total_stops || 0}</p>
                     </div>
-                    <div class="metric-card">
+                    <div class='metric-card'>
                         <h3>Total Errors</h3>
                         <p>${metrics.total_errors || 0}</p>
                     </div>
-                `;
+                "
             } else {
                 container.innerHTML = '<p>Failed to load metrics</p>';
             }
@@ -244,20 +244,20 @@ app.get('/', (req, res) => {
                 // Display models
                 let modelsHtml = '';
                 for (const model of models) {
-                    modelsHtml += `
-                        <div class="model-card">
+                    modelsHtml += "
+                        <div class='model-card'>
                             <h3>${model.name}</h3>
                             <p>Port: ${model.port}</p>
                             <p>Status: ${model.status}</p>
                         </div>
-                    `;
+                    ";
                 }
                 container.innerHTML = modelsHtml;
                 
                 // Display available models in dropdown
                 let modelOptions = '<li><p>-- Select a model --</p></li>';
                 for (const model of models) {
-                    modelOptions += `<li><button onclick="selectModel('${model.name}')">${model.name}</button></li>`;
+                    modelOptions += "<li><button onclick=\"selectModel('" + model.name + "')\">" + model.name + "</button></li>";
                 }
                 modelList.innerHTML = modelOptions;
             } else {
@@ -268,7 +268,7 @@ app.get('/', (req, res) => {
         
         // Select model for configuration
         function selectModel(modelName) {
-            alert(`Selected model: ${modelName}`);
+            alert("Selected model: " + modelName);
             // In a real app, this would populate the form with the selected model's config
         }
         
@@ -321,8 +321,8 @@ setupWebSocketServer(server);
 // Start server
 server.listen(PORT, () => {
     console.log(`Llama Runner backend server running on port ${PORT}`);
-});
-                
+
+           try{     
                 if (response.ok) {
                     alert('Configuration saved successfully');
                 } else {
@@ -334,24 +334,4 @@ server.listen(PORT, () => {
             }
         });
 
-        // Initialize page
-        window.addEventListener('load', function() {
-            loadMetrics();
-            loadModels();
-            
-            // Refresh every 5 seconds
-            setInterval(() => {
-                loadMetrics();
-                loadModels();
-            }, 5000);
-        });
-    </script>
-</body>
-</html>
-`);
-});
-
-// Start server
-app.listen(PORT, () => {
-    console.log(`Llama Runner backend server running on port ${PORT}`);
-});
+ 

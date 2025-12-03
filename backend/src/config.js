@@ -34,7 +34,7 @@ function loadModelsConfig() {
         // Return default configuration
         return {
             default_parameters: {
-                ctx_size: 32000,
+                ctx_size: 128000,
                 temp: 0.7,
                 batch_size: 1024,
                 ubatch_size: 512,
@@ -42,12 +42,12 @@ function loadModelsConfig() {
                 mlock: true,
                 no_mmap: true,
                 flash_attn: "on",
-                port: 8000,
+                port: 8134,
                 host: "127.0.0.1"
             },
             runtimes: {
                 "llama-server": {
-                    runtime: "F:/llm/llama/llama-server.exe",
+                    runtime: "/home/bamer/llama.cpp/build/bin/llama-server",
                     supports_tools: true
                 }
             },

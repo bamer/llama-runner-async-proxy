@@ -21,53 +21,29 @@ const modelsConfig = loadModelsConfig();
 const ServiceManager = require('./service/service-manager');
 const serviceManager = new ServiceManager(appConfig, modelsConfig);
 
-// Serve static files from react directory
-app.use('/static', express.static(path.join(__dirname, '../react_proxy/static')));
+// Import WebSocket setup
+const { setupWebSocketServer } = require('./websocket-server');
 
-// Serve React dashboard as default page
-app.get('/', (req, res) => {
-    const indexPath = path.join(__dirname, '../react_proxy/index.html');
-    
-    fs.readFile(indexPath, 'utf8', (err, data) => {
-        if (err) {
-            // Fallback HTML
-            const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Llama Runner Async Proxy Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .App {
-            max-width: 1200px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    </style>
-</head>
-<body>
-    <div class="App">
-        <h1>Llama Runner Async Proxy Dashboard</h1>
-        <p>Backend server running successfully!</p>
-    </div>
-</body>
-</html>
-            `;
-            res.send(htmlContent);
-        } else {
-            res.send(data);
-        }
-    });
+// Serve frontend: dist (Webpack bundle) + static assets + index.html
+const distPath = path.join(__dirname, '../../frontend/dist');
+const frontendPath = path.join(__dirname, '../../frontend');
+
+if (fs.existsSync(distPath)) {
+    // Serve Webpack bundle
+    app.use(express.static(distPath));
+}
+
+// Serve frontend static assets (CSS, etc)
+app.use(express.static(frontendPath));
+
+// Serve index.html for any non-API route (SPA routing)
+app.get(/^\/(?!api\/).*/, (req, res) => {
+    const indexPath = path.join(frontendPath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.status(500).send('Dashboard not available');
+    }
 });
 
 // API routes - Complete implementation
@@ -120,11 +96,15 @@ app.get('/api/v1/health', (req, res) => {
     res.json({ status: 'healthy' });
 });
 
+// Setup WebSocket server
+setupWebSocketServer(server);
+
 // Start server with service manager
 const port = appConfig.webui?.port || 8081;
 serviceManager.startServices().then(() => {
     server.listen(port, () => {
         console.log(`Llama Runner Async Proxy server running on http://localhost:${port}`);
+        console.log(`WebSocket server available at ws://localhost:${port}/ws`);
     });
 }).catch(err => {
     console.error('Error starting services:', err);

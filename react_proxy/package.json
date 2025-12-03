@@ -1,1 +1,0 @@
-{"name":"react_proxy","version":"1.0.0","description":"React-based dashboard for Llama Runner Async Proxy","main":"src/App.js","scripts":{"start":"echo \\"React app running\\"","build":"echo \\"Build completed\\""},"dependencies":{"react":"^18.2.0","react-dom":"^18.2.0","react-router-dom":"^6.22.0"},"devDependencies":{"babel-cli":"^6.26.0","webpack":"^5.89.0"}}
