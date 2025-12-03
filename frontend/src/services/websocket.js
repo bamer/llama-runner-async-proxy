@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { useMetricsStore, useModelsStore, useAlertsStore } from '../store';
+import { useMetricsStore, useModelsStore, useAlertsStore, useLogsStore } from '../store';
 
 class WebSocketService {
   constructor() {
@@ -37,6 +37,18 @@ class WebSocketService {
 
         this.socket.on('alert:new', (alert) => {
           useAlertsStore.getState().addAlert(alert);
+        });
+
+        this.socket.on('logs:update', (log) => {
+          useLogsStore.getState().addLog(log);
+        });
+
+        this.socket.on('logs:history', (logs) => {
+          useLogsStore.getState().setLogs(logs);
+        });
+
+        this.socket.on('logs:stats', (stats) => {
+          useLogsStore.getState().setStats(stats);
         });
 
         this.socket.on('disconnect', () => {

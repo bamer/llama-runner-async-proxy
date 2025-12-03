@@ -1,23 +1,27 @@
 const os = require('os');
 const si = require('systeminformation');
+const GpuMonitor = require('./GpuMonitor');
 
 class SystemMonitor {
   constructor() {
     this.metrics = {};
     this.startTime = Date.now();
+    this.gpuMonitor = new GpuMonitor();
   }
 
   async collectMetrics() {
     try {
-      const [cpu, memory, disk, networkStats] = await Promise.all([
+      const [cpu, memory, disk, networkStats, gpu] = await Promise.all([
         si.currentLoad(),
         si.mem(),
         si.fsSize(),
         si.networkStats(),
+        this.gpuMonitor.collectGpuMetrics(),
       ]);
 
       this.metrics = {
         timestamp: Date.now(),
+        gpu: gpu ? this.gpuMonitor.getAggregatedMetrics() : { total_utilization: 0, total_memory_used: 0, total_memory: 0, average_temperature: 0, device_count: 0, devices: [] },
         cpu: {
           percent: Math.round(cpu.currentLoad * 10) / 10,
           cores: cpu.cpus.map((c) => Math.round(c.load * 10) / 10),

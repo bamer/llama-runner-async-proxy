@@ -112,3 +112,41 @@ export const useUIStore = create((set) => ({
     
   setActiveTab: (tab) => set({ activeTab: tab }),
 }));
+
+export const useLogsStore = create((set) => ({
+  logs: [],
+  stats: { total: 0, info: 0, warn: 0, error: 0 },
+  filter: { level: null, search: '' },
+  
+  addLog: (log) =>
+    set((state) => ({
+      logs: [...state.logs.slice(-999), log],
+    })),
+  
+  setLogs: (logs) => set({ logs }),
+  
+  clearLogs: () => set({ logs: [] }),
+  
+  setStats: (stats) => set({ stats }),
+  
+  setFilter: (filter) =>
+    set((state) => ({
+      filter: { ...state.filter, ...filter },
+    })),
+    
+  getFilteredLogs: (state) => {
+    let filtered = state.logs;
+    
+    if (state.filter.level) {
+      filtered = filtered.filter(log => log.level === state.filter.level);
+    }
+    if (state.filter.search) {
+      const searchLower = state.filter.search.toLowerCase();
+      filtered = filtered.filter(log => 
+        log.message.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    return filtered;
+  },
+}));

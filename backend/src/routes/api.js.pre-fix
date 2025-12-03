@@ -3,16 +3,11 @@ const fs = require('fs');
 const path = require('path');
 const router = express.Router();
 const ModelDiscoveryService = require('../services/ModelDiscoveryService');
-const BackupService = require('../services/BackupService');
-const ParameterService = require('../services/ParameterService');
 
 const discoveryService = new ModelDiscoveryService();
-const backupService = new BackupService();
-const parameterService = new ParameterService();
-
 let appConfig = null;
 
-module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetricsService, io) => {
+module.exports = (metricsService, modelsConfig) => {
   appConfig = modelsConfig;
 
   // ==================== MONITORING ====================
@@ -25,99 +20,6 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
     const limit = req.query.limit ? parseInt(req.query.limit) : 60;
     const history = metricsService.getMetricsHistory(limit);
     res.json(history);
-  });
-
-  // ==================== PARAMETERS & OPTIONS ====================
-
-  // GET /api/v1/parameters - Get all llama-server parameters with descriptions
-  router.get('/parameters', (req, res) => {
-    try {
-      const parameters = parameterService.getOptionsByCategoryForUI();
-      res.json({
-        success: true,
-        count: parameterService.countOptions(),
-        parameters
-      });
-    } catch (error) {
-      console.error('Error fetching parameters:', error);
-      res.status(500).json({ error: 'Failed to fetch parameters' });
-    }
-  });
-
-  // GET /api/v1/parameters/:category - Get parameters for a specific category
-  router.get('/parameters/:category', (req, res) => {
-    try {
-      const { category } = req.params;
-      const categoryParams = parameterService.getCategory(category);
-      
-      if (Object.keys(categoryParams).length === 0) {
-        return res.status(404).json({ error: 'Category not found' });
-      }
-
-      res.json({
-        success: true,
-        category,
-        parameters: categoryParams
-      });
-    } catch (error) {
-      console.error('Error fetching category parameters:', error);
-      res.status(500).json({ error: 'Failed to fetch category parameters' });
-    }
-  });
-
-  // GET /api/v1/parameters/:category/:paramName - Get specific parameter info
-  router.get('/parameters/:category/:paramName', (req, res) => {
-    try {
-      const { category, paramName } = req.params;
-      const param = parameterService.getOption(category, paramName);
-      
-      if (!param) {
-        return res.status(404).json({ error: 'Parameter not found' });
-      }
-
-      const info = parameterService.getParameterInfo(paramName);
-      res.json({
-        success: true,
-        parameter: paramName,
-        category,
-        ...param,
-        ...info
-      });
-    } catch (error) {
-      console.error('Error fetching parameter info:', error);
-      res.status(500).json({ error: 'Failed to fetch parameter info' });
-    }
-  });
-
-  // POST /api/v1/parameters/validate - Validate parameter values
-  router.post('/parameters/validate', (req, res) => {
-    try {
-      const { parameters } = req.body;
-      
-      if (!parameters || typeof parameters !== 'object') {
-        return res.status(400).json({ error: 'Parameters object required' });
-      }
-
-      const validation = {};
-      const errors = [];
-
-      for (const [paramName, value] of Object.entries(parameters)) {
-        const result = parameterService.validateParameter(paramName, value);
-        validation[paramName] = result;
-        if (!result.valid) {
-          errors.push({ parameter: paramName, error: result.error });
-        }
-      }
-
-      res.json({
-        success: errors.length === 0,
-        validation,
-        errors
-      });
-    } catch (error) {
-      console.error('Error validating parameters:', error);
-      res.status(500).json({ error: 'Validation failed' });
-    }
   });
 
   // ==================== MODELS - DISCOVERY & LISTING ====================
@@ -183,10 +85,6 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
 
       const defaultParams = discoveryService.getDefaultParameters();
       const modelsConfigPath = path.join(__dirname, '../../config/models_config.json');
-
-      // Backup before registering
-      backupService.backup('models_config.json', 'pre-register');
-
       let registered = 0;
 
       for (const model of models) {
@@ -202,6 +100,7 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
           ...defaultParams,
         };
 
+        // Validation relaxée - on peut enregistrer des modèles même si le fichier n'existe pas
         try {
           discoveryService.saveModelConfig(modelsConfigPath, model.name, modelConfig);
           registered++;
@@ -211,7 +110,7 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
         }
       }
 
-      // Reload config from file
+      // Recharger la config depuis le fichier
       const updatedConfig = JSON.parse(fs.readFileSync(modelsConfigPath, 'utf8'));
       Object.assign(appConfig, updatedConfig);
 
@@ -262,7 +161,7 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
         return res.status(404).json({ error: 'Model not found' });
       }
 
-      // Validate updates
+      // Valider les mises à jour
       const updatedConfig = { ...appConfig.models[modelName], ...updates };
       const validation = discoveryService.validateModelConfig(updatedConfig);
 
@@ -273,12 +172,8 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
         });
       }
 
+      // Sauvegarder
       const modelsConfigPath = path.join(__dirname, '../../config/models_config.json');
-
-      // Backup before updating
-      backupService.backup('models_config.json', `pre-update-${modelName}`);
-
-      // Save
       discoveryService.saveModelConfig(modelsConfigPath, modelName, updatedConfig);
       appConfig.models[modelName] = updatedConfig;
 
@@ -305,14 +200,10 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
         return res.status(404).json({ error: 'Model not found' });
       }
 
-      const modelsConfigPath = path.join(__dirname, '../../config/models_config.json');
-
-      // Backup before deleting
-      backupService.backup('models_config.json', `pre-delete-${modelName}`);
-
       delete appConfig.models[modelName];
 
-      // Save
+      // Sauvegarder
+      const modelsConfigPath = path.join(__dirname, '../../config/models_config.json');
       fs.writeFileSync(modelsConfigPath, JSON.stringify(appConfig, null, 2));
 
       res.json({
@@ -368,6 +259,7 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
         return res.status(400).json({ error: 'Path does not exist' });
       }
 
+      // Sauvegarder dans config
       const appConfigPath = path.join(__dirname, '../../config/app_config.json');
       const appConfigData = JSON.parse(fs.readFileSync(appConfigPath, 'utf8'));
       appConfigData.modelsPath = modelsPath;
@@ -393,10 +285,6 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
       Object.assign(appConfig, updates);
 
       const modelsConfigPath = path.join(__dirname, '../../config/models_config.json');
-      
-      // Backup before updating
-      backupService.backup('models_config.json', 'pre-config-update');
-
       fs.writeFileSync(modelsConfigPath, JSON.stringify(appConfig, null, 2));
 
       res.json({ status: 'success', config: appConfig });
@@ -406,49 +294,6 @@ module.exports = (metricsService, modelsConfig, llamaServerService, llamaMetrics
         error: 'Failed to update config',
         message: error.message,
       });
-    }
-  });
-
-  // ==================== BACKUPS ====================
-
-  // GET /api/v1/backups - List available backups
-  router.get('/backups', (req, res) => {
-    try {
-      const { filename } = req.query;
-      const backups = backupService.listBackups(filename || 'models_config.json');
-      res.json({
-        success: true,
-        backups
-      });
-    } catch (error) {
-      console.error('Error listing backups:', error);
-      res.status(500).json({ error: 'Failed to list backups' });
-    }
-  });
-
-  // POST /api/v1/backups/restore - Restore from backup
-  router.post('/backups/restore', (req, res) => {
-    try {
-      const { backupName, filename } = req.body;
-      
-      if (!backupName || !filename) {
-        return res.status(400).json({ error: 'backupName and filename required' });
-      }
-
-      backupService.restore(backupName, filename);
-
-      // Reload config
-      const modelsConfigPath = path.join(__dirname, '../../config/models_config.json');
-      const updatedConfig = JSON.parse(fs.readFileSync(modelsConfigPath, 'utf8'));
-      Object.assign(appConfig, updatedConfig);
-
-      res.json({
-        success: true,
-        message: `Restored from ${backupName}`
-      });
-    } catch (error) {
-      console.error('Error restoring backup:', error);
-      res.status(500).json({ error: 'Failed to restore backup', message: error.message });
     }
   });
 

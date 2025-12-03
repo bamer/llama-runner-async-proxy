@@ -28,17 +28,12 @@ const modelsConfig = loadModelsConfig();
 // Import services
 const MetricsService = require('./services/MetricsService');
 const LogService = require('./services/LogService');
-const LlamaServerService = require('./services/LlamaServerService');
-const LlamaMetricsService = require('./services/LlamaMetricsService');
 
 const metricsService = new MetricsService();
 const logService = new LogService();
-const llamaServerService = new LlamaServerService();
-const llamaMetricsService = new LlamaMetricsService();
 
 // Import API routes
 const apiRoutes = require('./routes/api');
-const llamaRoutes = require('./routes/llama');
 
 // Serve frontend
 const distPath = path.join(__dirname, '../../frontend/dist');
@@ -52,9 +47,8 @@ if (fs.existsSync(distPath)) {
 
 app.use(express.static(publicPath));
 
-// API routes - passer les nouveaux services
-app.use('/api/v1', apiRoutes(metricsService, modelsConfig, llamaServerService, llamaMetricsService, io));
-app.use('/api/v1/llama', llamaRoutes(llamaServerService, llamaMetricsService, modelsConfig, io));
+// API routes
+app.use('/api/v1', apiRoutes(metricsService, modelsConfig));
 
 // SPA catch-all for React Router
 app.get('/*', (req, res) => {
@@ -80,52 +74,36 @@ io.on('connection', (socket) => {
   socket.emit('logs:history', logService.getLogs(100));
   socket.emit('logs:stats', logService.getStats());
 
+  // Send initial logs
+  socket.emit('logs:history', logService.getLogs(100));
+  socket.emit('logs:stats', logService.getStats());
+
   // Handle disconnection
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
   });
 
-  // Handle model control events via WebSocket
-  socket.on('model:start', async (modelName) => {
-    try {
-      const result = await llamaServerService.startModel(modelName, modelsConfig.models[modelName]);
-      io.emit('model:status', {
-        modelName,
-        status: 'running',
-        pid: result.pid,
-      });
-    } catch (error) {
-      io.emit('model:error', {
-        modelName,
-        error: error.message,
-      });
-    }
+  // Handle model control events
+  socket.on('model:start', (modelName) => {
+    metricsService.updateModelStatus(modelName, 'running');
+    io.emit('model:status', {
+      modelName,
+      status: 'running',
+    });
   });
 
-  socket.on('model:stop', async (modelName) => {
-    try {
-      llamaServerService.stopModel(modelName);
-      io.emit('model:status', {
-        modelName,
-        status: 'stopped',
-      });
-    } catch (error) {
-      io.emit('model:error', {
-        modelName,
-        error: error.message,
-      });
-    }
+  socket.on('model:stop', (modelName) => {
+    metricsService.updateModelStatus(modelName, 'stopped');
+    io.emit('model:status', {
+      modelName,
+      status: 'stopped',
+    });
   });
 
   // Handle alert acknowledgment
   socket.on('alert:dismiss', (alertId) => {
     io.emit('alert:dismissed', { id: alertId });
   });
-});
-
-// Subscribe à LlamaMetricsService pour envoyer les updates en temps réel
-llamaMetricsService.on('metrics-update', (data) => {
-  io.emit('llama-metrics:update', data);
 });
 
 // Subscribe metrics service to emit updates to clients
@@ -135,6 +113,12 @@ metricsService.subscribe((event) => {
   } else if (event.type === 'model:update') {
     io.emit('model:update', event.payload);
   }
+});
+
+// Subscribe log service to emit logs to clients
+logService.subscribe((log) => {
+  io.emit('logs:update', log);
+  io.emit('logs:stats', logService.getStats());
 });
 
 // Subscribe log service to emit logs to clients
@@ -154,5 +138,3 @@ server.listen(port, host, () => {
   console.log(`📊 Dashboard available at http://localhost:${port}`);
   console.log(`🔌 WebSocket server available at ws://localhost:${port}`);
 });
-
-module.exports = { server, app, io, llamaServerService, llamaMetricsService };

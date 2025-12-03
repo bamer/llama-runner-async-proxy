@@ -184,7 +184,7 @@ class ModelDiscoveryService {
   /**
    * Obtenir les paramètres par défaut avec tous les options
    */
-  getDefaultParameters() {
+      getDefaultParameters() {
     return {
       // Paramètres de contexte
       ctx_size: 4096,
@@ -204,43 +204,72 @@ class ModelDiscoveryService {
       temp: 0.7,
       top_k: 40,
       top_p: 0.9,
+      min_p: 0.0,
       repeat_penalty: 1.1,
       presence_penalty: 0.0,
       frequency_penalty: 0.0,
-      mirostat: 0, // 0=disabled, 1=Mirostat v1, 2=Mirostat v2
+      mirostat: 0,
       mirostat_tau: 5.0,
       mirostat_eta: 0.1,
+
+      // Tensor Shaping & Optimisation
+      ts_enabled: false,
+      ts_rows: '22,78',
+      ts_base: 10000,
+      cache_reuse: 0,
 
       // Performance & Optimisation
       threads: 8,
       thread_batch: 512,
-      gpu_layers: 35, // Couches GPU (0 = CPU only)
+      gpu_layers: 35,
       main_gpu: 0,
-      tensor_split: [], // Pour multi-GPU
+      tensor_split: [],
+      parallel: 1,
+      n_cpu_moe: 0,
 
       // Mémoire
       mlock: false,
       mmap: true,
+      no_mmap: false,
       numa: false,
 
       // Attention & Optimisations
       flash_attn: false,
       no_kv_offload: false,
       simple_io: false,
+      kv_unified: false,
+      no_warmup: false,
 
       // Chiffrement & Sécurité
       use_mmap: true,
       use_mlock: false,
+
+      // CPU MOE (Mixture of Experts)
+      cpu_moe: false,
 
       // Serveur
       host: '127.0.0.1',
       port: 8000,
       n_parallel: 1,
       n_sequences: 1,
+      timeout: 600000,
+
+      // Jinja & Templates
+      jinja: false,
+
+      // Alias
+      alias: '',
 
       // Logging
       log_all: false,
       verbose: false,
+      log_colors: false,
+
+      // CUDA
+      cuda_device: '',
+
+      // GGML Options
+      ggml_cuda_enable_unified_memory: false,
 
       // NUMA (Non-Uniform Memory Architecture)
       numa_affinity: false,

@@ -220,6 +220,38 @@ class LlamaServerService {
       }
     }
   }
+
+  /**
+   * Vérifier si un modèle est en cours d'exécution
+   */
+  isRunning(modelName) {
+    const entry = this.processes.get(modelName);
+    return entry && entry.status === 'running';
+  }
+
+  /**
+   * Obtenir le nombre de modèles en cours d'exécution
+   */
+  getRunningCount() {
+    let count = 0;
+    for (const entry of this.processes.values()) {
+      if (entry.status === 'running') {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  /**
+   * Obtenir l'état de tous les processus
+   */
+  getAllStatus() {
+    const status = {};
+    for (const [name, entry] of this.processes) {
+      status[name] = entry.status;
+    }
+    return status;
+  }
 }
 
 module.exports = LlamaServerService;

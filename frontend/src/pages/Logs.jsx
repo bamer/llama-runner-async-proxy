@@ -1,172 +1,148 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import { useLogsStore } from '../store';
 
 const LogsPage = () => {
-  const [logs, setLogs] = useState([]);
-  const [filterLevel, setFilterLevel] = useState('all');
-  const [filterText, setFilterText] = useState('');
-  const [autoRefresh, setAutoRefresh] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const logs = useLogsStore((state) => state.logs);
+  const stats = useLogsStore((state) => state.stats);
+  const filter = useLogsStore((state) => state.filter);
+  const setFilter = useLogsStore((state) => state.setFilter);
+  const clearLogs = useLogsStore((state) => state.clearLogs);
+  const [autoScroll, setAutoScroll] = useState(true);
   const logsEndRef = useRef(null);
-  const refreshIntervalRef = useRef(null);
 
-  const loadLogs = async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.get('/api/v1/logs?limit=500');
-      setLogs(res.data.logs || []);
-    } catch (error) {
-      console.error('Error loading logs:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadLogs();
-    if (autoRefresh) {
-      refreshIntervalRef.current = setInterval(loadLogs, 3000);
-    }
-    return () => {
-      if (refreshIntervalRef.current) clearInterval(refreshIntervalRef.current);
-    };
-  }, [autoRefresh]);
-
-  useEffect(() => {
-    if (logsEndRef.current) {
-      logsEndRef.current.scrollIntoView({ behavior: 'auto' });
-    }
-  }, [logs]);
-
-  const filteredLogs = logs.filter(log => {
-    const matchesLevel = filterLevel === 'all' || 
-      log.toLowerCase().includes(filterLevel.toUpperCase());
-    const matchesText = filterText === '' || 
-      log.toLowerCase().includes(filterText.toLowerCase());
-    return matchesLevel && matchesText;
+  const filteredLogs = logs.filter((log) => {
+    if (filter.level && log.level !== filter.level) return false;
+    if (filter.search && !log.message.toLowerCase().includes(filter.search.toLowerCase())) return false;
+    return true;
   });
 
-  const downloadLogs = () => {
-    const content = logs.join('\n');
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `logs_${new Date().toISOString().split('T')[0]}.txt`;
-    a.click();
+  const getLevelColor = (level) => {
+    switch (level) {
+      case 'error':
+        return '#ef4444';
+      case 'warn':
+        return '#f59e0b';
+      case 'info':
+        return '#3b82f6';
+      default:
+        return '#6b7280';
+    }
   };
+
+  const getLevelBgColor = (level) => {
+    switch (level) {
+      case 'error':
+        return 'rgba(239, 68, 68, 0.1)';
+      case 'warn':
+        return 'rgba(245, 158, 11, 0.1)';
+      case 'info':
+        return 'rgba(59, 130, 246, 0.1)';
+      default:
+        return 'rgba(107, 114, 128, 0.1)';
+    }
+  };
+
+  useEffect(() => {
+    if (autoScroll && logsEndRef.current) {
+      logsEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [logs, autoScroll]);
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>📋 System Logs</h2>
+      <div style={styles.header}>
+        <h2>📋 Application Logs</h2>
+        <div style={styles.stats}>
+          <div style={styles.statItem}>
+            <span style={styles.statLabel}>Total</span>
+            <span style={styles.statValue}>{stats.total}</span>
+          </div>
+          <div style={styles.statItem}>
+            <span style={styles.statLabel}>Info</span>
+            <span style={{ ...styles.statValue, color: '#3b82f6' }}>{stats.info}</span>
+          </div>
+          <div style={styles.statItem}>
+            <span style={styles.statLabel}>Warn</span>
+            <span style={{ ...styles.statValue, color: '#f59e0b' }}>{stats.warn}</span>
+          </div>
+          <div style={styles.statItem}>
+            <span style={styles.statLabel}>Error</span>
+            <span style={{ ...styles.statValue, color: '#ef4444' }}>{stats.error}</span>
+          </div>
+        </div>
+      </div>
 
       <div style={styles.controls}>
-        <input
-          type="text"
-          placeholder="Filter logs..."
-          value={filterText}
-          onChange={(e) => setFilterText(e.target.value)}
-          style={styles.input}
-        />
-        
-        <select
-          value={filterLevel}
-          onChange={(e) => setFilterLevel(e.target.value)}
-          style={styles.select}
-        >
-          <option value="all">All Levels</option>
-          <option value="error">Error</option>
-          <option value="warn">Warning</option>
-          <option value="info">Info</option>
-          <option value="debug">Debug</option>
-        </select>
-
-        <label style={styles.checkbox}>
-          <input
-            type="checkbox"
-            checked={autoRefresh}
-            onChange={(e) => setAutoRefresh(e.target.checked)}
-          />
-          Auto-refresh (3s)
-        </label>
-
-        <button
-          onClick={loadLogs}
-          disabled={isLoading}
-          style={{ ...styles.btn, ...styles.btnPrimary }}
-        >
-          🔄 Refresh
-        </button>
-        
-        <button
-          onClick={downloadLogs}
-          style={{ ...styles.btn, ...styles.btnSuccess }}
-        >
-          ⬇️ Download
-        </button>
-
-        <button
-          onClick={() => setLogs([])}
-          style={{ ...styles.btn, ...styles.btnDanger }}
-        >
-          🗑️ Clear
+        <div style={styles.filterGroup}>
+          <label>Filter by Level:</label>
+          <select value={filter.level || ''} onChange={(e) => setFilter({ level: e.target.value || null })} style={styles.select}>
+            <option value="">All Levels</option>
+            <option value="info">Info</option>
+            <option value="warn">Warning</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+        <div style={styles.filterGroup}>
+          <label>Search:</label>
+          <input type="text" value={filter.search} onChange={(e) => setFilter({ search: e.target.value })} placeholder="Search logs..." style={styles.input} />
+        </div>
+        <div style={styles.filterGroup}>
+          <label>
+            <input type="checkbox" checked={autoScroll} onChange={(e) => setAutoScroll(e.target.checked)} style={{ marginRight: '0.5rem' }} />
+            Auto Scroll
+          </label>
+        </div>
+        <button onClick={clearLogs} style={{...styles.btn, ...styles.btnDanger}}>
+          🗑️ Clear Logs
         </button>
       </div>
 
       <div style={styles.logsContainer}>
-        {isLoading && <p style={styles.loading}>Loading logs...</p>}
         {filteredLogs.length === 0 ? (
-          <p style={styles.empty}>No logs to display</p>
+          <div style={styles.empty}>
+            <p>No logs to display</p>
+          </div>
         ) : (
-          filteredLogs.map((log, idx) => {
-            const isError = log.includes('error') || log.includes('ERROR') || log.includes('❌');
-            const isWarn = log.includes('warn') || log.includes('WARN') || log.includes('⚠️');
-            const isDebug = log.includes('debug') || log.includes('DEBUG') || log.includes('🔍');
-            
-            return (
-              <div
-                key={idx}
-                style={{
-                  ...styles.logLine,
-                  borderLeftColor: isError ? '#ef4444' : isWarn ? '#f59e0b' : '#3b82f6',
-                }}
-              >
-                <span style={styles.logBullet}>
-                  {isError ? '❌' : isWarn ? '⚠️' : isDebug ? '🔍' : 'ℹ️'}
-                </span>
-                <code style={styles.logText}>{log}</code>
+          <div>
+            {filteredLogs.map((log, idx) => (
+              <div key={idx} style={{...styles.logEntry, backgroundColor: getLevelBgColor(log.level), borderLeft: `3px solid ${getLevelColor(log.level)}`}}>
+                <div style={styles.logHeader}>
+                  <span style={{...styles.logLevel, color: getLevelColor(log.level)}}>
+                    [{log.level.toUpperCase()}]
+                  </span>
+                  <span style={styles.logTime}>{new Date(log.timestamp).toLocaleTimeString()}</span>
+                </div>
+                <div style={styles.logMessage}>{log.message}</div>
               </div>
-            );
-          })
+            ))}
+            <div ref={logsEndRef} />
+          </div>
         )}
-        <div ref={logsEndRef} />
-      </div>
-
-      <div style={styles.footer}>
-        Showing {filteredLogs.length} of {logs.length} logs
       </div>
     </div>
   );
 };
 
 const styles = {
-  container: { padding: '2rem', maxWidth: '1400px', margin: '0 auto', height: '100%', display: 'flex', flexDirection: 'column' },
-  title: { marginBottom: '1rem' },
-  controls: { display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', alignItems: 'center', flexWrap: 'wrap', padding: '1rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '0.5rem' },
-  input: { padding: '0.5rem', border: '1px solid var(--border-color)', borderRadius: '0.5rem', backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', fontSize: '0.875rem', flex: '1', minWidth: '150px' },
+  container: { backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '2rem' },
+  header: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border-color)' },
+  stats: { display: 'flex', gap: '2rem' },
+  statItem: { textAlign: 'center' },
+  statLabel: { display: 'block', fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' },
+  statValue: { display: 'block', fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-primary)' },
+  controls: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem', padding: '1rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '0.75rem', border: '1px solid var(--border-color)' },
+  filterGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
   select: { padding: '0.5rem', border: '1px solid var(--border-color)', borderRadius: '0.5rem', backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', fontSize: '0.875rem' },
-  checkbox: { display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.875rem' },
-  btn: { padding: '0.5rem 1rem', border: 'none', borderRadius: '0.5rem', cursor: 'pointer', fontSize: '0.875rem', fontWeight: '500', whiteSpace: 'nowrap' },
-  btnPrimary: { backgroundColor: 'var(--color-primary)', color: 'white' },
-  btnSuccess: { backgroundColor: 'var(--color-success)', color: 'white' },
+  input: { padding: '0.5rem', border: '1px solid var(--border-color)', borderRadius: '0.5rem', backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', fontSize: '0.875rem', width: '100%', boxSizing: 'border-box' },
+  btn: { padding: '0.5rem 1rem', border: 'none', borderRadius: '0.5rem', cursor: 'pointer', fontSize: '0.875rem', fontWeight: '500' },
   btnDanger: { backgroundColor: 'var(--color-danger)', color: 'white' },
-  logsContainer: { flex: 1, overflow: 'auto', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '0.5rem', padding: '1rem', fontFamily: 'monospace', fontSize: '0.8rem' },
-  logLine: { display: 'flex', gap: '0.75rem', padding: '0.5rem', borderLeft: '3px solid', marginBottom: '0.25rem', color: 'var(--text-secondary)', alignItems: 'flex-start' },
-  logBullet: { minWidth: '1.5rem', marginTop: '0.125rem' },
-  logText: { flex: 1, wordBreak: 'break-all', color: 'var(--text-primary)' },
-  loading: { color: 'var(--color-primary)', textAlign: 'center', padding: '1rem' },
-  empty: { color: 'var(--text-tertiary)', textAlign: 'center', padding: '2rem' },
-  footer: { marginTop: '1rem', padding: '0.75rem', fontSize: '0.875rem', color: 'var(--text-tertiary)', textAlign: 'right' },
+  logsContainer: { backgroundColor: 'var(--bg-secondary)', borderRadius: '0.75rem', border: '1px solid var(--border-color)', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: 'calc(100vh - 400px)', overflowY: 'auto', fontFamily: 'monospace', fontSize: '0.75rem' },
+  logEntry: { padding: '0.75rem', borderRadius: '0.25rem' },
+  logHeader: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.25rem' },
+  logLevel: { fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase' },
+  logTime: { fontSize: '0.7rem', color: 'var(--text-tertiary)' },
+  logMessage: { color: 'var(--text-primary)', wordBreak: 'break-word' },
+  empty: { textAlign: 'center', color: 'var(--text-tertiary)', padding: '3rem' },
 };
 
 export default LogsPage;
