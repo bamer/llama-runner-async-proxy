@@ -51,7 +51,7 @@
       "size": 10364416768,
       "sizeGB": "9.65",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.355Z",
+      "discovered_at": "2025-12-03T18:32:48.985Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -108,7 +108,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.357Z"
+      "saved_at": "2025-12-03T18:32:48.987Z"
     },
     "GPT-OSS-Code-Reasoning-20B.Q4_K_S": {
       "name": "GPT-OSS-Code-Reasoning-20B.Q4_K_S",
@@ -118,7 +118,7 @@
       "size": 14654241952,
       "sizeGB": "13.65",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.360Z",
+      "discovered_at": "2025-12-03T18:32:48.990Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -175,7 +175,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.361Z"
+      "saved_at": "2025-12-03T18:32:48.992Z"
     },
     "GPT-OSS-Code-Reasoning-20B.Q8_0": {
       "name": "GPT-OSS-Code-Reasoning-20B.Q8_0",
@@ -185,7 +185,7 @@
       "size": 22261911712,
       "sizeGB": "20.73",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.363Z",
+      "discovered_at": "2025-12-03T18:32:48.995Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -242,7 +242,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.364Z"
+      "saved_at": "2025-12-03T18:32:48.995Z"
     },
     "model": {
       "name": "model",
@@ -252,7 +252,7 @@
       "size": 3788906656,
       "sizeGB": "3.53",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.439Z",
+      "discovered_at": "2025-12-03T18:32:49.069Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -309,7 +309,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.439Z"
+      "saved_at": "2025-12-03T18:32:49.069Z"
     },
     "JanusCoderV-7B.i1-Q4_K_S": {
       "name": "JanusCoderV-7B.i1-Q4_K_S",
@@ -319,7 +319,7 @@
       "size": 4457768224,
       "sizeGB": "4.15",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.373Z",
+      "discovered_at": "2025-12-03T18:32:49.002Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -376,7 +376,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.375Z"
+      "saved_at": "2025-12-03T18:32:49.003Z"
     },
     "nomic-embed-text-v1.5-Q8_0": {
       "name": "nomic-embed-text-v1.5-Q8_0",
@@ -386,7 +386,7 @@
       "size": 146146528,
       "sizeGB": "0.14",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.378Z",
+      "discovered_at": "2025-12-03T18:32:49.005Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -443,7 +443,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.380Z"
+      "saved_at": "2025-12-03T18:32:49.005Z"
     },
     "nomic-embed-text-v1.5-f16": {
       "name": "nomic-embed-text-v1.5-f16",
@@ -453,7 +453,7 @@
       "size": 274290656,
       "sizeGB": "0.26",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.383Z",
+      "discovered_at": "2025-12-03T18:32:49.008Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -510,7 +510,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.384Z"
+      "saved_at": "2025-12-03T18:32:49.009Z"
     },
     "nomic-embed-text-v1.5.f16": {
       "name": "nomic-embed-text-v1.5.f16",
@@ -520,7 +520,7 @@
       "size": 274290560,
       "sizeGB": "0.26",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.387Z",
+      "discovered_at": "2025-12-03T18:32:49.011Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -577,7 +577,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.388Z"
+      "saved_at": "2025-12-03T18:32:49.011Z"
     },
     "Olmo-3-7B-Think-SFT.Q6_K": {
       "name": "Olmo-3-7B-Think-SFT.Q6_K",
@@ -587,7 +587,7 @@
       "size": 5991892416,
       "sizeGB": "5.58",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.390Z",
+      "discovered_at": "2025-12-03T18:32:49.014Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -644,7 +644,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.392Z"
+      "saved_at": "2025-12-03T18:32:49.015Z"
     },
     "Qwen2.5-7B-Instruct-Q4_K_M": {
       "name": "Qwen2.5-7B-Instruct-Q4_K_M",
@@ -654,7 +654,7 @@
       "size": 4683073952,
       "sizeGB": "4.36",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.397Z",
+      "discovered_at": "2025-12-03T18:32:49.020Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -711,7 +711,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.397Z"
+      "saved_at": "2025-12-03T18:32:49.020Z"
     },
     "qwen2.5-coder-1.5b-q8_0": {
       "name": "qwen2.5-coder-1.5b-q8_0",
@@ -721,7 +721,7 @@
       "size": 1646573056,
       "sizeGB": "1.53",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.400Z",
+      "discovered_at": "2025-12-03T18:32:49.022Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -778,7 +778,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.401Z"
+      "saved_at": "2025-12-03T18:32:49.023Z"
     },
     "Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M": {
       "name": "Qwen2.5-Coder-7B-Instruct-abliterated.Q5_K_M",
@@ -788,7 +788,7 @@
       "size": 5444832064,
       "sizeGB": "5.07",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.404Z",
+      "discovered_at": "2025-12-03T18:32:49.025Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -845,7 +845,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.405Z"
+      "saved_at": "2025-12-03T18:32:49.025Z"
     },
     "Qwen2.5-Omni-3B-Q8_0": {
       "name": "Qwen2.5-Omni-3B-Q8_0",
@@ -855,7 +855,7 @@
       "size": 3616087360,
       "sizeGB": "3.37",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.407Z",
+      "discovered_at": "2025-12-03T18:32:49.027Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -912,7 +912,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.408Z"
+      "saved_at": "2025-12-03T18:32:49.027Z"
     },
     "Qwen2.5-VL-7B-Instruct-Q4_K_S": {
       "name": "Qwen2.5-VL-7B-Instruct-Q4_K_S",
@@ -922,7 +922,7 @@
       "size": 4457767808,
       "sizeGB": "4.15",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.410Z",
+      "discovered_at": "2025-12-03T18:32:49.030Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -979,7 +979,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.411Z"
+      "saved_at": "2025-12-03T18:32:49.030Z"
     },
     "Qwen3-0.6B-Q4_K_S": {
       "name": "Qwen3-0.6B-Q4_K_S",
@@ -989,7 +989,7 @@
       "size": 383270592,
       "sizeGB": "0.36",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.412Z",
+      "discovered_at": "2025-12-03T18:32:49.032Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1046,7 +1046,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.412Z"
+      "saved_at": "2025-12-03T18:32:49.032Z"
     },
     "Qwen3-0.6B-Q8_0": {
       "name": "Qwen3-0.6B-Q8_0",
@@ -1056,7 +1056,7 @@
       "size": 639446688,
       "sizeGB": "0.60",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.413Z",
+      "discovered_at": "2025-12-03T18:32:49.035Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1113,7 +1113,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.413Z"
+      "saved_at": "2025-12-03T18:32:49.035Z"
     },
     "Qwen3-1.7B-Q4_K_S": {
       "name": "Qwen3-1.7B-Q4_K_S",
@@ -1123,7 +1123,7 @@
       "size": 1060190784,
       "sizeGB": "0.99",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.415Z",
+      "discovered_at": "2025-12-03T18:32:49.037Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1180,7 +1180,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.415Z"
+      "saved_at": "2025-12-03T18:32:49.037Z"
     },
     "Qwen3-1.7B-Q8_0": {
       "name": "Qwen3-1.7B-Q8_0",
@@ -1190,7 +1190,7 @@
       "size": 1834426016,
       "sizeGB": "1.71",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.416Z",
+      "discovered_at": "2025-12-03T18:32:49.040Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1247,7 +1247,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.416Z"
+      "saved_at": "2025-12-03T18:32:49.040Z"
     },
     "Qwen3-14B-Q4_K_S": {
       "name": "Qwen3-14B-Q4_K_S",
@@ -1257,7 +1257,7 @@
       "size": 8573476224,
       "sizeGB": "7.98",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.417Z",
+      "discovered_at": "2025-12-03T18:32:49.042Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1314,7 +1314,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.418Z"
+      "saved_at": "2025-12-03T18:32:49.043Z"
     },
     "Qwen3-4B-Thinking-2507-Q4_K_S": {
       "name": "Qwen3-4B-Thinking-2507-Q4_K_S",
@@ -1324,7 +1324,7 @@
       "size": 2383309952,
       "sizeGB": "2.22",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.419Z",
+      "discovered_at": "2025-12-03T18:32:49.045Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1381,7 +1381,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.419Z"
+      "saved_at": "2025-12-03T18:32:49.046Z"
     },
     "Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S": {
       "name": "Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S",
@@ -1391,7 +1391,7 @@
       "size": 10740661760,
       "sizeGB": "10.00",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.420Z",
+      "discovered_at": "2025-12-03T18:32:49.048Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1448,7 +1448,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.420Z"
+      "saved_at": "2025-12-03T18:32:49.048Z"
     },
     "Qwen3-Coder-30B-A3B-Instruct-Q4_K_S": {
       "name": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_S",
@@ -1458,7 +1458,7 @@
       "size": 17456012448,
       "sizeGB": "16.26",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.421Z",
+      "discovered_at": "2025-12-03T18:32:49.050Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1515,7 +1515,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.422Z"
+      "saved_at": "2025-12-03T18:32:49.050Z"
     },
     "Qwen3-Esper3-Reasoning-CODER-Instruct-12B-Brainstorm20x.i1-Q4_1": {
       "name": "Qwen3-Esper3-Reasoning-CODER-Instruct-12B-Brainstorm20x.i1-Q4_1",
@@ -1525,7 +1525,7 @@
       "size": 7539550848,
       "sizeGB": "7.02",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.423Z",
+      "discovered_at": "2025-12-03T18:32:49.051Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1582,7 +1582,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.423Z"
+      "saved_at": "2025-12-03T18:32:49.052Z"
     },
     "Qwen3-VL-2B-Thinking-1M-Q4_K_S": {
       "name": "Qwen3-VL-2B-Thinking-1M-Q4_K_S",
@@ -1592,7 +1592,7 @@
       "size": 1060192576,
       "sizeGB": "0.99",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.424Z",
+      "discovered_at": "2025-12-03T18:32:49.053Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1649,7 +1649,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.425Z"
+      "saved_at": "2025-12-03T18:32:49.053Z"
     },
     "Qwen3-VL-8B-Thinking-Q4_K_S": {
       "name": "Qwen3-VL-8B-Thinking-Q4_K_S",
@@ -1659,7 +1659,7 @@
       "size": 4802014496,
       "sizeGB": "4.47",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.426Z",
+      "discovered_at": "2025-12-03T18:32:49.055Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1716,7 +1716,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.426Z"
+      "saved_at": "2025-12-03T18:32:49.055Z"
     },
     "Qwen3-VL-8B-Thinking.Q4_K": {
       "name": "Qwen3-VL-8B-Thinking.Q4_K",
@@ -1726,7 +1726,7 @@
       "size": 4608376544,
       "sizeGB": "4.29",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.427Z",
+      "discovered_at": "2025-12-03T18:32:49.056Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1783,7 +1783,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.428Z"
+      "saved_at": "2025-12-03T18:32:49.057Z"
     },
     "Seed-Coder-8B-Reasoning-UD-Q5_K_XL": {
       "name": "Seed-Coder-8B-Reasoning-UD-Q5_K_XL",
@@ -1793,7 +1793,7 @@
       "size": 5888349504,
       "sizeGB": "5.48",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.429Z",
+      "discovered_at": "2025-12-03T18:32:49.058Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1850,7 +1850,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.429Z"
+      "saved_at": "2025-12-03T18:32:49.059Z"
     },
     "fluentlyqwen3-coder-4b-q8_0": {
       "name": "fluentlyqwen3-coder-4b-q8_0",
@@ -1860,7 +1860,7 @@
       "size": 4280401376,
       "sizeGB": "3.99",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.430Z",
+      "discovered_at": "2025-12-03T18:32:49.060Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1917,7 +1917,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.431Z"
+      "saved_at": "2025-12-03T18:32:49.061Z"
     },
     "gemma-3-1b-it-Q4_K_M": {
       "name": "gemma-3-1b-it-Q4_K_M",
@@ -1927,7 +1927,7 @@
       "size": 806058240,
       "sizeGB": "0.75",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.432Z",
+      "discovered_at": "2025-12-03T18:32:49.062Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -1984,7 +1984,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.433Z"
+      "saved_at": "2025-12-03T18:32:49.062Z"
     },
     "granite-4.0-h-1b-Q4_K_S": {
       "name": "granite-4.0-h-1b-Q4_K_S",
@@ -1994,7 +1994,7 @@
       "size": 872642112,
       "sizeGB": "0.81",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.434Z",
+      "discovered_at": "2025-12-03T18:32:49.064Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2051,7 +2051,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.435Z"
+      "saved_at": "2025-12-03T18:32:49.064Z"
     },
     "granite-4.0-h-1b-Q8_0": {
       "name": "granite-4.0-h-1b-Q8_0",
@@ -2061,7 +2061,7 @@
       "size": 1558926912,
       "sizeGB": "1.45",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.436Z",
+      "discovered_at": "2025-12-03T18:32:49.065Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2118,7 +2118,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.436Z"
+      "saved_at": "2025-12-03T18:32:49.066Z"
     },
     "granite-4.0-h-350m-Q8_0": {
       "name": "granite-4.0-h-350m-Q8_0",
@@ -2128,7 +2128,7 @@
       "size": 366196000,
       "sizeGB": "0.34",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.438Z",
+      "discovered_at": "2025-12-03T18:32:49.067Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2185,7 +2185,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.438Z"
+      "saved_at": "2025-12-03T18:32:49.067Z"
     },
     "magnus-coder.Q4_K_M": {
       "name": "magnus-coder.Q4_K_M",
@@ -2195,7 +2195,7 @@
       "size": 4683084294,
       "sizeGB": "4.36",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.441Z",
+      "discovered_at": "2025-12-03T18:32:49.070Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2252,7 +2252,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.441Z"
+      "saved_at": "2025-12-03T18:32:49.071Z"
     },
     "miromind-ai_MiroThinker-v1.0-8B-Q6_K_L": {
       "name": "miromind-ai_MiroThinker-v1.0-8B-Q6_K_L",
@@ -2262,7 +2262,7 @@
       "size": 7027341312,
       "sizeGB": "6.54",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.442Z",
+      "discovered_at": "2025-12-03T18:32:49.072Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2319,7 +2319,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.443Z"
+      "saved_at": "2025-12-03T18:32:49.072Z"
     },
     "neutss-air-BF16": {
       "name": "neutss-air-BF16",
@@ -2329,7 +2329,7 @@
       "size": 1503776000,
       "sizeGB": "1.40",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.444Z",
+      "discovered_at": "2025-12-03T18:32:49.073Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2386,7 +2386,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.445Z"
+      "saved_at": "2025-12-03T18:32:49.074Z"
     },
     "nvidia-nemotron-nano-9b-v2-q4_k_m": {
       "name": "nvidia-nemotron-nano-9b-v2-q4_k_m",
@@ -2396,7 +2396,7 @@
       "size": 6525629280,
       "sizeGB": "6.08",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.446Z",
+      "discovered_at": "2025-12-03T18:32:49.075Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2453,7 +2453,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.446Z"
+      "saved_at": "2025-12-03T18:32:49.076Z"
     },
     "nvidia_NVIDIA-Nemotron-Nano-12B-v2-Q5_K_S": {
       "name": "nvidia_NVIDIA-Nemotron-Nano-12B-v2-Q5_K_S",
@@ -2463,7 +2463,7 @@
       "size": 8567895552,
       "sizeGB": "7.98",
       "status": "ready",
-      "discovered_at": "2025-12-03T19:21:11.447Z",
+      "discovered_at": "2025-12-03T18:32:49.077Z",
       "ctx_size": 4096,
       "batch_size": 2048,
       "ubatch_size": 512,
@@ -2520,7 +2520,7 @@
       "cuda_device": "",
       "ggml_cuda_enable_unified_memory": false,
       "numa_affinity": false,
-      "saved_at": "2025-12-03T19:21:11.448Z"
+      "saved_at": "2025-12-03T18:32:49.077Z"
     }
   },
   "paths": {

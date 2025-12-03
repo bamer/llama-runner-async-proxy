@@ -122,7 +122,7 @@ class GpuMonitor {
       const lines = stdout.trim().split('\n');
       this.gpuData.devices = lines.map((line, idx) => {
         const values = line.split(',').map(v => v.trim());
-        return {
+        const device = {
           id: idx,
           name: values[1] || `GPU ${idx}`,
           memory_total: parseInt(values[3]) || 0,
@@ -139,9 +139,13 @@ class GpuMonitor {
           clock_memory_max: parseInt(values[14]) || 0,
           compute_cap: values[15] || 'N/A',
         };
+        return device;
       });
 
       this.gpuData.available = this.gpuData.devices.length > 0;
+      if (this.gpuData.devices.length > 0) {
+       // console.log('✅ NVIDIA metrics collected:', JSON.stringify(this.gpuData.devices[0], null, 2));
+      }
     } catch (error) {
       console.error('Error collecting NVIDIA metrics:', error.message);
       this.gpuData.available = false;
