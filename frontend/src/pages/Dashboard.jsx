@@ -11,7 +11,6 @@ import MonitoringPage from './Monitoring';
 import ModelsPage from './Models';
 import ConfigurationPage from './Configuration';
 import LogsPage from './Logs';
-import SettingsPage from './Settings';
 
 const DashboardPage = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -59,8 +58,8 @@ const DashboardPage = () => {
         return <ConfigurationPage />;
       case 'logs':
         return <LogsPage />;
-      case 'settings':
-        return <SettingsPage />;
+      case 'config':
+        return <ConfigurationPage />;
       default:
         return <QuickStats />;
     }

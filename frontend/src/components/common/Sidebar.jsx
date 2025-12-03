@@ -17,7 +17,7 @@ const Sidebar = ({ onNavigate }) => {
     { id: 'models', label: 'Models', icon: '🤖' },
     { id: 'config', label: 'Configuration', icon: '⚙️' },
     { id: 'logs', label: 'Logs', icon: '📋' },
-    { id: 'settings', label: 'Settings', icon: '⚡' },
+    
   ];
 
   return (
