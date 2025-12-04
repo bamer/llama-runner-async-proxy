@@ -28,6 +28,18 @@ Or in development mode:
 npm run dev
 ```
 
+### Testing
+
+To run all tests:
+```bash
+npm testall
+```
+
+Or directly run the test scripts:
+```bash
+python tests/run_all_tests.py
+```
+
 ### Configuration Files
 
 The application expects configuration files in the `config` directory:

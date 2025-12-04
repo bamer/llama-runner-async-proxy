@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useMetricsStore, useModelsStore, useAlertsStore } from '../store';
-import QuickStats from '../components/dashboard/QuickStats';
 import Header from '../components/common/Header';
 import Sidebar from '../components/common/Sidebar';
 import { wsService } from '../services/websocket';
 import { api } from '../services/api';
 
 // Import pages
-import MonitoringPage from './Monitoring';
 import ModelsPage from './Models';
 import ConfigurationPage from './Configuration';
 import LogsPage from './Logs';
@@ -49,19 +47,15 @@ const DashboardPage = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <QuickStats />;
-      case 'monitoring':
-        return <MonitoringPage />;
+        return <DashboardContent />;
       case 'models':
         return <ModelsPage />;
       case 'config':
         return <ConfigurationPage />;
       case 'logs':
         return <LogsPage />;
-      case 'config':
-        return <ConfigurationPage />;
       default:
-        return <QuickStats />;
+        return <DashboardContent />;
     }
   };
 
@@ -78,6 +72,126 @@ const DashboardPage = () => {
         {renderPage()}
       </main>
       {alerts.length > 0 && <AlertsPanel />}
+    </div>
+  );
+};
+
+const DashboardContent = () => {
+  const metrics = useMetricsStore((state) => state.metrics);
+  const models = useModelsStore((state) => state.models);
+  const alerts = useAlertsStore((state) => state.alerts);
+
+  // Metrics cards data
+  const metricCards = [
+    { title: "CPU Usage", value: Math.round(metrics.cpu?.percent || 0), unit: "%", icon: "🔥", color: metrics.cpu?.percent > 80 ? '#ef4444' : '#3b82f6' },
+    { title: "Memory Usage", value: Math.round(metrics.memory?.percent || 0), unit: "%", icon: "💾", color: metrics.memory?.percent > 85 ? '#ef4444' : '#10b981' },
+    { title: "Disk Usage", value: Math.round(metrics.disk?.percent || 0), unit: "%", icon: "💿", color: metrics.disk?.percent > 90 ? '#ef4444' : '#8b5cf6' },
+    { title: "GPU Usage", value: Math.round(metrics.gpu?.usage || 0), unit: "%", icon: "⚡", color: metrics.gpu?.usage > 80 ? '#f59e0b' : '#06b6d4' },
+    { title: "Active Alerts", value: alerts.length, unit: "alerts", icon: "🚨", color: alerts.length > 0 ? '#ef4444' : '#10b981' },
+    { title: "Network", value: (metrics.network?.in + metrics.network?.out || 0).toFixed(1), unit: "Mbps", icon: "🌐", color: "#06b6d4" },
+  ];
+
+  // Models data
+  const activeModels = models.filter(model => model.status === 'running');
+  const inactiveModels = models.filter(model => model.status !== 'running');
+
+  return (
+    <div style={styles.container}>
+      <h2 style={styles.title}>Dashboard</h2>
+      
+      {/* Quick Stats Section */}
+      <div style={styles.section}>
+        <h3 style={styles.sectionTitle}>Quick Stats</h3>
+        <div style={styles.grid}>
+          {metricCards.map((card, index) => (
+            <div key={index} style={{ ...styles.metricCard, backgroundColor: card.color }}>
+              <div style={styles.metricHeader}>
+                <span style={styles.metricIcon}>{card.icon}</span>
+                <h4 style={styles.metricTitle}>{card.title}</h4>
+              </div>
+              <div style={styles.metricValue}>
+                <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{card.value}</span>
+                <span style={{ fontSize: '0.875rem', opacity: 0.8 }}>{card.unit}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Monitoring Section */}
+      <div style={styles.section}>
+        <h3 style={styles.sectionTitle}>System Monitoring</h3>
+        <div style={styles.monitoringGrid}>
+          <div style={styles.monitoringCard}>
+            <h4 style={styles.cardTitle}>Active Models ({activeModels.length})</h4>
+            {activeModels.length > 0 ? (
+              <div style={styles.modelsList}>
+                {activeModels.map((model) => (
+                  <div key={model.name} style={styles.modelItem}>
+                    <span style={styles.modelName}>{model.name}</span>
+                    <span style={{ color: '#4caf50' }}>{model.status}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p style={styles.noModels}>No active models</p>
+            )}
+          </div>
+
+          <div style={styles.monitoringCard}>
+            <h4 style={styles.cardTitle}>Inactive Models ({inactiveModels.length})</h4>
+            {inactiveModels.length > 0 ? (
+              <div style={styles.modelsList}>
+                {inactiveModels.map((model) => (
+                  <div key={model.name} style={styles.modelItem}>
+                    <span style={styles.modelName}>{model.name}</span>
+                    <span style={{ color: '#999' }}>{model.status}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p style={styles.noModels}>No inactive models</p>
+            )}
+          </div>
+
+          <div style={styles.monitoringCard}>
+            <h4 style={styles.cardTitle}>System Status</h4>
+            <div style={styles.statusGrid}>
+              <div style={styles.statusItem}>
+                <span style={styles.statusLabel}>Uptime</span>
+                <span style={styles.statusText}>{metrics.uptime || 'N/A'} seconds</span>
+              </div>
+              <div style={styles.statusItem}>
+                <span style={styles.statusLabel}>Total Models</span>
+                <span style={styles.statusText}>{models.length}</span>
+              </div>
+              <div style={styles.statusItem}>
+                <span style={styles.statusLabel}>Active Runners</span>
+                <span style={styles.statusText}>{metrics.active_runners || 0}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Alerts Section */}
+      {alerts.length > 0 && (
+        <div style={styles.section}>
+          <h3 style={styles.sectionTitle}>Recent Alerts</h3>
+          <div style={styles.alertsList}>
+            {alerts.slice(0, 5).map((alert) => (
+              <div key={alert.id} style={styles.alertItem}>
+                <div style={styles.alertContent}>
+                  <p style={styles.alertMessage}>{alert.message}</p>
+                  <span style={styles.alertTime}>
+                    {new Date(alert.timestamp).toLocaleTimeString()}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -136,6 +250,59 @@ const styles = {
     fontWeight: '600',
     zIndex: 50,
   },
+  container: { padding: '2rem', backgroundColor: 'var(--bg-primary)', minHeight: '100vh', color: 'var(--text-primary)' },
+  title: { color: 'var(--text-primary)', marginBottom: '1.5rem' },
+  section: { backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '0.75rem', padding: '1.5rem', marginBottom: '2rem' },
+  sectionTitle: { fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: 'var(--text-primary)' },
+  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' },
+  metricCard: { 
+    backgroundColor: 'var(--bg-tertiary)', 
+    border: '1px solid var(--border-color)', 
+    borderRadius: '0.75rem', 
+    padding: '1.25rem',
+    color: 'white'
+  },
+  metricHeader: { display: 'flex', alignItems: 'center', gap: '0.75rem' },
+  metricIcon: { fontSize: '1.5rem' },
+  metricTitle: { fontSize: '1rem', fontWeight: '600', margin: '0' },
+  metricValue: { 
+    display: 'flex', 
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '0.75rem'
+  },
+  monitoringGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' },
+  monitoringCard: { 
+    backgroundColor: 'var(--bg-tertiary)', 
+    border: '1px solid var(--border-color)', 
+    borderRadius: '0.75rem', 
+    padding: '1.5rem'
+  },
+  cardTitle: { fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' },
+  modelsList: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
+  modelItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '4px' },
+  modelName: { fontWeight: '500' },
+  statusGrid: { display: 'flex', flexDirection: 'column', gap: '1rem' },
+  statusItem: { 
+    display: 'flex', 
+    justifyContent: 'space-between',
+    padding: '0.75rem',
+    backgroundColor: 'var(--bg-secondary)',
+    borderRadius: '4px'
+  },
+  statusLabel: { color: 'var(--text-secondary)' },
+  statusText: { fontWeight: '600' },
+  noModels: { color: 'var(--text-tertiary)', fontStyle: 'italic' },
+  alertsList: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
+  alertItem: { 
+    padding: '0.75rem', 
+    backgroundColor: 'var(--bg-secondary)', 
+    borderRadius: '4px',
+    border: '1px solid var(--border-color)'
+  },
+  alertContent: { display: 'flex', flexDirection: 'column' },
+  alertMessage: { margin: '0 0 0.25rem 0', fontSize: '0.875rem', fontWeight: '500' },
+  alertTime: { fontSize: '0.75rem', color: 'var(--text-tertiary)' },
   alertsPanel: {
     position: 'fixed',
     bottom: '20px',
@@ -155,26 +322,6 @@ const styles = {
   alertsList: {
     maxHeight: '350px',
     overflow: 'auto',
-  },
-  alertItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    padding: '0.75rem',
-    borderBottom: '1px solid var(--border-color)',
-    gap: '0.75rem',
-  },
-  alertContent: {
-    flex: 1,
-  },
-  alertMessage: {
-    margin: '0 0 0.25rem 0',
-    fontSize: '0.875rem',
-    fontWeight: '500',
-  },
-  alertTime: {
-    fontSize: '0.75rem',
-    color: 'var(--text-tertiary)',
   },
   dismissBtn: {
     background: 'none',
