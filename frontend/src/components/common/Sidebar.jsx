@@ -1,14 +1,13 @@
 import React from 'react';
 import { useUIStore } from '../../store';
 
-const Sidebar = ({ onNavigate }) => {
+const Sidebar = () => {
   const sidebarOpen = useUIStore((state) => state.sidebarOpen);
   const activeTab = useUIStore((state) => state.activeTab);
   const setActiveTab = useUIStore((state) => state.setActiveTab);
 
   const handleNavClick = (tab) => {
     setActiveTab(tab);
-    if (onNavigate) onNavigate(tab);
   };
 
   const menuItems = [
@@ -17,7 +16,7 @@ const Sidebar = ({ onNavigate }) => {
     { id: 'models', label: 'Models', icon: '🤖' },
     { id: 'config', label: 'Configuration', icon: '⚙️' },
     { id: 'logs', label: 'Logs', icon: '📋' },
-    
+    { id: 'settings', label: 'Settings', icon: '⚙️' }
   ];
 
   return (
