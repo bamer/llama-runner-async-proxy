@@ -52,8 +52,41 @@ Qwen3-Coder-30B-A3B-Instruct-1M-MXFP4_MOE.gguf
 --parallel 2
 
 
+export  GGML_CUDA_GRAPH_OPT=0
  export GGML_CUDA_ENABLE_UNIFIED_MEMORY=1
-export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S --host 127.0.0.1 --port 8134  --threads 10 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --n-cpu-moe 50 --repeat-penalty 1.05 --n-gpu-layers 25 --ctx-size 128000 --timeout 7000000 --log-colors on  --no-mmap --cache-reuse 256 --models-dir "/media/bamer/crucial MX300/llm/llama/models/"
+export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-Q4_K_S-GGUF/Qwen3-Coder-30B-A3B-Instruct-Q4_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-Q4_K_S --host 127.0.0.1 --port 8134  --threads -1 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 38 --ctx-size 128000 --timeout 7000000 --log-colors on  --no-mmap --cache-reuse 128 --no-warmup -p 0
+
+ export GGML_CUDA_ENABLE_UNIFIED_MEMORY=1
+export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S --host 127.0.0.1 --port 8134  --threads 12 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 42 --ctx-size 128000 --timeout 7000000 --log-colors on  --no-mmap --cache-reuse 128 --no-warmup --parallel 1 --cache-type-k q8_0 --cache-type-v q8_0 --models-dir "/media/bamer/crucial MX300/llm/llama/models/"
+ 
+ --models-dir "/media/bamer/crucial MX300/llm/llama/models/"
+  --n-cpu-moe 50 
+ 
+ 
+export GGML_CUDA_ENABLE_UNIFIED_MEMORY=1 
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S --host 127.0.0.1 --port 8134  --threads -1 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --cpu-moe --repeat-penalty 1.05 --n-gpu-layers 35 --ctx-size 96000 --timeout 7000000 --log-colors on  --no-mmap --cache-reuse 128 --cache-type-k q8_0 --cache-type-v q8_0
+
+export GGML_CUDA_ENABLE_UNIFIED_MEMORY=0
+export  GGML_CUDA_GRAPH_OPT=1 
+export LLAMA_SET_ROWS=1 ;
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/Ministral-3-14B-Instruct-2512-UD-Q4_K_XL.gguf" --alias Ministral-3-14B-Instruct-2512-UD-Q4_K_XL --host 127.0.0.1 --port 8134  --threads -1 --chat-template-file "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/chat_template.jinja" --jinja -fa on --temp 0.6 --top-p 0.95 --cpu-moe --n-gpu-layers 30 --ctx-size 128000 --timeout 7000000 --log-colors on  --no-mmap --cache-reuse 128 --no-warmup --mmproj "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/mmproj-BF16.gguf"
+ 
+ ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/Ministral-3-14B-Instruct-2512-UD-Q4_K_XL.gguf" --alias Ministral-3-14B-Instruct-2512-UD-Q4_K_XL --host 127.0.0.1 --port 8134  --threads -1 --chat-template-file "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/chat_template.jinja" --jinja --mlock -fa on --temp 0.6 --top-p 0.95 --n-gpu-layers 40 --ctx-size 96000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 128 --no-warmup --mmproj "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/mmproj-BF16.gguf" 
+
+ ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/Ministral-3-14B-Reasoning-2512-UD-Q4_K_XL.gguf" --alias Reasoning-3-14B-Instruct-2512-UD-Q4_K_XL --host 127.0.0.1 --port 8134  --threads -1 --mlock --chat-template-file "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/chat_template.jinja" --jinja -fa on --temp 0.6 --top-p 0.95 --n-gpu-layers 37 --ctx-size 96000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 128 --no-warmup --mmproj "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512-Q4_1-gguf/mmproj-BF16.gguf"
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
