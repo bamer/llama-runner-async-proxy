@@ -15,8 +15,8 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse, StreamingResponse
 import httpx
 
-from llama_runner.config_loader import config
-from llama_runner.services.runner_service import RunnerService
+from llama_runner_legacy.config_loader import config
+from llama_runner_legacy.services.runner_service import RunnerService
 # Removed the problematic import
 # from llama_runner.ollama_proxy_conversions import convert_lmstudio_to_ollama_format
 
@@ -98,7 +98,7 @@ class ProxyManager:
             try:
                 all_models_config = config.get('models', {})
                 # Get model metadata and convert to LM Studio format
-                from llama_runner import gguf_metadata
+                from llama_runner_legacy import gguf_metadata
                 
                 if not gguf_metadata.gguf_available:
                     return JSONResponse(
@@ -121,7 +121,7 @@ class ProxyManager:
 
     async def start_lmstudio_proxy(self):
         """Start the LM Studio proxy server."""
-        from llama_runner.lmstudio_proxy_thread import LMStudioProxyServer
+        from llama_runner_legacy.lmstudio_proxy_thread import LMStudioProxyServer
         
         lmstudio_config = self.proxy_config.get('lmstudio', {})
         if not lmstudio_config.get('enabled', True):
@@ -152,7 +152,7 @@ class ProxyManager:
     async def start_ollama_proxy(self):
         """Start the Ollama proxy server."""
         try:
-            from llama_runner.ollama_proxy_thread import OllamaProxyServer
+            from llama_runner_legacy.ollama_proxy_thread import OllamaProxyServer
             
             ollama_config = self.proxy_config.get('ollama', {})
             if not ollama_config.get('enabled', True):

@@ -6,11 +6,11 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse  # Correction ajoutée ici
 from starlette.middleware.cors import CORSMiddleware
 
-from llama_runner.services.runner_service import RunnerService as LlamaRunnerManager
-from llama_runner.ollama_proxy_thread import OllamaProxyServer, app as ollama_app
-from llama_runner.lmstudio_proxy_thread import LMStudioProxyServer, app as lmstudio_app
-from llama_runner.models.config_model import AppConfig, ModelConfig, AudioConfig
-from llama_runner.services.metrics_collector import MetricsCollector
+from llama_runner_legacy.services.runner_service import RunnerService as LlamaRunnerManager
+from llama_runner_legacy.ollama_proxy_thread import OllamaProxyServer, app as ollama_app
+from llama_runner_legacy.lmstudio_proxy_thread import LMStudioProxyServer, app as lmstudio_app
+from llama_runner_legacy.models.config_model import AppConfig, ModelConfig, AudioConfig
+from llama_runner_legacy.services.metrics_collector import MetricsCollector
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ class HeadlessServiceManager:
             audio_config = audio_config_raw
         
         # Initialize LlamaRunnerManager
-        from llama_runner.repositories.config_repository import ConfigRepository
+        from llama_runner_legacy.repositories.config_repository import ConfigRepository
         temp_config_repo = ConfigRepository()
         self.llama_runner_manager = LlamaRunnerManager(
             config_repo=temp_config_repo,
@@ -93,7 +93,7 @@ class HeadlessServiceManager:
         # Expose collector for FastAPI monitoring
         GLOBAL_METRICS_COLLECTOR = self.metrics_collector
         # Expose for FastAPI monitoring
-        from llama_runner.services.metrics_collector import GLOBAL_METRICS_COLLECTOR
+        from llama_runner_legacy.services.metrics_collector import GLOBAL_METRICS_COLLECTOR
         GLOBAL_METRICS_COLLECTOR = self.metrics_collector
 
     async def start_services(self):

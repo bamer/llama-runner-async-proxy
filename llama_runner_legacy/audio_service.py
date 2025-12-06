@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 
 
 
-from llama_runner.error_handlers import handle_audio_processing_error
+from llama_runner_legacy.error_handlers import handle_audio_processing_error
 
 
 logger = logging.getLogger(__name__)

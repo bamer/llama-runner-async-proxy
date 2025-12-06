@@ -17,11 +17,11 @@ from fastapi.routing import APIRoute # Import APIRoute for isinstance check
 import uvicorn
 
 
-import llama_runner.gguf_metadata as gguf_metadata
-from llama_runner.config_loader import calculate_system_fingerprint
+import llama_runner_legacy.gguf_metadata as gguf_metadata
+from llama_runner_legacy.config_loader import calculate_system_fingerprint
 # from llama_runner.config_loader import calculate_system_fingerprint # Removed unused import
-from llama_runner.audio_service import AudioService
-from llama_runner.services.runner_service import RunnerService
+from llama_runner_legacy.audio_service import AudioService
+from llama_runner_legacy.services.runner_service import RunnerService
 
 from io import BytesIO
 from fastapi import UploadFile, FastAPI, Request, HTTPException

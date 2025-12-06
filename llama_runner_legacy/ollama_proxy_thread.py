@@ -9,11 +9,11 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 import uvicorn
 
-from llama_runner.ollama_proxy_conversions import (
+from llama_runner_legacy.ollama_proxy_conversions import (
     embeddingRequestFromOllama, generateRequestFromOllama, chatRequestFromOllama
 )
-from llama_runner.audio_service import AudioService
-from llama_runner.services.runner_service import RunnerService
+from llama_runner_legacy.audio_service import AudioService
+from llama_runner_legacy.services.runner_service import RunnerService
 
 from io import BytesIO
 from fastapi import UploadFile as FastAPIUploadFile

@@ -39,7 +39,7 @@ logging.debug(f"GGUF_AVAILABLE status after import attempt: {gguf_available}")
 # --- End debug logging ---
 
 
-from llama_runner.config_loader import CONFIG_DIR # Assuming CONFIG_DIR is defined here
+from llama_runner_legacy.config_loader import CONFIG_DIR # Assuming CONFIG_DIR is defined here
 
 METADATA_CACHE_DIR = os.path.join(CONFIG_DIR, "metadata_cache")
 Path(METADATA_CACHE_DIR).mkdir(parents=True, exist_ok=True)

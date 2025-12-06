@@ -423,7 +423,7 @@
         "short": "-to",
         "long": "--timeout",
         "type": "number",
-        "default": 600,
+        "default": 6000,
         "min": 1,
         "description": "Server read/write timeout in seconds",
         "tooltip": "How long to wait for client responses before timing out."

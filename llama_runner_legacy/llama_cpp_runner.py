@@ -6,7 +6,7 @@ import signal
 from typing import Optional, Callable, List, Any, Deque
 from asyncio import StreamReader
 
-from llama_runner.config_loader import CONFIG_DIR
+from llama_runner_legacy.config_loader import CONFIG_DIR
 
 class LlamaCppRunner:
     _output_buffer: Deque[str]

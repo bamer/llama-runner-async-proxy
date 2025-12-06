@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Dict, Any
 import logging
 
-from llama_runner.constants import (
+from llama_runner_legacy.constants import (
     MODELS_ROOT_ABSOLUTE_PATH,
     LLAMA_SERVER_ABSOLUTE_PATH
 )
