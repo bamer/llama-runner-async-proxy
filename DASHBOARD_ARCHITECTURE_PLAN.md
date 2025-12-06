@@ -161,7 +161,7 @@ config/
 ### 1.2 Stack technologique (Frontend)
 ```json
 {
-  "framework": "React 18+",
+  "framework": "React 19+",
   "state": "Redux Toolkit / Zustand",
   "realtime": "Socket.io (meilleur que ws natif)",
   "charting": "Recharts / Victory (plus performant que Chart.js)",

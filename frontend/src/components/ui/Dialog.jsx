@@ -1,12 +1,9 @@
 import React from 'react';
 
-const Dialog = () => {
+const Dialog = ({ children, className = "", ...props }) => {
   return (
-    <div className="dialog">
-      <div className="dialog-content">
-        <h3>Dialog Title</h3>
-        <p>Dialog content</p>
-      </div>
+    <div className={`bg-secondary border border-border rounded-lg p-6 ${className}`} {...props}>
+      {children}
     </div>
   );
 };

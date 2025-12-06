@@ -3,7 +3,7 @@
 ## 🔍 Vue d'ensemble
 
 Projet : Llama Runner Async Proxy (Refonte)  
-Objectif : Interface unifiée pour modèles IA (Ollama, LM Studio) avec une interface web de gestion et de monitoring basée sur FastAPI  
+Objectif : Interface unifiée pour modèles IA (Ollama, LM Studio servit par llama-server) avec une interface web de gestion et de monitoring basée sur FastAPI  
 Principe : Separation of Concerns, code documenté, tests inclus
 
 ---

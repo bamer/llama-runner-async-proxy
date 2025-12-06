@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Input = () => {
+const Input = ({ className = "", ...props }) => {
   return (
-    <input className="input" type="text" />
+    <input className={`bg-secondary border border-border rounded-md p-2 ${className}`} {...props} />
   );
 };
 

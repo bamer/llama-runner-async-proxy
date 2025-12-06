@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Card = () => {
+const Card = ({ children, className = "", ...props }) => {
   return (
-    <div className="card">
-      <h3>Card Title</h3>
-      <p>Card content</p>
+    <div className={`bg-secondary border border-border rounded-lg p-6 ${className}`} {...props}>
+      {children}
     </div>
   );
 };

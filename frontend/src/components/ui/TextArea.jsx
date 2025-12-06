@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TextArea = () => {
+const TextArea = ({ className = "", ...props }) => {
   return (
-    <textarea className="textarea"></textarea>
+    <textarea className={`bg-secondary border border-border rounded-md p-2 ${className}`} {...props} />
   );
 };
 

@@ -1,24 +1,18 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
-export default function MetricCard({ title, description, value, trend, icon }) {
+const MetricCard = ({ title, value, unit, icon, color }) => {
   return (
-    <Card className="bg-white shadow-sm rounded-lg p-6 hover:shadow-md transition-shadow duration-300">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-2xl font-bold">{value}</p>
-            {trend && <Badge variant={trend === 'up' ? 'success' : 'danger'}>
-              {trend === 'up' ? '+' : '-'}{trend === 'up' ? '10%' : '5%'}
-            </Badge>}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="bg-tertiary border border-border rounded-lg p-5 text-white" style={{ backgroundColor: color }}>
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-xl">{icon}</span>
+        <h4 className="font-semibold">{title}</h4>
+      </div>
+      <div className="flex flex-col items-center mt-2">
+        <span className="text-2xl font-bold">{value}</span>
+        <span className="opacity-75">{unit}</span>
+      </div>
+    </div>
   );
-}
+};
+
+export default MetricCard;

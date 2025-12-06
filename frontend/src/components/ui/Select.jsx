@@ -1,11 +1,8 @@
 import React from 'react';
 
-const Select = () => {
+const Select = ({ className = "", ...props }) => {
   return (
-    <select className="select">
-      <option>Option 1</option>
-      <option>Option 2</option>
-    </select>
+    <select className={`bg-secondary border border-border rounded-md p-2 ${className}`} {...props} />
   );
 };
 

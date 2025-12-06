@@ -35,11 +35,6 @@ To run all tests:
 npm testall
 ```
 
-Or directly run the test scripts:
-```bash
-python tests/run_all_tests.py
-```
-
 ### Configuration Files
 
 The application expects configuration files in the `config` directory:
@@ -49,42 +44,16 @@ The application expects configuration files in the `config` directory:
 
 ## Directory Structure
 
-```
-├── backend/
-│   └── src/              # Backend source code
-│       ├── server.js     # Main server implementation
-│       ├── config.js     # Configuration loader
-│       └── service/      # Service managers
-├── frontend/
-│   └── src/              # Frontend React components
-│       └── App.js        # Main React component
-├── react_proxy/          # Legacy React proxy directory (for compatibility)
-└── config/               # Configuration files
-```
+
 
 ## API Endpoints
 
-- `/api/v1/models` - Get list of available models
-- `/api/v1/monitoring` - Get system monitoring metrics
-- `/api/v1/config` - Update configuration
+
 
 ## Dependencies
 
-Backend dependencies:
-- express
-- cors
-- axios
-- node-fetch
-
-Frontend dependencies (in react_proxy):
-- react
-- react-dom
-- react-router-dom
 
 ## Testing
 
-The refactored application maintains all functionality from the original Python version while providing a more modern Node.js implementation.
 
 ## Notes
-
-This conversion maintains compatibility with existing configuration and proxy services for Ollama and LMStudio, but implements them using Node.js rather than Python.
