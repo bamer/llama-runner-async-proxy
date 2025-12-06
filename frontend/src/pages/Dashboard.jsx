@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMetricsStore, useModelsStore, useAlertsStore } from '../store';
-import Header from '../components/common/Header';
-import Sidebar from '../components/common/Sidebar';
+import Header from '../components/layout/Header';
+import Sidebar from '../components/layout/Sidebar';
 import { wsService } from '../services/websocket';
 import { api } from '../services/api';
 
@@ -9,6 +9,7 @@ import { api } from '../services/api';
 import ModelsPage from './Models';
 import ConfigurationPage from './Configuration';
 import LogsPage from './Logs';
+import MonitoringPage from './Monitoring';
 
 const DashboardPage = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -54,18 +55,20 @@ const DashboardPage = () => {
         return <ConfigurationPage />;
       case 'logs':
         return <LogsPage />;
+      case 'monitoring':
+        return <MonitoringPage />;
       default:
         return <DashboardContent />;
     }
   };
 
   return (
-    <div style={styles.app}>
+    <div className="flex flex-col h-screen">
       <Header />
-      <Sidebar onNavigate={setCurrentPage} />
-      <main style={styles.main}>
+      <Sidebar />
+      <main className="flex-1 ml-64 mt-16 overflow-auto bg-background">
         {!isConnected && (
-          <div style={styles.connectionStatus}>
+          <div className="p-4 bg-warning text-white text-center font-bold z-50">
             ⚠️ Connecting to server...
           </div>
         )}
@@ -96,22 +99,24 @@ const DashboardContent = () => {
   const inactiveModels = models.filter(model => model.status !== 'running');
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Dashboard</h2>
+    <div className="p-8 bg-background min-h-screen">
+      <h2 className="text-xl font-bold mb-6">Dashboard</h2>
       
       {/* Quick Stats Section */}
-      <div style={styles.section}>
-        <h3 style={styles.sectionTitle}>Quick Stats</h3>
-        <div style={styles.grid}>
+      <div className="bg-secondary border border-border rounded-lg p-6 mb-8">
+        <h3 className="text-lg font-semibold mb-4">Quick Stats</h3>
+        <div className="grid grid-cols-auto-fit gap-6">
           {metricCards.map((card, index) => (
-            <div key={index} style={{ ...styles.metricCard, backgroundColor: card.color }}>
-              <div style={styles.metricHeader}>
-                <span style={styles.metricIcon}>{card.icon}</span>
-                <h4 style={styles.metricTitle}>{card.title}</h4>
+            <div key={index} 
+                 className="bg-tertiary border border-border rounded-lg p-5 text-white"
+                 style={{ backgroundColor: card.color }}>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-xl">{card.icon}</span>
+                <h4 className="font-semibold">{card.title}</h4>
               </div>
-              <div style={styles.metricValue}>
-                <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{card.value}</span>
-                <span style={{ fontSize: '0.875rem', opacity: 0.8 }}>{card.unit}</span>
+              <div className="flex flex-col items-center mt-2">
+                <span className="text-2xl font-bold">{card.value}</span>
+                <span className="opacity-75">{card.unit}</span>
               </div>
             </div>
           ))}
@@ -119,55 +124,57 @@ const DashboardContent = () => {
       </div>
 
       {/* Monitoring Section */}
-      <div style={styles.section}>
-        <h3 style={styles.sectionTitle}>System Monitoring</h3>
-        <div style={styles.monitoringGrid}>
-          <div style={styles.monitoringCard}>
-            <h4 style={styles.cardTitle}>Active Models ({activeModels.length})</h4>
+      <div className="bg-secondary border border-border rounded-lg p-6 mb-8">
+        <h3 className="text-lg font-semibold mb-4">System Monitoring</h3>
+        <div className="grid grid-cols-auto-fit gap-6">
+          <div className="bg-tertiary border border-border rounded-lg p-6">
+            <h4 className="font-semibold mb-4">Active Models ({activeModels.length})</h4>
             {activeModels.length > 0 ? (
-              <div style={styles.modelsList}>
+              <div className="flex flex-col gap-2">
                 {activeModels.map((model) => (
-                  <div key={model.name} style={styles.modelItem}>
-                    <span style={styles.modelName}>{model.name}</span>
-                    <span style={{ color: '#4caf50' }}>{model.status}</span>
+                  <div key={model.name} 
+                       className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                    <span className="font-medium">{model.name}</span>
+                    <span className="text-green-500">{model.status}</span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p style={styles.noModels}>No active models</p>
+              <p className="text-tertiary italic">No active models</p>
             )}
           </div>
 
-          <div style={styles.monitoringCard}>
-            <h4 style={styles.cardTitle}>Inactive Models ({inactiveModels.length})</h4>
+          <div className="bg-tertiary border border-border rounded-lg p-6">
+            <h4 className="font-semibold mb-4">Inactive Models ({inactiveModels.length})</h4>
             {inactiveModels.length > 0 ? (
-              <div style={styles.modelsList}>
+              <div className="flex flex-col gap-2">
                 {inactiveModels.map((model) => (
-                  <div key={model.name} style={styles.modelItem}>
-                    <span style={styles.modelName}>{model.name}</span>
-                    <span style={{ color: '#999' }}>{model.status}</span>
+                  <div key={model.name} 
+                       className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                    <span className="font-medium">{model.name}</span>
+                    <span className="text-gray-500">{model.status}</span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p style={styles.noModels}>No inactive models</p>
+              <p className="text-tertiary italic">No inactive models</p>
             )}
           </div>
 
-          <div style={styles.monitoringCard}>
-            <h4 style={styles.cardTitle}>System Status</h4>
-            <div style={styles.statusGrid}>
-              <div style={styles.statusItem}>
-                <span style={styles.statusLabel}>Uptime</span>
-                <span style={styles.statusText}>{metrics.uptime || 'N/A'} seconds</span>
+          <div className="bg-tertiary border border-border rounded-lg p-6">
+            <h4 className="font-semibold mb-4">System Status</h4>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-between p-3 bg-secondary rounded-md">
+                <span className="text-secondary">Uptime</span>
+                <span className="font-bold">{metrics.uptime || 'N/A'} seconds</span>
               </div>
-              <div style={styles.statusItem}>
-                <span style={styles.statusLabel}>Total Models</span>
-                <span style={styles.statusText}>{models.length}</span>
+              <div className="flex justify-between p-3 bg-secondary rounded-md">
+                <span className="text-secondary">Total Models</span>
+                <span className="font-bold">{models.length}</span>
               </div>
-              <div style={styles.statusItem}>
-                <span style={styles.statusLabel}>Active Runners</span>
-                <span style={styles.statusText}>{metrics.active_runners || 0}</span>
+              <div className="flex justify-between p-3 bg-secondary rounded-md">
+                <span className="text-secondary">Active Runners</span>
+                <span className="font-bold">{metrics.active_runners || 0}</span>
               </div>
             </div>
           </div>
@@ -176,14 +183,15 @@ const DashboardContent = () => {
 
       {/* Alerts Section */}
       {alerts.length > 0 && (
-        <div style={styles.section}>
-          <h3 style={styles.sectionTitle}>Recent Alerts</h3>
-          <div style={styles.alertsList}>
+        <div className="bg-secondary border border-border rounded-lg p-6 mb-8">
+          <h3 className="text-lg font-semibold mb-4">Recent Alerts</h3>
+          <div className="flex flex-col gap-2">
             {alerts.slice(0, 5).map((alert) => (
-              <div key={alert.id} style={styles.alertItem}>
-                <div style={styles.alertContent}>
-                  <p style={styles.alertMessage}>{alert.message}</p>
-                  <span style={styles.alertTime}>
+              <div key={alert.id} 
+                   className="p-3 bg-secondary border border-border rounded-md">
+                <div className="flex flex-col">
+                  <p className="font-medium">{alert.message}</p>
+                  <span className="text-sm text-tertiary">
                     {new Date(alert.timestamp).toLocaleTimeString()}
                   </span>
                 </div>
@@ -201,22 +209,23 @@ const AlertsPanel = () => {
   const dismissAlert = useAlertsStore((state) => state.dismissAlert);
 
   return (
-    <div style={styles.alertsPanel}>
-      <div style={styles.alertsHeader}>
-        <h3>🚨 Alerts ({alerts.length})</h3>
+    <div className="fixed bottom-5 right-5 w-80 max-h-[400px] bg-secondary border border-border rounded-lg shadow-lg z-50">
+      <div className="p-4 border-b border-border">
+        <h3 className="text-xl font-bold">🚨 Alerts ({alerts.length})</h3>
       </div>
-      <div style={styles.alertsList}>
+      <div className="max-h-[350px] overflow-auto p-4">
         {alerts.map((alert) => (
-          <div key={alert.id} style={styles.alertItem}>
-            <div style={styles.alertContent}>
-              <p style={styles.alertMessage}>{alert.message}</p>
-              <span style={styles.alertTime}>
+          <div key={alert.id} 
+               className="p-4 bg-secondary border border-border rounded-md mb-2 flex justify-between">
+            <div className="flex flex-col">
+              <p className="font-medium">{alert.message}</p>
+              <span className="text-sm text-tertiary">
                 {new Date(alert.timestamp).toLocaleTimeString()}
               </span>
             </div>
             <button
               onClick={() => dismissAlert(alert.id)}
-              style={styles.dismissBtn}
+              className="p-1 text-tertiary hover:text-red-500"
             >
               ✕
             </button>
@@ -225,112 +234,6 @@ const AlertsPanel = () => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  app: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    backgroundColor: 'var(--bg-primary)',
-    color: 'var(--text-primary)',
-  },
-  main: {
-    flex: 1,
-    marginLeft: '250px',
-    marginTop: '60px',
-    overflow: 'auto',
-    backgroundColor: 'var(--bg-primary)',
-  },
-  connectionStatus: {
-    padding: '1rem',
-    backgroundColor: 'var(--color-warning)',
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: '600',
-    zIndex: 50,
-  },
-  container: { padding: '2rem', backgroundColor: 'var(--bg-primary)', minHeight: '100vh', color: 'var(--text-primary)' },
-  title: { color: 'var(--text-primary)', marginBottom: '1.5rem' },
-  section: { backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '0.75rem', padding: '1.5rem', marginBottom: '2rem' },
-  sectionTitle: { fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: 'var(--text-primary)' },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' },
-  metricCard: { 
-    backgroundColor: 'var(--bg-tertiary)', 
-    border: '1px solid var(--border-color)', 
-    borderRadius: '0.75rem', 
-    padding: '1.25rem',
-    color: 'white'
-  },
-  metricHeader: { display: 'flex', alignItems: 'center', gap: '0.75rem' },
-  metricIcon: { fontSize: '1.5rem' },
-  metricTitle: { fontSize: '1rem', fontWeight: '600', margin: '0' },
-  metricValue: { 
-    display: 'flex', 
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '0.75rem'
-  },
-  monitoringGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' },
-  monitoringCard: { 
-    backgroundColor: 'var(--bg-tertiary)', 
-    border: '1px solid var(--border-color)', 
-    borderRadius: '0.75rem', 
-    padding: '1.5rem'
-  },
-  cardTitle: { fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' },
-  modelsList: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-  modelItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', backgroundColor: 'var(--bg-secondary)', borderRadius: '4px' },
-  modelName: { fontWeight: '500' },
-  statusGrid: { display: 'flex', flexDirection: 'column', gap: '1rem' },
-  statusItem: { 
-    display: 'flex', 
-    justifyContent: 'space-between',
-    padding: '0.75rem',
-    backgroundColor: 'var(--bg-secondary)',
-    borderRadius: '4px'
-  },
-  statusLabel: { color: 'var(--text-secondary)' },
-  statusText: { fontWeight: '600' },
-  noModels: { color: 'var(--text-tertiary)', fontStyle: 'italic' },
-  alertsList: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-  alertItem: { 
-    padding: '0.75rem', 
-    backgroundColor: 'var(--bg-secondary)', 
-    borderRadius: '4px',
-    border: '1px solid var(--border-color)'
-  },
-  alertContent: { display: 'flex', flexDirection: 'column' },
-  alertMessage: { margin: '0 0 0.25rem 0', fontSize: '0.875rem', fontWeight: '500' },
-  alertTime: { fontSize: '0.75rem', color: 'var(--text-tertiary)' },
-  alertsPanel: {
-    position: 'fixed',
-    bottom: '20px',
-    right: '20px',
-    width: '350px',
-    maxHeight: '400px',
-    backgroundColor: 'var(--bg-secondary)',
-    border: '1px solid var(--border-color)',
-    borderRadius: '0.75rem',
-    boxShadow: 'var(--shadow-lg)',
-    zIndex: 1000,
-  },
-  alertsHeader: {
-    padding: '1rem',
-    borderBottom: '1px solid var(--border-color)',
-  },
-  alertsList: {
-    maxHeight: '350px',
-    overflow: 'auto',
-  },
-  dismissBtn: {
-    background: 'none',
-    border: 'none',
-    color: 'var(--text-tertiary)',
-    cursor: 'pointer',
-    padding: '0',
-    fontSize: '1rem',
-  },
 };
 
 export default DashboardPage;

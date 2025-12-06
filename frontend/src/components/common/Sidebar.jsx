@@ -14,7 +14,6 @@ const Sidebar = () => {
     { id: 'dashboard', label: 'Dashboard', icon: '📊' },
     { id: 'monitoring', label: 'Monitoring', icon: '📈' },
     { id: 'models', label: 'Models', icon: '🤖' },
-    { id: 'config', label: 'Configuration', icon: '⚙️' },
     { id: 'logs', label: 'Logs', icon: '📋' },
     { id: 'settings', label: 'Settings', icon: '⚙️' }
   ];

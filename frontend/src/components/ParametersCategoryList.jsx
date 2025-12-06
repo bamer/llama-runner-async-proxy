@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import ParameterInput from './ParameterInput';
-import './ParametersCategoryList.css';
+import ParameterInput from '@/components/ParameterInput';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 /**
  * Displays all llama-server parameters organized by category
  */
-const ParametersCategoryList = ({ 
+export default function ParametersCategoryList({ 
   values = {}, 
   onChange, 
   loading = false 
-}) => {
+}) {
   const [categories, setCategories] = useState({});
   const [expandedCategories, setExpandedCategories] = useState({});
   const [error, setError] = useState(null);
@@ -81,57 +81,59 @@ const ParametersCategoryList = ({
   }
 
   return (
-    <div className="parameters-container">
-      <div className="parameters-header">
-        <h3>Llama Server Parameters</h3>
-        <p className="parameters-description">
-          Configure all llama-server options. Hover over fields for detailed information.
-        </p>
-      </div>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Llama Server Parameters</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="parameters-container">
+          <p className="parameters-description mb-4">
+            Configure all llama-server options. Hover over fields for detailed information.
+          </p>
 
-      <div className="categories-list">
-        {Object.entries(categories).map(([category, params]) => (
-          <div key={category} className="parameter-category">
-            <button
-              className="category-toggle"
-              onClick={() => toggleCategory(category)}
-            >
-              <span className="category-toggle-icon">
-                {expandedCategories[category] ? '▼' : '▶'}
-              </span>
-              <span className="category-icon">
-                {getCategoryIcon(category)}
-              </span>
-              <span className="category-title">
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </span>
-              <span className="category-count">
-                ({params.length} parameters)
-              </span>
-            </button>
+          <div className="categories-list">
+            {Object.entries(categories).map(([category, params]) => (
+              <div key={category} className="parameter-category">
+                <button
+                  className="category-toggle"
+                  onClick={() => toggleCategory(category)}
+                >
+                  <span className="category-toggle-icon">
+                    {expandedCategories[category] ? '▼' : '▶'}
+                  </span>
+                  <span className="category-icon">
+                    {getCategoryIcon(category)}
+                  </span>
+                  <span className="category-title">
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </span>
+                  <span className="category-count">
+                    ({params.length} parameters)
+                  </span>
+                </button>
 
-            {expandedCategories[category] && (
-              <div className="category-params">
-                {params.map(param => (
-                  <ParameterInput
-                    key={param.id}
-                    parameter={param}
-                    value={values[param.id]}
-                    onChange={(newValue) => handleParameterChange(param.id, newValue)}
-                    onError={(err) => {
-                      if (err) {
-                        console.warn(`Parameter ${param.id} validation error:`, err);
-                      }
-                    }}
-                  />
-                ))}
+                {expandedCategories[category] && (
+                  <div className="category-params">
+                    {params.map(param => (
+                      <ParameterInput
+                        key={param.id}
+                        parameter={param}
+                        value={values[param.id]}
+                        onChange={(newValue) => handleParameterChange(param.id, newValue)}
+                        onError={(err) => {
+                          if (err) {
+                            console.warn(`Parameter ${param.id} validation error:`, err);
+                          }
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
-};
-
-export default ParametersCategoryList;
+}

@@ -1,16 +1,14 @@
 import React from 'react';
-import './ParameterInput.css';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-/**
- * Reusable parameter input component with tooltips
- * Supports: number, text, boolean, select
- */
-const ParameterInput = ({ 
+export default function ParameterInput({ 
   parameter, 
   value, 
   onChange, 
   onError 
-}) => {
+}) {
   if (!parameter) return null;
 
   const handleChange = (newValue) => {
@@ -24,14 +22,11 @@ const ParameterInput = ({
   const renderInput = () => {
     const { type, min, max, step, options, default: defaultValue, id } = parameter;
 
-    const inputClass = `parameter-input parameter-${type}`;
-
     switch (type) {
       case 'number':
         return (
-          <input
+          <Input
             type="number"
-            className={inputClass}
             value={value !== undefined ? value : defaultValue}
             onChange={(e) => handleChange(Number(e.target.value))}
             min={min}
@@ -43,9 +38,8 @@ const ParameterInput = ({
 
       case 'string':
         return (
-          <input
+          <Input
             type="text"
-            className={inputClass}
             value={value || ''}
             onChange={(e) => handleChange(e.target.value)}
             placeholder={`Default: ${defaultValue}`}
@@ -54,44 +48,35 @@ const ParameterInput = ({
 
       case 'boolean':
         return (
-          <label className="parameter-checkbox">
+          <div className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={value === true}
               onChange={(e) => handleChange(e.target.checked)}
+              className="mr-2"
             />
-            <span className="checkbox-label">
-              {value === true ? 'Enabled' : 'Disabled'}
-            </span>
-          </label>
+            <span>{value === true ? 'Enabled' : 'Disabled'}</span>
+          </div>
         );
 
       case 'select':
         return (
-          <select
-            className={inputClass}
-            value={value !== undefined ? value : defaultValue}
-            onChange={(e) => {
-              const val = e.target.value;
-              // Try to parse as number if all options are numbers
-              const numVal = isNaN(val) ? val : Number(val);
-              handleChange(numVal);
-            }}
-          >
-            <option value="">-- Default: {defaultValue} --</option>
-            {options && options.map(opt => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
+          <Select value={value !== undefined ? value : defaultValue}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {options && options.map(opt => (
+                <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
 
       default:
         return (
-          <input
+          <Input
             type="text"
-            className={inputClass}
             value={value || ''}
             onChange={(e) => handleChange(e.target.value)}
             placeholder={`Default: ${defaultValue}`}
@@ -103,29 +88,18 @@ const ParameterInput = ({
   return (
     <div className="parameter-field">
       <div className="parameter-label-wrapper">
-        <label className="parameter-label">
+        <Label className="parameter-label">
           {parameter.description}
-          {parameter.tooltip && (
-            <span className="tooltip-icon" title={parameter.tooltip}>
-              ⓘ
-            </span>
-          )}
-        </label>
-        {parameter.short && (
-          <code className="parameter-cli">{parameter.short}</code>
-        )}
-        {parameter.long && (
-          <code className="parameter-cli">{parameter.long}</code>
+        </Label>
+        {parameter.tooltip && (
+          <span className="tooltip-icon" title={parameter.tooltip}>
+            ⓘ
+          </span>
         )}
       </div>
       <div className="parameter-input-wrapper">
         {renderInput()}
-        {parameter.tooltip && (
-          <div className="parameter-tooltip">{parameter.tooltip}</div>
-        )}
       </div>
     </div>
   );
-};
-
-export default ParameterInput;
+}
