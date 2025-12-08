@@ -1,8 +1,8 @@
-// backend/src/service/service-manager.js
+// backend/src/services/services-manager.js
 const { EventEmitter } = require('events');
 const axios = require('axios');
 
-class ServiceManager extends EventEmitter {
+class ServicesManager extends EventEmitter {
     constructor(appConfig, modelsConfig) {
         super();
         this.appConfig = appConfig;
@@ -80,4 +80,4 @@ class ServiceManager extends EventEmitter {
     }
 }
 
-module.exports = ServiceManager;
+module.exports = ServicesManager;

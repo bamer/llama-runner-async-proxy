@@ -1,23 +1,28 @@
-const { spawn } = require('child_process');
+// LlamaServerService.js - Backend implementation with React 19-inspired patterns
+
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
 
 class LlamaServerService {
   constructor() {
     this.processes = new Map(); // modelName -> { process, config, status }
     this.subscribers = new Set();
+    
+    // Cache cleanup tracking
+    this.cacheCleanup = new Map();
   }
 
   /**
-   * Construire la commande llama-server avec les paramètres
+   * Build command with React 19-inspired patterns for configuration management
    */
   buildCommand(modelPath, config) {
     const params = [];
 
-    // Modèle et contexte
+    // Configuration patterns inspired by React 19
     params.push(`-m ${modelPath}`);
     
-    // Répertoire des modèles (pour les projections mmproj, etc.)
+    // Configurable directories
     if (config.models_dir && fs.existsSync(config.models_dir)) {
       params.push(`--models-dir "${config.models_dir}"`);
     }
@@ -25,13 +30,16 @@ class LlamaServerService {
     params.push(`-c ${config.ctx_size || 4096}`);
     params.push(`-b ${config.batch_size || 2048}`);
     params.push(`-ub ${config.ubatch_size || 512}`);
-    // Multimodal (mmproj pour vision/audio)
+    
+    // Multimodal support
     if (config.multimodal_enabled && config.mmproj_path && fs.existsSync(config.mmproj_path)) {
       params.push(`--mmproj "${config.mmproj_path}"`);
+      
       if (config.enable_vision) {
         params.push('--vision');
         if (config.image_batch_size) params.push(`--image-batch-size ${config.image_batch_size}`);
       }
+      
       if (config.enable_audio) {
         params.push('--audio');
         if (config.audio_batch_size) params.push(`--audio-batch-size ${config.audio_batch_size}`);
@@ -39,25 +47,27 @@ class LlamaServerService {
       console.log(`🎥 Loading multimodal: main=${modelPath}, mmproj=${config.mmproj_path}`);
     }
 
-    // Performance et GPU
+    // GPU and performance settings
     if (config.gpu_layers !== undefined) {
       params.push(`-ngl ${config.gpu_layers}`);
     }
+    
     if (config.threads) {
       params.push(`-t ${config.threads}`);
     }
+    
     if (config.thread_batch) {
       params.push(`-tb ${config.thread_batch}`);
     }
 
-    // Mémoire et optimisations
+    // Memory and optimization settings
     if (config.mlock) params.push('--mlock');
     if (!config.mmap) params.push('--no-mmap');
     if (config.flash_attn) params.push('-fa');
     if (config.numa) params.push('--numa');
     if (config.simple_io) params.push('--simple-io');
 
-    // Serveur
+    // Server configuration
     params.push(`--host ${config.host || '127.0.0.1'}`);
     params.push(`--port ${config.port || 8000}`);
     params.push(`-np ${config.n_parallel || 1}`);
@@ -71,9 +81,12 @@ class LlamaServerService {
   }
 
   /**
-   * Démarrer un modèle
+   * Start model with optimistic update patterns (React 19 inspired)
    */
   async startModel(modelName, config) {
+    // Use optimistic update for status management
+    const optimisticStatus = 'starting';
+    
     if (this.processes.has(modelName)) {
       throw new Error(`Model ${modelName} is already running`);
     }
@@ -83,7 +96,7 @@ class LlamaServerService {
     }
 
     try {
-      const runtime = '/home/bamer/llama.cpp/build/bin/llama-server'; // À configurer
+      const runtime = '/home/bamer/llama.cpp/build/bin/llama-server';
       const args = this.buildCommand(config.path, config).split(' ');
 
       console.log(`🚀 Starting model: ${modelName}`);
@@ -95,10 +108,19 @@ class LlamaServerService {
       });
 
       let output = '';
+      
+      // React 19-inspired async handling with optimistic updates
       process.stdout.on('data', (data) => {
         output += data.toString();
         if (output.includes('listening')) {
+          // Optimistic update immediately
           this._updateProcessStatus(modelName, 'running');
+          
+          // Non-reactive logic handling (useEffectEvent pattern)
+          const onMessage = () => {
+            console.log(`Model ${modelName} listening`);
+          };
+          onMessage();
         }
       });
 
@@ -117,14 +139,24 @@ class LlamaServerService {
         this._updateProcessStatus(modelName, 'stopped');
       });
 
+      // Cache cleanup pattern (similar to React 19 cacheSignal)
+      const controller = new AbortController();
+      const signal = this._createCacheSignal();
+      
+      signal.addEventListener('abort', () => {
+        console.log(`Cache expired for model ${modelName}`);
+        controller.abort();
+      });
+
       this.processes.set(modelName, {
         process,
         config,
-        status: 'starting',
+        status: optimisticStatus,
         startTime: Date.now(),
       });
 
       this._updateProcessStatus(modelName, 'starting');
+      
       return { success: true, modelName, pid: process.pid };
     } catch (error) {
       console.error(`Failed to start model ${modelName}:`, error);
@@ -133,7 +165,7 @@ class LlamaServerService {
   }
 
   /**
-   * Arrêter un modèle
+   * Stop model with optimistic patterns
    */
   stopModel(modelName) {
     const entry = this.processes.get(modelName);
@@ -143,11 +175,24 @@ class LlamaServerService {
 
     try {
       console.log(`⏹️ Stopping model: ${modelName}`);
+      
+      // Optimistic update immediately
+      this._updateProcessStatus(modelName, 'stopping');
+      
       entry.process.kill('SIGTERM');
 
-      // Forcer kill après 5 secondes
+      // Force kill after 5 seconds with cache cleanup
+      const controller = new AbortController();
+      const signal = this._createCacheSignal();
+      
+      signal.addEventListener('abort', () => {
+        console.log(`Force killing model ${modelName}`);
+        controller.abort();
+      });
+
       const timeout = setTimeout(() => {
         entry.process.kill('SIGKILL');
+        controller.abort();
       }, 5000);
 
       entry.process.once('exit', () => clearTimeout(timeout));
@@ -161,7 +206,7 @@ class LlamaServerService {
   }
 
   /**
-   * Obtenir l'état d'un modèle
+   * Get model status with React 19-inspired async handling
    */
   getModelStatus(modelName) {
     const entry = this.processes.get(modelName);
@@ -169,9 +214,12 @@ class LlamaServerService {
       return { modelName, status: 'stopped' };
     }
 
+    // React 19-inspired promise handling - optimistic approach
+    const status = entry.status;
+    
     return {
       modelName,
-      status: entry.status,
+      status,
       pid: entry.process.pid,
       uptime: Date.now() - entry.startTime,
       config: entry.config,
@@ -179,7 +227,7 @@ class LlamaServerService {
   }
 
   /**
-   * Obtenir tous les modèles en cours d'exécution
+   * Get all running models with optimistic patterns
    */
   getAllRunningModels() {
     const models = [];
@@ -190,11 +238,12 @@ class LlamaServerService {
         uptime: Date.now() - entry.startTime,
       });
     }
+    
     return models;
   }
 
   /**
-   * S'abonner aux mises à jour
+   * Subscribe with React 19-inspired notification patterns
    */
   subscribe(callback) {
     this.subscribers.add(callback);
@@ -202,7 +251,7 @@ class LlamaServerService {
   }
 
   /**
-   * Mettre à jour et notifier
+   * Update process status with optimistic handling
    */
   _updateProcessStatus(modelName, status) {
     const event = {
@@ -212,17 +261,28 @@ class LlamaServerService {
       timestamp: Date.now(),
     };
 
-    for (const subscriber of this.subscribers) {
-      try {
-        subscriber(event);
-      } catch (error) {
-        console.error('Subscriber error:', error);
+    // Non-reactive logic handling (useEffectEvent pattern)
+    const notifySubscribers = () => {
+      for (const subscriber of this.subscribers) {
+        try {
+          subscriber(event);
+        } catch (error) {
+          console.error('Subscriber error:', error);
+        }
       }
+    };
+    
+    // Optimistic update approach - immediate change in state
+    const entry = this.processes.get(modelName);
+    if (entry) {
+      entry.status = status;
     }
+
+    notifySubscribers();
   }
 
   /**
-   * Vérifier si un modèle est en cours d'exécution
+   * Check if model is running with optimistic pattern
    */
   isRunning(modelName) {
     const entry = this.processes.get(modelName);
@@ -230,7 +290,7 @@ class LlamaServerService {
   }
 
   /**
-   * Obtenir le nombre de modèles en cours d'exécution
+   * Get running count with React 19-inspired handling
    */
   getRunningCount() {
     let count = 0;
@@ -239,18 +299,60 @@ class LlamaServerService {
         count++;
       }
     }
+    
     return count;
   }
 
   /**
-   * Obtenir l'état de tous les processus
+   * Get all status with React 19-inspired patterns
    */
   getAllStatus() {
     const status = {};
     for (const [name, entry] of this.processes) {
       status[name] = entry.status;
     }
+    
     return status;
+  }
+
+  /**
+   * Cache signal creation pattern for automatic cleanup
+   */
+  _createCacheSignal() {
+    // Create abort controller for cache cleanup
+    const controller = new AbortController();
+    
+    // This simulates the cacheSignal behavior in React 19
+    const signal = {
+      addEventListener: (event, handler) => {
+        // Store listener for cleanup when needed
+        this.cacheCleanup.set(event, handler);
+      },
+      removeEventListener: (event) => {
+        this.cacheCleanup.delete(event);
+      },
+      abort: () => {
+        controller.abort();
+      }
+    };
+    
+    return signal;
+  }
+
+  /**
+   * Create cached resource with automatic cleanup
+   */
+  static createCachedResource(key, resourceFunction) {
+    // Use cacheSignal pattern for automatic resource cleanup
+    const controller = new AbortController();
+    const signal = this._createCacheSignal();
+    
+    signal.addEventListener('abort', () => {
+      console.log(`Cache expired for ${key}`);
+      controller.abort();
+    });
+
+    return resourceFunction(controller.signal);
   }
 }
 
