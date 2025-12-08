@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Button = ({ children, variant = "default", className = "", ...props }) => {
+export const Button = ({ children, className = "", variant = "default", ...props }) => {
   const baseClasses = "px-4 py-2 rounded-md transition-colors";
   
   const variants = {
-    default: "bg-blue-600 text-white hover:bg-blue-700",
+    default: "bg-primary text-white hover:bg-blue-600",
     outline: "border border-border hover:bg-secondary",
     ghost: "hover:bg-secondary"
   };
@@ -15,5 +15,3 @@ const Button = ({ children, variant = "default", className = "", ...props }) => 
     </button>
   );
 };
-
-export default Button;

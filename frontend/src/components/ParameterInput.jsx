@@ -1,7 +1,7 @@
 import React from 'react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/Input';
+import { Label } from '@/components/ui/Label';
+import { Select } from '@/components/ui/Select';
 
 export default function ParameterInput({ 
   parameter, 
@@ -62,14 +62,9 @@ export default function ParameterInput({
       case 'select':
         return (
           <Select value={value !== undefined ? value : defaultValue}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {options && options.map(opt => (
-                <SelectItem key={opt} value={opt}>{opt}</SelectItem>
-              ))}
-            </SelectContent>
+            {options && options.map(opt => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
           </Select>
         );
 

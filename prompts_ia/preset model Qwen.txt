@@ -63,6 +63,55 @@ export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model 
   --n-cpu-moe 50 
 
 
+07/12/2025
+--override-tensor "blk\.(1|2|13)\.ffn_.*_exps\.weight=CPU" \
+
+--override-tensor "blk\.(25|37|49|61|73)\.(ffn_gate_exps|ffn_up_exps)\.weight=CPU" 
+ --override-tensor 
+ 
+  --override-tensor ot ".ffn_(up|down)_exps.=CPU" \
+ --override-tensor '([3-8]+).ffn_.*_exps.=CPU'
+ --overridetensors "blk\.([0-9]*[02468])\.ffn_.*_exps\.=CPU"
+ 
+ # Offload every expert to CPU (for single-GPU systems with lots of RAM):
+
+--override-tensor "\.(ffn_gate_exps|ffn_up_exps)\.weight=CPU" 
+--override-tensor "\.ffn_.*_exps\.weight=CPU"  
+--n-cpu-moe 55 
+--override-tensor "\.(ffn_gate_exps|ffn_up_exps)\.weight=CPU"
+".ffn_.*_exps.=CPU"
+type-k q4_1 --cache-type-v q4_1
+
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf --host 127.0.0.1 --port 8134  --threads 6 -kvu -np 1  -sm row --batch-size 512 --ubatch-size 512 --jinja -fa on --temp 0.7 --min-p 0.0  --cache-type-k q4_1 --cache-type-v q4_1 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 999 --ctx-size 128000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/" --override-tensor "\.(ffn_gate_exps|ffn_up_exps)\.weight=CPU"
+
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Seed-Coder-8B-Reasoning/Seed-Coder-8B-Reasoning-UD-Q5_K_XL.gguf" --alias Seed-Coder-8B-Reasoning-UD-Q5_K_XL --host 127.0.0.1 --port 8134 --threads 6 -kvu -np 1 -sm row --batch-size 1024 --ubatch-size 512 --jinja -fa on --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --cache- --n-gpu-layers 999 --ctx-size 131072 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/" --no-webui --no-warmup --override-tensor ".ffn_.*_exps.=CPU" 
+
+
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/DeepSeek-Coder-V2-Lite-Instruct.Q4_K/DeepSeek-Coder-V2-Lite-Instruct.Q4_K.gguf" --alias DeepSeek-Coder-V2-Lite-Instruct.Q4_K.gguf --host 127.0.0.1 --port 8134 --threads 6 -kvu -np 1  -sm row --batch-size 1024 --ubatch-size 512 --jinja -fa on --temp 0.6 --top-p 0.95 --min-p 0.01 --cache-type-k q4_1 --cache-type-v q4_1 --repeat-penalty 1.05 --n-gpu-layers 999 --ctx-size 131072 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/" --no-webui --no-warmup --override-tensor ".ffn_.*_exps.=CPU"Seed-Coder-8B-Reasoning-GGUF
+
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Ministral-3-14B-Reasoning-2512/Ministral-3-14B-Reasoning-2512-UD-Q4_K_XL.gguf" --alias Ministral-3-14B-Reasoning-2512-UD-Q4_K_XL --host 127.0.0.1 --port 8134  --threads 6 -kvu -np 1  -sm row --batch-size 1024 --ubatch-size 512 --jinja -fa on  --temp 0.6 --top-p 0.95  --cache-type-k q4_1 --cache-type-v q4_1  --n-gpu-layers 999 --ctx-size 131072 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/" --no-webui --override-tensor "\.ffn_.*_exps\.weight=CPU" 
+
+
+
+
+ 
+--override-tensor "\.ffn_.*_exps\.weight=CPU"
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/aquif-3.5-Max-1205-MXFP4_MOE/aquif-3.5-Max-1205-MXFP4_MOE.gguf" --alias aquif-3.5-Max-1205-MXFP4_MOE --host 127.0.0.1 --port 8134  --threads 6 -kvu -np 1  -sm row --batch-size 1024 --ubatch-size 512 --jinja -fa on --temp 0.7 --min-p 0.0  --cache-type-k q4_1 --cache-type-v q4_1 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 999 --ctx-size 128000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/" --override-tensor "\.ffn_.*_exps\.weight=CPU" --no-webui
+
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf --host 127.0.0.1 --port 8134  --threads 6 -kvu -np 1  -sm row --batch-size 512 --ubatch-size 512 --jinja -fa on --temp 0.7 --min-p 0.0  --cache-type-k q4_1 --cache-type-v q4_1 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 30 --n-cpu-moe 20 --ctx-size 96000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/"
+
+
+
+./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf --host 127.0.0.1 --port 8134  --threads 6 -kvu -np 1  -sm row --batch-size 512 --ubatch-size 512 --jinja -fa on --temp 0.7 --min-p 0.0  --cache-type-k q4_1 --cache-type-v q4_1 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 28 --n-cpu-moe 25 --ctx-size 128000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/"
+
+
+
 export GGML_CUDA_ENABLE_UNIFIED_MEMORY=1
 export CUDA_VISIBLE_DEVICE=0 ; export LLAMA_SET_ROWS=1 ; ./llama-server --model "/media/bamer/crucial MX300/llm/llama/models/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf/Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S.gguf" --alias Qwen3-Coder-30B-A3B-Instruct-128x1.8B-Q2_K_S-gguf --host 127.0.0.1 --port 8134  --threads 4 -kvu -np 1  -sm row --batch-size 512 --ubatch-size 512 --jinja -fa on --temp 0.7 --min-p 0.0  --cache-type-k q4_1 --cache-type-v q4_1 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 --n-gpu-layers 25 --ctx-size 128000 --timeout 7000000 --log-colors on --no-mmap --cache-reuse 256  --parallel 1 --models-dir "/media/bamer/crucial MX300/llm/llama/models/" 
 

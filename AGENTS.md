@@ -4,8 +4,7 @@
 
 ### Running the Application
 ```bash
-npm start
-npm run dev
+
 ```
 
 ### Testing
@@ -38,11 +37,6 @@ npm run lint        # Format code
 - Constants: UPPER_SNAKE_CASE (`PORT`)
 - Private methods: prefix with underscore (`_internalMethod`)
 - Use `async/await` for I/O operations
-
-### Error Handling & Config
-- Use module-level logger: `console.log()` or `console.error()`
-- Load configs via `backend/src/config.js` using repository pattern
-- Store configuration in JSON files under `config/` directory
 
 ## Architecture
 
