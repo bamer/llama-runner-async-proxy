@@ -8,7 +8,7 @@ export default defineConfig({
   mode: 'development',
   
   // Root directory for source files (like webpack's entry)
-  root: './src',
+  root: '.',
   
   // Base URL for assets
   base: '/',
@@ -19,7 +19,7 @@ export default defineConfig({
     assetsDir: 'assets',
     rollupOptions: {
       output: {
-        chunkFileNames: '[name].[contenthash].chunk.js',
+        chunkFileNames: '[name].[hash].chunk.js',
         manualChunks: {
           vendor: ['react', 'react-dom'],
         },

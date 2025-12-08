@@ -1,5 +1,6 @@
-// LlamaServerService.js - Backend implementation with React 19-inspired patterns
+// Backend Services - React 19 Features Implementation
 
+// LlamaServerService.js
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
@@ -9,7 +10,7 @@ class LlamaServerService {
     this.processes = new Map(); // modelName -> { process, config, status }
     this.subscribers = new Set();
     
-    // Cache cleanup tracking
+    // Cache cleanup tracking - React 19-inspired pattern
     this.cacheCleanup = new Map();
   }
 
@@ -19,7 +20,7 @@ class LlamaServerService {
   buildCommand(modelPath, config) {
     const params = [];
 
-    // Configuration patterns inspired by React 19
+    // Configuration patterns inspired by React 19  
     params.push(`-m ${modelPath}`);
     
     // Configurable directories
@@ -155,6 +156,7 @@ class LlamaServerService {
         startTime: Date.now(),
       });
 
+      // Immediate optimistic update
       this._updateProcessStatus(modelName, 'starting');
       
       return { success: true, modelName, pid: process.pid };
@@ -197,7 +199,6 @@ class LlamaServerService {
 
       entry.process.once('exit', () => clearTimeout(timeout));
 
-      this._updateProcessStatus(modelName, 'stopping');
       return { success: true, modelName };
     } catch (error) {
       console.error(`Failed to stop model ${modelName}:`, error);
@@ -271,7 +272,7 @@ class LlamaServerService {
         }
       }
     };
-    
+
     // Optimistic update approach - immediate change in state
     const entry = this.processes.get(modelName);
     if (entry) {

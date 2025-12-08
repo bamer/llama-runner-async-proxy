@@ -4,6 +4,6 @@
  * Main entry point for Llama Runner Async Proxy Backend
  */
 
-require('./server');
+import './server';
 
  

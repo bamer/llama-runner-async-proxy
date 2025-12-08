@@ -7,7 +7,7 @@ class ParameterService {
   constructor() {
     this.options = null;
     this.loadOptions();
-    
+
     // Cache cleanup tracking
     this.cacheCleanup = new Map();
   }
@@ -21,7 +21,7 @@ class ParameterService {
       const data = fs.readFileSync(optionsPath, 'utf-8');
       this.options = JSON.parse(data);
       console.log('[ParameterService] Loaded', this.countOptions(), 'parameters');
-      
+
       // React 19-inspired optimistic update
       const handleLoad = () => {
         console.log('Options loaded successfully with React 19 patterns');
@@ -43,7 +43,7 @@ class ParameterService {
         count += Object.keys(category).length;
       });
     }
-    
+
     // Optimistic approach - immediate return
     return Math.max(0, count);
   }
@@ -52,18 +52,18 @@ class ParameterService {
    * Get option with React 19-inspired non-reactive logic handling (useEffectEvent)
    */
   getOption(category, paramName) {
-    if (this.options.llama_options && 
-        this.options.llama_options[category] && 
-        this.options.llama_options[category][paramName]) {
+    if (this.options.llama_options &&
+      this.options.llama_options[category] &&
+      this.options.llama_options[category][paramName]) {
       return this.options.llama_options[category][paramName];
     }
-    
+
     // Non-reactive logic handling (useEffectEvent pattern)
     const handleOption = () => {
       console.log(`Option ${paramName} not found in category ${category}`);
       return null;
     };
-    
+
     return handleOption();
   }
 
@@ -74,7 +74,7 @@ class ParameterService {
     if (this.options.llama_options && this.options.llama_options[category]) {
       return this.options.llama_options[category];
     }
-    
+
     // Optimistic update - immediate response
     return {};
   }
@@ -91,7 +91,7 @@ class ParameterService {
    */
   getOptionsByCategoryForUI() {
     const result = {};
-    
+
     if (this.options.llama_options) {
       Object.entries(this.options.llama_options).forEach(([category, params]) => {
         result[category] = Object.entries(params).map(([key, value]) => ({
@@ -109,7 +109,7 @@ class ParameterService {
         }));
       });
     }
-    
+
     return result;
   }
 
@@ -150,10 +150,10 @@ class ParameterService {
    */
   buildLlamaCommand(modelPath, config = {}) {
     const flags = [];
-    
+
     // Add model path
     flags.push(modelPath);
-    
+
     // Add configured parameters with optimistic updates
     if (this.options.llama_options) {
       for (const [category, params] of Object.entries(this.options.llama_options)) {
@@ -167,17 +167,17 @@ class ParameterService {
         }
       }
     }
-    }
+
 
     // Use cacheSignal for automatic cleanup of command building
     const controller = new AbortController();
     const signal = this._createCacheSignal();
-    
+
     signal.addEventListener('abort', () => {
       console.log(`Cache expired for command building ${modelPath}`);
       controller.abort();
     });
-    
+
     return flags.join(' ');
   }
 
@@ -213,25 +213,25 @@ class ParameterService {
             return { valid: false, error: `Maximum is ${option.max}` };
           }
           return { valid: true };
-        
+
         case 'select':
           if (option.options && !option.options.includes(value)) {
             return { valid: false, error: `Must be one of: ${option.options.join(', ')}` };
           }
           return { valid: true };
-        
+
         case 'string':
           if (typeof value !== 'string') {
             return { valid: false, error: 'Must be a string' };
           }
           return { valid: true };
-        
+
         case 'boolean':
           if (typeof value !== 'boolean') {
             return { valid: false, error: 'Must be true or false' };
           }
           return { valid: true };
-        
+
         default:
           return { valid: true };
       }
@@ -247,7 +247,7 @@ class ParameterService {
     for (const category of Object.values(this.options.llama_options || {})) {
       if (category[paramName]) {
         const option = category[paramName];
-        
+
         // Non-reactive logic handling (useEffectEvent)
         const handleInfo = () => {
           return {
@@ -259,13 +259,13 @@ class ParameterService {
             examples: this.getParameterExamples(paramName)
           };
         };
-        
+
         return handleInfo();
       }
     }
-      
-      // Optimistic update
-      return null;
+
+    // Optimistic update
+    return null;
   }
 
   /**
@@ -281,10 +281,10 @@ class ParameterService {
         'top_p': ['0.9 (default)', '0.95 (less filtered)', '0.5 (very filtered)'],
         'threads': ['4', '8', '16 (depends on CPU cores)']
       };
-      
+
       return examples[paramName] || [];
     };
-    
+
     return processExamples();
   }
 
@@ -294,7 +294,7 @@ class ParameterService {
   _createCacheSignal() {
     // Create abort controller for cache cleanup
     const controller = new AbortController();
-    
+
     // This simulates the cacheSignal behavior in React 19
     const signal = {
       addEventListener: (event, handler) => {
@@ -308,7 +308,7 @@ class ParameterService {
         controller.abort();
       }
     };
-    
+
     return signal;
   }
 
@@ -319,7 +319,7 @@ class ParameterService {
     // Use cacheSignal pattern for automatic resource cleanup
     const controller = new AbortController();
     const signal = this._createCacheSignal();
-    
+
     signal.addEventListener('abort', () => {
       console.log(`Cache expired for ${key}`);
       controller.abort();
