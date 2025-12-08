@@ -1,27 +1,29 @@
 {
-    "name": "llama-runner-async-proxy",
-    "version": "1.0.0",
-    "description": "Node.js async proxy for Llama models",
-    "main": "backend/src/server.js",
-    "scripts": {
-        "dev": "npm --prefix frontend install && npm --prefix frontend run dev",
-        "build": "npm --prefix frontend build",
-        "start": "node run_backend.js"
-    },
-    "dependencies": {
-        "axios": "^1.13.2",
-        "chai": "^6.2.1",
-        "cors": "^2.8.5",
-        "express": "^5.2.1",
-        "mocha": "^11.7.5",
-        "node-fetch": "^3.3.2",
-        "react-chartjs-2": "^5.3.1",
-        "sinon": "^21.0.0",
-        "socket.io": "^4.8.1"
-    },
-    "devDependencies": {
-        "chart.js": "^4.5.1",
-        "eslint-plugin-react-hooks": "^7.0.1",
-        "nodemon": "^3.1.11"
-    }
+  "name": "llama-runner-async-proxy",
+  "version": "1.0.0",
+  "description": "Node.js async proxy for Llama models - Unified launch system",
+  "scripts": {
+    "dev": "npm --prefix frontend install && npm --prefix frontend run dev && npm --prefix backend install && npm --prefix backend run dev",
+    "start": "npm --prefix backend start",
+    "build": "npm --prefix frontend build",
+    "clean": "rm -rf frontend/node_modules frontend/dist frontend/build backend/node_modules",
+    "install-all": "npm --prefix frontend install && npm --prefix backend install",
+    "test": "npm --prefix backend test"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "chai": "^6.2.1",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "mocha": "^11.7.5",
+    "node-fetch": "^3.3.2",
+    "react-chartjs-2": "^5.3.1",
+    "sinon": "^21.0.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "chart.js": "^4.5.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "nodemon": "^3.1.11"
+  }
 }

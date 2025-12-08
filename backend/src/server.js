@@ -56,8 +56,8 @@ app.use(express.static(publicPath));
 app.use('/api/v1', apiRoutes(metricsService, modelsConfig, llamaServerService, llamaMetricsService, io));
 app.use('/api/v1/llama', llamaRoutes(llamaServerService, llamaMetricsService, modelsConfig, io));
 
-// SPA catch-all for React Router
-app.get('/*', (req, res) => {
+// SPA catch-all for React Router - Handle fallback routes properly via middleware
+app.use((req, res, next) => {
   const indexPath = path.join(publicPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
@@ -65,6 +65,9 @@ app.get('/*', (req, res) => {
     res.status(404).send('Not found');
   }
 });
+
+// Remove the problematic line to test if it's the only issue
+// Note: This route is supposed to be a catch-all for React Router to handle SPA navigation properly
 
 // WebSocket setup
 io.on('connection', (socket) => {
