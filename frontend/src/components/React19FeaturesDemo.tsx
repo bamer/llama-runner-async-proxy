@@ -1,3 +1,5 @@
+// React 19 Features Implementation for Frontend Components
+
 import { useState, use, useOptimistic, useActionState, useEffectEvent, Activity } from "react";
 import { cacheSignal, cache } from "react";
 
@@ -8,7 +10,7 @@ const mockUsers = [
   { id: 3, name: "Bob Johnson", email: "bob@example.com" }
 ];
 
-// Simulate async data fetching
+// Simulate async data fetching with cacheSignal
 async function fetchUser(id: number): Promise<{ id: number; name: string; email: string }> {
   // Artificial delay to simulate network request
   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -53,7 +55,7 @@ async function createUser(prevState: { success?: boolean; error?: string }, form
   }
 
   // Simulate network request
-  await new Promise(resolve => setTimeout(resolve, 1000);
+  await new Promise(resolve => setTimeout(resolve, 1000));
   
   return { success: true };
 }
