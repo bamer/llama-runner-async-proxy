@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
@@ -185,7 +186,7 @@ export function ConfigurationPage() {
         </form>
       </Card>
     </div>
-  );
+    );
 }
 
 // Monitoring Page - Complete Implementation
