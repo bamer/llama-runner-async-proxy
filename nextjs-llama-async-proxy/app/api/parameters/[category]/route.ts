@@ -6,9 +6,10 @@ let parameterService = {
   getCategory: (category: string) => ({})
 };
 
-export async function GET(req: NextRequest, { params }: { params: { category: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ category: string }> }) {
   try {
-    const categoryParams = parameterService.getCategory(params.category);
+    const { category } = await context.params;
+    const categoryParams = parameterService.getCategory(category);
     
     if (Object.keys(categoryParams).length === 0) {
       return Response.json({ error: 'Category not found' }, { status: 404 });
@@ -16,7 +17,7 @@ export async function GET(req: NextRequest, { params }: { params: { category: st
 
     return Response.json({
       success: true,
-      category: params.category,
+      category: category,
       parameters: categoryParams
     });
   } catch (error) {

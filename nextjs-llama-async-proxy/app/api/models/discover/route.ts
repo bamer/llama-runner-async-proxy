@@ -10,6 +10,25 @@ interface ModelFile {
   modified: Date;
 }
 
+function validatePath(scanPath: string): boolean {
+  // Only allow absolute paths and prevent path traversal
+  if (!path.isAbsolute(scanPath)) {
+    return false;
+  }
+
+  // Resolve the path to prevent .. traversal
+  const resolvedPath = path.resolve(scanPath);
+
+  // Ensure the resolved path starts with the original path (no traversal)
+  if (!resolvedPath.startsWith(scanPath)) {
+    return false;
+  }
+
+  // Additional security: only allow paths under /media, /home, /opt, /usr/local
+  const allowedPrefixes = ['/media', '/home', '/opt', '/usr/local'];
+  return allowedPrefixes.some(prefix => resolvedPath.startsWith(prefix));
+}
+
 function scanDirectory(dirPath: string): ModelFile[] {
   const models: ModelFile[] = [];
 
@@ -94,6 +113,16 @@ export async function POST(request: NextRequest) {
 
     if (!Array.isArray(paths)) {
       return NextResponse.json({ error: 'Paths must be an array' }, { status: 400 });
+    }
+
+    // Validate all paths before processing
+    const invalidPaths = paths.filter(scanPath => !validatePath(scanPath));
+    if (invalidPaths.length > 0) {
+      return NextResponse.json({
+        error: 'Invalid paths detected',
+        invalidPaths,
+        message: 'Paths must be absolute and within allowed directories (/media, /home, /opt, /usr/local)'
+      }, { status: 400 });
     }
 
     const discoveredModels: any[] = [];
