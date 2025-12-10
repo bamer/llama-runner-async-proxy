@@ -36,12 +36,23 @@ const ModelsPage = () => {
   const discoverModels = async () => {
     setIsDiscovering(true);
     try {
+      // Get configured paths from settings
+      const configResponse = await fetch('/api/config');
+      let configuredPaths = ['/media/bamer/crucial MX300/llm/llama/models'];
+
+      if (configResponse.ok) {
+        const config = await configResponse.json();
+        if (config.basePath) {
+          configuredPaths = [config.basePath];
+        }
+      }
+
       const response = await fetch('/api/models/discover', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ paths: ['/models', '/home/user/models'] }),
+        body: JSON.stringify({ paths: configuredPaths }),
       });
 
       if (response.ok) {
