@@ -1,21 +1,57 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState, useRef } from 'react';
+import { useSidebar } from './SidebarProvider';
 
 const Header = () => {
+  const { toggleSidebar } = useSidebar();
+  const [theme, setTheme] = useState('light');
+  const initializedRef = useRef(false);
+
+  useEffect(() => {
+    if (!initializedRef.current) {
+      // Get theme from localStorage on mount
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      initializedRef.current = true;
+    }
+  }, []);
+
+  const handleThemeToggle = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+  }; // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+  };
+
   return (
-    <header className="header fixed top-0 left-0 right-0 z-50 shadow-md bg-secondary border-b border-border">
-      <div className="header-content flex justify-between items-center p-4">
-        <button className="text-xl cursor-pointer">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-primary text-primary-foreground shadow-md z-20 flex items-center justify-between px-6">
+      <div className="flex items-center">
+        <button
+          onClick={toggleSidebar}
+          className="mr-4 p-2 rounded-md hover:bg-primary/80 transition-colors text-primary-foreground"
+          aria-label="Toggle sidebar"
+        >
           ☰
         </button>
-        <h1 className="text-xl font-bold">LLaMA Runner Dashboard</h1>
-        
-        <div className="flex items-center gap-4">
-          <span className="bg-secondary rounded-full px-3 py-1 text-sm">System Status: OK</span>
-          <button className="bg-primary rounded-md px-4 py-2 hover:bg-blue-600">
-            Connect
-          </button>
-        </div>
+        <h1 className="text-xl font-bold text-primary-foreground">Llama Runner Async Proxy</h1>
       </div>
+
+      <button
+        onClick={handleThemeToggle}
+        className="p-2 rounded-md hover:bg-primary/80 transition-colors text-primary-foreground"
+        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      >
+        {theme === 'light' ? '🌙' : '☀️'}
+      </button>
     </header>
   );
 };
