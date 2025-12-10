@@ -1,29 +1,12 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { useSidebar } from './SidebarProvider';
+import { useTheme } from '../ui/ThemeProvider';
 
 const Header = () => {
   const { toggleSidebar } = useSidebar();
-  const [theme, setTheme] = useState('light');
-  const initializedRef = useRef(false);
-
-  useEffect(() => {
-    if (!initializedRef.current) {
-      // Get theme from localStorage on mount
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-      initializedRef.current = true;
-    }
-  }, []);
-
-  const handleThemeToggle = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-primary text-primary-foreground shadow-md z-20 flex items-center justify-between px-6">
@@ -39,7 +22,7 @@ const Header = () => {
       </div>
 
       <button
-        onClick={handleThemeToggle}
+        onClick={toggleTheme}
         className="p-2 rounded-md hover:bg-primary/80 transition-colors text-primary-foreground"
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >

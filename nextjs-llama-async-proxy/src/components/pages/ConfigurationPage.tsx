@@ -21,7 +21,10 @@ interface ModelDefaults {
   threads: number;
 }
 
+type TabType = 'general' | 'modelDefaults';
+
 const ConfigurationPage = () => {
+  const [activeTab, setActiveTab] = useState<TabType>('general');
   const [config, setConfig] = useState<Config>({
     basePath: '/home/user/models',
     logLevel: 'info',
@@ -115,12 +118,41 @@ const ConfigurationPage = () => {
     }
   };
 
+  const tabs = [
+    { id: 'general' as TabType, label: 'General Settings', icon: '⚙️' },
+    { id: 'modelDefaults' as TabType, label: 'Model Default Parameters', icon: '🤖' }
+  ];
+
   return (
-    <div className="configuration-page">
-      <h1 className="text-2xl font-bold mb-6">Configuration</h1>
-      
-      <div className="bg-secondary border border-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold mb-4">General Settings</h3>
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-8 text-foreground">Configuration</h1>
+
+      {/* Tabs */}
+      <div className="mb-8">
+        <div className="border-b border-border">
+          <nav className="flex space-x-8">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                  activeTab === tab.id
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                }`}
+              >
+                <span className="mr-2">{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === 'general' && (
+        <div className="bg-card border border-border rounded-lg p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-6 text-foreground">General Settings</h2>
         <form>
           <div className="mb-4">
             <input
@@ -195,10 +227,13 @@ const ConfigurationPage = () => {
             </div>
           )}
         </form>
+        </div>
+      )}
 
-        {/* Model Defaults Configuration */}
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4 text-foreground">Model Default Parameters</h2>
+      {/* Model Defaults Tab */}
+      {activeTab === 'modelDefaults' && (
+        <div className="bg-card border border-border rounded-lg p-6">
+          <h2 className="text-xl font-semibold mb-6 text-foreground">Model Default Parameters</h2>
           <div className="bg-card border border-border rounded-lg p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div>
@@ -321,7 +356,7 @@ const ConfigurationPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
