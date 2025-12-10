@@ -33,11 +33,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex flex-col bg-background dark:bg-background text-foreground dark:text-foreground">
+      <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
         <Header />
         <div className="flex flex-1">
           <Sidebar />
-          <main className="flex-1 p-6 pt-20 bg-background dark:bg-background transition-all duration-300">
+          <main className="flex-1 p-6 pt-20 bg-gray-50 transition-all duration-300">
             <div className="max-w-7xl mx-auto">
               {children}
             </div>

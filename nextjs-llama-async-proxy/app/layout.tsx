@@ -28,15 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}
       >
-        <ThemeProvider defaultTheme="light" storageKey="llama-theme">
-          <WebSocketProvider>
-            <Layout>
-              {children}
-            </Layout>
-          </WebSocketProvider>
-        </ThemeProvider>
+        <WebSocketProvider>
+          <Layout>
+            {children}
+          </Layout>
+        </WebSocketProvider>
       </body>
     </html>
   );

@@ -56,20 +56,20 @@ const DashboardPage = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric, index) => (
-          <div key={index} className="bg-card dark:bg-card border border-border dark:border-border rounded-lg shadow-md p-6">
+          <div key={index} className="bg-white border border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-semibold text-foreground dark:text-foreground">{metric.title}</h3>
+              <h3 className="font-semibold text-gray-900">{metric.title}</h3>
               <span className="text-2xl">{metric.icon}</span>
             </div>
             <div className="mb-4">
-              <p className="text-2xl font-bold text-foreground dark:text-foreground">{metric.value}</p>
-              <p className="text-sm opacity-50 text-muted-foreground dark:text-muted-foreground">{metric.unit}</p>
+              <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
+              <p className="text-sm text-gray-500">{metric.unit}</p>
             </div>
             <div className="flex justify-between items-center">
-              <span className={`text-sm ${metric.trend > 0 ? 'text-green-500 dark:text-green-400' : metric.trend < 0 ? 'text-red-500 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'}`}>
+              <span className={`text-sm ${metric.trend > 0 ? 'text-green-600' : metric.trend < 0 ? 'text-red-600' : 'text-gray-500'}`}>
                 {metric.trend > 0 ? '+' : ''}{metric.trend}
               </span>
-              <span className="text-xs opacity-75 text-muted-foreground dark:text-muted-foreground">Trend</span>
+              <span className="text-xs text-gray-400">Trend</span>
             </div>
           </div>
         ))}
@@ -79,26 +79,26 @@ const DashboardPage = () => {
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4 text-foreground">Real-time Performance</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="bg-card dark:bg-card border border-border dark:border-border rounded-lg p-6">
-            <h3 className="font-semibold mb-4 text-foreground dark:text-foreground">CPU Usage (%)</h3>
-            <TimeSeriesChart data={cpuHistory} color="#3182ce" height={200} />
-            <div className="mt-2 text-sm text-muted-foreground dark:text-muted-foreground">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <h3 className="font-semibold mb-4 text-gray-900">CPU Usage (%)</h3>
+            <TimeSeriesChart data={cpuHistory} color="#3b82f6" height={200} />
+            <div className="mt-2 text-sm text-gray-500">
               Current: {cpuHistory[cpuHistory.length - 1]?.value.toFixed(1) || '0.0'}%
             </div>
           </div>
 
-          <div className="bg-card dark:bg-card border border-border dark:border-border rounded-lg p-6">
-            <h3 className="font-semibold mb-4 text-foreground dark:text-foreground">Memory Usage (%)</h3>
-            <TimeSeriesChart data={memoryHistory} color="#38a169" height={200} />
-            <div className="mt-2 text-sm text-muted-foreground dark:text-muted-foreground">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <h3 className="font-semibold mb-4 text-gray-900">Memory Usage (%)</h3>
+            <TimeSeriesChart data={memoryHistory} color="#10b981" height={200} />
+            <div className="mt-2 text-sm text-gray-500">
               Current: {memoryHistory[memoryHistory.length - 1]?.value.toFixed(1) || '0.0'}%
             </div>
           </div>
 
-          <div className="bg-card dark:bg-card border border-border dark:border-border rounded-lg p-6">
-            <h3 className="font-semibold mb-4 text-foreground dark:text-foreground">Requests/min</h3>
-            <TimeSeriesChart data={requestsHistory} color="#d69e2e" height={200} />
-            <div className="mt-2 text-sm text-muted-foreground dark:text-muted-foreground">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <h3 className="font-semibold mb-4 text-gray-900">Requests/min</h3>
+            <TimeSeriesChart data={requestsHistory} color="#f59e0b" height={200} />
+            <div className="mt-2 text-sm text-gray-500">
               Current: {requestsHistory[requestsHistory.length - 1]?.value || 0}
             </div>
           </div>
@@ -106,18 +106,18 @@ const DashboardPage = () => {
       </div>
 
       <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4 text-foreground dark:text-foreground">Recent Activity</h2>
-        <div className="bg-card dark:bg-card border border-border dark:border-border rounded-lg p-6">
+        <h2 className="text-xl font-semibold mb-4 text-gray-900">Recent Activity</h2>
+        <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
           <div className="flex items-center justify-between">
-            <span className="text-foreground dark:text-foreground">Real-time Activity Feed</span>
+            <span className="text-gray-900">Real-time Activity Feed</span>
             <div className="flex items-center gap-2">
-              <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500 dark:bg-green-400' : 'bg-red-500 dark:bg-red-400'}`}></span>
-              <span className="text-sm text-muted-foreground dark:text-muted-foreground">
+              <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></span>
+              <span className="text-sm text-gray-500">
                 {isConnected ? 'Connected' : 'Disconnected'}
               </span>
             </div>
           </div>
-          <div className="mt-4 text-sm text-muted-foreground dark:text-muted-foreground">
+          <div className="mt-4 text-sm text-gray-500">
             {lastMessage ? `Last update: ${new Date(lastMessage.timestamp).toLocaleTimeString()}` : 'Waiting for data...'}
           </div>
         </div>
