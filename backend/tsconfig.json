@@ -1,0 +1,1 @@
+{"compilerOptions": {"target": "es2015", "module": "commonjs", "lib": ["es2015"], "esModuleInterop": true, "skipLibCheck": true, "forceConsistentCasingInFileNames": true, "resolveJsonModule": true, "downlevelIteration": true, "strict": true}, "include": ["src/services-ts/**/*"], "exclude": ["node_modules", "dist"]}

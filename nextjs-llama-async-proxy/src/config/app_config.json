@@ -1,0 +1,1 @@
+{"proxies": {"ollama": {"enabled": true, "port": 11434}, "lmstudio": {"enabled": true, "port": 1234, "api_key": null}}, "webui": {"enabled": true, "port": 8081, "host": "0.0.0.0"}, "concurrentRunners": 1, "logging": {"prompt_logging_enabled": false}}
