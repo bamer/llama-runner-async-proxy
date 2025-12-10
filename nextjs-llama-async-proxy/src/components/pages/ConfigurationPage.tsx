@@ -47,9 +47,27 @@ const ConfigurationPage = () => {
     if (savedConfig) {
       try {
         const parsedConfig = JSON.parse(savedConfig);
-        setConfig(parsedConfig);
+        // Ensure modelDefaults exists with fallback values
+        const safeConfig: Config = {
+          basePath: parsedConfig.basePath || '/home/user/models',
+          logLevel: parsedConfig.logLevel || 'info',
+          maxConcurrentModels: parsedConfig.maxConcurrentModels || 5,
+          autoUpdate: parsedConfig.autoUpdate ?? true,
+          notificationsEnabled: parsedConfig.notificationsEnabled ?? true,
+          modelDefaults: {
+            ctx_size: parsedConfig.modelDefaults?.ctx_size ?? 4096,
+            batch_size: parsedConfig.modelDefaults?.batch_size ?? 2048,
+            temperature: parsedConfig.modelDefaults?.temperature ?? 0.8,
+            top_p: parsedConfig.modelDefaults?.top_p ?? 0.9,
+            top_k: parsedConfig.modelDefaults?.top_k ?? 40,
+            gpu_layers: parsedConfig.modelDefaults?.gpu_layers ?? -1,
+            threads: parsedConfig.modelDefaults?.threads ?? -1,
+          }
+        };
+        setConfig(safeConfig);
       } catch (error) {
         console.error('Failed to parse saved config:', error);
+        // Keep default config
       }
     }
   }, []);

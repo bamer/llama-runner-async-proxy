@@ -3,79 +3,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useWebSocket } from '../websocket/WebSocketManager';
 
-// Simple real-time chart component
-const RealtimeChart = ({ data, maxPoints = 20, color = '#3182ce' }: { data: number[], maxPoints?: number, color?: string }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    if (data.length < 2) return;
-
-    const width = canvas.width;
-    const height = canvas.height;
-    const padding = 20;
-
-    // Find min/max values
-    const max = Math.max(...data);
-    const min = Math.min(...data);
-
-    // Draw grid
-    ctx.strokeStyle = '#e2e8f0';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    for (let i = 0; i <= 5; i++) {
-      const y = padding + (height - 2 * padding) * (i / 5);
-      ctx.moveTo(padding, y);
-      ctx.lineTo(width - padding, y);
-    }
-    ctx.stroke();
-
-    // Draw data line
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-
-    data.forEach((value, index) => {
-      const x = padding + (width - 2 * padding) * (index / (data.length - 1));
-      const y = height - padding - (height - 2 * padding) * ((value - min) / (max - min || 1));
-
-      if (index === 0) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
-    });
-    ctx.stroke();
-
-    // Draw points
-    ctx.fillStyle = color;
-    data.forEach((value, index) => {
-      const x = padding + (width - 2 * padding) * (index / (data.length - 1));
-      const y = height - padding - (height - 2 * padding) * ((value - min) / (max - min || 1));
-      ctx.beginPath();
-      ctx.arc(x, y, 3, 0, 2 * Math.PI);
-      ctx.fill();
-    });
-
-  }, [data, color]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      width={300}
-      height={150}
-      className="w-full h-32"
-    />
-  );
-};
+import { TimeSeriesChart, MetricCard } from '../ui/Charts';
 
 // Ensure this is an ES module
 
@@ -89,9 +17,9 @@ const DashboardPage = () => {
   ]);
 
   // Real-time chart data
-  const [cpuHistory, setCpuHistory] = useState<number[]>([]);
-  const [memoryHistory, setMemoryHistory] = useState<number[]>([]);
-  const [requestsHistory, setRequestsHistory] = useState<number[]>([]);
+  const [cpuHistory, setCpuHistory] = useState<Array<{name: string, value: number}>>([]);
+  const [memoryHistory, setMemoryHistory] = useState<Array<{name: string, value: number}>>([]);
+  const [requestsHistory, setRequestsHistory] = useState<Array<{name: string, value: number}>>([]);
 
   // Update metrics when WebSocket data arrives
   const updateMetrics = useCallback(() => {
@@ -111,9 +39,10 @@ const DashboardPage = () => {
       const memoryUsage = data.memoryUsage || (Math.random() * 100);
       const requests = data.totalRequests || Math.floor(Math.random() * 100);
 
-      setCpuHistory(prev => [...prev.slice(-19), cpuUsage]);
-      setMemoryHistory(prev => [...prev.slice(-19), memoryUsage]);
-      setRequestsHistory(prev => [...prev.slice(-19), requests]);
+      const timestamp = new Date().toLocaleTimeString();
+      setCpuHistory(prev => [...prev.slice(-19), { name: timestamp, value: cpuUsage }]);
+      setMemoryHistory(prev => [...prev.slice(-19), { name: timestamp, value: memoryUsage }]);
+      setRequestsHistory(prev => [...prev.slice(-19), { name: timestamp, value: requests }]);
     }
   }, [lastMessage, connectionStatus, isConnected]);
 
@@ -152,25 +81,25 @@ const DashboardPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="bg-card border border-border rounded-lg p-6">
             <h3 className="font-semibold mb-4 text-foreground">CPU Usage (%)</h3>
-            <RealtimeChart data={cpuHistory} color="#3182ce" />
+            <TimeSeriesChart data={cpuHistory} color="#3182ce" height={200} />
             <div className="mt-2 text-sm text-muted-foreground">
-              Current: {cpuHistory[cpuHistory.length - 1]?.toFixed(1) || '0.0'}%
+              Current: {cpuHistory[cpuHistory.length - 1]?.value.toFixed(1) || '0.0'}%
             </div>
           </div>
 
           <div className="bg-card border border-border rounded-lg p-6">
             <h3 className="font-semibold mb-4 text-foreground">Memory Usage (%)</h3>
-            <RealtimeChart data={memoryHistory} color="#38a169" />
+            <TimeSeriesChart data={memoryHistory} color="#38a169" height={200} />
             <div className="mt-2 text-sm text-muted-foreground">
-              Current: {memoryHistory[memoryHistory.length - 1]?.toFixed(1) || '0.0'}%
+              Current: {memoryHistory[memoryHistory.length - 1]?.value.toFixed(1) || '0.0'}%
             </div>
           </div>
 
           <div className="bg-card border border-border rounded-lg p-6">
             <h3 className="font-semibold mb-4 text-foreground">Requests/min</h3>
-            <RealtimeChart data={requestsHistory} color="#d69e2e" />
+            <TimeSeriesChart data={requestsHistory} color="#d69e2e" height={200} />
             <div className="mt-2 text-sm text-muted-foreground">
-              Current: {requestsHistory[requestsHistory.length - 1] || 0}
+              Current: {requestsHistory[requestsHistory.length - 1]?.value || 0}
             </div>
           </div>
         </div>

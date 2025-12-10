@@ -28,34 +28,39 @@ const MonitoringPage = () => {
     ]
   });
 
-  // Update metrics when WebSocket data arrives
-  useEffect(() => {
-    if (lastMessage && lastMessage.type === 'metrics' && lastMessage.data) {
-      const data = lastMessage.data;
-      setMetrics(prev => ({
-        systemMetrics: [
-          { name: 'CPU Usage', value: `${data.cpuUsage || 45}%` },
-          { name: 'Memory Used', value: `${data.memoryUsage || 1.2} GB` },
-          { name: 'Disk Usage', value: '8.5 GB' },
-          { name: 'Network In', value: '2.4 Mbps' },
-          { name: 'Network Out', value: '1.7 Mbps' }
-        ],
-        modelMetrics: [
-          { name: 'Active Models', value: data.activeModels?.toString() || prev.modelMetrics[0]?.value || '3' },
-          { name: 'Model Load Time', value: '2.1s' },
-          { name: 'GPU Usage', value: `${data.gpuUsage || 65}%` },
-          { name: 'Memory Allocation', value: `${data.memoryAllocation || 7.8} GB` }
-        ]
-      }));
+  // Update metrics when WebSocket data arrives or fetch real monitoring data
+  const fetchMonitoringData = async () => {
+    try {
+      const response = await fetch('/api/monitoring');
+      if (response.ok) {
+        const data = await response.json();
+        setMetrics({
+          systemMetrics: [
+            { name: 'CPU Usage', value: `${data.system.cpu.usage.toFixed(1)}%` },
+            { name: 'Memory Used', value: `${data.system.memory.used} GB` },
+            { name: 'Disk Usage', value: `${data.system.disk.used} GB` },
+            { name: 'Network RX', value: `${(data.system.network.rx / 1000000).toFixed(2)} MB` },
+            { name: 'Network TX', value: `${(data.system.network.tx / 1000000).toFixed(2)} MB` }
+          ],
+          modelMetrics: [
+            { name: 'Active Models', value: data.models.filter((m: any) => m.status === 'running').length.toString() },
+            { name: 'Total Memory', value: `${data.models.reduce((sum: number, m: any) => sum + m.memory, 0).toFixed(1)} GB` },
+            { name: 'Total Requests', value: data.models.reduce((sum: number, m: any) => sum + m.requests, 0).toString() },
+            { name: 'Uptime', value: `${Math.floor(data.system.uptime / 3600)}h ${Math.floor((data.system.uptime % 3600) / 60)}m` }
+          ]
+        });
+      }
+    } catch (error) {
+      console.error('Failed to fetch monitoring data:', error);
     }
-  }, [lastMessage]);
+  };
 
-  // Simulate logs streaming
   useEffect(() => {
-    if (lastMessage && lastMessage.type === 'logs' && lastMessage.data) {
-      setLogs(prev => [...prev, ...lastMessage.data].slice(-50)); // Keep last 50 logs
-    }
-  }, [lastMessage]); // eslint-disable-line react-hooks/exhaustive-deps
+    // Fetch data immediately and then every 30 seconds
+    fetchMonitoringData();
+    const interval = setInterval(fetchMonitoringData, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   const getLogLevelColor = (level: string) => {
     switch (level) {
