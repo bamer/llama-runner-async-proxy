@@ -1,1 +1,16 @@
-{"proxies": {"ollama": {"enabled": true, "port": 11434}, "lmstudio": {"enabled": true, "port": 1234, "api_key": null}}, "webui": {"enabled": true, "port": 8081, "host": "0.0.0.0"}, "concurrentRunners": 1, "logging": {"prompt_logging_enabled": false}}
+{
+  "basePath": "/home/user/model",
+  "logLevel": "info",
+  "maxConcurrentModels": 5,
+  "autoUpdate": true,
+  "notificationsEnabled": true,
+  "modelDefaults": {
+    "ctx_size": 128000,
+    "batch_size": 2048,
+    "temperature": 0.8,
+    "top_p": 0.9,
+    "top_k": 40,
+    "gpu_layers": -1,
+    "threads": -1
+  }
+}
