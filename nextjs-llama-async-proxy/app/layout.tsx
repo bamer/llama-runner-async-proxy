@@ -30,11 +30,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <WebSocketProvider>
-          <ThemeProvider>
             <Layout>
               {children}
             </Layout>
-          </ThemeProvider>
         </WebSocketProvider>
       </body>
     </html>
