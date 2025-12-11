@@ -26,14 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <WebSocketProvider>
-          <Layout>
-            {children}
-          </Layout>
+          <ThemeProvider>
+            <Layout>
+              {children}
+            </Layout>
+          </ThemeProvider>
         </WebSocketProvider>
       </body>
     </html>

@@ -70,18 +70,13 @@ export function ThemeProvider({
     setTheme,
   };
 
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return (
-      <div style={{ visibility: 'hidden' }}>
-        {children}
-      </div>
-    );
-  }
-
   return (
     <ThemeContext.Provider value={value}>
-      {children}
+      {mounted ? children : (
+        <div style={{ visibility: 'hidden' }}>
+          {children}
+        </div>
+      )}
     </ThemeContext.Provider>
   );
 }
