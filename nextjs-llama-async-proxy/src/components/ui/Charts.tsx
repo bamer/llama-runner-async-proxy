@@ -217,22 +217,22 @@ export const MetricCard = ({
   chartData?: ChartData[];
   color?: string;
 }) => (
-  <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+  <div className="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:shadow-md transition-shadow">
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-2">
-        <div className="p-2 bg-primary/10 rounded-lg">
+        <div className="p-2 bg-blue-500/10 rounded-lg">
           {icon}
         </div>
         <div>
-          <h3 className="font-semibold text-foreground">{title}</h3>
+          <h3 className="font-semibold text-gray-100">{title}</h3>
           <div className="flex items-baseline gap-1">
-            <span className="text-2xl font-bold text-foreground">{value}</span>
-            <span className="text-sm text-muted-foreground">{unit}</span>
+            <span className="text-2xl font-bold text-gray-100">{value}</span>
+            <span className="text-sm text-gray-400">{unit}</span>
             {trend !== undefined && (
               <span className={`text-xs px-1 py-0.5 rounded ${
-                trend > 0 ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                trend < 0 ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-                'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200'
+                trend > 0 ? 'bg-green-500 text-green-800' :
+                trend < 0 ? 'bg-red-500 text-red-800' : trend > 0 ? 'bg-green-500 text-green-800' : 'bg-gray-500 text-gray-800'
+                'bg-gray-500 text-gray-800'
               }`}>
                 {trend > 0 ? '+' : ''}{trend}%
               </span>
