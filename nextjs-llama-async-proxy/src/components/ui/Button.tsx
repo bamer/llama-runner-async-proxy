@@ -19,9 +19,9 @@ export const Button = ({
 }: ButtonProps) => {
   // Define variants with proper styling
   const variants = {
-    default: "bg-primary text-white hover:bg-blue-600",
-    outline: "border border-border hover:bg-secondary",
-    ghost: "hover:bg-secondary",
+    default: "bg-blue-500 text-white hover:bg-blue-600",
+    outline: "border border-gray-300 hover:bg-gray-700",
+    ghost: "hover:bg-gray-700",
     primary: "bg-blue-500 text-white hover:bg-blue-600",
     secondary: "bg-gray-500 text-white hover:bg-gray-600"
   };
@@ -57,7 +57,7 @@ export const MetricCard = ({
 }) => {
   return (
     <div 
-      className={`bg-tertiary border border-border rounded-lg p-5 text-white ${className}`}
+      className={`bg-gray-100 border border-gray-300 rounded-lg p-5 text-gray-900 ${className}`}
     >
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xl">{icon}</span>
@@ -67,7 +67,7 @@ export const MetricCard = ({
         <span className="text-2xl font-bold">{value}</span>
         {unit && <span className="opacity-75">{unit}</span>}
         {trend !== undefined && (
-          <div className={`mt-2 ${trend > 0 ? 'text-green' : 'text-red'}`}>
+          <div className={`mt-2 ${trend > 0 ? 'text-green-500' : 'text-red-500'}`}>
             {trend > 0 ? '↑' : '↓'} {Math.abs(trend)}%
           </div>
         )}
@@ -105,7 +105,7 @@ export const ActivityMetricCard = ({
         <span className="text-2xl font-bold">{value}</span>
         {unit && <span className="opacity-75">{unit}</span>}
         {trend !== undefined && (
-          <div className={`mt-2 ${trend > 0 ? 'text-green' : 'text-red'}`}>
+          <div className={`mt-2 ${trend > 0 ? 'text-green-500' : 'text-red-500'}`}>
             {trend > 0 ? '↑' : '↓'} {Math.abs(trend)}%
           </div>
         )}

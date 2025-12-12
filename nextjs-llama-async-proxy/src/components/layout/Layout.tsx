@@ -8,7 +8,7 @@ import { SidebarProvider } from './SidebarProvider';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+      <div className="min-h-screen flex flex-col">
         <Header />
         <div className="flex flex-1">
           <Sidebar />

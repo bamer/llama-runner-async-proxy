@@ -55,13 +55,8 @@ export const TimeSeriesChart = ({
         tickLine={false}
       />
       {showTooltip && (
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '6px',
-            color: 'hsl(var(--foreground))'
-          }}
+         <Tooltip
+          contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151', borderRadius: '6px', color: '#f9fafb' }}
         />
       )}
       <Line
@@ -104,10 +99,10 @@ export const AreaChartComponent = ({
       />
       <Tooltip
         contentStyle={{
-          backgroundColor: 'hsl(var(--card))',
-          border: '1px solid hsl(var(--border))',
+           backgroundColor: '#1f2937',
+          border: '1px solid #374151',
           borderRadius: '6px',
-          color: 'hsl(var(--foreground))'
+           color: '#f9fafb'
         }}
       />
       <Area
@@ -150,10 +145,10 @@ export const BarChartComponent = ({
       />
       <Tooltip
         contentStyle={{
-          backgroundColor: 'hsl(var(--card))',
-          border: '1px solid hsl(var(--border))',
+           backgroundColor: '#1f2937',
+          border: '1px solid #374151',
           borderRadius: '6px',
-          color: 'hsl(var(--foreground))'
+           color: '#f9fafb'
         }}
       />
       <Bar dataKey={dataKey} fill={color} radius={[4, 4, 0, 0]} />
@@ -194,10 +189,10 @@ export const PieChartComponent = ({
       </Pie>
       <Tooltip
         contentStyle={{
-          backgroundColor: 'hsl(var(--card))',
-          border: '1px solid hsl(var(--border))',
+           backgroundColor: '#1f2937',
+          border: '1px solid #374151',
           borderRadius: '6px',
-          color: 'hsl(var(--foreground))'
+           color: '#f9fafb'
         }}
       />
     </PieChart>
