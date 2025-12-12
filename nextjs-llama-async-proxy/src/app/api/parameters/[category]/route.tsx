@@ -1,4 +1,3 @@
-// app/api/parameters/[category]/route.ts
 import { NextRequest } from 'next/server';
 
 // Mock services (these would be properly connected in a real implementation)

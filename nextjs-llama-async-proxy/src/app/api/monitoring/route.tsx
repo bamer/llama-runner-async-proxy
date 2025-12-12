@@ -1,4 +1,3 @@
-// app/api/monitoring/route.ts
 import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 

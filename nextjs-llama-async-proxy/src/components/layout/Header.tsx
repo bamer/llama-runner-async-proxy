@@ -1,14 +1,4 @@
-'use client';
-
-import React from 'react';
 import { useSidebar } from './SidebarProvider';
-// No theme-related imports
-// No theme-related imports
-// No theme-related imports
-// No theme-related imports
-// No theme-related imports
-// No theme-related imports
-// No theme-related imports
 
 
 const Header = () => {

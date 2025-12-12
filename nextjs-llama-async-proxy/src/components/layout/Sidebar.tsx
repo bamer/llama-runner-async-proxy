@@ -1,7 +1,3 @@
-'use client';
-
-// This is the canonical Sidebar component used throughout the application
-// It uses Tailwind CSS classes and Next.js routing for navigation
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

@@ -1,6 +1,3 @@
-'use client';
-
-// nextjs-llama-async-proxy/src/components/websocket/WebSocketManager.tsx
 import { useEffect, useRef, useState, createContext, useContext, ReactNode } from 'react';
 
 interface WebSocketMessage {
