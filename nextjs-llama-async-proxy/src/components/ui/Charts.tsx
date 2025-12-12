@@ -232,7 +232,6 @@ export const MetricCard = ({
               <span className={`text-xs px-1 py-0.5 rounded ${
                 trend > 0 ? 'bg-green-500 text-green-800' :
                 trend < 0 ? 'bg-red-500 text-red-800' : trend > 0 ? 'bg-green-500 text-green-800' : 'bg-gray-500 text-gray-800'
-                'bg-gray-500 text-gray-800'
               }`}>
                 {trend > 0 ? '+' : ''}{trend}%
               </span>
